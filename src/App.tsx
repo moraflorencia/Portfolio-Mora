@@ -575,7 +575,7 @@ const projects = [
                   Florencia Mora
                 </h1>
                 <p className={`text-sm transition-all duration-300 ${
-                  isDarkMode ? 'text-gray-300' : 'text-slate-600'
+                  isDarkMode ? 'text-gray-300' : 'text-slate-800'
                 }`}>
                   Data Analyst
                 </p>
@@ -591,7 +591,7 @@ const projects = [
                   className={`relative px-4 py-2 rounded-xl font-medium transition-all duration-300 overflow-hidden group ${
                     activeSection === item.key 
                       ? (isDarkMode ? 'text-white' : 'text-white')
-                      : (isDarkMode ? 'text-gray-300 hover:text-white' : 'text-slate-700 hover:text-white')
+                      : (isDarkMode ? 'text-gray-300 hover:text-white' : 'text-slate-800 hover:text-white')
                   }`}
                 >
                   <div className={`absolute inset-0 transition-all duration-300 rounded-xl ${
