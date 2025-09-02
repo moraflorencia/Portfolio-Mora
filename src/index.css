@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@keyframes spinGradient {
+  0% {
+    background: conic-gradient(from 0deg, #ff0080, #7928ca, #2af598, #009efd, #ff0080);
+  }
+  100% {
+    background: conic-gradient(from 360deg, #ff0080, #7928ca, #2af598, #009efd, #ff0080);
+  }
+}
+ 
+.profile-border {
+  position: relative;
+  display: inline-block;
+  border-radius: 50%;
+  padding: 6px; /* grosor del borde */
+}
+
+.profile-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  padding: 4px;
+  background: conic-gradient(from 0deg, #ff0080, #7928ca, #2af598, #009efd, #ff0080);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  /* Aquí animamos la rotación */
+  animation: spin 2s linear infinite;
+}
+
+/* Nueva animación */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes firefly {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+.animate-firefly {
+  animation: firefly infinite ease-in-out;
+}
