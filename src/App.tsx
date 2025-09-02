@@ -860,7 +860,7 @@ const projects = [
                 </p>
                 
                 <p className={`text-lg leading-relaxed transition-all duration-300 ${
-                  isDarkMode ? 'text-gray-300' : 'text-slate-700'
+                  isDarkMode ? 'text-gray-300' : 'text-slate-800'
                 }`}>
                   {t.about.description2}
                 </p>
