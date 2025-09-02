@@ -854,7 +854,7 @@ const projects = [
             <div className="space-y-8">
               <div className="space-y-6">
                 <p className={`text-lg leading-relaxed transition-all duration-300 ${
-                  isDarkMode ? 'text-gray-300' : 'text-slate-900'
+                  isDarkMode ? 'text-gray-300' : 'text-slate-800'
                 }`}>
                   {t.about.description1}
                 </p>
