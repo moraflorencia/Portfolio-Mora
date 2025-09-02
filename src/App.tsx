@@ -738,7 +738,7 @@ const projects = [
           </div>
           
           <p className={`text-xl md:text-2xl mb-8 max-w-4xl mx-auto leading-relaxed font-medium ${
-            isDarkMode ? 'text-gray-200' : 'text-slate-700'
+            isDarkMode ? 'text-gray-200' : 'text-slate-800'
           }`}>
             {t.hero.description}
           </p>
