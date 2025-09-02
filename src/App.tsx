@@ -745,7 +745,7 @@ const projects = [
           
           {/* Stats */}
           <div className={`flex flex-wrap justify-center gap-8 mb-12 ${
-            isDarkMode ? 'text-gray-300' : 'text-slate-700'
+            isDarkMode ? 'text-gray-300' : 'text-slate-800'
           }`}>
             <div className="flex items-center space-x-2 text-sm md:text-base">
               <MapPin size={20} className={isDarkMode ? "text-purple-500" : "text-rose-500"} />
