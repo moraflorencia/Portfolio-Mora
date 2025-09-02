@@ -366,7 +366,7 @@ const projects = [
   style={{ 
     backgroundImage: isDarkMode
       ? "url('./assets/FondoNoche.png')" // fondo oscuro
-      : "url('./assets/FondoDia.png')", // fondo claro
+      : "url('/assets/FondoDia.png')", // fondo claro
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundAttachment: "fixed"
