@@ -610,7 +610,7 @@ const projects = [
                   className={`p-2 rounded-xl transition-all duration-300 ${
                     isDarkMode 
                       ? 'bg-white/10 hover:bg-white/20 text-white' 
-                      : 'bg-slate-800/80 hover:bg-slate-700 text-white'
+                      : 'bg-slate-800/80 hover:bg-slate-800 text-white'
                   }`}
                 >
                   <Globe size={18} />
@@ -710,7 +710,7 @@ const projects = [
           {/* Main Content */}
           <div className="mb-8 space-y-4">
             <p className={`text-lg font-medium transition-all duration-300 ${
-              isDarkMode ? 'text-gray-300' : 'text-slate-700' 
+              isDarkMode ? 'text-gray-300' : 'text-slate-800' 
             }`}>
               {t.hero.greeting}
             </p>
