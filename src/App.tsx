@@ -709,32 +709,32 @@ const projects = [
           
           {/* Main Content */}
           <div className="mb-8 space-y-4">
-            import { Typewriter } from 'react-simple-typewriter'
-
-{/* Bloque unificado con efecto máquina de escribir */}
-<div className="mb-8 space-y-6">
-  <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center">
-    <span
-      className={`transition-all duration-300 ${
-        isDarkMode ? 'text-white' : 'text-slate-800'
-      }`}
-    >
-      <Typewriter
-        words={[
-          `${t.hero.greeting} Soy ${t.hero.name}, ${t.hero.subtitle}`, // Español
-          `${t.hero.greeting} I'm ${t.hero.name}, ${t.hero.subtitle}`, // Inglés
-        ]}
-        loop={true}
-        cursor
-        cursorStyle="|"
-        typeSpeed={70}
-        deleteSpeed={40}
-        delaySpeed={2000}
-      />
-    </span>
-  </h1>
-</div>
->
+            <p className={`text-lg font-medium transition-all duration-300 ${
+              isDarkMode ? 'text-gray-300' : 'text-slate-800' 
+            }`}>
+              {t.hero.greeting}
+            </p>
+            
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
+              <span className={`transition-all duration-300 ${
+                isDarkMode ? 'text-white' : 'text-slate-800'
+              }`}> 
+                {t.hero.name}
+              </span>
+            </h1>
+            
+            <div className="relative inline-block">
+              <h2 className={`text-2xl md:text-3xl font-bold bg-clip-text text-transparent animate-gradient-x ${
+                isDarkMode 
+                  ? 'bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600' 
+                  : 'bg-gradient-to-r from-rose-600 via-pink-600 to-purple-600'
+              }`}>
+                {t.hero.title}
+              </h2>
+              <div className={`absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 rounded-full ${
+                isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
+              }`}></div>
+            </div>
           </div>
           
           <p className={`text-xl md:text-2xl mb-8 max-w-4xl mx-auto leading-relaxed font-medium ${
