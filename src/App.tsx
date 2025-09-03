@@ -365,8 +365,8 @@ const projects = [
   }`}
   style={{ 
     backgroundImage: isDarkMode
-      ? "url('/assets/FondoNoche.png')" // fondo oscuro
-      : "url('ttps://stackblitz.com/storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCQVdIMUFFPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--8cdabcb6ba4dfde5b97238e2701ad7bba4b176a1//FondoDia.png')", // fondo claro
+      ? "url('https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/src/assets/FondoNoche.png')" // fondo oscuro
+      : "url('https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/src/assets/ChatGPT%20Image%2031%20ago%202025%2C%2021_46_28.png')", // fondo claro
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundAttachment: "fixed"
