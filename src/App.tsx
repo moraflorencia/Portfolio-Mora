@@ -43,7 +43,37 @@ function App() {
     }
     setIsMobileMenuOpen(false);
   };
+// Typewriter effect for hero subtitle
+  const subtitle = "Analista de Datos | Python · SQL · Power BI · Excel | Estudiante de Ingeniería en Sistemas de Información";
+  const [displayedText, setDisplayedText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [charIndex, setCharIndex] = useState(0);
 
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (!isDeleting) {
+        // Escribiendo
+        if (charIndex < subtitle.length) {
+          setDisplayedText(subtitle.substring(0, charIndex + 1));
+          setCharIndex(charIndex + 1);
+        } else {
+          // Pausa antes de empezar a borrar
+          setTimeout(() => setIsDeleting(true), 2000);
+        }
+      } else {
+        // Borrando
+        if (charIndex > 0) {
+          setDisplayedText(subtitle.substring(0, charIndex - 1));
+          setCharIndex(charIndex - 1);
+        } else {
+          // Reiniciar el ciclo
+          setIsDeleting(false);
+        }
+      }
+    }, isDeleting ? 50 : 100);
+
+    return () => clearTimeout(timeout);
+  }, [charIndex, isDeleting, subtitle]);
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
   };
