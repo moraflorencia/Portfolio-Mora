@@ -692,19 +692,59 @@ const projects = [
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center justify-center px-6 py-20 relative">
-        <div className="container mx-auto text-center relative z-10"> 
-          {/* Profile Image */}
-          <div className="relative mb-8 inline-block">
-            <div className={`absolute inset-0 rounded-full blur-2xl opacity-60 animate-pulse ${
-              isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-400 to-pink-500'
-            }`}></div>
-            <div className="profile-border">
-  <img
-    src="https://i.postimg.cc/0NJMCbn0/Picsart-24-12-09-11-42-26-230.jpg"
-              alt="Florencia Milagros Mora"    className="w-40 h-40 rounded-full object-cover"
-  />
-</div>
+      import { useEffect, useRef } from "react";
+import Typed from "typed.js";
+
+export default function Hero({ isDarkMode }) {
+  const typedRef = useRef(null);
+
+  useEffect(() => {
+    const typed = new Typed(typedRef.current, {
+      strings: [
+        "¡Hola! Soy Florencia Milagros Mora - Analista de Datos | Python | SQL | Power BI | Excel | Estudiante de Ingeniería en Sistemas de Información"
+      ],
+      typeSpeed: 60,
+      backSpeed: 40,
+      backDelay: 1500,
+      loop: true,
+    });
+
+    return () => {
+      typed.destroy(); // Cleanup al desmontar
+    };
+  }, []);
+
+  return (
+    <section id="home" className="min-h-screen flex items-center justify-center px-6 py-20 relative">
+      <div className="container mx-auto text-center relative z-10"> 
+        {/* Profile Image */}
+        <div className="relative mb-8 inline-block">
+          <div
+            className={`absolute inset-0 rounded-full blur-2xl opacity-60 animate-pulse ${
+              isDarkMode
+                ? "bg-gradient-to-r from-purple-600 to-pink-600"
+                : "bg-gradient-to-r from-rose-400 to-pink-500"
+            }`}
+          ></div>
+          <div className="profile-border">
+            <img
+              src="https://i.postimg.cc/0NJMCbn0/Picsart-24-12-09-11-42-26-230.jpg"
+              alt="Florencia Milagros Mora"
+              className="w-40 h-40 rounded-full object-cover"
+            />
+          </div>
+        </div>
+
+        {/* Texto con efecto máquina de escribir */}
+        <h1
+          ref={typedRef}
+          className="text-3xl md:text-4xl font-bold text-white"
+        ></h1>
+      </div>
+    </section>
+  );
+}
+
           </div>
           
           {/* Main Content */}
