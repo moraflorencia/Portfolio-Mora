@@ -11,6 +11,12 @@ function App() {
   const [isDarkMode, setIsDarkMode] = useState(true); // Changed to true for dark mode default
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isEnglish, setIsEnglish] = useState(false);
+  
+  // Typewriter effect states
+  const [typewriterText, setTypewriterText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [textIndex, setTextIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
  
   useEffect(() => {
     const handleScroll = () => { 
@@ -35,6 +41,49 @@ function App() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Typewriter effect
+  useEffect(() => {
+    const texts = [
+      'Python · SQL · Power BI · Excel',
+      'Estudiante de Ingeniería en Sistemas',
+      'Data Analyst & Problem Solver',
+      'Transformando datos en insights'
+    ];
+
+    const typeSpeed = 100; // Speed of typing
+    const deleteSpeed = 50; // Speed of deleting
+    const pauseBetweenTexts = 2000; // Pause before starting to delete
+    const pauseAfterDelete = 500; // Pause after deleting before next text
+
+    const timeout = setTimeout(() => {
+      const currentText = texts[textIndex];
+      
+      if (!isDeleting) {
+        // Typing
+        if (charIndex < currentText.length) {
+          setTypewriterText(currentText.slice(0, charIndex + 1));
+          setCharIndex(prev => prev + 1);
+        } else {
+          // Finished typing, start deleting after pause
+          setTimeout(() => setIsDeleting(true), pauseBetweenTexts);
+        }
+      } else {
+        // Deleting
+        if (charIndex > 0) {
+          setTypewriterText(currentText.slice(0, charIndex - 1));
+          setCharIndex(prev => prev - 1);
+        } else {
+          // Finished deleting, move to next text
+          setIsDeleting(false);
+          setTextIndex(prev => (prev + 1) % texts.length);
+          setTimeout(() => {}, pauseAfterDelete);
+        }
+      }
+    }, isDeleting ? deleteSpeed : typeSpeed);
+
+    return () => clearTimeout(timeout);
+  }, [typewriterText, isDeleting, textIndex, charIndex]);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
