@@ -279,7 +279,7 @@ const projects = [
   
   const experience = [
     {
-      title: 'Pasante de Análisis de Datos y desarrollo SAP',
+      title: 'Pasante de desarrollo SAP',
       company: 'ARTECH | Fundación PESCAR',
       period: 'Actual',
       description: 'Formación profesional especializada en Análisis de Datos y SAP. Desarrollo intensivo en Python y SQL, complementado con el fortalecimiento de habilidades blandas para el ambiente profesional.',
