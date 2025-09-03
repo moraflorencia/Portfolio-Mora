@@ -730,7 +730,7 @@ const projects = [
                   : 'bg-gradient-to-r from-rose-600 via-pink-600 to-purple-600'
               }`}>
                 {t.hero.title}
-              </h2>
+              </h1>
               <div className={`absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 rounded-full ${
                 isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
               }`}></div>
