@@ -251,7 +251,7 @@ const projects = [
       'https://i.postimg.cc/XqTN4rvY/Captura-de-pantalla-2025-08-05-214437.png'
     ],
     year: '2024',
-    githubUrl: 'https://github.com/moraflorencia',
+    driveUrl: 'https://drive.google.com/drive/folders/1FEXeriz28_KuR33d8pBfDpKh8oEWr_K3?usp=sharing',
     achievements: [
       'Integración eficiente de datos complejos',
       'Automatización y precisión en cálculos',
