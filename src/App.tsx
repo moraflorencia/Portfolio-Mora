@@ -1,49 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronDown, Github, Linkedin, Mail, Phone, MapPin, ExternalLink, BarChart3, Database, Brain, Code, TrendingUp, BookOpen, Award, Briefcase, Send, Calendar, GraduationCap, X, ZoomIn, Moon, Sun, Menu, Globe, Star, Sparkles } from 'lucide-react';
-import { Languages } from 'lucide-react';
- 
+import { Github, Linkedin, Mail, Phone, MapPin, Calendar, ExternalLink, ChevronDown, Moon, Sun, Database, BarChart3, Code, FileSpreadsheet } from 'lucide-react';
+
+const App: React.FC = () => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
   
-function App() {
-  const [activeSection, setActiveSection] = useState('home'); 
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [selectedProject, setSelectedProject] = useState<any>(null);
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-  const [isDarkMode, setIsDarkMode] = useState(true); // Changed to true for dark mode default
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isEnglish, setIsEnglish] = useState(false);
- 
-  useEffect(() => {
-    const handleScroll = () => { 
-      setIsScrolled(window.scrollY > 50);
-      
-      // Update active section based on scroll position
-      const sections = ['home', 'about', 'skills', 'projects', 'experience', 'education', 'contact'];
-      const current = sections.find(section => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
-        }
-        return false;
-      });
-      
-      if (current) {
-        setActiveSection(current);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-    setIsMobileMenuOpen(false);
-  };
-
   // Typewriter effect for hero subtitle
   const subtitle = "Analista de Datos | Python · SQL · Power BI · Excel | Estudiante de Ingeniería en Sistemas de Información";
   const [displayedText, setDisplayedText] = useState('');
@@ -75,901 +35,189 @@ function App() {
 
     return () => clearTimeout(timeout);
   }, [charIndex, isDeleting, subtitle]);
+
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
   };
 
-  const toggleLanguage = () => setIsEnglish(!isEnglish);
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    element?.scrollIntoView({ behavior: 'smooth' });
+  };
 
-  // Translations
-  const translations = {
-    es: {
-      nav: {
-        about: "Sobre mí",
-        skills: "Habilidades",
-        projects: "Proyectos",
-        experience: "Experiencia",
-        education: "Educación",
-        contact: "Contacto"
-      },
-      hero: {
-        greeting: "¡Hola!",
-        name: "Florencia Milagros Mora",
-        title: "Analista de Datos | Python · SQL · Power BI · Excel | Estudiante de Ingeniería en Sistemas de Información",
-        subtitle: "Python · SQL · Power BI · Excel | Estudiante de Ingeniería en Sistemas", 
-        description: "Me entusiasma aprender, crecer en equipo y usar los datos para crear soluciones con impacto real.",
-        downloadCV: "Descargar CV",
-        contact: "Contactar"
-      },
-      about: {
-        title: "Sobre mí", 
-        description1: "Soy una persona curiosa y en constante aprendizaje. Me gusta entender cómo funcionan las cosas, resolver problemas y transformar ideas en proyectos que aporten valor. También disfruto del diseño, porque me permite combinar lo técnico con lo creativo.",
-        description2: "Me encanta trabajar con otras personas, compartir conocimientos y seguir creciendo en cada desafío. Más allá de la tecnología, me motiva la posibilidad de aprender algo nuevo todos los días y aplicar lo que sé de forma creativa.",
-        dataAnalysis: "Análisis de Datos",
-        ai: "Inteligencia Artificial",
-        visualization: "Visualización",
-        programming: "Programación"
-      },
-      skills: {
-        title: "Habilidades Técnicas"
-      },
-      projects: {
-        title: "Proyectos",
-        achievements: "Logros principales:"
-      },
-      experience: { 
-        title: "Experiencia Profesional",
-        skills: "Tecnologías y habilidades:"
-      },
-      education: {
-        title: "Educación",
-        formal: " ",
-        complementary: "Educación Complementaria"
-      },
-      contact: {
-        title: "Contacto",
-        info: "Información de contacto",
-        email: "Email",
-        phone: "Teléfono",
-        linkedin: "LinkedIn",
-        github: "GitHub",
-        location: "Ubicación",
-        locationValue: "Buenos Aires, Argentina",
-        form: {
-          title: "Envíame un mensaje",
-          name: "Nombre",
-          namePlaceholder: "Tu nombre",
-          email: "Email",
-          emailPlaceholder: "tu@email.com",
-          subject: "Asunto",
-          subjectPlaceholder: "Asunto del mensaje",
-          message: "Mensaje",
-          messagePlaceholder: "Tu mensaje...",
-          send: "Enviar mensaje"
-        }
-      },
-      footer: {
-        description: "Analista de Datos | Python · SQL · Power BI · Excel | Estudiante de Ingeniería en Sistemas",
-        copyright: "❤ 2025 Florencia Mora. Diseñado con amor."
-      }
+  const projects = [
+    {
+      title: "Análisis de Ventas - Dashboard Interactivo",
+      description: "Dashboard completo desarrollado en Power BI para análisis de ventas con métricas KPI, tendencias temporales y segmentación por productos.",
+      image: "/assets/Ventas.jpg",
+      technologies: ["Power BI", "SQL", "Excel"],
+      link: "#"
     },
-    en: {
-      nav: {
-        about: "About",
-        skills: "Skills",
-        projects: "Projects",
-        experience: "Experience",
-        education: "Education",
-        contact: "Contact"
-      },
-      hero: {
-        greeting: "Hello!",
-        name: "Florencia Milagros Mora",
-        title: " Data Analyst",
-        subtitle: "Python · SQL · Power BI · Excel | Systems Engineering Student",
-        description: "I'm excited to learn, grow as a team, and use data to create solutions with real impact.",
-        downloadCV: "Download CV",
-        contact: "Contact"
-      },
-      about: {
-        title: "About Me",
-        description1: "I'm a curious person who's constantly learning. I like to understand how things work, solve problems, and transform ideas into projects that add value. I also enjoy design because it allows me to combine technical and creative aspects.",
-        description2: "I love working with other people, sharing knowledge, and continuing to grow with each challenge. Beyond technology, I'm motivated by the possibility of learning something new every day and applying what I know creatively.",
-        dataAnalysis: "Data Analysis",
-        ai: "Artificial Intelligence",
-        visualization: "Visualization",
-        programming: "Programming"
-      },
-      skills: {
-        title: "Technical Skills"
-      },
-      projects: {
-        title: "Projects",
-        achievements: "Key achievements:",
-        viewRepo: "View repository"
-      },
-      experience: {
-        title: "Professional Experience",
-        skills: "Technologies and skills:"
-      },
-      education: {
-        title: "Education",
-        formal: " ",
-        complementary: "Complementary Education"
-      },
-      contact: {
-        title: "Contact",
-        info: "Contact information",
-        email: "Email",
-        phone: "Phone",
-        linkedin: "LinkedIn",
-        location: "Location",
-        locationValue: "Buenos Aires, Argentina",
-        form: {
-          title: "Send me a message",
-          name: "Name",
-          namePlaceholder: "Your name",
-          email: "Email",
-          emailPlaceholder: "your@email.com",
-          subject: "Subject",
-          subjectPlaceholder: "Message subject",
-          message: "Message",
-          messagePlaceholder: "Your message...",
-          send: "Send message"
-        }
-      },
-      footer: {
-        description: "Data Analyst | Python · SQL · Power BI · Excel | Systems Engineering Student",
-        copyright: "❤ 2025 Florencia Mora. Designed with love."
-      }
+    {
+      title: "Análisis de Rendimiento de Vendedores",
+      description: "Sistema de análisis para evaluar el rendimiento de equipos de ventas con visualizaciones interactivas y reportes automatizados.",
+      image: "/assets/Vendedores.jpg",
+      technologies: ["Python", "Pandas", "Matplotlib"],
+      link: "#"
+    },
+    {
+      title: "Glosario de Términos de Datos",
+      description: "Documentación completa de términos técnicos y metodologías utilizadas en análisis de datos y business intelligence.",
+      image: "/assets/Glosario.jpg",
+      technologies: ["Documentation", "Data Analysis"],
+      link: "#"
+    },
+    {
+      title: "Análisis de Datos de Viajes",
+      description: "Estudio estadístico de patrones de viaje con visualizaciones geográficas y análisis de tendencias estacionales.",
+      image: "/assets/Viaje.jpg",
+      technologies: ["Python", "SQL", "Tableau"],
+      link: "#"
     }
-  }; 
-
-  const t = translations[isEnglish ? 'en' : 'es'];
+  ];
 
   const skills = [
-    { 
-      name: 'Análisis de Datos', 
-      icon: BarChart3, 
-      items: ['SQL', 'Python', 'Numpy', 'Pandas', 'Matplotlib'],
-      color: 'from-red-500 to-pink-600'
-    },
-    { 
-      name: 'Visualización', 
-      icon: TrendingUp, 
-      items: ['Power BI', 'Excel', 'Dashboards', 'Datos'],
-      color: 'from-yellow-500 to-orange-600'
-    },
-    { 
-      name: 'Programación', 
-      icon: Code, 
-      items: ['Python', 'SQL', 'Bash', 'C'],
-      color: 'from-green-500 to-emerald-600'
-    },
-    { 
-      name: 'IA & Tecnología', 
-      icon: Brain, 
-      items: ['Automatización', 'Ciberseguridad'],
-      color: 'from-blue-500 to-indigo-600'
-    }
+    { name: "Python", level: 85, icon: Code },
+    { name: "SQL", level: 90, icon: Database },
+    { name: "Power BI", level: 88, icon: BarChart3 },
+    { name: "Excel", level: 92, icon: FileSpreadsheet }
   ];
 
-const projects = [
-  {
-    title: 'Asistencia al viajero - CoderHouse',
-    description: 'Proyecto integral de análisis de datos en el que desarrollé un tablero interactivo en Power BI a partir de un dataset propio titulado "Asistencia al Viajero". El trabajo incluyó la transformación de una base de datos compleja en Excel, la aplicación de técnicas avanzadas de limpieza y modelado de datos, y la creación de visualizaciones interactivas para facilitar el análisis estratégico',
-    tech: ['Power BI', 'Excel', 'Datos', 'Visualización'],
-    images: [
-      '/assets/Portada.png',
-      '/assets/Glosario.png',
-      '/assets/Ventas.png',
-      '/assets/Viajes.png',
-      '/assets/Vendedores.png'
-    ],
-    year: '2024',
-    githubUrl: 'https://github.com/moraflorencia/Asistencia-al-Viajero-Power-BI-',
-    achievements: [ 
-      'Transformación completa de base de datos',
-      'Dashboards interactivos para análisis de tendencias',
-      'Mejora significativa en interpretación de datos'
-    ]
-  },
-  {
-    title: 'Análisis de desocupación mundial - UNQui',
-    description: 'Proyecto de análisis de datos en Excel donde completé y transformé una base de datos. Utilicé funciones para integrar información de continentes, población y tasas de desempleo. Calculé totales y promedios de desocupación, además de clasificar los países según su tamaño poblacional. Finalmente, elaboré tablas dinámicas y gráficos que permitieron un análisis detallado y visual de los datos',
-    tech: ['Excel', 'Datos', 'Visualización'],
-    images: [
-      'https://i.postimg.cc/XqTN4rvY/Captura-de-pantalla-2025-08-05-214437.png'
-    ],
-    year: '2024',
-    githubUrl: 'https://github.com/moraflorencia',
-    achievements: [
-      'Integración eficiente de datos complejos',
-      'Automatización y precisión en cálculos',
-      'Visualización y análisis estratégico'
-    ]
-  },
-  {
-    title: 'Explotación y Visualización de Datos - GIDAS',
-    description: 'Proyecto integral de análisis de datos donde gestioné y transformé una base de datos compleja en Excel, creé dashboards interactivos en Power BI y apliqué técnicas avanzadas de limpieza de datos.',
-    tech: ['Power BI', 'Excel', 'Datos', 'Visualización'],
-    images: [
-      'https://i.postimg.cc/j5bzdjLv/Captura-de-pantalla-2025-08-05-213720.png',
-      'https://i.postimg.cc/gjBXRckC/Captura-de-pantalla-2025-08-05-214017.png',
-      'https://i.postimg.cc/cL3ggSqz/Captura-de-pantalla-2025-08-05-214105.png'
-    ],
-    year: '2023',
-    githubUrl: 'https://github.com/moraflorencia/Proyectos-Graduados',
-    achievements: [ 
-      'Transformación completa de base de datos',
-      'Dashboards interactivos para análisis de tendencias',
-      'Mejora significativa en interpretación de datos'
-    ]
-  }
-];
-  
-  const experience = [
-    {
-      title: 'Pasante de Análisis de Datos y desarrollo SAP',
-      company: 'ARTECH | Fundación PESCAR',
-      period: 'Actual',
-      description: 'Formación profesional especializada en Análisis de Datos y SAP. Desarrollo intensivo en Python y SQL, complementado con el fortalecimiento de habilidades blandas para el ambiente profesional.',
-      skills: ['Python', 'SQL', 'SAP', 'Análisis de Datos', 'Habilidades Blandas'],
-      type: 'Pasantía de Aprendizaje'
-    }
-  ];
-
-  const education = [
-    {
-      title: 'Ingeniería en Sistemas de Información',
-      institution: 'Universidad Tecnológica Regional La Plata',
-      period: '2021 - Cursando',
-      type: 'Grado Universitario',
-      status: 'En curso'
-    },
-    {
-      title: 'Tecnicatura en quimica',
-      institution: 'E.E.S.T N°2 Paula A de Sarmiento, Bernal',
-      period: '2013 - 2019',
-      type: 'Educación Secundaria',
-      status: 'Completado'
-    }
-  ];
-
-  const complementaryEducation = [
-    { course: 'Analista de Datos y Gestión de Información', institution: 'Quales Group', year: 'Actual', hours: '' },
-    { course: 'Business Intelligence', institution: 'Talento Tech', year: 'Actual', hours: '' },
-    { course: 'SQL Básico', institution: 'UTN FRA', year: '2025', hours: '' },
-    { course: 'Ciberseguridad', institution: 'Fundación YPF', year: '2025', hours: '60hrs' },
-    { course: 'Python para análisis de datos', institution: 'EducacionIT', year: '2024', hours: '18hrs' },
-    { course: 'Data Analytics', institution: 'CoderHouse', year: '2024', hours: '46hrs' },
-    { course: 'Excel 1', institution: 'UNQ', year: '2024', hours: '30hrs' },
-    { course: 'Introducción a la IA', institution: 'UTN', year: '2024', hours: '70hrs' },
-    { course: 'Automatización Industrial', institution: 'CIVET', year: '2022', hours: '40hrs' },
-    { course: 'Diseño asistido por computadora (AutoCAD)', institution: 'CFP 406', year: '2021', hours: '120hrs' }
-  ];
-
-  const openProjectModal = (project: any) => {
-    setSelectedProject(project);
-    setSelectedImageIndex(0);
-    document.body.style.overflow = 'hidden';
-  };
-
-  const closeProjectModal = () => {
-    setSelectedProject(null);
-    setSelectedImageIndex(0);
-    document.body.style.overflow = 'unset';
-  };
-
-  const nextImage = () => {
-    if (selectedProject) {
-      setSelectedImageIndex((prev) => 
-        prev === selectedProject.images.length - 1 ? 0 : prev + 1
-      );
-    }
-  };
-
-  const prevImage = () => {
-    if (selectedProject) {
-      setSelectedImageIndex((prev) => 
-        prev === 0 ? selectedProject.images.length - 1 : prev - 1
-      );
-    }
-  };
-
-  const navigationItems = [
-    { key: 'home', label: 'Inicio' },
-    { key: 'about', label: t.nav.about },
-    { key: 'skills', label: t.nav.skills },
-    { key: 'projects', label: t.nav.projects },
-    { key: 'experience', label: t.nav.experience },
-    { key: 'education', label: t.nav.education },
-    { key: 'contact', label: t.nav.contact }
-  ];
- 
   return (
-    <div
-  className={`min-h-screen relative transition-all duration-500 ${
-    isDarkMode 
-      ? 'bg-slate-900'   // respaldo si no carga la imagen
-      : 'bg-rose-50'     // respaldo actualizado para modo claro
-  }`}
-  style={{ 
-    backgroundImage: isDarkMode
-      ? "url('https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/src/assets/FondoNoche.png')" // fondo oscuro
-      : "url('https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/src/assets/ChatGPT%20Image%2031%20ago%202025%2C%2021_46_28.png')", // fondo claro
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundAttachment: "fixed"
-  }}
->
-      {/* Animated Background Effects */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        {/* Existing Decorative Background Elements */}
-        <div className={`absolute top-20 -right-20 w-72 h-72 rounded-full opacity-20 blur-3xl transition-all duration-1000 ${
-          isDarkMode ? 'bg-purple-600' : 'bg-rose-400'
-        }`}></div>
-        <div className={`absolute bottom-20 -left-20 w-96 h-96 rounded-full opacity-10 blur-3xl transition-all duration-1000 ${
-          isDarkMode ? 'bg-pink-600' : 'bg-amber-400'
-        }`}></div>
-        <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full opacity-5 blur-3xl transition-all duration-1000 ${
-          isDarkMode ? 'bg-indigo-600' : 'bg-purple-300'
-        }`}></div>
-
-        {/* Animated Stars/Particles */}
-        {isDarkMode ? (
-          // Stars for dark mode
-          <>
-            {[...Array(50)].map((_, i) => (
-              <div
-                key={`star-${i}`}
-                className="absolute animate-twinkle"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 3}s`,
-                  animationDuration: `${2 + Math.random() * 2}s`
-                }}
-              >
-                <div 
-                  className="bg-white rounded-full opacity-80"
-                  style={{
-                    width: `${1 + Math.random() * 2}px`,
-                    height: `${1 + Math.random() * 2}px`,
-                    boxShadow: `0 0 ${2 + Math.random() * 4}px rgba(255, 255, 255, 0.8)`
-                  }}
-                ></div>
-              </div>
-            ))}
-            
-            {/* Shooting stars */}
-            {[...Array(3)].map((_, i) => (
-              <div
-                key={`shooting-star-${i}`}
-                className="absolute animate-shooting-star"
-                style={{
-                  left: `${20 + Math.random() * 60}%`,
-                  top: `${10 + Math.random() * 30}%`, 
-                  animationDelay: `${i * 8 + Math.random() * 5}s`,
-                  animationDuration: '6s'
-                }}
-              >
-                <div className="w-0.5 h-0.5 bg-white rounded-full shadow-lg" 
-                     style={{
-                       boxShadow: '0 0 6px 2px rgba(255, 255, 255, 0.8), -20px 0 20px -10px rgba(255, 255, 255, 0.4)'
-                     }}>
-                </div>
-              </div>
-            ))}
-
-            {/* Fireflies */}
-{[...Array(15)].map((_, i) => (
-  <div
-    key={`firefly-${i}`}
-    className="absolute animate-firefly"
-    style={{
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 100}%`,
-      animationDelay: `${Math.random() * 5}s`,
-      animationDuration: '9s',
-    }}
-  >
-    <div
-      className="w-0.5 h-0.5 rounded-full"
-  style={{
-    backgroundColor: '#FFD700',
-    boxShadow: '0 0 6px 2px rgba(255, 215, 0, 0.8)',
-      }}
-    />
-  </div>
-))}
-
- 
- 
-            {/* Constellation effect */}
-            {[...Array(8)].map((_, i) => (
-              <div
-                key={`constellation-${i}`}
-                className="absolute animate-pulse"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 4}s`,
-                  animationDuration: `${2 + Math.random() * 2}s`
-                }}
-              >
-                <div className="w-2 h-2 bg-blue-200 rounded-full opacity-40 blur-sm"></div>
-              </div>
-            ))}
-          </>
-        ) : (
-          // Floating particles for light mode
-          <>
-            {[...Array(30)].map((_, i) => (
-              <div
-                key={`particle-${i}`}
-                className="absolute animate-float-gentle"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 5}s`,
-                  animationDuration: `${5 + Math.random() * 4}s`
-                }}
-              >
-                <div 
-                  className="rounded-full opacity-30"
-                  style={{
-                    width: `${2 + Math.random() * 4}px`,
-                    height: `${2 + Math.random() * 4}px`,
-                    background: `linear-gradient(45deg, rgba(252, 165, 165, 0.6), rgba(251, 113, 133, 0.4))`,
-                    filter: 'blur(0.5px)'
-                  }}
-                ></div>
-              </div>
-            ))}
-            
-            {/* Sparkle effects */}
-            {[...Array(15)].map((_, i) => (
-              <div
-                key={`sparkle-${i}`}
-                className="absolute animate-sparkle"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 3}s`,
-                  animationDuration: `${2 + Math.random()}s`
-                }}
-              >
-                <div className="relative">
-                  <div className="w-1 h-1 bg-rose-300 rounded-full opacity-60"></div>
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-0.5 bg-rose-200 opacity-40 rounded-full"></div>
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-0.5 h-3 bg-rose-200 opacity-40 rounded-full"></div>
-                </div>
-              </div>
-            ))}
-
-            {/* Gentle bubbles */}
-            {[...Array(12)].map((_, i) => (
-              <div
-                key={`bubble-${i}`}
-                className="absolute animate-bubble-float"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${80 + Math.random() * 20}%`,
-                  animationDelay: `${Math.random() * 6}s`,
-                  animationDuration: `${10 + Math.random() * 5}s`
-                }}
-              >
-                <div 
-                  className="rounded-full opacity-20 blur-sm"
-                  style={{
-                    width: `${3 + Math.random() * 6}px`,
-                    height: `${3 + Math.random() * 6}px`,
-                    background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(252, 165, 165, 0.4))',
-                    border: '1px solid rgba(252, 165, 165, 0.2)'
-                  }}
-                ></div>
-              </div>
-            ))}
-          </>
-        )}
-      </div>
- 
-      {/* Navigation */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-  isScrolled ? 'backdrop-blur-xl shadow-2xl' : 'bg-transparent'
-}`}>
-  <div className={`absolute inset-0 transition-all duration-500 ${
-    isScrolled 
-      ? (isDarkMode ? 'bg-slate-900/70 border-b border-white/10' : 'bg-white/80 border-b border-rose-200/50')
-      : 'bg-transparent'
-  }`}></div>
-         
-        <div className="container mx-auto px-6 py-4 relative z-10">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className={`relative p-3 rounded-xl transition-all duration-500 overflow-hidden ${ 
-                isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
-              }`}>
-                <img 
-                  src="https://i.postimg.cc/xTvVcxxR/Skye-Ultimate.png" 
-                  alt="Logo" 
-                  className={`w-6 h-6 object-contain transition-all duration-500 ${ 
-                    isDarkMode ? 'filter brightness-110 contrast-110' : 'filter brightness-90'
-                  }`}
-                />
-              </div>
-              <div className="hidden md:block">
-                <h1 className={`text-xl font-bold transition-all duration-300 ${
-                  isDarkMode ? 'text-white' : 'text-slate-800'
-                }`}>
-                  Florencia Mora
-                </h1>
-                <p className={`text-sm transition-all duration-300 ${
-                  isDarkMode ? 'text-gray-300' : 'text-slate-800'
-                }`}>
-                  Data Analyst
-                </p>
-              </div>
-            </div>
-            
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-2">
-              {navigationItems.map((item) => (
-                <button
-                  key={item.key}
-                  onClick={() => scrollToSection(item.key)}
-                  className={`relative px-4 py-2 rounded-xl font-medium transition-all duration-300 overflow-hidden group ${
-                    activeSection === item.key 
-                      ? (isDarkMode ? 'text-white' : 'text-white')
-                      : (isDarkMode ? 'text-gray-300 hover:text-white' : 'text-slate-800 hover:text-white')
-                  }`}
-                >
-                  <div className={`absolute inset-0 transition-all duration-300 rounded-xl ${
-                    activeSection === item.key
-                      ? (isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600 opacity-100' : 'bg-gradient-to-r from-rose-500 to-pink-500 opacity-100')
-                      : (isDarkMode ? 'bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100' : 'bg-gradient-to-r from-rose-600 to-pink-600 opacity-0 group-hover:opacity-100')
-                  }`}></div>
-                  <span className="relative z-10">{item.label}</span>
-                </button>
-              ))}
-              
-              {/* Controls */}
-              <div className="flex items-center space-x-2 ml-4">
-                <button
-                  onClick={toggleLanguage}
-                  className={`p-2 rounded-xl transition-all duration-300 ${
-                    isDarkMode 
-                      ? 'bg-white/10 hover:bg-white/20 text-white' 
-                      : 'bg-slate-800/80 hover:bg-slate-800 text-white'
-                  }`}
-                >
-                  <Globe size={18} />
-                </button>
-                
-                <button
-                  onClick={toggleDarkMode}
-                  className={`p-2 rounded-xl transition-all duration-300 ${
-                    isDarkMode 
-                      ? 'bg-yellow-500 hover:bg-yellow-400 text-yellow-900' 
-                      : 'bg-slate-700 hover:bg-slate-600 text-white'
-                  }`}
-                >
-                  {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
-                </button>
-              </div>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <div className="md:hidden flex items-center space-x-2">
-              <button
-                onClick={toggleLanguage}
-                className={`p-2 rounded-xl transition-all duration-300 ${
-                  isDarkMode 
-                    ? 'bg-white/10 hover:bg-white/20 text-white' 
-                    : 'bg-slate-800/80 hover:bg-slate-700 text-white'
-                }`}
-              >
-                <Globe size={18} />
-              </button>
-              
-              <button 
-                onClick={toggleDarkMode}
-                className={`p-2 rounded-xl transition-all duration-300 ${
-                  isDarkMode 
-                    ? 'bg-yellow-500 hover:bg-yellow-400 text-yellow-900' 
-                    : 'bg-slate-700 hover:bg-slate-600 text-white'
-                }`}
-              >
-                {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
-              </button>
-              
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className={`p-2 rounded-xl transition-all duration-300 ${
-                  isDarkMode 
-                    ? 'bg-white/10 hover:bg-white/20 text-white' 
-                    : 'bg-slate-800/80 hover:bg-slate-700 text-white'
-                }`}
-              >
-                <Menu size={20} />
-              </button>
+    <div className={`min-h-screen transition-all duration-500 ${isDarkMode ? 'dark' : ''}`}>
+      <div 
+        className="min-h-screen bg-cover bg-center bg-fixed relative"
+        style={{
+          backgroundImage: `url(${isDarkMode ? '/assets/FondoNoche.png' : '/assets/FondoDia.png'})`
+        }}
+      >
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/20 dark:bg-black/40"></div>
+        
+        {/* Navigation */}
+        <nav className="relative z-10 p-6 flex justify-between items-center">
+          <div className="text-2xl font-bold text-white">
+            FM
+          </div>
+          <div className="flex items-center space-x-6">
+            <button
+              onClick={toggleDarkMode}
+              className="p-2 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all duration-300"
+            >
+              {isDarkMode ? <Sun className="w-5 h-5 text-white" /> : <Moon className="w-5 h-5 text-white" />}
+            </button>
+            <div className="hidden md:flex space-x-6 text-white">
+              <button onClick={() => scrollToSection('about')} className="hover:text-purple-300 transition-colors">Sobre mí</button>
+              <button onClick={() => scrollToSection('skills')} className="hover:text-purple-300 transition-colors">Habilidades</button>
+              <button onClick={() => scrollToSection('projects')} className="hover:text-purple-300 transition-colors">Proyectos</button>
+              <button onClick={() => scrollToSection('contact')} className="hover:text-purple-300 transition-colors">Contacto</button>
             </div>
           </div>
+        </nav>
 
-          {/* Mobile Menu */}
-          {isMobileMenuOpen && (
-            <div className={`md:hidden mt-4 p-4 rounded-2xl backdrop-blur-xl transition-all duration-300 ${
-              isDarkMode ? 'bg-slate-900/90' : 'bg-white/90 border border-rose-200/50'
-            }`}>
-              <div className="space-y-2">
-                {navigationItems.map((item) => (
-                  <button
-                    key={item.key}
-                    onClick={() => scrollToSection(item.key)}
-                    className={`w-full text-left px-4 py-3 rounded-xl font-medium transition-all duration-300 ${
-                      activeSection === item.key
-                        ? (isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white' : 'bg-gradient-to-r from-rose-500 to-pink-500 text-white')
-                        : (isDarkMode ? 'text-gray-300 hover:bg-white/10' : 'text-slate-700 hover:bg-rose-100/50')
-                    }`}
-                  >
-                    {item.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-      </nav>
-
-      {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center justify-center px-6 py-20 relative">
-        <div className="container mx-auto text-center relative z-10"> 
+        {/* Hero Section */}
+        <div className="relative z-10 flex flex-col items-center justify-center min-h-[80vh] text-center px-6">
           {/* Profile Image */}
-          <div className="relative mb-8 inline-block">
-            <div className={`absolute inset-0 rounded-full blur-2xl opacity-60 animate-pulse ${
-              isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-400 to-pink-500'
-            }`}></div>
-            <div className="profile-border">
-  <img
-    src="https://i.postimg.cc/0NJMCbn0/Picsart-24-12-09-11-42-26-230.jpg"
-              alt="Florencia Milagros Mora"    className="w-40 h-40 rounded-full object-cover"
-  />
-</div>
+          <div className="profile-border mb-8">
+            <img 
+              src="https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop" 
+              alt="Florencia Mora" 
+              className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover"
+            />
           </div>
-          
-          {/* Main Content */}
-          <div className="mb-8 space-y-4">
-            <p className={`text-lg font-medium transition-all duration-300 ${
-              isDarkMode ? 'text-gray-300' : 'text-slate-800' 
-            }`}>
-              {t.hero.greeting}
-            </p>
-            
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
-              <span className={`transition-all duration-300 ${
-                isDarkMode ? 'text-white' : 'text-slate-800'
-              }`}> 
-                {t.hero.name}
-              </span>
-            </h1>
-            
-            <div className="relative inline-block">
-              <h2 className={`text-2xl md:text-3xl font-bold bg-clip-text text-transparent animate-gradient-x ${
-                isDarkMode 
-                  ? 'bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600' 
-                  : 'bg-gradient-to-r from-rose-600 via-pink-600 to-purple-600'
-              }`}>
-                {t.hero.title}
-              </h2>
-              <div className={`absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 rounded-full ${
-                isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
-              }`}></div>
-            </div>
+
+          {/* Name */}
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent mb-6">
+            Florencia Milagros Mora
+          </h1>
+
+          {/* Typewriter Subtitle */}
+          <div className="min-h-[80px] flex items-center justify-center mb-8">
+            <h2 className="text-lg md:text-xl lg:text-2xl text-white font-medium max-w-4xl">
+              {displayedText}
+              <span className="animate-pulse text-purple-400">|</span>
+            </h2>
           </div>
-          
-          <p className={`text-xl md:text-2xl mb-8 max-w-4xl mx-auto leading-relaxed font-medium ${
-            isDarkMode ? 'text-gray-200' : 'text-slate-800'
-          }`}>
-            {t.hero.description}
-          </p>
-          
-          {/* Stats */}
-          <div className={`flex flex-wrap justify-center gap-8 mb-12 ${
-            isDarkMode ? 'text-gray-300' : 'text-slate-800'
-          }`}>
-            <div className="flex items-center space-x-2 text-sm md:text-base">
-              <MapPin size={20} className={isDarkMode ? "text-purple-500" : "text-rose-500"} />
-              <span>{t.contact.locationValue}</span>
-            </div>
-            <div className="flex items-center space-x-2 text-sm md:text-base">
-              <Mail size={20} className={isDarkMode ? "text-blue-500" : "text-pink-500"} />
-              <span>mora.florencia.m@gmail.com</span>
-            </div>
-            <div className="flex items-center space-x-2 text-sm md:text-base">
-              <Star size={20} className={isDarkMode ? "text-yellow-500" : "text-amber-500"} />
-              <span>Disponible para proyectos</span>
-            </div>
-          </div>
-          
+
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <button
+          <div className="flex flex-col sm:flex-row gap-4 mb-12">
+            <button 
               onClick={() => scrollToSection('projects')}
-              className={`group relative px-8 py-4 text-white rounded-2xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl overflow-hidden ${
-                isDarkMode 
-                  ? 'bg-gradient-to-r from-purple-600 to-pink-600 hover:shadow-purple-500/25' 
-                  : 'bg-gradient-to-r from-rose-500 to-pink-500 hover:shadow-rose-500/25'
-              }`}
+              className="px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full font-semibold hover:from-purple-700 hover:to-pink-700 transition-all duration-300 transform hover:scale-105"
             >
-              <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-300 ${
-                isDarkMode ? 'bg-gradient-to-r from-pink-600 to-purple-600' : 'bg-gradient-to-r from-pink-500 to-rose-500'
-              }`}></div>
-              <span className="relative z-10 flex items-center justify-center space-x-2">
-                <span>Ver mis proyectos</span>
-              </span>
+              Ver Proyectos
             </button>
-            
-            <button
+            <button 
               onClick={() => scrollToSection('contact')}
-              className={`group px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl border-2 ${
-                isDarkMode 
-                  ? 'border-white/20 text-white hover:bg-white/10' 
-                  : 'border-slate-600 text-slate-700 hover:bg-slate-600 hover:text-white'
-              }`}
+              className="px-8 py-3 border-2 border-white text-white rounded-full font-semibold hover:bg-white hover:text-gray-900 transition-all duration-300"
             >
-              <span className="flex items-center justify-center space-x-2">
-                <span>{t.hero.contact}</span>
-              </span>
+              Contactar
             </button>
           </div>
-          
-          {/* Social Links */}
-          <div className="flex justify-center space-x-6">
-            {[
-              { icon: Linkedin, href: "https://linkedin.com/in/florm01", color: isDarkMode ? "hover:text-blue-500" : "hover:text-blue-600" },
-              { icon: Github, href: "https://github.com/moraflorencia", color: isDarkMode ? "hover:text-gray-700" : "hover:text-slate-700" },
-              { icon: Mail, href: "mailto:mora.florencia.m@gmail.com", color: isDarkMode ? "hover:text-green-500" : "hover:text-emerald-600" },
-              { icon: Phone, href: "tel:+5491160184046", color: isDarkMode ? "hover:text-yellow-500" : "hover:text-amber-600" }
-            ].map(({ icon: Icon, href, color }, index) => (
-              <a
-                key={index}
-                href={href}
-                target={href.startsWith('http') ? '_blank' : undefined}
-                rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                className={`p-3 rounded-xl transition-all duration-300 hover:scale-110 hover:shadow-lg ${
-                  isDarkMode ? 'bg-white/10 text-gray-400 hover:bg-white/20' : 'bg-slate-800/80 text-white hover:bg-slate-700'
-                } ${color}`}
-              >
-                <Icon size={24} />
-              </a>
-            ))}
+
+          {/* Scroll Indicator */}
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <ChevronDown className="w-8 h-8 text-white" />
           </div>
         </div>
-      </section>
+      </div>
 
       {/* About Section */}
-      <section id="about" className="py-20 px-6 relative">
-        <div className="container mx-auto max-w-6xl">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <h2 className={`text-4xl md:text-5xl font-bold mb-4 transition-all duration-300 ${
-              isDarkMode ? 'text-white' : 'text-slate-800'
-            }`}>
-              {t.about.title}
-            </h2>
-            <div className={`w-24 h-1 mx-auto rounded-full ${
-              isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
-            }`}></div>
-          </div> 
-          
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Image */}
-            <div className="relative">
-              <div className={`absolute inset-0 rounded-3xl blur-3xl opacity-30 ${
-                isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-400 to-pink-400'
-              }`}></div>
-              <div className={`relative backdrop-blur-sm border rounded-3xl overflow-hidden shadow-2xl ${
-                isDarkMode ? 'bg-white/5 border-white/10' : 'bg-white/70 border-rose-200/30'
-              }`}>
-                <img 
-                  src="https://images.pexels.com/photos/590020/pexels-photo-590020.jpeg?auto=compress&cs=tinysrgb&w=600"
-                  alt="Data Analysis" 
-                  className="w-full h-80 object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+      <section id="about" className="py-20 bg-white dark:bg-gray-900 transition-colors duration-500">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">Sobre mí</h2>
+              <p className="text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                Soy una apasionada analista de datos con sólida experiencia en Python, SQL, Power BI y Excel. 
+                Actualmente cursando Ingeniería en Sistemas de Información, combino conocimientos técnicos 
+                con visión estratégica para transformar datos en insights accionables.
+              </p>
+              <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
+                Mi enfoque se centra en crear soluciones de business intelligence que impulsen la toma de 
+                decisiones basada en datos, optimizando procesos y generando valor para las organizaciones.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <div className="flex items-center space-x-2 text-gray-700 dark:text-gray-300">
+                  <MapPin className="w-5 h-5 text-purple-600" />
+                  <span>Buenos Aires, Argentina</span>
+                </div>
+                <div className="flex items-center space-x-2 text-gray-700 dark:text-gray-300">
+                  <Calendar className="w-5 h-5 text-purple-600" />
+                  <span>Disponible para proyectos</span>
+                </div>
               </div>
             </div>
-            
-            {/* Content */}
-            <div className="space-y-8">
-              <div className="space-y-6">
-                <p className={`text-lg leading-relaxed transition-all duration-300 ${
-                  isDarkMode ? 'text-gray-300' : 'text-slate-800'
-                }`}>
-                  {t.about.description1}
-                </p>
-                
-                <p className={`text-lg leading-relaxed transition-all duration-300 ${
-                  isDarkMode ? 'text-gray-300' : 'text-slate-800'
-                }`}>
-                  {t.about.description2}
-                </p>
-              </div>
-              
-              {/* Specialties Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {[
-                  { icon: BarChart3, title: t.about.dataAnalysis, color: 'from-red-500 to-pink-600' },
-                  { icon: Brain, title: t.about.ai, color: 'from-blue-500 to-indigo-600' },
-                  { icon: TrendingUp, title: t.about.visualization, color: 'from-yellow-500 to-orange-600' },
-                  { icon: Code, title: t.about.programming, color: 'from-green-500 to-emerald-600' }
-                ].map((item, index) => (
-                  <div key={index} className={`group p-6 rounded-2xl backdrop-blur-sm border transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer ${
-                    isDarkMode ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-white/50 border-rose-200/30 hover:bg-white/70'
-                  }`}>
-                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-r ${item.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-all duration-300`}>
-                      <item.icon className="w-6 h-6 text-white" />
-                    </div>
-                    <h3 className={`font-semibold transition-all duration-300 ${
-                      isDarkMode ? 'text-white' : 'text-slate-800'
-                    }`}>
-                      {item.title}
-                    </h3>
-                  </div>
-                ))}
-              </div>
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl transform rotate-3"></div>
+              <img 
+                src="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=600" 
+                alt="Workspace" 
+                className="relative rounded-2xl shadow-2xl w-full h-80 object-cover"
+              />
             </div>
           </div>
         </div>
       </section>
-      
+
       {/* Skills Section */}
-      <section id="skills" className="py-20 px-6 relative">
-        <div className="container mx-auto max-w-6xl">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <h2 className={`text-4xl md:text-5xl font-bold mb-4 transition-all duration-300 ${
-              isDarkMode ? 'text-white' : 'text-slate-800'
-            }`}>
-              {t.skills.title}
-            </h2>
-            <div className={`w-24 h-1 mx-auto rounded-full ${
-              isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
-            }`}></div>
-          </div>
-          
+      <section id="skills" className="py-20 bg-gray-50 dark:bg-gray-800 transition-colors duration-500">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-16">Habilidades Técnicas</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {skills.map((skill, index) => (
-              <div key={index} className={`group relative p-8 rounded-3xl backdrop-blur-sm border transition-all duration-500 hover:scale-105 hover:shadow-2xl cursor-pointer ${ 
-                isDarkMode ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-white/60 border-rose-200/40 hover:bg-white/80'
-              }`}>
-                {/* Background Gradient */} 
-                <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${skill.color} opacity-0 group-hover:opacity-10 transition-all duration-500`}></div>
-                
-                {/* Icon */}
-                <div className={`relative w-16 h-16 rounded-2xl bg-gradient-to-r ${skill.color} flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg`}>
+              <div key={skill.name} className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full mb-4 mx-auto">
                   <skill.icon className="w-8 h-8 text-white" />
                 </div>
-                
-                {/* Content */}
-                <div className="relative text-center">
-                  <h3 className={`text-xl font-bold mb-4 transition-all duration-300 ${
-                    isDarkMode ? 'text-white' : 'text-slate-800'
-                  }`}>
-                    {skill.name}
-                  </h3>
-                  
-                  <ul className="space-y-2">
-                    {skill.items.map((item, itemIndex) => (
-                      <li key={itemIndex} className={`text-sm font-medium transition-all duration-300 ${
-                        isDarkMode ? 'text-gray-300' : 'text-slate-600'
-                      }`}>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white text-center mb-4">{skill.name}</h3>
+                <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 mb-2">
+                  <div 
+                    className="bg-gradient-to-r from-purple-600 to-pink-600 h-3 rounded-full transition-all duration-1000 ease-out"
+                    style={{ width: `${skill.level}%` }}
+                  ></div>
                 </div>
+                <p className="text-center text-gray-600 dark:text-gray-400 font-medium">{skill.level}%</p>
               </div>
             ))}
           </div>
@@ -977,133 +225,34 @@ const projects = [
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 px-6 relative">
-        <div className="container mx-auto max-w-6xl">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <h2 className={`text-4xl md:text-5xl font-bold mb-4 transition-all duration-300 ${
-              isDarkMode ? 'text-white' : 'text-slate-800'
-            }`}>
-              {t.projects.title}
-            </h2>
-            <div className={`w-24 h-1 mx-auto rounded-full ${
-              isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
-            }`}></div>
-          </div>
-          
-          <div className="space-y-8">
+      <section id="projects" className="py-20 bg-white dark:bg-gray-900 transition-colors duration-500">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-16">Proyectos Destacados</h2>
+          <div className="grid md:grid-cols-2 gap-8">
             {projects.map((project, index) => (
-              <div key={index} className={`group relative rounded-3xl backdrop-blur-sm border transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl overflow-hidden ${
-                isDarkMode ? 'bg-white/5 border-white/10' : 'bg-white/70 border-rose-200/40'
-              }`}>
-                <div className="md:flex">
-                  {/* Image */}
-                  <div className="md:w-2/5 relative">
-                    <div className="relative overflow-hidden rounded-l-3xl md:rounded-l-3xl md:rounded-r-none cursor-pointer" onClick={() => openProjectModal(project)}>
-                      <img
-                        src={project.images[0]}
-                        alt={project.title}
-                        className="w-full h-64 md:h-full object-cover transition-all duration-500 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
-                        <div className="bg-white/20 backdrop-blur-sm rounded-full p-4">
-                          <ZoomIn className="text-white" size={32} />
-                        </div>
-                      </div>
-                    </div>
-                    
-                    {/* Year Badge */}
-                    <div className="absolute top-4 right-4">
-                      <div className={`text-white px-4 py-2 rounded-xl text-sm font-bold shadow-lg ${
-                        isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
-                      }`}>
-                        {project.year}
-                      </div>
-                    </div>
-
+              <div key={index} className="bg-gray-50 dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                <div className="relative overflow-hidden">
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    className="w-full h-48 object-cover transition-transform duration-300 hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{project.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">{project.description}</p>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.technologies.map((tech, techIndex) => (
+                      <span key={techIndex} className="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-full text-sm font-medium">
+                        {tech}
+                      </span>
+                    ))}
                   </div>
-                  
-                  {/* Content */}
-                  <div className="md:w-3/5 p-8 md:p-12">
-                    <div className="flex items-start justify-between mb-4">
-                      <h3 className={`text-2xl md:text-3xl font-bold transition-all duration-300 ${
-                        isDarkMode ? 'text-white' : 'text-slate-800'
-                      }`}>
-                        {project.title}
-                      </h3>
-                      
-                      {/* Desktop GitHub Button */}
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`hidden md:flex items-center space-x-2 px-4 py-2 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg border ${
-                          isDarkMode 
-                            ? 'bg-white/10 hover:bg-white/20 border-white/20 text-gray-300 hover:text-white' 
-                            : 'bg-slate-800/80 hover:bg-slate-700 border-slate-600 text-white hover:text-white'
-                        }`}
-                      >
-                        <Github size={18} />
-                        <span className="text-sm font-medium">{t.projects.viewRepo}</span>
-                      </a>
-                    </div>
-                    
-                    <p className={`text-lg leading-relaxed mb-6 transition-all duration-300 ${
-                      isDarkMode ? 'text-gray-300' : 'text-slate-700'
-                    }`}>
-                      {project.description}
-                    </p>
-                    
-                    {/* Achievements */}
-                    <div className="mb-6">
-                      <h4 className={`font-semibold mb-4 text-lg transition-all duration-300 ${
-                        isDarkMode ? 'text-white' : 'text-slate-800'
-                      }`}>
-                        {t.projects.achievements}
-                      </h4>
-                      <ul className="space-y-3">
-                        {project.achievements.map((achievement, achIndex) => (
-                          <li key={achIndex} className={`flex items-start space-x-3 transition-all duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-slate-700'
-                          }`}>
-                            <div className="w-6 h-6 rounded-full bg-gradient-to-r from-green-400 to-emerald-500 flex items-center justify-center flex-shrink-0 mt-0.5">
-                              <div className="w-2 h-2 bg-white rounded-full"></div>
-                            </div>
-                            <span>{achievement}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    
-                    {/* Tech Stack */}
-                    <div className="flex flex-wrap gap-3">
-                      {project.tech.map((tech, techIndex) => (
-                        <span
-                          key={techIndex}
-                          className={`px-4 py-2 rounded-xl text-sm font-medium backdrop-blur-sm border transition-all duration-300 hover:scale-105 ${
-                            isDarkMode ? 'bg-white/10 border-white/20 text-gray-200' : 'bg-white/60 border-rose-200/40 text-slate-700'
-                          }`}
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Mobile GitHub Button */}
-                    <div className="md:hidden mt-6">
-                      <a 
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`w-full py-3 px-6 rounded-xl font-medium transition-all duration-300 flex items-center justify-center space-x-3 hover:scale-105 hover:shadow-lg ${
-                          isDarkMode ? 'bg-gradient-to-r from-gray-800 to-gray-900 hover:from-gray-700 hover:to-rose-800 text-white' : 'bg-rose-400 hover:bg-rose-700 text-white'
-                        }`}
-                      >
-                        <Github size={20} />
-                        <span>{t.projects.viewRepo}</span>
-                      </a>
-                    </div>
-                  </div>
+                  <button className="flex items-center space-x-2 text-purple-600 dark:text-purple-400 hover:text-purple-800 dark:hover:text-purple-200 font-semibold transition-colors">
+                    <span>Ver proyecto</span>
+                    <ExternalLink className="w-4 h-4" />
+                  </button>
                 </div>
               </div>
             ))}
@@ -1111,90 +260,107 @@ const projects = [
         </div>
       </section>
 
-      {/* Project Modal */}
-      {selectedProject && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className={`relative w-full max-w-6xl max-h-[90vh] rounded-3xl backdrop-blur-xl border overflow-hidden transition-all duration-500 ${
-            isDarkMode ? 'bg-slate-900/90 border-white/20' : 'bg-white/90 border-rose-200/30'
-          }`}>
-            {/* Header */}
-            <div className={`flex items-center justify-between p-6 border-b ${
-              isDarkMode ? 'border-white/10' : 'border-rose-200/30'
-            }`}>
-              <div className="flex items-center space-x-4">
-                <h3 className={`text-2xl font-bold transition-all duration-300 ${
-                  isDarkMode ? 'text-white' : 'text-slate-800'
-                }`}>
-                  {selectedProject.title}
-                </h3>
-                
-                {/* GitHub Button in Modal Header */}
-                <a
-                  href={selectedProject.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`flex items-center space-x-2 px-4 py-2 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg border ${
-                    isDarkMode 
-                      ? 'bg-white/10 hover:bg-white/20 border-white/20 text-gray-300 hover:text-white' 
-                      : 'bg-slate-800/80 hover:bg-slate-700 border-slate-600 text-white hover:text-white'
-                  }`}
-                > 
-                  <Github size={18} />
-                  <span className="text-sm font-medium">{t.projects.viewRepo}</span> 
+      {/* Contact Section */}
+      <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-800 transition-colors duration-500">
+        <div className="max-w-4xl mx-auto px-6">
+          <h2 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-16">Contacto</h2>
+          <div className="grid md:grid-cols-2 gap-12">
+            <div>
+              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">¡Conectemos!</h3>
+              <p className="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
+                Estoy siempre abierta a nuevas oportunidades y colaboraciones. 
+                Si tienes un proyecto interesante o simplemente quieres charlar sobre datos, 
+                no dudes en contactarme.
+              </p>
+              <div className="space-y-4">
+                <a href="mailto:florencia.mora@email.com" className="flex items-center space-x-3 text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
+                  <Mail className="w-5 h-5" />
+                  <span>florencia.mora@email.com</span>
                 </a>
-              </div>
-              
-              <button
-                onClick={closeProjectModal}
-                className={`p-3 rounded-xl transition-all duration-300 hover:scale-110 ${
-                  isDarkMode ? 'hover:bg-white/10 text-gray-400' : 'hover:bg-rose-100 text-slate-600'
-                }`}
-              >
-                <X size={24} />
-              </button>
-            </div>
-            
-            {/* Content */}
-            <div className="p-6 overflow-y-auto max-h-[calc(90vh-100px)]">
-              {/* Image Gallery */}
-              <div className="relative mb-8 group">
-                <div className="relative rounded-2xl overflow-hidden">
-                  <img
-                    src={selectedProject.images[selectedImageIndex]}
-                    alt={`${selectedProject.title} - Imagen ${selectedImageIndex + 1}`}
-                    className={`w-full h-96 object-contain transition-all duration-500 ${
-                      isDarkMode ? 'bg-slate-800' : 'bg-rose-50'
-                    }`}
-                  />
-                  
-                  {/* Navigation Arrows */}
-                  {selectedProject.images.length > 1 && (
-                    <>
-                      <button
-                        onClick={prevImage}
-                        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/20 backdrop-blur-sm hover:bg-black/40 text-white rounded-full p-3 transition-all duration-300 hover:scale-110"
-                      >
-                        <ChevronDown className="rotate-90" size={20} />
-                      </button>
-                      <button
-                        onClick={nextImage}
-                        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/20 backdrop-blur-sm hover:bg-black/40 text-white rounded-full p-3 transition-all duration-300 hover:scale-110"
-                      >
-                        <ChevronDown className="-rotate-90" size={20} />
-                      </button>
-                    </>
-                  )}
+                <a href="tel:+5491123456789" className="flex items-center space-x-3 text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
+                  <Phone className="w-5 h-5" />
+                  <span>+54 9 11 2345-6789</span>
+                </a>
+                <div className="flex items-center space-x-3 text-gray-700 dark:text-gray-300">
+                  <MapPin className="w-5 h-5" />
+                  <span>Buenos Aires, Argentina</span>
                 </div>
-                
-                {/* Image Indicators */}
-                {selectedProject.images.length > 1 && (
-                  <div className="flex justify-center space-x-2 mt-4">
-                    {selectedProject.images.map((_: any, index: number) => (
-                      <button
-                        key={index}
-                        onClick={() => setSelectedImageIndex(index)}
-                        className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                          index === selectedImageIndex 
-                            ? (isDarkMode ? 'bg-purple-600' : 'bg-rose-500')
-                            : (isDarkMode ? 'bg-gray-600 hover:bg-gray-500' : 'bg-slate-400 hover:bg-slate-500')
-                        }`}
+              </div>
+            </div>
+            <div className="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-lg">
+              <form className="space-y-6">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Nombre
+                  </label>
+                  <input 
+                    type="text" 
+                    id="name" 
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent dark:bg-gray-800 dark:text-white transition-all"
+                    placeholder="Tu nombre"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Email
+                  </label>
+                  <input 
+                    type="email" 
+                    id="email" 
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent dark:bg-gray-800 dark:text-white transition-all"
+                    placeholder="tu@email.com"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Mensaje
+                  </label>
+                  <textarea 
+                    id="message" 
+                    rows={4}
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent dark:bg-gray-800 dark:text-white transition-all resize-none"
+                    placeholder="Cuéntame sobre tu proyecto..."
+                  ></textarea>
+                </div>
+                <button 
+                  type="submit"
+                  className="w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg font-semibold hover:from-purple-700 hover:to-pink-700 transition-all duration-300 transform hover:scale-105"
+                >
+                  Enviar Mensaje
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 dark:bg-black text-white py-12 transition-colors duration-500">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="mb-6 md:mb-0">
+              <h3 className="text-2xl font-bold mb-2">Florencia Mora</h3>
+              <p className="text-gray-400">Analista de Datos & Futura Ingeniera</p>
+            </div>
+            <div className="flex space-x-6">
+              <a href="https://linkedin.com/in/florencia-mora" className="text-gray-400 hover:text-white transition-colors">
+                <Linkedin className="w-6 h-6" />
+              </a>
+              <a href="https://github.com/florencia-mora" className="text-gray-400 hover:text-white transition-colors">
+                <Github className="w-6 h-6" />
+              </a>
+              <a href="mailto:florencia.mora@email.com" className="text-gray-400 hover:text-white transition-colors">
+                <Mail className="w-6 h-6" />
+              </a>
+            </div>
+          </div>
+          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+            <p>&copy; 2024 Florencia Mora. Todos los derechos reservados.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default App;
