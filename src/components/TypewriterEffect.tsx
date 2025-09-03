@@ -5,43 +5,37 @@ interface TypewriterEffectProps {
 }
 
 const TypewriterEffect: React.FC<TypewriterEffectProps> = ({ className = '' }) => {
-  const subtitles = [
-    "Analista de Datos | Python · SQL · Power BI · Excel | Estudiante de Ingeniería en Sistemas de Información"
-  ]; 
+  const subtitle = "Analista de Datos | Python · SQL · Power BI · Excel | Estudiante de Ingeniería en Sistemas de Información";
   
-  const [currentSubtitleIndex, setCurrentSubtitleIndex] = useState(0);
   const [currentSubtitle, setCurrentSubtitle] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [charIndex, setCharIndex] = useState(0);
 
   useEffect(() => {
-    const currentFullSubtitle = subtitles[currentSubtitleIndex];
-    
     const timeout = setTimeout(() => {
       if (!isDeleting) {
         // Escribiendo
-        if (charIndex < currentFullSubtitle.length) {
-          setCurrentSubtitle(currentFullSubtitle.substring(0, charIndex + 1));
+        if (charIndex < subtitle.length) {
+          setCurrentSubtitle(subtitle.substring(0, charIndex + 1));
           setCharIndex(charIndex + 1);
         } else {
           // Pausa antes de empezar a borrar
-          setTimeout(() => setIsDeleting(true), 2000);
+          setTimeout(() => setIsDeleting(true), 1500);
         }
       } else {
         // Borrando
         if (charIndex > 0) {
-          setCurrentSubtitle(currentFullSubtitle.substring(0, charIndex - 1));
+          setCurrentSubtitle(subtitle.substring(0, charIndex - 1));
           setCharIndex(charIndex - 1);
         } else {
-          // Cambiar al siguiente subtítulo
+          // Reiniciar el ciclo
           setIsDeleting(false);
-          setCurrentSubtitleIndex((prevIndex) => (prevIndex + 1) % subtitles.length);
         }
       }
-    }, isDeleting ? 50 : 80);
+    }, isDeleting ? 30 : 100);
 
     return () => clearTimeout(timeout);
-  }, [charIndex, isDeleting, currentSubtitleIndex, subtitles]);
+  }, [charIndex, isDeleting, subtitle]);
   
   return (
     <div className={`${className} text-center`}>
