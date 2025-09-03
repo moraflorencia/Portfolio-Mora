@@ -709,15 +709,6 @@ const projects = [
   />
 </div>
           </div>
-
-          {/* Texto con efecto máquina de escribir */}
-<div className="mt-6">
-  <h1
-    ref={typedRef}
-    className="text-2xl md:text-3xl font-bold text-white"
-  ></h1>
-</div>
-
           
           {/* Main Content */}
           <div className="mb-8 space-y-4">
