@@ -7,7 +7,7 @@ interface TypewriterEffectProps {
 const TypewriterEffect: React.FC<TypewriterEffectProps> = ({ className = '' }) => {
   const subtitles = [
     "Analista de Datos | Python · SQL · Power BI · Excel | Estudiante de Ingeniería en Sistemas de Información"
-  ];
+  ]; 
   
   const [currentSubtitleIndex, setCurrentSubtitleIndex] = useState(0);
   const [currentSubtitle, setCurrentSubtitle] = useState('');
