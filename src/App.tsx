@@ -297,7 +297,7 @@ const projects = [
       status: 'En curso'
     },
     {
-      title: 'Tecnicatura en quimica',
+      title: 'Tecnicatura en Química',
       institution: 'E.E.S.T N°2 Paula A de Sarmiento, Bernal',
       period: '2013 - 2019',
       type: 'Educación Secundaria',
