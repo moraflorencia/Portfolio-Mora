@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronDown, Github, Linkedin, Mail, Phone, MapPin, ExternalLink, BarChart3, Database, Brain, Code, TrendingUp, BookOpen, Award, Briefcase, Send, Calendar, GraduationCap, X, ZoomIn, Moon, Sun, Menu, Globe, Star, Sparkles } from 'lucide-react';
-import TypewriterEffect from './components/TypewriterEffect';
 import { Languages } from 'lucide-react';
  
   
@@ -722,9 +721,10 @@ const projects = [
               }`}>
                 {t.hero.name}
               </span>
+            </h1>
             
-            <TypewriterEffect className="mb-8" />
-            
+            <div className="relative inline-block">
+              <h2 className={`text-2xl md:text-3xl font-bold bg-clip-text text-transparent animate-gradient-x ${
                 isDarkMode 
                   ? 'bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600' 
                   : 'bg-gradient-to-r from-rose-600 via-pink-600 to-purple-600'
@@ -1633,13 +1633,15 @@ const projects = [
         <div className="container mx-auto max-w-6xl">
           <div className="text-center">
             {/* Logo/Brand */}
-            <div className="profile-border mb-12 mx-auto">
+            <div className="mb-8">
           <div className="flex items-center justify-center space-x-3 mb-4">
             <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${
               isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
             }`}>
               <Sparkles className="w-6 h-6 text-white" />
             </div>
+            <h3 className="text-2xl md:text-3xl font-bold text-white">
+              Florencia Milagros Mora
             </h3>
           </div>
           <p className="text-lg max-w-2xl mx-auto leading-relaxed text-gray-200">
