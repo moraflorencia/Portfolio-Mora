@@ -229,11 +229,10 @@ const projects = [
     description: 'Proyecto integral de análisis de datos en el que desarrollé un tablero interactivo en Power BI a partir de un dataset propio titulado "Asistencia al Viajero". El trabajo incluyó la transformación de una base de datos compleja en Excel, la aplicación de técnicas avanzadas de limpieza y modelado de datos, y la creación de visualizaciones interactivas para facilitar el análisis estratégico',
     tech: ['Power BI', 'Excel', 'Datos', 'Visualización'],
     images: [
-      '/assets/Portada.png',
-      '/assets/Glosario.png',
-      '/assets/Ventas.png',
-      '/assets/Viajes.png',
-      '/assets/Vendedores.png'
+      'https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/Portada.jpg',
+      '/https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/Ventas.jpg',
+      'https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/Viaje.jpg',
+      '/https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/Vendedores.jpg'
     ],
     year: '2024',
     githubUrl: 'https://github.com/moraflorencia/Asistencia-al-Viajero-Power-BI-',
