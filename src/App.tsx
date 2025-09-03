@@ -365,13 +365,8 @@ const projects = [
   }`}
   style={{ 
     backgroundImage: isDarkMode
-<<<<<<< HEAD
-      ? "url('/assets/FondoNoche.png')" // fondo oscuro 
-      : "url('/assets/FondoDia.png')", // fondo claro
-=======
       ? "url('https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/src/assets/FondoNoche.png')" // fondo oscuro
       : "url('https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/src/assets/ChatGPT%20Image%2031%20ago%202025%2C%2021_46_28.png')", // fondo claro
->>>>>>> 4817468417d0f8350633173999a12d199f3841a4
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundAttachment: "fixed"
