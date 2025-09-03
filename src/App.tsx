@@ -251,7 +251,7 @@ const projects = [
       'https://i.postimg.cc/XqTN4rvY/Captura-de-pantalla-2025-08-05-214437.png'
     ], 
     year: '2024',
-    githubUrl: 'https://drive.google.com/drive/folders/1FEXeriz28_KuR33d8pBfDpKh8oEWr_K3?usp=sharing',
+    githubUrl: 'https://docs.google.com/spreadsheets/d/1zCTH3ozQg5gaMDWS8VQoLn5tUGhUDERg/edit?usp=drive_link&ouid=114417583288005504879&rtpof=true&sd=true',
     achievements: [
       'Integración eficiente de datos complejos',
       'Automatización y precisión en cálculos',
