@@ -614,9 +614,9 @@ const projects = [
                 >
                   <Globe size={18} />
                 </button>
-                
+                 
                 <button
-                  onClick={toggleDark Mode}
+                  onClick={toggleDarkMode}
                   className={`p-2 rounded-xl transition-all duration-300 ${
                     isDarkMode 
                       ? 'bg-yellow-500 hover:bg-yellow-400 text-yellow-900' 
