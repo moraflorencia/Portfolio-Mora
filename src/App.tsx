@@ -1478,20 +1478,13 @@ const projects = [
                 <div className="space-y-6">
                   {[
                     { icon: Mail, label: t.contact.email, value: "mora.florencia.m@gmail.com", href: "mailto:mora.florencia.m@gmail.com", color: "from-yellow-500 to-orange-600" },
-                   <div className="flex items-start space-x-3">
-  <FaWhatsapp className="w-6 h-6 text-green-500" />
-  <div className="flex flex-col">
-    <span className="font-semibold">{contact.label}</span> {/* WhatsApp */}
-    <a 
-      href={contact.href} 
-      target="_blank" 
-      rel="noopener noreferrer" 
-      className="text-sm text-gray-600 dark:text-gray-300 hover:underline"
-    >
-      {contact.value} {/* +54 9 11 6018-4046 */}
-    </a>
-  </div>
-</div>
+                    {
+  icon: FaWhatsapp,
+  label: "WhatsApp", // 👈 ahora sí aparece como título arriba
+  value: "+54 9 11 6018-4046", 
+  href: "https://wa.me/5491160184046", // link directo
+  color: "from-green-500 to-emerald-600"
+},
 
                     { icon: Linkedin, label: t.contact.linkedin, value: "linkedin.com/in/florm01", href: "https://linkedin.com/in/florm01", color: "from-blue-500 to-indigo-600" },
                     { icon: Github, label: t.contact.github, value: "github.com/moraflorencia", href: "https://github.com/moraflorencia", color: "from-purple-500 to-pink-600" },
