@@ -1669,7 +1669,7 @@ const projects = [
                 { icon: Linkedin, href: "https://linkedin.com/in/florm01", color: "hover:text-blue-400" },
                 { icon: Github, href: "https://github.com/moraflorencia", color: "hover:text-purple-400" },
                 { icon: Mail, href: "mailto:mora.florencia.m@gmail.com", color: "hover:text-green-400" },
-                { icon: Phone, href: "tel:+5491160184046", color: "hover:text-yellow-400" }
+                { icon: FaWhatsapp, href: "tel:+5491160184046", color: "hover:text-yellow-400" }
               ].map(({ icon: Icon, href, color }, index) => (
                 <a
                   key={index}
