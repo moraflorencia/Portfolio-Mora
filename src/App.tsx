@@ -190,7 +190,7 @@ function App() {
         }
       },
       footer: {
-        description: "Data Analyst | Python · SQL · Power BI · Excel | Systems Engineering Student",
+        description: "Data Analyst | Systems Engineering Student",
         copyright: "❤ 2025 Florencia Mora. Designed with love."
       }
     }
