@@ -1480,7 +1480,7 @@ const projects = [
                     { icon: Mail, label: t.contact.email, value: "mora.florencia.m@gmail.com", href: "mailto:mora.florencia.m@gmail.com", color: "from-yellow-500 to-orange-600" },
                     { icon: FaWhatsapp, label: t.contact.phone, value: "+54 9 11 6018-4046", href: "tel:+5491160184046", color: "from-green-500 to-emerald-600" },
                     { icon: Linkedin, label: t.contact.linkedin, value: "linkedin.com/in/florm01", href: "https://linkedin.com/in/florm01", color: "from-blue-500 to-indigo-600" },
-                    { icon: Github, label: t.contact.github, value: "github.com/moraflorencia", href: "https://github.com/moraflorencia", color: "from-purple-500 to-pink-600" },
+                    { icon: Github, label: Github t.contact.github, value: "github.com/moraflorencia", href: "https://github.com/moraflorencia", color: "from-purple-500 to-pink-600" },
                     { icon: MapPin, label: t.contact.location, value: t.contact.locationValue, href: "", color: "from-red-500 to-pink-600" }
                   ].map((item, index) => (
                     <div key={index} className={`group flex items-center space-x-4 p-6 rounded-2xl backdrop-blur-sm border transition-all duration-300 hover:scale-105 hover:shadow-lg ${
