@@ -65,7 +65,7 @@ function App() {
       hero: {
         greeting: "¡Hola!",
         name: "Florencia Milagros Mora",
-        title: "Analista de Datos | Estudiante de Ingeniería en Sistemas de Información",
+        title: "Analista de Datos | Python · SQL · Power BI · Excel | Estudiante de Ingeniería en Sistemas de Información",
         subtitle: "Python · SQL · Power BI · Excel | Estudiante de Ingeniería en Sistemas", 
         description: "Me entusiasma aprender, crecer en equipo y usar los datos para crear soluciones con impacto real.",
         downloadCV: "Descargar CV",
@@ -119,7 +119,7 @@ function App() {
         } 
       },
       footer: {
-        description: "Analista de Datos | Estudiante de Ingeniería en Sistemas",
+        description: "Analista de Datos | Python · SQL · Power BI · Excel | Estudiante de Ingeniería en Sistemas",
         copyright: "❤ 2025 Florencia Mora. Diseñado con amor."
       }
     },
@@ -135,7 +135,7 @@ function App() {
       hero: {
         greeting: "Hello!",
         name: "Florencia Milagros Mora",
-        title: "Data Analyst | Systems Engineering Student",
+        title: "Data Analyst | Python · SQL · Power BI · Excel | Systems Engineering Student",
         subtitle: "Python · SQL · Power BI · Excel | Systems Engineering Student",
         description: "I'm excited to learn, grow as a team, and use data to create solutions with real impact.",
         downloadCV: "Download CV",
@@ -190,7 +190,7 @@ function App() {
         }
       },
       footer: {
-        description: "Data Analyst | Systems Engineering Student",
+        description: "Data Analyst | Python · SQL · Power BI · Excel | Systems Engineering Student",
         copyright: "❤ 2025 Florencia Mora. Designed with love."
       }
     }
@@ -1290,37 +1290,29 @@ const projects = [
                     
                     <div className="lg:text-right">
                       <span className="inline-block bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-2xl font-bold text-lg shadow-lg">
-                <div className="max-w-4xl mx-auto">
-                  <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/20 dark:border-gray-700/30">
-                    <div className="space-y-6">
-                      <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                        Soy una persona curiosa y en constante aprendizaje. Me gusta entender cómo funcionan las cosas, resolver problemas y transformar ideas en proyectos que aporten valor. También disfruto del diseño, porque me permite combinar lo técnico con lo creativo.
-                      </p>
-                      <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                        Me encanta trabajar con otras personas, compartir conocimientos y seguir creciendo en cada desafío. Más allá de la tecnología, me motiva la posibilidad de aprender algo nuevo todos los días y aplicar lo que sé de forma creativa.
-                      </p>
-                      <div className="border-t border-gray-200 dark:border-gray-600 pt-6">
-                        <p className="text-xl font-semibold text-purple-600 dark:text-purple-400 mb-6">
-                          Me entusiasma aprender, crecer en equipo y usar los datos para crear soluciones con impacto real.
-                        </p>
-                        <div className="flex flex-col items-center space-y-3 text-gray-600 dark:text-gray-400">
-                          <div className="flex items-center space-x-2">
-                            <MapPin className="h-5 w-5 text-purple-500" />
-                            <span>Buenos Aires, Argentina</span>
-                          </div>
-                          <div className="flex items-center space-x-2">
-                            <Mail className="h-5 w-5 text-purple-500" />
-                            <span>mora.florencia.m@gmail.com</span>
-                          </div>
-                          <div className="bg-green-100 dark:bg-green-900/30 px-4 py-2 rounded-full">
-                            <p className="text-green-700 dark:text-green-400 font-medium">
-                              ✨ Disponible para proyectos
-                            </p>
-                          </div>
-                        </div>
-                      </div>
+                        {exp.period}
+                      </span>
                     </div>
                   </div>
+                  
+                  <p className={`text-lg leading-relaxed mb-8 transition-all duration-300 ${
+                    isDarkMode ? 'text-gray-300' : 'text-slate-700'
+                  }`}>
+                    {exp.description}
+                  </p>
+                  
+                  <div>
+                    <h4 className={`text-xl font-semibold mb-4 transition-all duration-300 ${
+                      isDarkMode ? 'text-white' : 'text-slate-800'
+                    }`}>
+                      {t.experience.skills}
+                    </h4>
+                    <div className="flex flex-wrap gap-3">
+                      {exp.skills.map((skill, skillIndex) => (
+                        <span
+                          key={skillIndex}
+                          className={`px-4 py-2 rounded-xl text-sm font-medium backdrop-blur-sm border transition-all duration-300 hover:scale-105 ${
+                            isDarkMode ? 'bg-blue-500/20 border-blue-500/30 text-blue-300' : 'bg-rose-100/80 border-rose-300/50 text-rose-800'
                           }`}
                         >
                           {skill}
