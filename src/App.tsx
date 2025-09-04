@@ -100,7 +100,7 @@ function App() {
         title: "Contacto",
         info: "Información de contacto",
         email: "Email",
-        FaWhatsapp: "Whatsapp",
+        phone: "Teléfono",
         linkedin: "LinkedIn",
         github: "GitHub",
         location: "Ubicación",
@@ -116,7 +116,7 @@ function App() {
           message: "Mensaje",
           messagePlaceholder: "Tu mensaje...",
           send: "Enviar mensaje"
-        }
+        } 
       },
       footer: {
         description: "Analista de Datos | Python · SQL · Power BI · Excel | Estudiante de Ingeniería en Sistemas",
@@ -171,7 +171,7 @@ function App() {
         title: "Contact",
         info: "Contact information",
         email: "Email",
-        FaWhatsapp "Whatsapp",
+        phone: "Phone",
         linkedin: "LinkedIn",
         location: "Location",
         locationValue: "Buenos Aires, Argentina",
@@ -814,7 +814,7 @@ const projects = [
               { icon: Github, href: "https://github.com/moraflorencia", color: isDarkMode ? "hover:text-gray-700" : "hover:text-slate-700" },
               { icon: Mail, href: "mailto:mora.florencia.m@gmail.com", color: isDarkMode ? "hover:text-green-500" : "hover:text-emerald-600" },
               { icon: Phone, href: "tel:+5491160184046", color: isDarkMode ? "hover:text-yellow-500" : "hover:text-amber-600" }
-            ].map(({ icon: Icon, href, color }, index) => ( 
+            ].map(({ icon: Icon, href, color }, index) => (
               <a
                 key={index}
                 href={href}
@@ -1669,7 +1669,7 @@ const projects = [
                 { icon: Linkedin, href: "https://linkedin.com/in/florm01", color: "hover:text-blue-400" },
                 { icon: Github, href: "https://github.com/moraflorencia", color: "hover:text-purple-400" },
                 { icon: Mail, href: "mailto:mora.florencia.m@gmail.com", color: "hover:text-green-400" },
-                { icon: FaWhatsapp, href: "tel:+5491160184046", color: "hover:text-yellow-400" }
+                { icon: Phone, href: "tel:+5491160184046", color: "hover:text-yellow-400" }
               ].map(({ icon: Icon, href, color }, index) => (
                 <a
                   key={index}
