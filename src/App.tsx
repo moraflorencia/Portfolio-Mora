@@ -3,7 +3,7 @@ import { ChevronDown, Github, Linkedin, Mail, Phone, MapPin, ExternalLink, BarCh
 import { Languages } from 'lucide-react';
 import { FaWhatsapp } from "react-icons/fa";
  
-   
+    
 function App() {
   const [activeSection, setActiveSection] = useState('home'); 
   const [isScrolled, setIsScrolled] = useState(false);
