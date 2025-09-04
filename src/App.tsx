@@ -173,6 +173,7 @@ function App() {
         email: "Email",
         phone: "Whatsapp",
         linkedin: "LinkedIn",
+        github: "GitHub",
         location: "Location",
         locationValue: "Buenos Aires, Argentina",
         form: {
