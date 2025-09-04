@@ -161,7 +161,7 @@ function App() {
       experience: {
         title: "Professional Experience",
         skills: "Technologies and skills:"
-      },
+      }, 
       education: {
         title: "Education",
         formal: " ",
