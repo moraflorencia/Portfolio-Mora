@@ -65,7 +65,7 @@ function App() {
       hero: {
         greeting: "¡Hola!",
         name: "Florencia Milagros Mora",
-        title: "Analista de Datos | Python · SQL · Power BI · Excel | Estudiante de Ingeniería en Sistemas de Información",
+        title: "Analista de Datos | Estudiante de Ingeniería en Sistemas de Información",
         subtitle: "Python · SQL · Power BI · Excel | Estudiante de Ingeniería en Sistemas", 
         description: "Me entusiasma aprender, crecer en equipo y usar los datos para crear soluciones con impacto real.",
         downloadCV: "Descargar CV",
