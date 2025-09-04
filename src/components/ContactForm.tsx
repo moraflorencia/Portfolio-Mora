@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
-import { Send, CheckCircle, TriangleAlert } from 'lucide-react';
+import { Send, CheckCircle, AlertTriangle as TriangleAlert } from 'lucide-react';
 
 export const ContactForm: React.FC = () => {
     const [formData, setFormData] = useState({
