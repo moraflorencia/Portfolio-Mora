@@ -171,7 +171,7 @@ function App() {
         title: "Contact",
         info: "Contact information",
         email: "Email",
-        FaWhatsapp: "Phone",
+        phone: "Phone",
         linkedin: "LinkedIn",
         location: "Location",
         locationValue: "Buenos Aires, Argentina",
@@ -1478,7 +1478,21 @@ const projects = [
                 <div className="space-y-6">
                   {[
                     { icon: Mail, label: t.contact.email, value: "mora.florencia.m@gmail.com", href: "mailto:mora.florencia.m@gmail.com", color: "from-yellow-500 to-orange-600" },
-                    { icon: FaWhatsapp, label: t.contact.phone, value: "+54 9 11 6018-4046", href: "tel:+5491160184046", color: "from-green-500 to-emerald-600" },
+                   <div className="flex items-start space-x-3">
+  <FaWhatsapp className="w-6 h-6 text-green-500" />
+  <div className="flex flex-col">
+    <span className="font-semibold">{contact.label}</span> {/* WhatsApp */}
+    <a 
+      href={contact.href} 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      className="text-sm text-gray-600 dark:text-gray-300 hover:underline"
+    >
+      {contact.value} {/* +54 9 11 6018-4046 */}
+    </a>
+  </div>
+</div>
+
                     { icon: Linkedin, label: t.contact.linkedin, value: "linkedin.com/in/florm01", href: "https://linkedin.com/in/florm01", color: "from-blue-500 to-indigo-600" },
                     { icon: Github, label: t.contact.github, value: "github.com/moraflorencia", href: "https://github.com/moraflorencia", color: "from-purple-500 to-pink-600" },
                     { icon: MapPin, label: t.contact.location, value: t.contact.locationValue, href: "", color: "from-red-500 to-pink-600" }
