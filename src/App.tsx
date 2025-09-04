@@ -808,12 +808,12 @@ const projects = [
           </div>
           
           {/* Social Links */}
-          <div className="flex justify-center space-x-6">
+          <div className="flex justify-center space-x-6"> 
             {[
               { icon: Linkedin, href: "https://linkedin.com/in/florm01", color: isDarkMode ? "hover:text-blue-500" : "hover:text-blue-600" },
               { icon: Github, href: "https://github.com/moraflorencia", color: isDarkMode ? "hover:text-gray-700" : "hover:text-slate-700" },
               { icon: Mail, href: "mailto:mora.florencia.m@gmail.com", color: isDarkMode ? "hover:text-green-500" : "hover:text-emerald-600" },
-              { icon: FaWhatsapp, href: "tel:+5491160184046", color: isDarkMode ? "hover:text-yellow-500" : "hover:text-amber-600" }
+              { icon: Phone, href: "tel:+5491160184046", color: isDarkMode ? "hover:text-yellow-500" : "hover:text-amber-600" }
             ].map(({ icon: Icon, href, color }, index) => (
               <a
                 key={index}
