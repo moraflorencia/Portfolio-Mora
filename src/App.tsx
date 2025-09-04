@@ -134,7 +134,7 @@ function App() {
       hero: {
         greeting: "Hello!",
         name: "Florencia Milagros Mora",
-        title: " Data Analyst",
+        title: "Data Analyst | Python · SQL · Power BI · Excel | Systems Engineering Student",
         subtitle: "Python · SQL · Power BI · Excel | Systems Engineering Student",
         description: "I'm excited to learn, grow as a team, and use data to create solutions with real impact.",
         downloadCV: "Download CV",
