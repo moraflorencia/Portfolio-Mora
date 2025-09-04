@@ -171,7 +171,7 @@ function App() {
         title: "Contact",
         info: "Contact information",
         email: "Email",
-        phone: "Phone",
+        FaWhatsapp: "Phone",
         linkedin: "LinkedIn",
         location: "Location",
         locationValue: "Buenos Aires, Argentina",
