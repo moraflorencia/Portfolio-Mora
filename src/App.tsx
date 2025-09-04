@@ -100,7 +100,7 @@ function App() {
         title: "Contacto",
         info: "Información de contacto",
         email: "Email",
-        phone: "Whatsapp",
+        FaWhatsapp: "Whatsapp",
         linkedin: "LinkedIn",
         github: "GitHub",
         location: "Ubicación",
