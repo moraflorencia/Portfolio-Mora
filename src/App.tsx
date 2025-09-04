@@ -119,7 +119,7 @@ function App() {
         } 
       },
       footer: {
-        description: "Analista de Datos | Python · SQL · Power BI · Excel | Estudiante de Ingeniería en Sistemas",
+        description: "Analista de Datos | Estudiante de Ingeniería en Sistemas",
         copyright: "❤ 2025 Florencia Mora. Diseñado con amor."
       }
     },
