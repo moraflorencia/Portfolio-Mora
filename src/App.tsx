@@ -100,8 +100,8 @@ function App() {
       hero: {
         greeting: "¡Hola!",
         name: "Florencia Milagros Mora",
-        title: "Analista de Datos | Estudiante de Ingeniería en Sistemas de Información",
-        subtitle: "Python · SQL · Power BI · Excel | Estudiante de Ingeniería en Sistemas", 
+        title: "Analista de Datos",
+        subtitle: "Estudiante de Ingeniería en Sistemas", 
         description: "Me entusiasma aprender, crecer en equipo y usar los datos para crear soluciones con impacto real.",
         downloadCV: "Descargar CV",
         contact: "Contactar"
@@ -170,8 +170,8 @@ function App() {
       hero: {
         greeting: "Hello!",
         name: "Florencia Milagros Mora",
-        title: "Data Analyst | Systems Engineering Student",
-        subtitle: "Python · SQL · Power BI · Excel | Systems Engineering Student",
+        title: "Data Analyst",
+        subtitle: "Systems Engineering Student",
         description: "I'm excited to learn, grow as a team, and use data to create solutions with real impact.",
         downloadCV: "Download CV",
         contact: "Contact"
