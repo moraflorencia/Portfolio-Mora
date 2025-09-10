@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronDown, Github, Linkedin, Mail, Phone, MapPin, ExternalLink, BarChart3, Database, Brain, Code, TrendingUp, BookOpen, Award, Briefcase, Send, Calendar, GraduationCap, X, ZoomIn, Moon, Sun, Menu, Globe, Star, Sparkles } from 'lucide-react';
+import { Menu, X, Github, Linkedin, Mail, MapPin, Calendar, ExternalLink, Download, Sun, Moon, User, Code, Briefcase, GraduationCap, Award, Database, BarChart3, FileSpreadsheet, Brain, TrendingUp, Users, Target, Lightbulb, Heart, Coffee, BookOpen, Zap } from 'lucide-react';
 import { Languages } from 'lucide-react';
 import { FaWhatsapp } from "react-icons/fa";
   
@@ -7,6 +7,72 @@ import { FaWhatsapp } from "react-icons/fa";
 function App() {
   const [activeSection, setActiveSection] = useState('home'); 
   const [isScrolled, setIsScrolled] = useState(false);
+  const [currentCertIndex, setCurrentCertIndex] = useState(0);
+
+  // Certificaciones data
+  const certifications = [
+    {
+      title: "Curso de Python",
+      institution: "Coderhouse",
+      year: "2023",
+      link: "https://example.com/python-cert"
+    },
+    {
+      title: "Introducción a Data Science",
+      institution: "Coursera",
+      year: "2023",
+      link: "https://example.com/datascience-cert"
+    },
+    {
+      title: "SQL para Análisis de Datos",
+      institution: "DataCamp",
+      year: "2023",
+      link: "https://example.com/sql-cert"
+    },
+    {
+      title: "Power BI Fundamentals",
+      institution: "Microsoft Learn",
+      year: "2023",
+      link: "https://example.com/powerbi-cert"
+    },
+    {
+      title: "Google Analytics 4",
+      institution: "Google",
+      year: "2023",
+      link: "https://example.com/ga4-cert"
+    }
+  ];
+
+  // Responsive certifications per view
+  const [certificationsPerView, setCertificationsPerView] = useState(3);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setCertificationsPerView(1);
+      } else if (window.innerWidth < 1024) {
+        setCertificationsPerView(2);
+      } else {
+        setCertificationsPerView(3);
+      }
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Auto-scroll certifications
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentCertIndex((prevIndex) => {
+        const maxIndex = Math.max(0, certifications.length - certificationsPerView);
+        return prevIndex >= maxIndex ? 0 : prevIndex + 1;
+      });
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [certifications.length, certificationsPerView]);
   const [selectedProject, setSelectedProject] = useState<any>(null);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [isDarkMode, setIsDarkMode] = useState(true); // Changed to true for dark mode default
@@ -1460,16 +1526,12 @@ const projects = [
               isDarkMode ? 'text-white' : 'text-slate-800'
             }`}>
               {t.contact.title}
-            </h2>
+        {/* Certificaciones */}
             <div className={`w-24 h-1 mx-auto rounded-full ${
               isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
-            }`}></div>
-          </div>
+            <Award className="h-8 w-8 text-purple-600" />
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Certificaciones</h3>
           
-          <div className="grid lg:grid-cols-2 gap-16">
-            {/* Contact Info */}
-            <div className="space-y-8">
-              <div>
                 <h3 className={`text-2xl md:text-3xl font-bold mb-8 transition-all duration-300 ${
                   isDarkMode ? 'text-white' : 'text-slate-800'
                 }`}>
@@ -1497,30 +1559,36 @@ const projects = [
                           isDarkMode ? 'text-white' : 'text-slate-800'
                         }`}>
                           {item.label}
-                        </p>
-                        {item.href ? (
-                          <a
-                            href={item.href}
-                            target={item.href.startsWith('http') ? '_blank' : undefined}
-                            rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                            className={`transition-all duration-300 hover:scale-105 ${
-                              isDarkMode ? 'text-gray-300 hover:text-white' : 'text-slate-600 hover:text-slate-800'
-                            }`}
-                          >
-                            {item.value}
-                          </a>
-                        ) : (
-                          <p className={`transition-all duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-slate-700'
-                          }`}>
-                            {item.value}
-                          </p>
-                        )}
-                      </div>
+          
+          <div className="relative overflow-hidden">
+            <div 
+              className="flex transition-transform duration-1000 ease-in-out"
+              style={{ transform: `translateX(-${currentCertIndex * (100 / certificationsPerView)}%)` }}
+            >
+              {certifications.map((cert, index) => (
+                <div 
+                  key={index} 
+                  className="flex-shrink-0 px-4"
+                  style={{ width: `${100 / certificationsPerView}%` }}
+                >
+                  <div className="bg-white/5 border border-white/10 rounded-xl p-6 h-full">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="w-3 h-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex-shrink-0 mt-1"></div>
+                      <a
+                        href={cert.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="ml-3 px-3 py-1 bg-purple-600 hover:bg-purple-700 text-white text-xs rounded-full transition-colors duration-200 flex items-center space-x-1"
+                      >
+                        <ExternalLink className="h-3 w-3" />
+                        <span>Ver</span>
+                      </a>
                     </div>
-                  ))}
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2">{cert.title}</h4>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm">{cert.institution} • {cert.year}</p>
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
 
             {/* Contact Form */}
