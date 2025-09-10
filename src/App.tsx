@@ -452,8 +452,9 @@ animationDuration: `${10 + Math.random() * 10}s` // antes 2–4s → ahora 10–
                 style={{
                   left: `${20 + Math.random() * 60}%`,
                   top: `${10 + Math.random() * 30}%`, 
-                  animationDelay: `${i * 8 + Math.random() * 5}s`,
-                  animationDuration: '6s'
+                  animationDelay: `${Math.random() * 15}s`,       // antes 3s → ahora hasta 15s
+animationDuration: `${10 + Math.random() * 10}s` // antes 2–4s → ahora 10–20s
+
                 }}
               >
                 <div className="w-0.5 h-0.5 bg-white rounded-full shadow-lg" 
