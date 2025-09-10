@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { ChevronDown, Github, Linkedin, Mail, Phone, MapPin, ExternalLink, BarChart3, Database, Brain, Code, TrendingUp, BookOpen, Award, Briefcase, Send, Calendar, GraduationCap, X, ZoomIn, Moon, Sun, Menu, Globe, Star, Sparkles } from 'lucide-react';
 import { Languages } from 'lucide-react';
 import { FaWhatsapp } from "react-icons/fa";
+import Typed from "react-typed";
+
   
     
 function App() {
@@ -739,13 +741,27 @@ const projects = [
             </h1>
             
             <div className="relative inline-block">
-              <h2 className={`text-2xl md:text-3xl font-bold bg-clip-text text-transparent animate-gradient-x ${
-                isDarkMode 
-                  ? 'bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600' 
-                  : 'bg-gradient-to-r from-rose-600 via-pink-600 to-purple-600'
-              }`}>
-                {t.hero.title}
-              </h2>
+              import Typed from "react-typed"; // 👈 agregá esta importación arriba del archivo
+
+<h2
+  className={`text-2xl md:text-3xl font-bold bg-clip-text text-transparent ${
+    isDarkMode
+      ? "bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600"
+      : "bg-gradient-to-r from-rose-600 via-pink-600 to-purple-600"
+  }`}
+>
+  <Typed
+    strings={[
+      "Analista de Datos", 
+      "Estudiante de Ingeniería en Sistemas"
+    ]}
+    typeSpeed={60}
+    backSpeed={40}
+    backDelay={1500}
+    loop
+  />
+</h2>
+
               <div className={`absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 rounded-full ${
                 isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
               }`}></div>
