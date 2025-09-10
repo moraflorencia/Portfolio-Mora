@@ -445,7 +445,7 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
               </div>
             ))}
             
-           {/* Shooting stars - MÁS LENTAS */}
+            {/* Shooting stars - MÁS LENTAS */}
 {[...Array(3)].map((_, i) => (
   <div
     key={`shooting-star-${i}`}
@@ -569,6 +569,10 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
       }}
     ></div>
   </div>
+))}
+          </>
+        )}
+      </div>
  
       {/* Navigation */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
