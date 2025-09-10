@@ -428,8 +428,9 @@ const projects = [
                 style={{
                   left: `${Math.random() * 100}%`,
                   top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 15}s`,       // antes 3s → ahora hasta 15s
-animationDuration: `${10 + Math.random() * 10}s` // antes 2–4s → ahora 10–20s
+                 animationDelay: `${Math.random() * 20}s`,  // antes 3s → ahora hasta 20s
+animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–25s
+
 
                 }}
               >
@@ -452,8 +453,9 @@ animationDuration: `${10 + Math.random() * 10}s` // antes 2–4s → ahora 10–
                 style={{
                   left: `${20 + Math.random() * 60}%`,
                   top: `${10 + Math.random() * 30}%`, 
-                  animationDelay: `${Math.random() * 15}s`,       // antes 3s → ahora hasta 15s
-animationDuration: `${10 + Math.random() * 10}s` // antes 2–4s → ahora 10–20s
+                  animationDelay: `${Math.random() * 20}s`,  // antes 3s → ahora hasta 20s
+animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–25s
+
 
                 }}
               >
@@ -473,8 +475,9 @@ animationDuration: `${10 + Math.random() * 10}s` // antes 2–4s → ahora 10–
     style={{
       left: `${Math.random() * 100}%`,
       top: `${Math.random() * 100}%`,
-      animationDelay: `${Math.random() * 5}s`,
-      animationDuration: '5s',
+      animationDelay: `${Math.random() * 20}s`,  // antes 3s → ahora hasta 20s
+animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–25s
+
     }}
   >
     <div
@@ -497,8 +500,9 @@ animationDuration: `${10 + Math.random() * 10}s` // antes 2–4s → ahora 10–
                 style={{
                   left: `${Math.random() * 100}%`,
                   top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 4}s`,
-                  animationDuration: `${2 + Math.random() * 2}s`
+                 animationDelay: `${Math.random() * 20}s`,  // antes 3s → ahora hasta 20s
+animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–25s
+
                 }}
               >
                 <div className="w-2 h-2 bg-blue-200 rounded-full opacity-40 blur-sm"></div>
@@ -515,8 +519,9 @@ animationDuration: `${10 + Math.random() * 10}s` // antes 2–4s → ahora 10–
                 style={{
                   left: `${Math.random() * 100}%`,
                   top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 15}s`,       // antes 3s → ahora hasta 15s
-animationDuration: `${10 + Math.random() * 10}s` // antes 2–4s → ahora 10–20s
+                  animationDelay: `${Math.random() * 20}s`,  // antes 3s → ahora hasta 20s
+animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–25s
+
 
                 }}
               >
@@ -540,8 +545,9 @@ animationDuration: `${10 + Math.random() * 10}s` // antes 2–4s → ahora 10–
                 style={{
                   left: `${Math.random() * 100}%`,
                   top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 15}s`,       // antes 3s → ahora hasta 15s
-animationDuration: `${10 + Math.random() * 10}s` // antes 2–4s → ahora 10–20s
+                 animationDelay: `${Math.random() * 20}s`,  // antes 3s → ahora hasta 20s
+animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–25s
+
 
                 }}
               >
@@ -561,8 +567,9 @@ animationDuration: `${10 + Math.random() * 10}s` // antes 2–4s → ahora 10–
                 style={{
                   left: `${Math.random() * 100}%`,
                   top: `${80 + Math.random() * 20}%`,
-                  animationDelay: `${Math.random() * 15}s`,       // antes 3s → ahora hasta 15s
-animationDuration: `${10 + Math.random() * 10}s` // antes 2–4s → ahora 10–20s
+                  animationDelay: `${Math.random() * 20}s`,  // antes 3s → ahora hasta 20s
+animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–25s
+
 
                 }}
               >
