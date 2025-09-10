@@ -402,7 +402,7 @@ const projects = [
   style={{ 
     backgroundImage: isDarkMode
       ? "url('https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/FondoNoche.png')" // fondo oscuro
-      : "url('https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/src/assets/ChatGPT%20Image%2031%20ago%202025%2C%2021_46_28.png')", // fondo claro
+      : "url('https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/FondoDia.png')", // fondo claro
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundAttachment: "fixed"
