@@ -738,18 +738,27 @@ const projects = [
               </span>
             </h1>
             
-            <div className="relative inline-block">
-              <h2 className={`text-2xl md:text-3xl font-bold bg-clip-text text-transparent animate-gradient-x ${
-                isDarkMode 
-                  ? 'bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600' 
-                  : 'bg-gradient-to-r from-rose-600 via-pink-600 to-purple-600'
-              }`}>
-                {t.hero.title}
-              </h2>
-              <div className={`absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 rounded-full ${
-                isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
-              }`}></div>
-            </div>
+           <div className="relative inline-block">
+  <h2
+    className={`text-2xl md:text-3xl font-bold bg-clip-text text-transparent ${
+      isDarkMode
+        ? "bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600"
+        : "bg-gradient-to-r from-rose-600 via-pink-600 to-purple-600"
+    }`}
+  >
+    {useTypewriter([t.hero.title, t.hero.subtitle])}
+    <span className="border-r-2 border-pink-500 animate-pulse ml-1"></span>
+  </h2>
+
+  <div
+    className={`absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 rounded-full ${
+      isDarkMode
+        ? "bg-gradient-to-r from-purple-600 to-pink-600"
+        : "bg-gradient-to-r from-rose-500 to-pink-500"
+    }`}
+  ></div>
+</div>
+
           </div>
           
           <p className={`text-xl md:text-2xl mb-8 max-w-4xl mx-auto leading-relaxed font-medium ${
