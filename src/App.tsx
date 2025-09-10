@@ -1527,6 +1527,7 @@ const projects = [
             }`}>
               {t.contact.title}
         {/* Certificaciones */}
+              
             <div className={`w-24 h-1 mx-auto rounded-full ${
               isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
             <Award className="h-8 w-8 text-purple-600" />
