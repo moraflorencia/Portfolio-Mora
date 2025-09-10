@@ -456,7 +456,7 @@ const projects = [
                   left: `${20 + Math.random() * 60}%`,
                   top: `${10 + Math.random() * 30}%`, 
                   animationDelay: `${i * 8 + Math.random() * 5}s`,
-                  animationDuration: '500s'
+                  animationDuration: '6s'
                 }}
               >
                 <div className="w-0.5 h-0.5 bg-white rounded-full shadow-lg" 
@@ -470,13 +470,13 @@ const projects = [
             {/* Fireflies */}
 {[...Array(15)].map((_, i) => (
   <div
-    key={`firefly-${i}`}
+    key={`firefly-${i}`} 
     className="absolute animate-firefly"
     style={{
       left: `${Math.random() * 100}%`,
       top: `${Math.random() * 100}%`,
       animationDelay: `${Math.random() * 5}s`,
-      animationDuration: '500s',
+      animationDuration: '5s',
     }}
   >
     <div
@@ -500,7 +500,7 @@ const projects = [
                   left: `${Math.random() * 100}%`,
                   top: `${Math.random() * 100}%`,
                   animationDelay: `${Math.random() * 4}s`,
-                  animationDuration: `${20 + Math.random() * 2}s`
+                  animationDuration: `${2 + Math.random() * 2}s`
                 }}
               >
                 <div className="w-2 h-2 bg-blue-200 rounded-full opacity-40 blur-sm"></div>
