@@ -1,11 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronDown, Github, Linkedin, Mail, Phone, MapPin, ExternalLink, BarChart3, Database, Brain, Code, TrendingUp, BookOpen, Award, Briefcase, Send, Calendar, GraduationCap, X, ZoomIn, Moon, Sun, Menu, Globe, Star, Sparkles } from 'lucide-react';
 import { Languages } from 'lucide-react';
-import { FaWhatsapp } from "react-icons/fa";
-  
-    
+
+// Hook para el efecto máquina de escribir
+const useTypewriter = (words: string[], speed = 100, delay = 1500) => {
+  const [text, setText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [loopNum, setLoopNum] = useState(0);
+  const [typingSpeed, setTypingSpeed] = useState(speed);
+
+  useEffect(() => {
+    const handleTyping = () => {
+      const current = loopNum % words.length;
+      const fullText = words[current];
+
+      setText(
+        isDeleting
+          ? fullText.substring(0, text.length - 1)
+          : fullText.substring(0, text.length + 1)
+      );
+
+      setTypingSpeed(isDeleting ? speed / 2 : speed);
+
+      if (!isDeleting && text === fullText) {
+        setTimeout(() => setIsDeleting(true), delay);
+      } else if (isDeleting && text === "") {
+        setIsDeleting(false);
+        setLoopNum(loopNum + 1);
+      }
+    };
+
+    const timer = setTimeout(handleTyping, typingSpeed);
+    return () => clearTimeout(timer);
+  }, [text, isDeleting]);
+
+  return text;
+};
+
+ 
 function App() {
-  const [activeSection, setActiveSection] = useState('home'); 
+  const [activeSection, setActiveSection] = useState('home');
   const [isScrolled, setIsScrolled] = useState(false);
   const [selectedProject, setSelectedProject] = useState<any>(null);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
@@ -65,7 +99,7 @@ function App() {
       hero: {
         greeting: "¡Hola!",
         name: "Florencia Milagros Mora",
-        title: "Analista de Datos | Estudiante de Ingeniería en Sistemas de Información",
+        title: "Analista de Datos | Python · SQL · Power BI · Excel | Estudiante de Ingeniería en Sistemas de Información",
         subtitle: "Python · SQL · Power BI · Excel | Estudiante de Ingeniería en Sistemas", 
         description: "Me entusiasma aprender, crecer en equipo y usar los datos para crear soluciones con impacto real.",
         downloadCV: "Descargar CV",
@@ -100,7 +134,7 @@ function App() {
         title: "Contacto",
         info: "Información de contacto",
         email: "Email",
-        phone: "Whatsapp",
+        phone: "Teléfono",
         linkedin: "LinkedIn",
         github: "GitHub",
         location: "Ubicación",
@@ -116,10 +150,10 @@ function App() {
           message: "Mensaje",
           messagePlaceholder: "Tu mensaje...",
           send: "Enviar mensaje"
-        } 
+        }
       },
       footer: {
-        description: "Analista de Datos | Estudiante de Ingeniería en Sistemas",
+        description: "Analista de Datos | Python · SQL · Power BI · Excel | Estudiante de Ingeniería en Sistemas",
         copyright: "❤ 2025 Florencia Mora. Diseñado con amor."
       }
     },
@@ -135,7 +169,7 @@ function App() {
       hero: {
         greeting: "Hello!",
         name: "Florencia Milagros Mora",
-        title: "Data Analyst | Systems Engineering Student",
+        title: " Data Analyst",
         subtitle: "Python · SQL · Power BI · Excel | Systems Engineering Student",
         description: "I'm excited to learn, grow as a team, and use data to create solutions with real impact.",
         downloadCV: "Download CV",
@@ -161,7 +195,7 @@ function App() {
       experience: {
         title: "Professional Experience",
         skills: "Technologies and skills:"
-      }, 
+      },
       education: {
         title: "Education",
         formal: " ",
@@ -171,9 +205,8 @@ function App() {
         title: "Contact",
         info: "Contact information",
         email: "Email",
-        phone: "Whatsapp",
+        phone: "Phone",
         linkedin: "LinkedIn",
-        github: "GitHub",
         location: "Location",
         locationValue: "Buenos Aires, Argentina",
         form: {
@@ -190,7 +223,7 @@ function App() {
         }
       },
       footer: {
-        description: "Data Analyst | Systems Engineering Student",
+        description: "Data Analyst | Python · SQL · Power BI · Excel | Systems Engineering Student",
         copyright: "❤ 2025 Florencia Mora. Designed with love."
       }
     }
@@ -231,10 +264,11 @@ const projects = [
     description: 'Proyecto integral de análisis de datos en el que desarrollé un tablero interactivo en Power BI a partir de un dataset propio titulado "Asistencia al Viajero". El trabajo incluyó la transformación de una base de datos compleja en Excel, la aplicación de técnicas avanzadas de limpieza y modelado de datos, y la creación de visualizaciones interactivas para facilitar el análisis estratégico',
     tech: ['Power BI', 'Excel', 'Datos', 'Visualización'],
     images: [
-      'https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/Portada.jpg',
-      '/https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/Ventas.jpg',
-      'https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/Viaje.jpg',
-      '/https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/Vendedores.jpg'
+      'https://raw.githubusercontent.com/moraflorencia/Portfolio-Imagenes/refs/heads/main/Asistencia%20al%20Viajero_pages-to-jpg-0001.jpg',
+      'https://raw.githubusercontent.com/moraflorencia/Portfolio-Imagenes/refs/heads/main/Asistencia%20al%20Viajero_pages-to-jpg-0002.jpg',
+      'https://raw.githubusercontent.com/moraflorencia/Portfolio-Imagenes/refs/heads/main/Asistencia%20al%20Viajero_pages-to-jpg-0003.jpg',
+      'https://raw.githubusercontent.com/moraflorencia/Portfolio-Imagenes/refs/heads/main/Asistencia%20al%20Viajero_pages-to-jpg-0004.jpg',
+      'https://raw.githubusercontent.com/moraflorencia/Portfolio-Imagenes/refs/heads/main/Asistencia%20al%20Viajero_pages-to-jpg-0005.jpg'
     ],
     year: '2024',
     githubUrl: 'https://github.com/moraflorencia/Asistencia-al-Viajero-Power-BI-',
@@ -250,9 +284,9 @@ const projects = [
     tech: ['Excel', 'Datos', 'Visualización'],
     images: [
       'https://i.postimg.cc/XqTN4rvY/Captura-de-pantalla-2025-08-05-214437.png'
-    ], 
+    ],
     year: '2024',
-    githubUrl: 'https://docs.google.com/spreadsheets/d/1zCTH3ozQg5gaMDWS8VQoLn5tUGhUDERg/edit?usp=drive_link&ouid=114417583288005504879&rtpof=true&sd=true',
+    githubUrl: 'https://github.com/moraflorencia',
     achievements: [
       'Integración eficiente de datos complejos',
       'Automatización y precisión en cálculos',
@@ -280,7 +314,7 @@ const projects = [
   
   const experience = [
     {
-      title: 'Pasante de Desarrollo SAP',
+      title: 'Pasante de Análisis de Datos y desarrollo SAP',
       company: 'ARTECH | Fundación PESCAR',
       period: 'Actual',
       description: 'Formación profesional especializada en Análisis de Datos y SAP. Desarrollo intensivo en Python y SQL, complementado con el fortalecimiento de habilidades blandas para el ambiente profesional.',
@@ -298,7 +332,7 @@ const projects = [
       status: 'En curso'
     },
     {
-      title: 'Tecnicatura en Química',
+      title: 'Tecnicatura en quimica',
       institution: 'E.E.S.T N°2 Paula A de Sarmiento, Bernal',
       period: '2013 - 2019',
       type: 'Educación Secundaria',
@@ -366,8 +400,8 @@ const projects = [
   }`}
   style={{ 
     backgroundImage: isDarkMode
-      ? "url('https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/src/assets/FondoNoche.png')" // fondo oscuro
-      : "url('https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/src/assets/ChatGPT%20Image%2031%20ago%202025%2C%2021_46_28.png')", // fondo claro
+      ? "url('https://raw.githubusercontent.com/moraflorencia/Portfolio-Imagenes/refs/heads/main/31%20ago%202025%2C%2021_46_14.png')" // fondo oscuro
+      : "url('https://raw.githubusercontent.com/moraflorencia/Portfolio-Imagenes/refs/heads/main/ChatGPT%20Image%2031%20ago%202025%2C%2021_46_28.png')", // fondo claro
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundAttachment: "fixed"
@@ -576,7 +610,7 @@ const projects = [
                   Florencia Mora
                 </h1>
                 <p className={`text-sm transition-all duration-300 ${
-                  isDarkMode ? 'text-gray-300' : 'text-slate-800'
+                  isDarkMode ? 'text-gray-300' : 'text-slate-600'
                 }`}>
                   Data Analyst
                 </p>
@@ -592,7 +626,7 @@ const projects = [
                   className={`relative px-4 py-2 rounded-xl font-medium transition-all duration-300 overflow-hidden group ${
                     activeSection === item.key 
                       ? (isDarkMode ? 'text-white' : 'text-white')
-                      : (isDarkMode ? 'text-gray-300 hover:text-white' : 'text-slate-800 hover:text-white')
+                      : (isDarkMode ? 'text-gray-300 hover:text-white' : 'text-slate-700 hover:text-white')
                   }`}
                 >
                   <div className={`absolute inset-0 transition-all duration-300 rounded-xl ${
@@ -611,19 +645,12 @@ const projects = [
                   className={`p-2 rounded-xl transition-all duration-300 ${
                     isDarkMode 
                       ? 'bg-white/10 hover:bg-white/20 text-white' 
-                      : 'bg-slate-800/80 hover:bg-slate-800 text-white'
+                      : 'bg-slate-800/80 hover:bg-slate-700 text-white'
                   }`}
                 >
-                  <svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 24 24"
-  className="w-5 h-5"
-  fill="currentColor"
->
-  <path d="m11.9 22l4.55-12h2.1l4.55 12H21l-1.075-3.05h-4.85L14 22zM4 19l-1.4-1.4l5.05-5.05q-.875-.875-1.588-2T4.75 8h2.1q.5.975 1 1.7t1.2 1.45q.825-.825 1.713-2.313T12.1 6H1V4h7V2h2v2h7v2h-2.9q-.525 1.8-1.575 3.7t-2.075 2.9l2.4 2.45l-.75 2.05l-3.05-3.125zm11.7-1.8h3.6l-1.8-5.1z"/>
-</svg>
+                  <Globe size={18} />
                 </button>
-                 
+                
                 <button
                   onClick={toggleDarkMode}
                   className={`p-2 rounded-xl transition-all duration-300 ${
@@ -647,14 +674,7 @@ const projects = [
                     : 'bg-slate-800/80 hover:bg-slate-700 text-white'
                 }`}
               >
-               <svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 24 24"
-  className="w-5 h-5"
-  fill="currentColor"
->
-  <path d="m11.9 22l4.55-12h2.1l4.55 12H21l-1.075-3.05h-4.85L14 22zM4 19l-1.4-1.4l5.05-5.05q-.875-.875-1.588-2T4.75 8h2.1q.5.975 1 1.7t1.2 1.45q.825-.825 1.713-2.313T12.1 6H1V4h7V2h2v2h7v2h-2.9q-.525 1.8-1.575 3.7t-2.075 2.9l2.4 2.45l-.75 2.05l-3.05-3.125zm11.7-1.8h3.6l-1.8-5.1z"/>
-</svg>
+                <Globe size={18} />
               </button>
               
               <button 
@@ -725,7 +745,7 @@ const projects = [
           {/* Main Content */}
           <div className="mb-8 space-y-4">
             <p className={`text-lg font-medium transition-all duration-300 ${
-              isDarkMode ? 'text-gray-300' : 'text-slate-800' 
+              isDarkMode ? 'text-gray-300' : 'text-slate-700' 
             }`}>
               {t.hero.greeting}
             </p>
@@ -733,34 +753,43 @@ const projects = [
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
               <span className={`transition-all duration-300 ${
                 isDarkMode ? 'text-white' : 'text-slate-800'
-              }`}> 
+              }`}>
                 {t.hero.name}
               </span>
             </h1>
             
             <div className="relative inline-block">
-              <h2 className={`text-2xl md:text-3xl font-bold bg-clip-text text-transparent animate-gradient-x ${
-                isDarkMode 
-                  ? 'bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600' 
-                  : 'bg-gradient-to-r from-rose-600 via-pink-600 to-purple-600'
-              }`}>
-                {t.hero.title}
-              </h2>
-              <div className={`absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 rounded-full ${
-                isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
-              }`}></div>
-            </div>
+  <h2
+    className={`text-2xl md:text-3xl font-bold bg-clip-text text-transparent ${
+      isDarkMode
+        ? "bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600"
+        : "bg-gradient-to-r from-rose-600 via-pink-600 to-purple-600"
+    }`}
+  >
+    {useTypewriter([t.hero.title, t.hero.subtitle])}
+    <span className="border-r-2 border-pink-500 animate-pulse ml-1"></span>
+  </h2>
+
+  <div
+    className={`absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 rounded-full ${
+      isDarkMode
+        ? "bg-gradient-to-r from-purple-600 to-pink-600"
+        : "bg-gradient-to-r from-rose-500 to-pink-500"
+    }`}
+  ></div>
+</div>
+
           </div>
           
           <p className={`text-xl md:text-2xl mb-8 max-w-4xl mx-auto leading-relaxed font-medium ${
-            isDarkMode ? 'text-gray-200' : 'text-slate-800'
+            isDarkMode ? 'text-gray-200' : 'text-slate-700'
           }`}>
             {t.hero.description}
           </p>
           
           {/* Stats */}
           <div className={`flex flex-wrap justify-center gap-8 mb-12 ${
-            isDarkMode ? 'text-gray-300' : 'text-slate-800'
+            isDarkMode ? 'text-gray-300' : 'text-slate-700'
           }`}>
             <div className="flex items-center space-x-2 text-sm md:text-base">
               <MapPin size={20} className={isDarkMode ? "text-purple-500" : "text-rose-500"} />
@@ -809,7 +838,7 @@ const projects = [
           </div>
           
           {/* Social Links */}
-          <div className="flex justify-center space-x-6"> 
+          <div className="flex justify-center space-x-6">
             {[
               { icon: Linkedin, href: "https://linkedin.com/in/florm01", color: isDarkMode ? "hover:text-blue-500" : "hover:text-blue-600" },
               { icon: Github, href: "https://github.com/moraflorencia", color: isDarkMode ? "hover:text-gray-700" : "hover:text-slate-700" },
@@ -869,13 +898,13 @@ const projects = [
             <div className="space-y-8">
               <div className="space-y-6">
                 <p className={`text-lg leading-relaxed transition-all duration-300 ${
-                  isDarkMode ? 'text-gray-300' : 'text-slate-800'
+                  isDarkMode ? 'text-gray-300' : 'text-slate-700'
                 }`}>
                   {t.about.description1}
                 </p>
                 
                 <p className={`text-lg leading-relaxed transition-all duration-300 ${
-                  isDarkMode ? 'text-gray-300' : 'text-slate-800'
+                  isDarkMode ? 'text-gray-300' : 'text-slate-700'
                 }`}>
                   {t.about.description2}
                 </p>
@@ -1479,7 +1508,7 @@ const projects = [
                 <div className="space-y-6">
                   {[
                     { icon: Mail, label: t.contact.email, value: "mora.florencia.m@gmail.com", href: "mailto:mora.florencia.m@gmail.com", color: "from-yellow-500 to-orange-600" },
-                    { icon: FaWhatsapp, label: t.contact.phone, value: "+54 9 11 6018-4046", href: "tel:+5491160184046", color: "from-green-500 to-emerald-600" },
+                    { icon: Phone, label: t.contact.phone, value: "+54 9 11 6018-4046", href: "tel:+5491160184046", color: "from-green-500 to-emerald-600" },
                     { icon: Linkedin, label: t.contact.linkedin, value: "linkedin.com/in/florm01", href: "https://linkedin.com/in/florm01", color: "from-blue-500 to-indigo-600" },
                     { icon: Github, label: t.contact.github, value: "github.com/moraflorencia", href: "https://github.com/moraflorencia", color: "from-purple-500 to-pink-600" },
                     { icon: MapPin, label: t.contact.location, value: t.contact.locationValue, href: "", color: "from-red-500 to-pink-600" }
