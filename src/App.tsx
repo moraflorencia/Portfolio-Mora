@@ -428,7 +428,7 @@ const projects = [
                 style={{
                   left: `${Math.random() * 100}%`,
                   top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 10}s`,
+                  animationDelay: `${Math.random() * 20}s`,
                   animationDuration: `${5 + Math.random() * 4}s`
                 }}
               >
