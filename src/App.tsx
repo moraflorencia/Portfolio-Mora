@@ -456,7 +456,7 @@ const projects = [
                   left: `${20 + Math.random() * 60}%`,
                   top: `${10 + Math.random() * 30}%`, 
                   animationDelay: `${i * 8 + Math.random() * 5}s`,
-                  animationDuration: '6s'
+                  animationDuration: '500s'
                 }}
               >
                 <div className="w-0.5 h-0.5 bg-white rounded-full shadow-lg" 
