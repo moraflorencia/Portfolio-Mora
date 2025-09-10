@@ -741,7 +741,6 @@ const projects = [
             </h1>
             
             <div className="relative inline-block">
-              import Typed from "react-typed"; // 👈 agregá esta importación arriba del archivo
 
 <h2
   className={`text-2xl md:text-3xl font-bold bg-clip-text text-transparent ${
