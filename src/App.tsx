@@ -445,8 +445,8 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
               </div>
             ))}
             
-            {/* Shooting stars - MÁS LENTAS */}
-{[...Array(3)].map((_, i) => (
+            {/* Shooting stars */}
+            {[...Array(3)].map((_, i) => (
   <div
     key={`shooting-star-${i}`}
     className="absolute animate-shooting-star"
@@ -465,7 +465,7 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
   </div>
 ))}
 
-{/* Fireflies - MÁS LENTAS */}
+            {/* Fireflies */}
 {[...Array(15)].map((_, i) => (
   <div
     key={`firefly-${i}`}
@@ -473,103 +473,121 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
     style={{
       left: `${Math.random() * 100}%`,
       top: `${Math.random() * 100}%`,
-      animationDelay: `${Math.random() * 60}s`,      // Hasta 1 minuto de delay
-      animationDuration: `${30 + Math.random() * 40}s` // 30-70 segundos de duración
+<<<<<<< HEAD
+      animationDelay: `${Math.random() * 20}s`,  // antes 3s → ahora hasta 20s
+animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–25s
+=======
+      animationDelay: `${Math.random() * 60}s`,      // hasta 1 minuto
+animationDuration: `${30 + Math.random() * 30}s` // 30 a 60 segundos
+
+>>>>>>> 01bcc11ea84875a8c47b0d5352fcd987068bdf67
+
     }}
   >
     <div
       className="w-0.5 h-0.5 rounded-full"
-      style={{
-        backgroundColor: '#FFD700',
-        boxShadow: '0 0 6px 2px rgba(255, 215, 0, 0.8)',
+  style={{
+    backgroundColor: '#FFD700',
+    boxShadow: '0 0 6px 2px rgba(255, 215, 0, 0.8)',
       }}
     />
   </div>
 ))}
 
-{/* Constellation effect - MÁS LENTAS */}
-{[...Array(8)].map((_, i) => (
-  <div
-    key={`constellation-${i}`}
-    className="absolute animate-pulse"
-    style={{
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 100}%`,
-      animationDelay: `${Math.random() * 30}s`,      // Hasta 30 segundos de delay
-      animationDuration: `${20 + Math.random() * 25}s` // 20-45 segundos de duración
-    }}
-  >
-    <div className="w-2 h-2 bg-blue-200 rounded-full opacity-40 blur-sm"></div>
-  </div>
-))}
+ 
+ 
+            {/* Constellation effect */}
+            {[...Array(8)].map((_, i) => (
+              <div
+                key={`constellation-${i}`}
+                className="absolute animate-pulse"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                 animationDelay: `${Math.random() * 20}s`,  // antes 3s → ahora hasta 20s
+animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–25s
 
-{/* Floating particles for light mode - MÁS LENTAS */}
-{[...Array(30)].map((_, i) => (
-  <div
-    key={`particle-${i}`}
-    className="absolute animate-float-gentle"
-    style={{
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 100}%`,
-      animationDelay: `${Math.random() * 45}s`,      // Hasta 45 segundos de delay
-      animationDuration: `${25 + Math.random() * 30}s` // 25-55 segundos de duración
-    }}
-  >
-    <div 
-      className="rounded-full opacity-30"
-      style={{
-        width: `${2 + Math.random() * 4}px`,
-        height: `${2 + Math.random() * 4}px`,
-        background: `linear-gradient(45deg, rgba(252, 165, 165, 0.6), rgba(251, 113, 133, 0.4))`,
-        filter: 'blur(0.5px)'
-      }}
-    ></div>
-  </div>
-))}
+                }}
+              >
+                <div className="w-2 h-2 bg-blue-200 rounded-full opacity-40 blur-sm"></div>
+              </div>
+            ))}
+          </>
+        ) : (
+          // Floating particles for light mode
+          <>
+            {[...Array(30)].map((_, i) => (
+              <div
+                key={`particle-${i}`}
+                className="absolute animate-float-gentle"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 20}s`,  // antes 3s → ahora hasta 20s
+animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–25s
 
-{/* Sparkle effects - MÁS LENTAS */}
-{[...Array(15)].map((_, i) => (
-  <div
-    key={`sparkle-${i}`}
-    className="absolute animate-sparkle"
-    style={{
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 100}%`,
-      animationDelay: `${Math.random() * 35}s`,      // Hasta 35 segundos de delay
-      animationDuration: `${18 + Math.random() * 22}s` // 18-40 segundos de duración
-    }}
-  >
-    <div className="relative">
-      <div className="w-1 h-1 bg-rose-300 rounded-full opacity-60"></div>
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-0.5 bg-rose-200 opacity-40 rounded-full"></div>
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-0.5 h-3 bg-rose-200 opacity-40 rounded-full"></div>
-    </div>
-  </div>
-))}
 
-{/* Gentle bubbles - MÁS LENTAS */}
-{[...Array(12)].map((_, i) => (
-  <div
-    key={`bubble-${i}`}
-    className="absolute animate-bubble-float"
-    style={{
-      left: `${Math.random() * 100}%`,
-      top: `${80 + Math.random() * 20}%`,
-      animationDelay: `${Math.random() * 50}s`,      // Hasta 50 segundos de delay
-      animationDuration: `${28 + Math.random() * 32}s` // 28-60 segundos de duración
-    }}
-  >
-    <div 
-      className="rounded-full opacity-20 blur-sm"
-      style={{
-        width: `${3 + Math.random() * 6}px`,
-        height: `${3 + Math.random() * 6}px`,
-        background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(252, 165, 165, 0.4))',
-        border: '1px solid rgba(252, 165, 165, 0.2)'
-      }}
-    ></div>
-  </div>
-))}
+                }}
+              >
+                <div 
+                  className="rounded-full opacity-30"
+                  style={{
+                    width: `${2 + Math.random() * 4}px`,
+                    height: `${2 + Math.random() * 4}px`,
+                    background: `linear-gradient(45deg, rgba(252, 165, 165, 0.6), rgba(251, 113, 133, 0.4))`,
+                    filter: 'blur(0.5px)'
+                  }}
+                ></div>
+              </div>
+            ))}
+            
+            {/* Sparkle effects */}
+            {[...Array(15)].map((_, i) => (
+              <div
+                key={`sparkle-${i}`}
+                className="absolute animate-sparkle"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                 animationDelay: `${Math.random() * 20}s`,  // antes 3s → ahora hasta 20s
+animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–25s
+
+
+                }}
+              >
+                <div className="relative">
+                  <div className="w-1 h-1 bg-rose-300 rounded-full opacity-60"></div>
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-0.5 bg-rose-200 opacity-40 rounded-full"></div>
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-0.5 h-3 bg-rose-200 opacity-40 rounded-full"></div>
+                </div>
+              </div>
+            ))}
+
+            {/* Gentle bubbles */}
+            {[...Array(12)].map((_, i) => (
+              <div
+                key={`bubble-${i}`}
+                className="absolute animate-bubble-float"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${80 + Math.random() * 20}%`,
+                  animationDelay: `${Math.random() * 20}s`,  // antes 3s → ahora hasta 20s
+animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–25s
+
+
+                }}
+              >
+                <div 
+                  className="rounded-full opacity-20 blur-sm"
+                  style={{
+                    width: `${3 + Math.random() * 6}px`,
+                    height: `${3 + Math.random() * 6}px`,
+                    background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(252, 165, 165, 0.4))',
+                    border: '1px solid rgba(252, 165, 165, 0.2)'
+                  }}
+                ></div>
+              </div>
+            ))}
           </>
         )}
       </div>
