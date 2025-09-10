@@ -54,7 +54,7 @@
     transform: scale(1.2);
   }
 }
-
+ 
 .animate-firefly {
   animation: firefly infinite ease-in-out;
 }
