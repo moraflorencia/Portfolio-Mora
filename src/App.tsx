@@ -392,7 +392,7 @@ const projects = [
     { key: 'contact', label: t.nav.contact }
   ];
  
-  return (
+  return ( 
     <div
   className={`min-h-screen relative transition-all duration-500 ${
     isDarkMode 
