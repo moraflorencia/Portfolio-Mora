@@ -1,7 +1,43 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronDown, Github, Linkedin, Mail, Phone, MapPin, ExternalLink, BarChart3, Database, Brain, Code, TrendingUp, BookOpen, Award, Briefcase, Send, Calendar, GraduationCap, X, ZoomIn, Moon, Sun, Menu, Globe, Star, Sparkles } from 'lucide-react';
 import { Languages } from 'lucide-react';
- 
+import React, { useState, useEffect } from "react";
+
+// Hook para el efecto máquina de escribir
+const useTypewriter = (words: string[], speed = 100, delay = 1500) => {
+  const [text, setText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [loopNum, setLoopNum] = useState(0);
+  const [typingSpeed, setTypingSpeed] = useState(speed);
+
+  useEffect(() => {
+    const handleTyping = () => {
+      const current = loopNum % words.length;
+      const fullText = words[current];
+
+      setText(
+        isDeleting
+          ? fullText.substring(0, text.length - 1)
+          : fullText.substring(0, text.length + 1)
+      );
+
+      setTypingSpeed(isDeleting ? speed / 2 : speed);
+
+      if (!isDeleting && text === fullText) {
+        setTimeout(() => setIsDeleting(true), delay);
+      } else if (isDeleting && text === "") {
+        setIsDeleting(false);
+        setLoopNum(loopNum + 1);
+      }
+    };
+
+    const timer = setTimeout(handleTyping, typingSpeed);
+    return () => clearTimeout(timer);
+  }, [text, isDeleting]);
+
+  return text;
+};
+
  
 function App() {
   const [activeSection, setActiveSection] = useState('home');
@@ -724,17 +760,26 @@ const projects = [
             </h1>
             
             <div className="relative inline-block">
-              <h2 className={`text-2xl md:text-3xl font-bold bg-clip-text text-transparent animate-gradient-x ${
-                isDarkMode 
-                  ? 'bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600' 
-                  : 'bg-gradient-to-r from-rose-600 via-pink-600 to-purple-600'
-              }`}>
-                {t.hero.title}
-              </h2>
-              <div className={`absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 rounded-full ${
-                isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
-              }`}></div>
-            </div>
+  <h2
+    className={`text-2xl md:text-3xl font-bold bg-clip-text text-transparent ${
+      isDarkMode
+        ? "bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600"
+        : "bg-gradient-to-r from-rose-600 via-pink-600 to-purple-600"
+    }`}
+  >
+    {useTypewriter([t.hero.title, t.hero.subtitle])}
+    <span className="border-r-2 border-pink-500 animate-pulse ml-1"></span>
+  </h2>
+
+  <div
+    className={`absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 rounded-full ${
+      isDarkMode
+        ? "bg-gradient-to-r from-purple-600 to-pink-600"
+        : "bg-gradient-to-r from-rose-500 to-pink-500"
+    }`}
+  ></div>
+</div>
+
           </div>
           
           <p className={`text-xl md:text-2xl mb-8 max-w-4xl mx-auto leading-relaxed font-medium ${
