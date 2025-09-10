@@ -475,7 +475,7 @@ const projects = [
       left: `${Math.random() * 100}%`,
       top: `${Math.random() * 100}%`,
       animationDelay: `${Math.random() * 5}s`,
-      animationDuration: '8s',
+      animationDuration: '87s',
     }}
   >
     <div
