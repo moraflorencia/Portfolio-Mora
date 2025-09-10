@@ -420,164 +420,27 @@ const projects = [
           isDarkMode ? 'bg-indigo-600' : 'bg-purple-300'
         }`}></div>
 
-        {/* Animated Stars/Particles */}
-        {isDarkMode ? (
-          // Stars for dark mode
-          <>
-            {[...Array(50)].map((_, i) => (
-              <div
-                key={`star-${i}`}
-                className="absolute animate-twinkle"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 3}s`,
-                  animationDuration: `${2 + Math.random() * 2}s`
-                }}
-              >
-                <div 
-                  className="bg-white rounded-full opacity-80"
-                  style={{
-                    width: `${1 + Math.random() * 2}px`,
-                    height: `${1 + Math.random() * 2}px`,
-                    boxShadow: `0 0 ${2 + Math.random() * 4}px rgba(255, 255, 255, 0.8)`
-                  }}
-                ></div>
-              </div>
-            ))}
-            
-            {/* Shooting stars */}
-            {[...Array(3)].map((_, i) => (
-              <div
-                key={`shooting-star-${i}`}
-                className="absolute animate-shooting-star"
-                style={{
-                  left: `${20 + Math.random() * 60}%`,
-                  top: `${10 + Math.random() * 30}%`, 
-                  animationDelay: `${i * 8 + Math.random() * 5}s`,
-                  animationDuration: '6s'
-                }}
-              >
-                <div className="w-0.5 h-0.5 bg-white rounded-full shadow-lg" 
-                     style={{
-                       boxShadow: '0 0 6px 2px rgba(255, 255, 255, 0.8), -20px 0 20px -10px rgba(255, 255, 255, 0.4)'
-                     }}>
-                </div>
-              </div>
-            ))}
+      import React, { useState } from "react";
+import { BackgroundEffects } from "./BackgroundEffects";
 
-            {/* Fireflies */}
-{[...Array(15)].map((_, i) => (
-  <div
-    key={`firefly-${i}`}
-    className="absolute animate-firefly"
-    style={{
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 100}%`,
-      animationDelay: `${Math.random() * 5}s`,
-      animationDuration: '87s',
-    }}
-  >
-    <div
-      className="w-0.5 h-0.5 rounded-full"
-  style={{
-    backgroundColor: '#FFD700',
-    boxShadow: '0 0 6px 2px rgba(255, 215, 0, 0.8)',
-      }}
-    />
-  </div>
-))}
+export default function App() {
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
- 
- 
-            {/* Constellation effect */}
-            {[...Array(8)].map((_, i) => (
-              <div
-                key={`constellation-${i}`}
-                className="absolute animate-pulse"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 4}s`,
-                  animationDuration: `${2 + Math.random() * 2}s`
-                }}
-              >
-                <div className="w-2 h-2 bg-blue-200 rounded-full opacity-40 blur-sm"></div>
-              </div>
-            ))}
-          </>
-        ) : (
-          // Floating particles for light mode
-          <>
-            {[...Array(30)].map((_, i) => (
-              <div
-                key={`particle-${i}`}
-                className="absolute animate-float-gentle"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 5}s`,
-                  animationDuration: `${5 + Math.random() * 4}s`
-                }}
-              >
-                <div 
-                  className="rounded-full opacity-30"
-                  style={{
-                    width: `${2 + Math.random() * 4}px`,
-                    height: `${2 + Math.random() * 4}px`,
-                    background: `linear-gradient(45deg, rgba(252, 165, 165, 0.6), rgba(251, 113, 133, 0.4))`,
-                    filter: 'blur(0.5px)'
-                  }}
-                ></div>
-              </div>
-            ))}
-            
-            {/* Sparkle effects */}
-            {[...Array(15)].map((_, i) => (
-              <div
-                key={`sparkle-${i}`}
-                className="absolute animate-sparkle"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 3}s`,
-                  animationDuration: `${2 + Math.random()}s`
-                }}
-              >
-                <div className="relative">
-                  <div className="w-1 h-1 bg-rose-300 rounded-full opacity-60"></div>
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-0.5 bg-rose-200 opacity-40 rounded-full"></div>
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-0.5 h-3 bg-rose-200 opacity-40 rounded-full"></div>
-                </div>
-              </div>
-            ))}
+  return (
+    <div className="relative w-full h-screen bg-black">
+      {/* Fondo con efectos */}
+      <BackgroundEffects isDarkMode={isDarkMode} />
 
-            {/* Gentle bubbles */}
-            {[...Array(12)].map((_, i) => (
-              <div
-                key={`bubble-${i}`}
-                className="absolute animate-bubble-float"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${80 + Math.random() * 20}%`,
-                  animationDelay: `${Math.random() * 6}s`,
-                  animationDuration: `${10 + Math.random() * 5}s`
-                }}
-              >
-                <div 
-                  className="rounded-full opacity-20 blur-sm"
-                  style={{
-                    width: `${3 + Math.random() * 6}px`,
-                    height: `${3 + Math.random() * 6}px`,
-                    background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(252, 165, 165, 0.4))',
-                    border: '1px solid rgba(252, 165, 165, 0.2)'
-                  }}
-                ></div>
-              </div>
-            ))}
-          </>
-        )}
+      {/* Contenido */}
+      <div className="relative flex items-center justify-center h-full">
+        <h1 className="text-4xl font-bold text-white z-10">
+          Hola 🌸
+        </h1>
       </div>
+    </div>
+  );
+}
+
  
       {/* Navigation */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
