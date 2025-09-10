@@ -539,8 +539,9 @@ animationDuration: `${10 + Math.random() * 10}s` // antes 2–4s → ahora 10–
                 style={{
                   left: `${Math.random() * 100}%`,
                   top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 3}s`,
-                  animationDuration: `${2 + Math.random()}s`
+                  animationDelay: `${Math.random() * 15}s`,       // antes 3s → ahora hasta 15s
+animationDuration: `${10 + Math.random() * 10}s` // antes 2–4s → ahora 10–20s
+
                 }}
               >
                 <div className="relative">
@@ -559,8 +560,9 @@ animationDuration: `${10 + Math.random() * 10}s` // antes 2–4s → ahora 10–
                 style={{
                   left: `${Math.random() * 100}%`,
                   top: `${80 + Math.random() * 20}%`,
-                  animationDelay: `${Math.random() * 6}s`,
-                  animationDuration: `${10 + Math.random() * 5}s`
+                  animationDelay: `${Math.random() * 15}s`,       // antes 3s → ahora hasta 15s
+animationDuration: `${10 + Math.random() * 10}s` // antes 2–4s → ahora 10–20s
+
                 }}
               >
                 <div 
