@@ -1,43 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronDown, Github, Linkedin, Mail, Phone, MapPin, ExternalLink, BarChart3, Database, Brain, Code, TrendingUp, BookOpen, Award, Briefcase, Send, Calendar, GraduationCap, X, ZoomIn, Moon, Sun, Menu, Globe, Star, Sparkles } from 'lucide-react';
+import { ChevronDown, Github, Linkedin, Mail, Phone, MapPin, ExternalLink, BarChart3, Database, Brain, Code, TrendingUp, BookOpen, Award, Briefcase, Send, Calendar, GraduationCap, X, ZoomIn, Moon, Sun, Menu, Globe, Star, Sparkles } from 'lucide-react'; 
 import { Languages } from 'lucide-react';
 import { FaWhatsapp } from "react-icons/fa";
-
-// Hook para efecto máquina de escribir
-const useTypewriter = (words: string[], speed = 100, delay = 1500) => {
-  const [text, setText] = useState("");
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [loopNum, setLoopNum] = useState(0);
-  const [typingSpeed, setTypingSpeed] = useState(speed);
-
-  useEffect(() => {
-    const handleTyping = () => {
-      const current = loopNum % words.length;
-      const fullText = words[current];
-
-      setText(
-        isDeleting
-          ? fullText.substring(0, text.length - 1)
-          : fullText.substring(0, text.length + 1)
-      );
-
-      setTypingSpeed(isDeleting ? speed / 2 : speed);
-
-      if (!isDeleting && text === fullText) {
-        setTimeout(() => setIsDeleting(true), delay);
-      } else if (isDeleting && text === "") {
-        setIsDeleting(false);
-        setLoopNum(loopNum + 1);
-      }
-    };
-
-    const timer = setTimeout(handleTyping, typingSpeed);
-    return () => clearTimeout(timer);
-  }, [text, isDeleting]);
-
-  return text;
-};
-      
+  
+    
 function App() {
   const [activeSection, setActiveSection] = useState('home'); 
   const [isScrolled, setIsScrolled] = useState(false);
@@ -99,8 +65,8 @@ function App() {
       hero: {
         greeting: "¡Hola!",
         name: "Florencia Milagros Mora",
-        title: "Analista de Datos",
-        subtitle: "Estudiante de Ingeniería en Sistemas", 
+        title: "Analista de Datos | Estudiante de Ingeniería en Sistemas de Información",
+        subtitle: "Python · SQL · Power BI · Excel | Estudiante de Ingeniería en Sistemas", 
         description: "Me entusiasma aprender, crecer en equipo y usar los datos para crear soluciones con impacto real.",
         downloadCV: "Descargar CV",
         contact: "Contactar"
@@ -169,8 +135,8 @@ function App() {
       hero: {
         greeting: "Hello!",
         name: "Florencia Milagros Mora",
-        title: "Data Analyst",
-        subtitle: "Systems Engineering Student",
+        title: "Data Analyst | Systems Engineering Student",
+        subtitle: "Python · SQL · Power BI · Excel | Systems Engineering Student",
         description: "I'm excited to learn, grow as a team, and use data to create solutions with real impact.",
         downloadCV: "Download CV",
         contact: "Contact"
@@ -420,27 +386,164 @@ const projects = [
           isDarkMode ? 'bg-indigo-600' : 'bg-purple-300'
         }`}></div>
 
-      import React, { useState } from "react";
-import { BackgroundEffects } from "./BackgroundEffects";
+        {/* Animated Stars/Particles */}
+        {isDarkMode ? (
+          // Stars for dark mode
+          <>
+            {[...Array(50)].map((_, i) => (
+              <div
+                key={`star-${i}`}
+                className="absolute animate-twinkle"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 3}s`,
+                  animationDuration: `${2 + Math.random() * 2}s`
+                }}
+              >
+                <div 
+                  className="bg-white rounded-full opacity-80"
+                  style={{
+                    width: `${1 + Math.random() * 2}px`,
+                    height: `${1 + Math.random() * 2}px`,
+                    boxShadow: `0 0 ${2 + Math.random() * 4}px rgba(255, 255, 255, 0.8)`
+                  }}
+                ></div>
+              </div>
+            ))}
+            
+            {/* Shooting stars */}
+            {[...Array(3)].map((_, i) => (
+              <div
+                key={`shooting-star-${i}`}
+                className="absolute animate-shooting-star"
+                style={{
+                  left: `${20 + Math.random() * 60}%`,
+                  top: `${10 + Math.random() * 30}%`, 
+                  animationDelay: `${i * 8 + Math.random() * 5}s`,
+                  animationDuration: '6s'
+                }}
+              >
+                <div className="w-0.5 h-0.5 bg-white rounded-full shadow-lg" 
+                     style={{
+                       boxShadow: '0 0 6px 2px rgba(255, 255, 255, 0.8), -20px 0 20px -10px rgba(255, 255, 255, 0.4)'
+                     }}>
+                </div>
+              </div>
+            ))}
 
-export default function App() {
-  const [isDarkMode, setIsDarkMode] = useState(true);
+            {/* Fireflies */}
+{[...Array(15)].map((_, i) => (
+  <div
+    key={`firefly-${i}`}
+    className="absolute animate-firefly"
+    style={{
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      animationDelay: `${Math.random() * 5}s`,
+      animationDuration: '9s',
+    }}
+  >
+    <div
+      className="w-0.5 h-0.5 rounded-full"
+  style={{
+    backgroundColor: '#FFD700',
+    boxShadow: '0 0 6px 2px rgba(255, 215, 0, 0.8)',
+      }}
+    />
+  </div>
+))}
 
-  return (
-    <div className="relative w-full h-screen bg-black">
-      {/* Fondo con efectos */}
-      <BackgroundEffects isDarkMode={isDarkMode} />
+ 
+ 
+            {/* Constellation effect */}
+            {[...Array(8)].map((_, i) => (
+              <div
+                key={`constellation-${i}`}
+                className="absolute animate-pulse"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 4}s`,
+                  animationDuration: `${2 + Math.random() * 2}s`
+                }}
+              >
+                <div className="w-2 h-2 bg-blue-200 rounded-full opacity-40 blur-sm"></div>
+              </div>
+            ))}
+          </>
+        ) : (
+          // Floating particles for light mode
+          <>
+            {[...Array(30)].map((_, i) => (
+              <div
+                key={`particle-${i}`}
+                className="absolute animate-float-gentle"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 5}s`,
+                  animationDuration: `${5 + Math.random() * 4}s`
+                }}
+              >
+                <div 
+                  className="rounded-full opacity-30"
+                  style={{
+                    width: `${2 + Math.random() * 4}px`,
+                    height: `${2 + Math.random() * 4}px`,
+                    background: `linear-gradient(45deg, rgba(252, 165, 165, 0.6), rgba(251, 113, 133, 0.4))`,
+                    filter: 'blur(0.5px)'
+                  }}
+                ></div>
+              </div>
+            ))}
+            
+            {/* Sparkle effects */}
+            {[...Array(15)].map((_, i) => (
+              <div
+                key={`sparkle-${i}`}
+                className="absolute animate-sparkle"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 3}s`,
+                  animationDuration: `${2 + Math.random()}s`
+                }}
+              >
+                <div className="relative">
+                  <div className="w-1 h-1 bg-rose-300 rounded-full opacity-60"></div>
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-0.5 bg-rose-200 opacity-40 rounded-full"></div>
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-0.5 h-3 bg-rose-200 opacity-40 rounded-full"></div>
+                </div>
+              </div>
+            ))}
 
-      {/* Contenido */}
-      <div className="relative flex items-center justify-center h-full">
-        <h1 className="text-4xl font-bold text-white z-10">
-          Hola 🌸
-        </h1>
+            {/* Gentle bubbles */}
+            {[...Array(12)].map((_, i) => (
+              <div
+                key={`bubble-${i}`}
+                className="absolute animate-bubble-float"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${80 + Math.random() * 20}%`,
+                  animationDelay: `${Math.random() * 6}s`,
+                  animationDuration: `${10 + Math.random() * 5}s`
+                }}
+              >
+                <div 
+                  className="rounded-full opacity-20 blur-sm"
+                  style={{
+                    width: `${3 + Math.random() * 6}px`,
+                    height: `${3 + Math.random() * 6}px`,
+                    background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(252, 165, 165, 0.4))',
+                    border: '1px solid rgba(252, 165, 165, 0.2)'
+                  }}
+                ></div>
+              </div>
+            ))}
+          </>
+        )}
       </div>
-    </div>
-  );
-}
-
  
       {/* Navigation */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
@@ -635,26 +738,18 @@ export default function App() {
               </span>
             </h1>
             
-           <div className="relative inline-block">
-  <h2
-    className={`text-2xl md:text-3xl font-bold bg-clip-text text-transparent ${
-      isDarkMode
-        ? "bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600"
-        : "bg-gradient-to-r from-rose-600 via-pink-600 to-purple-600"
-    }`}
-  >
-    {useTypewriter([t.hero.title, t.hero.subtitle])}
-    <span className="border-r-2 border-pink-500 animate-pulse ml-1"></span>
-  </h2>
-
-  <div
-    className={`absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 rounded-full ${
-      isDarkMode
-        ? "bg-gradient-to-r from-purple-600 to-pink-600"
-        : "bg-gradient-to-r from-rose-500 to-pink-500"
-    }`}
-  ></div>
-</div>
+            <div className="relative inline-block">
+              <h2 className={`text-2xl md:text-3xl font-bold bg-clip-text text-transparent animate-gradient-x ${
+                isDarkMode 
+                  ? 'bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600' 
+                  : 'bg-gradient-to-r from-rose-600 via-pink-600 to-purple-600'
+              }`}>
+                {t.hero.title}
+              </h2>
+              <div className={`absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 rounded-full ${
+                isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
+              }`}></div>
+            </div>
           </div>
           
           <p className={`text-xl md:text-2xl mb-8 max-w-4xl mx-auto leading-relaxed font-medium ${
