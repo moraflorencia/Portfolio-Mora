@@ -37,9 +37,7 @@ const useTypewriter = (words: string[], speed = 100, delay = 1500) => {
 
   return text;
 };
-
-  
-    
+      
 function App() {
   const [activeSection, setActiveSection] = useState('home'); 
   const [isScrolled, setIsScrolled] = useState(false);
