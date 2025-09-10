@@ -4,24 +4,21 @@ import { Languages } from 'lucide-react';
 import { FaWhatsapp } from "react-icons/fa";
 
 // Hook para efecto máquina de escribir
-const useTypewriter = (words: string[], speed = 100, delay = 1500) => {
+const useTypewriter = (words: string[], speed = 150, delay = 2000) => {
   const [text, setText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopNum, setLoopNum] = useState(0);
-  const [typingSpeed, setTypingSpeed] = useState(speed);
 
   useEffect(() => {
-    const handleTyping = () => {
-      const current = loopNum % words.length;
-      const fullText = words[current];
+    const current = loopNum % words.length;
+    const fullText = words[current];
 
-      setText(
+    const timer = setTimeout(() => {
+      setText(prev =>
         isDeleting
-          ? fullText.substring(0, text.length - 1)
-          : fullText.substring(0, text.length + 1)
+          ? fullText.substring(0, prev.length - 1)
+          : fullText.substring(0, prev.length + 1)
       );
-
-      setTypingSpeed(isDeleting ? speed / 2 : speed);
 
       if (!isDeleting && text === fullText) {
         setTimeout(() => setIsDeleting(true), delay);
@@ -29,11 +26,10 @@ const useTypewriter = (words: string[], speed = 100, delay = 1500) => {
         setIsDeleting(false);
         setLoopNum(loopNum + 1);
       }
-    };
+    }, isDeleting ? speed / 1.5 : speed); // un poco más lento
 
-    const timer = setTimeout(handleTyping, typingSpeed);
     return () => clearTimeout(timer);
-  }, [text, isDeleting]);
+  }, [text, isDeleting, loopNum, words, delay, speed]);
 
   return text;
 };
@@ -467,28 +463,27 @@ const projects = [
               </div>
             ))}
 
-           {/* Fireflies */}
+            {/* Fireflies */}
 {[...Array(15)].map((_, i) => (
   <div
-    key={`firefly-${i}`} 
+    key={`firefly-${i}`}
     className="absolute animate-firefly"
     style={{
       left: `${Math.random() * 100}%`,
       top: `${Math.random() * 100}%`,
-      animationDelay: `${Math.random() * 8}s`, // antes 5s
-      animationDuration: `${8 + Math.random() * 4}s`, // antes fijo en 5s
+      animationDelay: `${Math.random() * 5}s`,
+      animationDuration: '5s',
     }}
   >
     <div
       className="w-0.5 h-0.5 rounded-full"
-      style={{
-        backgroundColor: '#FFD700',
-        boxShadow: '0 0 6px 2px rgba(255, 215, 0, 0.8)',
+  style={{
+    backgroundColor: '#FFD700',
+    boxShadow: '0 0 6px 2px rgba(255, 215, 0, 0.8)',
       }}
     />
   </div>
 ))}
-
 
  
  
