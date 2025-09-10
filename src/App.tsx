@@ -94,7 +94,7 @@ function App() {
       education: {
         title: "Educación",
         formal: " ",
-        complementary: "Educación Complementaria"
+        complementary: "Certificaciones"
       },
       contact: {
         title: "Contacto",
