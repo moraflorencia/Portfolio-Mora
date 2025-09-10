@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronDown, Github, Linkedin, Mail, Phone, MapPin, ExternalLink, BarChart3, Database, Brain, Code, TrendingUp, BookOpen, Award, Briefcase, Send, Calendar, GraduationCap, X, ZoomIn, Moon, Sun, Menu, Globe, Star, Sparkles } from 'lucide-react';
 import { Languages } from 'lucide-react';
-import React, { useState, useEffect } from "react";
 
 // Hook para el efecto máquina de escribir
 const useTypewriter = (words: string[], speed = 100, delay = 1500) => {
