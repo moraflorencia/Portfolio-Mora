@@ -2,38 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ChevronDown, Github, Linkedin, Mail, Phone, MapPin, ExternalLink, BarChart3, Database, Brain, Code, TrendingUp, BookOpen, Award, Briefcase, Send, Calendar, GraduationCap, X, ZoomIn, Moon, Sun, Menu, Globe, Star, Sparkles } from 'lucide-react';
 import { Languages } from 'lucide-react';
 import { FaWhatsapp } from "react-icons/fa";
-
-// Hook para efecto máquina de escribir
-const useTypewriter = (words: string[], speed = 150, delay = 2000) => {
-  const [text, setText] = useState("");
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [loopNum, setLoopNum] = useState(0);
-
-  useEffect(() => {
-    const current = loopNum % words.length;
-    const fullText = words[current];
-
-    const timer = setTimeout(() => {
-      setText(prev =>
-        isDeleting
-          ? fullText.substring(0, prev.length - 1)
-          : fullText.substring(0, prev.length + 1)
-      );
-
-      if (!isDeleting && text === fullText) {
-        setTimeout(() => setIsDeleting(true), delay);
-      } else if (isDeleting && text === "") {
-        setIsDeleting(false);
-        setLoopNum(loopNum + 1);
-      }
-    }, isDeleting ? speed / 1.5 : speed); // un poco más lento
-
-    return () => clearTimeout(timer);
-  }, [text, isDeleting, loopNum, words, delay, speed]);
-
-  return text;
-};
-
+  
     
 function App() {
   const [activeSection, setActiveSection] = useState('home'); 
@@ -96,8 +65,8 @@ function App() {
       hero: {
         greeting: "¡Hola!",
         name: "Florencia Milagros Mora",
-        title: "Analista de Datos",
-        subtitle: "Estudiante de Ingeniería en Sistemas", 
+        title: "Analista de Datos | Estudiante de Ingeniería en Sistemas de Información",
+        subtitle: "Python · SQL · Power BI · Excel | Estudiante de Ingeniería en Sistemas", 
         description: "Me entusiasma aprender, crecer en equipo y usar los datos para crear soluciones con impacto real.",
         downloadCV: "Descargar CV",
         contact: "Contactar"
@@ -166,8 +135,8 @@ function App() {
       hero: {
         greeting: "Hello!",
         name: "Florencia Milagros Mora",
-        title: "Data Analyst",
-        subtitle: "Systems Engineering Student",
+        title: "Data Analyst | Systems Engineering Student",
+        subtitle: "Python · SQL · Power BI · Excel | Systems Engineering Student",
         description: "I'm excited to learn, grow as a team, and use data to create solutions with real impact.",
         downloadCV: "Download CV",
         contact: "Contact"
@@ -388,7 +357,7 @@ const projects = [
     { key: 'contact', label: t.nav.contact }
   ];
  
-  return ( 
+  return (
     <div
   className={`min-h-screen relative transition-all duration-500 ${
     isDarkMode 
@@ -397,8 +366,8 @@ const projects = [
   }`}
   style={{ 
     backgroundImage: isDarkMode
-      ? "url('https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/FondoNoche.png')" // fondo oscuro
-      : "url('https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/FondoDia.png')", // fondo claro
+      ? "url('https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/src/assets/FondoNoche.png')" // fondo oscuro
+      : "url('https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/src/assets/ChatGPT%20Image%2031%20ago%202025%2C%2021_46_28.png')", // fondo claro
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundAttachment: "fixed"
@@ -428,10 +397,8 @@ const projects = [
                 style={{
                   left: `${Math.random() * 100}%`,
                   top: `${Math.random() * 100}%`,
-                 animationDelay: `${Math.random() * 20}s`,  // antes 3s → ahora hasta 20s
-animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–25s
-
-
+                  animationDelay: `${Math.random() * 3}s`,
+                  animationDuration: `${2 + Math.random() * 2}s`
                 }}
               >
                 <div 
@@ -447,8 +414,8 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
             
             {/* Shooting stars */}
             {[...Array(3)].map((_, i) => (
-  <div
-    key={`shooting-star-${i}`}
+              <div
+               key={`shooting-star-${i}`}
     className="absolute animate-shooting-star"
     style={{
       left: `${20 + Math.random() * 60}%`,
@@ -461,9 +428,9 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
          style={{
            boxShadow: '0 0 6px 2px rgba(255, 255, 255, 0.8), -20px 0 20px -10px rgba(255, 255, 255, 0.4)'
          }}>
-    </div>
-  </div>
-))}
+                </div>
+              </div>
+            ))}
 
             {/* Fireflies */}
 {[...Array(15)].map((_, i) => (
@@ -473,15 +440,8 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
     style={{
       left: `${Math.random() * 100}%`,
       top: `${Math.random() * 100}%`,
-<<<<<<< HEAD
-      animationDelay: `${Math.random() * 20}s`,  // antes 3s → ahora hasta 20s
-animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–25s
-=======
-      animationDelay: `${Math.random() * 60}s`,      // hasta 1 minuto
-animationDuration: `${30 + Math.random() * 30}s` // 30 a 60 segundos
-
->>>>>>> 01bcc11ea84875a8c47b0d5352fcd987068bdf67
-
+      animationDelay: `${Math.random() * 5}s`,
+      animationDuration: '9s',
     }}
   >
     <div
@@ -504,9 +464,8 @@ animationDuration: `${30 + Math.random() * 30}s` // 30 a 60 segundos
                 style={{
                   left: `${Math.random() * 100}%`,
                   top: `${Math.random() * 100}%`,
-                 animationDelay: `${Math.random() * 20}s`,  // antes 3s → ahora hasta 20s
-animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–25s
-
+                  animationDelay: `${Math.random() * 4}s`,
+                  animationDuration: `${2 + Math.random() * 2}s`
                 }}
               >
                 <div className="w-2 h-2 bg-blue-200 rounded-full opacity-40 blur-sm"></div>
@@ -523,10 +482,8 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
                 style={{
                   left: `${Math.random() * 100}%`,
                   top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 20}s`,  // antes 3s → ahora hasta 20s
-animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–25s
-
-
+                  animationDelay: `${Math.random() * 5}s`,
+                  animationDuration: `${5 + Math.random() * 4}s`
                 }}
               >
                 <div 
@@ -549,10 +506,8 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
                 style={{
                   left: `${Math.random() * 100}%`,
                   top: `${Math.random() * 100}%`,
-                 animationDelay: `${Math.random() * 20}s`,  // antes 3s → ahora hasta 20s
-animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–25s
-
-
+                  animationDelay: `${Math.random() * 3}s`,
+                  animationDuration: `${2 + Math.random()}s`
                 }}
               >
                 <div className="relative">
@@ -571,10 +526,8 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
                 style={{
                   left: `${Math.random() * 100}%`,
                   top: `${80 + Math.random() * 20}%`,
-                  animationDelay: `${Math.random() * 20}s`,  // antes 3s → ahora hasta 20s
-animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–25s
-
-
+                  animationDelay: `${Math.random() * 6}s`,
+                  animationDuration: `${10 + Math.random() * 5}s`
                 }}
               >
                 <div 
@@ -786,17 +739,13 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
             </h1>
             
             <div className="relative inline-block">
-              <h2
-  className={`text-2xl md:text-3xl font-bold bg-clip-text text-transparent ${
-    isDarkMode
-      ? "bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600"
-      : "bg-gradient-to-r from-rose-600 via-pink-600 to-purple-600"
-  }`}
->
-  {useTypewriter([t.hero.title, t.hero.subtitle])}
-  <span className="border-r-2 border-pink-500 animate-pulse ml-1"></span>
-</h2>
-
+              <h2 className={`text-2xl md:text-3xl font-bold bg-clip-text text-transparent animate-gradient-x ${
+                isDarkMode 
+                  ? 'bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600' 
+                  : 'bg-gradient-to-r from-rose-600 via-pink-600 to-purple-600'
+              }`}>
+                {t.hero.title}
+              </h2>
               <div className={`absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 rounded-full ${
                 isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
               }`}></div>
