@@ -467,7 +467,7 @@ const projects = [
               </div>
             ))}
 
-            {/* Fireflies */}
+           {/* Fireflies */}
 {[...Array(15)].map((_, i) => (
   <div
     key={`firefly-${i}`} 
@@ -475,19 +475,20 @@ const projects = [
     style={{
       left: `${Math.random() * 100}%`,
       top: `${Math.random() * 100}%`,
-      animationDelay: `${Math.random() * 5}s`,
-      animationDuration: '5s',
+      animationDelay: `${Math.random() * 8}s`, // antes 5s
+      animationDuration: `${8 + Math.random() * 4}s`, // antes fijo en 5s
     }}
   >
     <div
       className="w-0.5 h-0.5 rounded-full"
-  style={{
-    backgroundColor: '#FFD700',
-    boxShadow: '0 0 6px 2px rgba(255, 215, 0, 0.8)',
+      style={{
+        backgroundColor: '#FFD700',
+        boxShadow: '0 0 6px 2px rgba(255, 215, 0, 0.8)',
       }}
     />
   </div>
 ))}
+
 
  
  
