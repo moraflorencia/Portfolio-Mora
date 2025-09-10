@@ -758,7 +758,6 @@ const projects = [
     }`}
   ></div>
 </div>
-
           </div>
           
           <p className={`text-xl md:text-2xl mb-8 max-w-4xl mx-auto leading-relaxed font-medium ${
