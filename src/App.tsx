@@ -741,7 +741,7 @@ const projects = [
             </h1>
             
             <div className="relative inline-block">
-
+ 
 <h2
   className={`text-2xl md:text-3xl font-bold bg-clip-text text-transparent ${
     isDarkMode
