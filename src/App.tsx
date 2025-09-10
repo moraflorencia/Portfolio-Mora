@@ -475,7 +475,7 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
     style={{
       left: `${Math.random() * 100}%`,
       top: `${Math.random() * 100}%`,
-      animationDelay: `${Math.random() * 60}s`      // hasta 1 minuto
+      animationDelay: `${Math.random() * 60}s`,      // hasta 1 minuto
 animationDuration: `${30 + Math.random() * 30}s` // 30 a 60 segundos
 
 
