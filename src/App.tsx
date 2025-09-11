@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronDown, Github, Linkedin, Mail, Phone, MapPin, ExternalLink, BarChart3, Database, Brain, Code, TrendingUp, BookOpen, Award, Briefcase, Send, Calendar, GraduationCap, X, ZoomIn, Moon, Sun, Menu, Globe, Star, Sparkles } from 'lucide-react';
-import { Languages } from 'lucide-react';
-import { FaWhatsapp } from "react-icons/fa";
-import BackgroundEffects from "./components/BackgroundEffects";
-
 
 // Hook para efecto máquina de escribir
 const useTypewriter = (words: string[], speed = 150, delay = 2000) => {
@@ -28,7 +24,7 @@ const useTypewriter = (words: string[], speed = 150, delay = 2000) => {
         setIsDeleting(false);
         setLoopNum(loopNum + 1);
       }
-    }, isDeleting ? speed / 1.5 : speed); // un poco más lento
+    }, isDeleting ? speed / 1.5 : speed);
 
     return () => clearTimeout(timer);
   }, [text, isDeleting, loopNum, words, delay, speed]);
@@ -38,7 +34,7 @@ const useTypewriter = (words: string[], speed = 150, delay = 2000) => {
     
 function App() {
   // Estados
-  const [isDarkMode, setIsDarkMode] = useState(true); // default oscuro
+  const [isDarkMode, setIsDarkMode] = useState(true);
   const [activeSection, setActiveSection] = useState("home");
   const [isScrolled, setIsScrolled] = useState(false);
   const [selectedProject, setSelectedProject] = useState<any>(null);
@@ -83,54 +79,6 @@ function App() {
   const toggleDarkMode = () => setIsDarkMode(!isDarkMode);
   const toggleLanguage = () => setIsEnglish(!isEnglish);
 
-  // 👇 Return siempre al final
-  return (
-    <div className={`relative min-h-screen ${isDarkMode ? "bg-slate-900" : "bg-white"}`}>
-      {/* 🎇 Fondo animado */}
-      <BackgroundEffects isDarkMode={isDarkMode} />
-
-      {/* 📌 Contenido principal */}
-      <main className="relative z-10">
-        <h1 className="text-3xl font-bold">Mi Portfolio</h1>
-        {/* ... resto de tu app */}
-      </main>
-    </div>
-  );
-      
-      // Update active section based on scroll position
-      const sections = ['home', 'about', 'skills', 'projects', 'experience', 'education', 'contact'];
-      const current = sections.find(section => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
-        }
-        return false;
-      });
-      
-      if (current) {
-        setActiveSection(current);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-    setIsMobileMenuOpen(false);
-  };
-
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-  };
-
-  const toggleLanguage = () => setIsEnglish(!isEnglish);
-
   // Translations
   const translations = {
     es: {
@@ -165,7 +113,8 @@ function App() {
       },
       projects: {
         title: "Proyectos",
-        achievements: "Logros principales:"
+        achievements: "Logros principales:",
+        viewRepo: "Ver repositorio"
       },
       experience: { 
         title: "Experiencia Profesional",
@@ -305,58 +254,58 @@ function App() {
     }
   ];
 
-const projects = [
-  {
-    title: 'Asistencia al viajero - CoderHouse',
-    description: 'Proyecto integral de análisis de datos en el que desarrollé un tablero interactivo en Power BI a partir de un dataset propio titulado "Asistencia al Viajero". El trabajo incluyó la transformación de una base de datos compleja en Excel, la aplicación de técnicas avanzadas de limpieza y modelado de datos, y la creación de visualizaciones interactivas para facilitar el análisis estratégico',
-    tech: ['Power BI', 'Excel', 'Datos', 'Visualización'],
-    images: [
-      'https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/Portada.jpg',
-      '/https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/Ventas.jpg',
-      'https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/Viaje.jpg',
-      '/https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/Vendedores.jpg'
-    ],
-    year: '2024',
-    githubUrl: 'https://github.com/moraflorencia/Asistencia-al-Viajero-Power-BI-',
-    achievements: [ 
-      'Transformación completa de base de datos',
-      'Dashboards interactivos para análisis de tendencias',
-      'Mejora significativa en interpretación de datos'
-    ]
-  },
-  {
-    title: 'Análisis de desocupación mundial - UNQui',
-    description: 'Proyecto de análisis de datos en Excel donde completé y transformé una base de datos. Utilicé funciones para integrar información de continentes, población y tasas de desempleo. Calculé totales y promedios de desocupación, además de clasificar los países según su tamaño poblacional. Finalmente, elaboré tablas dinámicas y gráficos que permitieron un análisis detallado y visual de los datos',
-    tech: ['Excel', 'Datos', 'Visualización'],
-    images: [
-      'https://i.postimg.cc/XqTN4rvY/Captura-de-pantalla-2025-08-05-214437.png'
-    ], 
-    year: '2024',
-    githubUrl: 'https://docs.google.com/spreadsheets/d/1zCTH3ozQg5gaMDWS8VQoLn5tUGhUDERg/edit?usp=drive_link&ouid=114417583288005504879&rtpof=true&sd=true',
-    achievements: [
-      'Integración eficiente de datos complejos',
-      'Automatización y precisión en cálculos',
-      'Visualización y análisis estratégico'
-    ]
-  },
-  {
-    title: 'Explotación y Visualización de Datos - GIDAS',
-    description: 'Proyecto integral de análisis de datos donde gestioné y transformé una base de datos compleja en Excel, creé dashboards interactivos en Power BI y apliqué técnicas avanzadas de limpieza de datos.',
-    tech: ['Power BI', 'Excel', 'Datos', 'Visualización'],
-    images: [
-      'https://i.postimg.cc/j5bzdjLv/Captura-de-pantalla-2025-08-05-213720.png',
-      'https://i.postimg.cc/gjBXRckC/Captura-de-pantalla-2025-08-05-214017.png',
-      'https://i.postimg.cc/cL3ggSqz/Captura-de-pantalla-2025-08-05-214105.png'
-    ],
-    year: '2023',
-    githubUrl: 'https://github.com/moraflorencia/Proyectos-Graduados',
-    achievements: [ 
-      'Transformación completa de base de datos',
-      'Dashboards interactivos para análisis de tendencias',
-      'Mejora significativa en interpretación de datos'
-    ]
-  }
-];
+  const projects = [
+    {
+      title: 'Asistencia al viajero - CoderHouse',
+      description: 'Proyecto integral de análisis de datos en el que desarrollé un tablero interactivo en Power BI a partir de un dataset propio titulado "Asistencia al Viajero". El trabajo incluyó la transformación de una base de datos compleja en Excel, la aplicación de técnicas avanzadas de limpieza y modelado de datos, y la creación de visualizaciones interactivas para facilitar el análisis estratégico',
+      tech: ['Power BI', 'Excel', 'Datos', 'Visualización'],
+      images: [
+        'https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/Portada.jpg',
+        'https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/Ventas.jpg',
+        'https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/Viaje.jpg',
+        'https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/Vendedores.jpg'
+      ],
+      year: '2024',
+      githubUrl: 'https://github.com/moraflorencia/Asistencia-al-Viajero-Power-BI-',
+      achievements: [ 
+        'Transformación completa de base de datos',
+        'Dashboards interactivos para análisis de tendencias',
+        'Mejora significativa en interpretación de datos'
+      ]
+    },
+    {
+      title: 'Análisis de desocupación mundial - UNQui',
+      description: 'Proyecto de análisis de datos en Excel donde completé y transformé una base de datos. Utilicé funciones para integrar información de continentes, población y tasas de desempleo. Calculé totales y promedios de desocupación, además de clasificar los países según su tamaño poblacional. Finalmente, elaboré tablas dinámicas y gráficos que permitieron un análisis detallado y visual de los datos',
+      tech: ['Excel', 'Datos', 'Visualización'],
+      images: [
+        'https://i.postimg.cc/XqTN4rvY/Captura-de-pantalla-2025-08-05-214437.png'
+      ], 
+      year: '2024',
+      githubUrl: 'https://docs.google.com/spreadsheets/d/1zCTH3ozQg5gaMDWS8VQoLn5tUGhUDERg/edit?usp=drive_link&ouid=114417583288005504879&rtpof=true&sd=true',
+      achievements: [
+        'Integración eficiente de datos complejos',
+        'Automatización y precisión en cálculos',
+        'Visualización y análisis estratégico'
+      ]
+    },
+    {
+      title: 'Explotación y Visualización de Datos - GIDAS',
+      description: 'Proyecto integral de análisis de datos donde gestioné y transformé una base de datos compleja en Excel, creé dashboards interactivos en Power BI y apliqué técnicas avanzadas de limpieza de datos.',
+      tech: ['Power BI', 'Excel', 'Datos', 'Visualización'],
+      images: [
+        'https://i.postimg.cc/j5bzdjLv/Captura-de-pantalla-2025-08-05-213720.png',
+        'https://i.postimg.cc/gjBXRckC/Captura-de-pantalla-2025-08-05-214017.png',
+        'https://i.postimg.cc/cL3ggSqz/Captura-de-pantalla-2025-08-05-214105.png'
+      ],
+      year: '2023',
+      githubUrl: 'https://github.com/moraflorencia/Proyectos-Graduados',
+      achievements: [ 
+        'Transformación completa de base de datos',
+        'Dashboards interactivos para análisis de tendencias',
+        'Mejora significativa en interpretación de datos'
+      ]
+    }
+  ];
   
   const experience = [
     {
@@ -436,32 +385,39 @@ const projects = [
     { key: 'education', label: t.nav.education },
     { key: 'contact', label: t.nav.contact }
   ];
+
+  // WhatsApp icon component (since react-icons isn't installed)
+  const WhatsAppIcon = () => (
+    <svg viewBox="0 0 24 24" className="w-full h-full" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+    </svg>
+  );
  
   return ( 
     <div
-  className={`min-h-screen relative transition-all duration-500 ${
-    isDarkMode 
-      ? 'bg-slate-900'   // respaldo si no carga la imagen
-      : 'bg-rose-50'     // respaldo actualizado para modo claro
-  }`} 
-  style={{ 
-    backgroundImage: isDarkMode
-      ? "url('https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/FondoNoche.png.png')" // fondo oscuro
-      : "url('https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/FondoDia.png')", // fondo claro
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundAttachment: "fixed"
-  }}
->
+      className={`min-h-screen relative transition-all duration-500 ${
+        isDarkMode 
+          ? 'bg-slate-900'
+          : 'bg-rose-50'
+      }`} 
+      style={{ 
+        backgroundImage: isDarkMode
+          ? "url('https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/FondoNoche.png.png')"
+          : "url('https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/FondoDia.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed"
+      }}
+    >
       {/* Navigation */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-  isScrolled ? 'backdrop-blur-xl shadow-2xl' : 'bg-transparent'
-}`}>
-  <div className={`absolute inset-0 transition-all duration-500 ${
-    isScrolled 
-      ? (isDarkMode ? 'bg-slate-900/70 border-b border-white/10' : 'bg-white/80 border-b border-rose-200/50')
-      : 'bg-transparent'
-  }`}></div>
+        isScrolled ? 'backdrop-blur-xl shadow-2xl' : 'bg-transparent'
+      }`}>
+        <div className={`absolute inset-0 transition-all duration-500 ${
+          isScrolled 
+            ? (isDarkMode ? 'bg-slate-900/70 border-b border-white/10' : 'bg-white/80 border-b border-rose-200/50')
+            : 'bg-transparent'
+        }`}></div>
          
         <div className="container mx-auto px-6 py-4 relative z-10">
           <div className="flex items-center justify-between">
@@ -523,13 +479,13 @@ const projects = [
                   }`}
                 >
                   <svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 24 24"
-  className="w-5 h-5"
-  fill="currentColor"
->
-  <path d="m11.9 22l4.55-12h2.1l4.55 12H21l-1.075-3.05h-4.85L14 22zM4 19l-1.4-1.4l5.05-5.05q-.875-.875-1.588-2T4.75 8h2.1q.5.975 1 1.7t1.2 1.45q.825-.825 1.713-2.313T12.1 6H1V4h7V2h2v2h7v2h-2.9q-.525 1.8-1.575 3.7t-2.075 2.9l2.4 2.45l-.75 2.05l-3.05-3.125zm11.7-1.8h3.6l-1.8-5.1z"/>
-</svg>
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    className="w-5 h-5"
+                    fill="currentColor"
+                  >
+                    <path d="m11.9 22l4.55-12h2.1l4.55 12H21l-1.075-3.05h-4.85L14 22zM4 19l-1.4-1.4l5.05-5.05q-.875-.875-1.588-2T4.75 8h2.1q.5.975 1 1.7t1.2 1.45q.825-.825 1.713-2.313T12.1 6H1V4h7V2h2v2h7v2h-2.9q-.525 1.8-1.575 3.7t-2.075 2.9l2.4 2.45l-.75 2.05l-3.05-3.125zm11.7-1.8h3.6l-1.8-5.1z"/>
+                  </svg>
                 </button>
                  
                 <button
@@ -555,14 +511,14 @@ const projects = [
                     : 'bg-slate-800/80 hover:bg-slate-700 text-white'
                 }`}
               >
-               <svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 24 24"
-  className="w-5 h-5"
-  fill="currentColor"
->
-  <path d="m11.9 22l4.55-12h2.1l4.55 12H21l-1.075-3.05h-4.85L14 22zM4 19l-1.4-1.4l5.05-5.05q-.875-.875-1.588-2T4.75 8h2.1q.5.975 1 1.7t1.2 1.45q.825-.825 1.713-2.313T12.1 6H1V4h7V2h2v2h7v2h-2.9q-.525 1.8-1.575 3.7t-2.075 2.9l2.4 2.45l-.75 2.05l-3.05-3.125zm11.7-1.8h3.6l-1.8-5.1z"/>
-</svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  className="w-5 h-5"
+                  fill="currentColor"
+                >
+                  <path d="m11.9 22l4.55-12h2.1l4.55 12H21l-1.075-3.05h-4.85L14 22zM4 19l-1.4-1.4l5.05-5.05q-.875-.875-1.588-2T4.75 8h2.1q.5.975 1 1.7t1.2 1.45q.825-.825 1.713-2.313T12.1 6H1V4h7V2h2v2h7v2h-2.9q-.525 1.8-1.575 3.7t-2.075 2.9l2.4 2.45l-.75 2.05l-3.05-3.125zm11.7-1.8h3.6l-1.8-5.1z"/>
+                </svg>
               </button>
               
               <button 
@@ -623,13 +579,13 @@ const projects = [
               isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-400 to-pink-500'
             }`}></div>
             <div className="profile-border">
-  <img
-    src="https://i.postimg.cc/0NJMCbn0/Picsart-24-12-09-11-42-26-230.jpg"
-              alt="Florencia Milagros Mora"    className="w-40 h-40 rounded-full object-cover"
-  />
-</div>
+              <img
+                src="https://i.postimg.cc/0NJMCbn0/Picsart-24-12-09-11-42-26-230.jpg"
+                alt="Florencia Milagros Mora"    
+                className="w-40 h-40 rounded-full object-cover relative z-10"
+              />
+            </div>
           </div>
-
 
           {/* Main Content */}
           <div className="mb-8 space-y-4">
@@ -649,15 +605,15 @@ const projects = [
             
             <div className="relative inline-block">
               <h2
-  className={`text-2xl md:text-3xl font-bold bg-clip-text text-transparent ${
-    isDarkMode
-      ? "bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600"
-      : "bg-gradient-to-r from-rose-600 via-pink-600 to-purple-600"
-  }`}
->
-  {useTypewriter([t.hero.title, t.hero.subtitle])}
-  <span className="border-r-2 border-pink-500 animate-pulse ml-1"></span>
-</h2>
+                className={`text-2xl md:text-3xl font-bold bg-clip-text text-transparent ${
+                  isDarkMode
+                    ? "bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600"
+                    : "bg-gradient-to-r from-rose-600 via-pink-600 to-purple-600"
+                }`}
+              >
+                {useTypewriter([t.hero.title, t.hero.subtitle])}
+                <span className="border-r-2 border-pink-500 animate-pulse ml-1"></span>
+              </h2>
 
               <div className={`absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 rounded-full ${
                 isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
@@ -1392,7 +1348,7 @@ const projects = [
                 <div className="space-y-6">
                   {[
                     { icon: Mail, label: t.contact.email, value: "mora.florencia.m@gmail.com", href: "mailto:mora.florencia.m@gmail.com", color: "from-yellow-500 to-orange-600" },
-                    { icon: FaWhatsapp, label: t.contact.phone, value: "+54 9 11 6018-4046", href: "tel:+5491160184046", color: "from-green-500 to-emerald-600" },
+                    { icon: WhatsAppIcon, label: t.contact.phone, value: "+54 9 11 6018-4046", href: "tel:+5491160184046", color: "from-green-500 to-emerald-600" },
                     { icon: Linkedin, label: t.contact.linkedin, value: "linkedin.com/in/florm01", href: "https://linkedin.com/in/florm01", color: "from-blue-500 to-indigo-600" },
                     { icon: Github, label: t.contact.github, value: "github.com/moraflorencia", href: "https://github.com/moraflorencia", color: "from-purple-500 to-pink-600" },
                     { icon: MapPin, label: t.contact.location, value: t.contact.locationValue, href: "", color: "from-red-500 to-pink-600" }
@@ -1562,20 +1518,20 @@ const projects = [
           <div className="text-center">
             {/* Logo/Brand */}
             <div className="mb-8">
-          <div className="flex items-center justify-center space-x-3 mb-4">
-            <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${
-              isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
-            }`}>
-              <Sparkles className="w-6 h-6 text-white" />
+              <div className="flex items-center justify-center space-x-3 mb-4">
+                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${
+                  isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
+                }`}>
+                  <Sparkles className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-2xl md:text-3xl font-bold text-white">
+                  Florencia Milagros Mora
+                </h3>
+              </div>
+              <p className="text-lg max-w-2xl mx-auto leading-relaxed text-gray-200">
+                {t.footer.description}
+              </p>
             </div>
-            <h3 className="text-2xl md:text-3xl font-bold text-white">
-              Florencia Milagros Mora
-            </h3>
-          </div>
-          <p className="text-lg max-w-2xl mx-auto leading-relaxed text-gray-200">
-            {t.footer.description}
-          </p>
-        </div>
             
             {/* Social Links */}
             <div className="flex justify-center space-x-6 mb-12">
