@@ -35,18 +35,27 @@ const useTypewriter = (words: string[], speed = 150, delay = 2000) => {
 
   return text;
 };
-
-const [isDarkMode, setIsDarkMode] = useState(false);
+    
+function App() {
+  function App() {
+  // tu lógica de dark/light mode
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   return (
     <div className={`relative min-h-screen ${isDarkMode ? "bg-slate-900" : "bg-white"}`}>
       {/* 🎇 Fondo animado */}
-      <BackgroundEffects isDarkMode={isDarkMode} 
+      <BackgroundEffects isDarkMode={isDarkMode} />
+
+      {/* 📌 Contenido principal */}
+      <main className="relative z-10">
+        <h1 className="text-3xl font-bold">Mi Portfolio</h1>
+        {/* ... resto de tu app */}
+      </main>
     </div>
   );
+}
 
-    
-function App() {
+export default App;
 
   const [activeSection, setActiveSection] = useState('home'); 
   const [isScrolled, setIsScrolled] = useState(false);
@@ -592,7 +601,8 @@ const projects = [
   />
 </div>
           </div>
-          
+
+
           {/* Main Content */}
           <div className="mb-8 space-y-4">
             <p className={`text-lg font-medium transition-all duration-300 ${
