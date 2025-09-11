@@ -1548,7 +1548,7 @@ function App() {
                   rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
                   className={`p-4 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 text-gray-300 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:bg-white/20 ${color}`}
                 >
-                  <Icon size={24} />
+                  <Icon size={24} /> 
                 </a>
               ))}
             </div>
