@@ -36,8 +36,6 @@ const useTypewriter = (words: string[], speed = 150, delay = 2000) => {
   return text;
 };
 
-    
-function App() {
 const [isDarkMode, setIsDarkMode] = useState(false);
 
   return (
@@ -52,6 +50,10 @@ const [isDarkMode, setIsDarkMode] = useState(false);
       </main>
     </div>
   );
+
+    
+function App() {
+
   const [activeSection, setActiveSection] = useState('home'); 
   const [isScrolled, setIsScrolled] = useState(false);
   const [selectedProject, setSelectedProject] = useState<any>(null);
