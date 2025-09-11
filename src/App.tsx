@@ -53,9 +53,6 @@ function App() {
       </main>
     </div>
   );
-}
-
-export default App;
 
   const [activeSection, setActiveSection] = useState('home'); 
   const [isScrolled, setIsScrolled] = useState(false);
