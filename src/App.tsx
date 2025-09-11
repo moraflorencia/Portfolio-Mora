@@ -445,185 +445,188 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
               </div>
             ))}
             
-          {/* Shooting stars - ULTRA LENTAS */}
-{[...Array(3)].map((_, i) => {
-  const delay = Math.random() * 300; // 0-5 minutos de delay inicial
-  const duration = 60 + Math.random() * 120; // 1-3 minutos de duración
-  
-  return (
-    <div
-      key={`shooting-star-${i}`}
-      className="absolute"
-      style={{
-        left: `${20 + Math.random() * 60}%`,
-        top: `${10 + Math.random() * 30}%`, 
-        animationDelay: `${delay}s`,
-        animationDuration: `${duration}s`,
-        animationIterationCount: 'infinite',
-        animationTimingFunction: 'ease-in-out',
-        opacity: 0,
-        animation: `ultraSlowFadeInOut ${duration}s ${delay}s infinite ease-in-out`
-      }}
-    >
-      <div className="w-0.5 h-0.5 bg-white rounded-full shadow-lg" 
-           style={{
-             boxShadow: '0 0 6px 2px rgba(255, 255, 255, 0.8), -20px 0 20px -10px rgba(255, 255, 255, 0.4)'
-           }}>
-      </div>
-    </div>
-  );
-})}
+{darkMode ? (
+  // Efectos para modo oscuro
+  <>
+    {/* Shooting stars - ULTRA LENTAS */}
+    {[...Array(3)].map((_, i) => {
+      const delay = Math.random() * 300; // 0-5 minutos de delay inicial
+      const duration = 60 + Math.random() * 120; // 1-3 minutos de duración
+      
+      return (
+        <div
+          key={`shooting-star-${i}`}
+          className="absolute"
+          style={{
+            left: `${20 + Math.random() * 60}%`,
+            top: `${10 + Math.random() * 30}%`, 
+            animationDelay: `${delay}s`,
+            animationDuration: `${duration}s`,
+            animationIterationCount: 'infinite',
+            animationTimingFunction: 'ease-in-out',
+            opacity: 0,
+            animation: `ultraSlowFadeInOut ${duration}s ${delay}s infinite ease-in-out`
+          }}
+        >
+          <div className="w-0.5 h-0.5 bg-white rounded-full shadow-lg" 
+               style={{
+                 boxShadow: '0 0 6px 2px rgba(255, 255, 255, 0.8), -20px 0 20px -10px rgba(255, 255, 255, 0.4)'
+               }}>
+          </div>
+        </div>
+      );
+    })}
 
-{/* Fireflies - ULTRA LENTAS */}
-{[...Array(15)].map((_, i) => {
-  const delay = Math.random() * 600; // 0-10 minutos de delay
-  const duration = 120 + Math.random() * 240; // 2-6 minutos
-  
-  return (
-    <div
-      key={`firefly-${i}`}
-      className="absolute"
-      style={{
-        left: `${Math.random() * 100}%`,
-        top: `${Math.random() * 100}%`,
-        animationDelay: `${delay}s`,
-        animationDuration: `${duration}s`,
-        animationIterationCount: 'infinite',
-        opacity: 0,
-        animation: `ultraSlowFireflyGlow ${duration}s ${delay}s infinite ease-in-out`
-      }}
-    >
-      <div
-        className="w-0.5 h-0.5 rounded-full"
-        style={{
-          backgroundColor: '#FFD700',
-          boxShadow: '0 0 6px 2px rgba(255, 215, 0, 0.8)',
-        }}
-      />
-    </div>
-  );
-})}
+    {/* Fireflies - ULTRA LENTAS */}
+    {[...Array(15)].map((_, i) => {
+      const delay = Math.random() * 600; // 0-10 minutos de delay
+      const duration = 120 + Math.random() * 240; // 2-6 minutos
+      
+      return (
+        <div
+          key={`firefly-${i}`}
+          className="absolute"
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            animationDelay: `${delay}s`,
+            animationDuration: `${duration}s`,
+            animationIterationCount: 'infinite',
+            opacity: 0,
+            animation: `ultraSlowFireflyGlow ${duration}s ${delay}s infinite ease-in-out`
+          }}
+        >
+          <div
+            className="w-0.5 h-0.5 rounded-full"
+            style={{
+              backgroundColor: '#FFD700',
+              boxShadow: '0 0 6px 2px rgba(255, 215, 0, 0.8)',
+            }}
+          />
+        </div>
+      );
+    })}
 
-{/* Constellation effect - ULTRA LENTOS */}
-{[...Array(8)].map((_, i) => {
-  const delay = Math.random() * 450; // 0-7.5 minutos
-  const duration = 90 + Math.random() * 180; // 1.5-4.5 minutos
-  
-  return (
-    <div
-      key={`constellation-${i}`}
-      className="absolute"
-      style={{
-        left: `${Math.random() * 100}%`,
-        top: `${Math.random() * 100}%`,
-        animationDelay: `${delay}s`,
-        animationDuration: `${duration}s`,
-        animationIterationCount: 'infinite',
-        opacity: 0,
-        animation: `ultraSlowPulse ${duration}s ${delay}s infinite ease-in-out`
-      }}
-    >
-      <div className="w-2 h-2 bg-blue-200 rounded-full opacity-40 blur-sm"></div>
-    </div>
-  );
-})}
+    {/* Constellation effect - ULTRA LENTOS */}
+    {[...Array(8)].map((_, i) => {
+      const delay = Math.random() * 450; // 0-7.5 minutos
+      const duration = 90 + Math.random() * 180; // 1.5-4.5 minutos
+      
+      return (
+        <div
+          key={`constellation-${i}`}
+          className="absolute"
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            animationDelay: `${delay}s`,
+            animationDuration: `${duration}s`,
+            animationIterationCount: 'infinite',
+            opacity: 0,
+            animation: `ultraSlowPulse ${duration}s ${delay}s infinite ease-in-out`
+          }}
+        >
+          <div className="w-2 h-2 bg-blue-200 rounded-full opacity-40 blur-sm"></div>
+        </div>
+      );
+    })}
+  </>
+) : (
+  // Efectos para modo claro
+  <>
+    {/* Floating particles - ULTRA LENTOS */}
+    {[...Array(30)].map((_, i) => {
+      const delay = Math.random() * 480; // 0-8 minutos  
+      const duration = 150 + Math.random() * 300; // 2.5-7.5 minutos
+      
+      return (
+        <div
+          key={`particle-${i}`}
+          className="absolute"
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            animationDelay: `${delay}s`,
+            animationDuration: `${duration}s`,
+            animationIterationCount: 'infinite',
+            opacity: 0,
+            animation: `ultraSlowFloat ${duration}s ${delay}s infinite linear`
+          }}
+        >
+          <div 
+            className="rounded-full opacity-30"
+            style={{
+              width: `${2 + Math.random() * 4}px`,
+              height: `${2 + Math.random() * 4}px`,
+              background: `linear-gradient(45deg, rgba(252, 165, 165, 0.6), rgba(251, 113, 133, 0.4))`,
+              filter: 'blur(0.5px)'
+            }}
+          ></div>
+        </div>
+      );
+    })}
+    
+    {/* Sparkle effects - ULTRA LENTOS */}
+    {[...Array(15)].map((_, i) => {
+      const delay = Math.random() * 360; // 0-6 minutos
+      const duration = 80 + Math.random() * 160; // 1.3-4 minutos
+      
+      return (
+        <div
+          key={`sparkle-${i}`}
+          className="absolute"
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            animationDelay: `${delay}s`,
+            animationDuration: `${duration}s`,
+            animationIterationCount: 'infinite',
+            opacity: 0,
+            animation: `ultraSlowSparkle ${duration}s ${delay}s infinite ease-in-out`
+          }}
+        >
+          <div className="relative">
+            <div className="w-1 h-1 bg-rose-300 rounded-full opacity-60"></div>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-0.5 bg-rose-200 opacity-40 rounded-full"></div>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-0.5 h-3 bg-rose-200 opacity-40 rounded-full"></div>
+          </div>
+        </div>
+      );
+    })}
 
-{/* Floating particles - ULTRA LENTOS */}
-{[...Array(30)].map((_, i) => {
-  const delay = Math.random() * 480; // 0-8 minutos  
-  const duration = 150 + Math.random() * 300; // 2.5-7.5 minutos
-  
-  return (
-    <div
-      key={`particle-${i}`}
-      className="absolute"
-      style={{
-        left: `${Math.random() * 100}%`,
-        top: `${Math.random() * 100}%`,
-        animationDelay: `${delay}s`,
-        animationDuration: `${duration}s`,
-        animationIterationCount: 'infinite',
-        opacity: 0,
-        animation: `ultraSlowFloat ${duration}s ${delay}s infinite linear`
-      }}
-    >
-      <div 
-        className="rounded-full opacity-30"
-        style={{
-          width: `${2 + Math.random() * 4}px`,
-          height: `${2 + Math.random() * 4}px`,
-          background: `linear-gradient(45deg, rgba(252, 165, 165, 0.6), rgba(251, 113, 133, 0.4))`,
-          filter: 'blur(0.5px)'
-        }}
-      ></div>
-    </div>
-  );
-})}
-
-{/* Sparkle effects - ULTRA LENTOS */}
-{[...Array(15)].map((_, i) => {
-  const delay = Math.random() * 360; // 0-6 minutos
-  const duration = 80 + Math.random() * 160; // 1.3-4 minutos
-  
-  return (
-    <div
-      key={`sparkle-${i}`}
-      className="absolute"
-      style={{
-        left: `${Math.random() * 100}%`,
-        top: `${Math.random() * 100}%`,
-        animationDelay: `${delay}s`,
-        animationDuration: `${duration}s`,
-        animationIterationCount: 'infinite',
-        opacity: 0,
-        animation: `ultraSlowSparkle ${duration}s ${delay}s infinite ease-in-out`
-      }}
-    >
-      <div className="relative">
-        <div className="w-1 h-1 bg-rose-300 rounded-full opacity-60"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-0.5 bg-rose-200 opacity-40 rounded-full"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-0.5 h-3 bg-rose-200 opacity-40 rounded-full"></div>
-      </div>
-    </div>
-  );
-})}
-
-{/* Gentle bubbles - ULTRA LENTOS */}
-{[...Array(12)].map((_, i) => {
-  const delay = Math.random() * 540; // 0-9 minutos
-  const duration = 180 + Math.random() * 360; // 3-9 minutos
-  
-  return (
-    <div
-      key={`bubble-${i}`}
-      className="absolute"
-      style={{
-        left: `${Math.random() * 100}%`,
-        top: `${80 + Math.random() * 20}%`,
-        animationDelay: `${delay}s`,
-        animationDuration: `${duration}s`,
-        animationIterationCount: 'infinite',
-        opacity: 0,
-        animation: `ultraSlowBubble ${duration}s ${delay}s infinite linear`
-      }}
-    >
-      <div 
-        className="rounded-full opacity-20 blur-sm"
-        style={{
-          width: `${3 + Math.random() * 6}px`,
-          height: `${3 + Math.random() * 6}px`,
-          background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(252, 165, 165, 0.4))',
-          border: '1px solid rgba(252, 165, 165, 0.2)'
-        }}
-      ></div>
-    </div>
-  );
-})}
-
-          </>
-        )}
-      </div>
- 
+    {/* Gentle bubbles - ULTRA LENTOS */}
+    {[...Array(12)].map((_, i) => {
+      const delay = Math.random() * 540; // 0-9 minutos
+      const duration = 180 + Math.random() * 360; // 3-9 minutos
+      
+      return (
+        <div
+          key={`bubble-${i}`}
+          className="absolute"
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: `${80 + Math.random() * 20}%`,
+            animationDelay: `${delay}s`,
+            animationDuration: `${duration}s`,
+            animationIterationCount: 'infinite',
+            opacity: 0,
+            animation: `ultraSlowBubble ${duration}s ${delay}s infinite linear`
+          }}
+        >
+          <div 
+            className="rounded-full opacity-20 blur-sm"
+            style={{
+              width: `${3 + Math.random() * 6}px`,
+              height: `${3 + Math.random() * 6}px`,
+              background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(252, 165, 165, 0.4))',
+              border: '1px solid rgba(252, 165, 165, 0.2)'
+            }}
+          ></div>
+        </div>
+      );
+    })}
+  </>
+            
       {/* Navigation */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
   isScrolled ? 'backdrop-blur-xl shadow-2xl' : 'bg-transparent'
