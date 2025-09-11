@@ -389,7 +389,7 @@ const projects = [
   ];
  
   return ( 
-    <div
+    <div 
   className={`min-h-screen relative transition-all duration-500 ${
     isDarkMode 
       ? 'bg-slate-900'   // respaldo si no carga la imagen
