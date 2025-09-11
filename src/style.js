@@ -13,7 +13,7 @@
     25% { opacity: 0.4; transform: scale(1.1); }
     50% { opacity: 0.8; transform: scale(1.0); }
     75% { opacity: 0.6; transform: scale(1.1); }
-  }
+  } 
   
   @keyframes gentlePulse {
     0%, 100% { opacity: 0; transform: scale(0.5); }
