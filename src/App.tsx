@@ -3,30 +3,21 @@ import { ChevronDown, Github, Linkedin, Mail, Phone, MapPin, ExternalLink, BarCh
 import { Languages } from 'lucide-react';
 import { FaWhatsapp } from "react-icons/fa";
 import StarField from "./StarField";
-import TypewriterEffect from "./ParticleSystem";
+import ParticleSystem from "./ParticleSystem";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
 
   return (
     <div className={`relative w-full h-screen overflow-hidden ${isDarkMode ? "bg-black" : "bg-white"}`}>
-      {/* Fondo de estrellas */}
-      {isDarkMode && <StarField />}
+      {/* Fondo dinámico */}
+      {isDarkMode ? <StarField /> : <ParticleSystem />}
 
       {/* Contenido principal */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center">
-        <TypewriterEffect
-          words={["Hola, soy Flor 🌸", "Bienvenid@ a mi portfolio", "Fullstack Developer"]}
-          speed={100}
-          delay={1500}
-        />
-
-        <button
-          onClick={() => setIsDarkMode(!isDarkMode)}
-          className="mt-6 px-4 py-2 bg-pink-500 text-white rounded-lg shadow-lg"
-        >
-          Toggle Mode
-        </button>
+      <div className="relative z-10 flex items-center justify-center h-full">
+        <h1 className={`${isDarkMode ? "text-white" : "text-black"} text-4xl font-bold`}>
+          Hola Mundo 🌌
+        </h1>
       </div>
     </div>
   );
