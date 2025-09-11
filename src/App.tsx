@@ -444,8 +444,7 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
                 ></div>
               </div>
             ))}
-            
-          {/* Shooting stars - ULTRA LENTAS */}
+            {/* Shooting stars - ULTRA LENTAS */}
 {[...Array(3)].map((_, i) => {
   const delay = Math.random() * 300; // 0-5 minutos de delay inicial
   const duration = 60 + Math.random() * 120; // 1-3 minutos de duración
