@@ -449,15 +449,13 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
             {[...Array(3)].map((_, i) => (
               <div
                 key={`shooting-star-${i}`}
-                className="absolute animate-shooting-star"
-                style={{
-                  left: `${20 + Math.random() * 60}%`,
-                  top: `${10 + Math.random() * 30}%`, 
-                  animationDelay: `${Math.random() * 20}s`,  // antes 3s → ahora hasta 20s
-animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–25s
-
-
-                }}
+    className="absolute animate-shooting-star"
+    style={{
+      left: `${20 + Math.random() * 60}%`,
+      top: `${10 + Math.random() * 30}%`, 
+      animationDelay: `${Math.random() * 40}s`,      // Hasta 40 segundos de delay
+      animationDuration: `${15 + Math.random() * 20}s` // 15-35 segundos de duración
+    }}
               >
                 <div className="w-0.5 h-0.5 bg-white rounded-full shadow-lg" 
                      style={{
