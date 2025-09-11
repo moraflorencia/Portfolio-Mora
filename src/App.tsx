@@ -620,7 +620,6 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
 })}
 
           </>
-        )}
       </div>
  
       {/* Navigation */}
