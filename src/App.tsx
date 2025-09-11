@@ -44,28 +44,30 @@ function App() {
 
   // Efecto scroll
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+  const handleScroll = () => {
+    setIsScrolled(window.scrollY > 50);
 
-      // detectar sección activa
-      const sections = ["home", "about", "skills", "projects", "experience", "education", "contact"];
-      const current = sections.find((section) => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
-        }
-        return false;
-      });
-
-      if (current) {
-        setActiveSection(current);
+    const sections = ["home", "about", "skills", "projects", "experience", "education", "contact"];
+    const current = sections.find((section) => {
+      const element = document.getElementById(section);
+      if (element) {
+        const rect = element.getBoundingClientRect();
+        return rect.top <= 100 && rect.bottom >= 100;
       }
-    };
+      return false;
+    });
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    if (current) {
+      setActiveSection(current);
+    }
+  };
+
+  window.addEventListener("scroll", handleScroll);
+
+  // ✅ cleanup dentro del mismo bloque
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
+
 
   // Funciones
   const scrollToSection = (sectionId: string) => {
