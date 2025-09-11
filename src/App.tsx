@@ -460,15 +460,6 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
         opacity: 0,
         animation: `ultraSlowFadeInOut ${duration}s ${delay}s infinite ease-in-out`
       }}
-    >
-      <div className="w-0.5 h-0.5 bg-white rounded-full shadow-lg" 
-           style={{
-             boxShadow: '0 0 6px 2px rgba(255, 255, 255, 0.8), -20px 0 20px -10px rgba(255, 255, 255, 0.4)'
-           }}>
-      </div>
-    </div>
-  );
-})}
               >
                 <div className="w-0.5 h-0.5 bg-white rounded-full shadow-lg" 
                      style={{
