@@ -43,7 +43,7 @@ function App() {
 
   return (
     <div className={`relative min-h-screen ${isDarkMode ? "bg-slate-900" : "bg-white"}`}>
-      {/* 🎇 Fondo animado */}
+      {/* 🎇 Fondo animado */} 
       <BackgroundEffects isDarkMode={isDarkMode} />
 
       {/* 📌 Contenido principal */}
