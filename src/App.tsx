@@ -445,135 +445,180 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
               </div>
             ))}
             
-            {/* Shooting stars */}
-            {[...Array(3)].map((_, i) => (
-              <div
-                key={`shooting-star-${i}`}
-    className="absolute animate-shooting-star"
-    style={{
-      left: `${20 + Math.random() * 60}%`,
-      top: `${10 + Math.random() * 30}%`, 
-      animationDelay: `${Math.random() * 40}s`,      // Hasta 40 segundos de delay
-      animationDuration: `${15 + Math.random() * 20}s` // 15-35 segundos de duración
-    }}
-              >
-                <div className="w-0.5 h-0.5 bg-white rounded-full shadow-lg" 
-                     style={{
-                       boxShadow: '0 0 6px 2px rgba(255, 255, 255, 0.8), -20px 0 20px -10px rgba(255, 255, 255, 0.4)'
-                     }}>
-                </div>
-              </div>
-            ))}
-
-            {/* Fireflies */}
-{[...Array(15)].map((_, i) => (
-  <div
-    key={`firefly-${i}`}
-    className="absolute animate-firefly"
-    style={{
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 100}%`,
-      animationDelay: `${Math.random() * 60}s`,      // Hasta 1 minuto de delay
-      animationDuration: `${30 + Math.random() * 40}s` // 30-70 segundos de duración
-    }}
-  >
+           {/* Shooting stars - TRANSICIONES SUAVES */}
+{[...Array(3)].map((_, i) => {
+  const delay = Math.random() * 120; // 0-2 minutos de delay inicial
+  const duration = 20 + Math.random() * 30; // 20-50 segundos
+  
+  return (
     <div
-      className="w-0.5 h-0.5 rounded-full"
-  style={{
-    backgroundColor: '#FFD700',
-    boxShadow: '0 0 6px 2px rgba(255, 215, 0, 0.8)',
+      key={`shooting-star-${i}`}
+      className="absolute animate-shooting-star"
+      style={{
+        left: `${20 + Math.random() * 60}%`,
+        top: `${10 + Math.random() * 30}%`, 
+        animationDelay: `${delay}s`,
+        animationDuration: `${duration}s`,
+        animationIterationCount: 'infinite',
+        animationTimingFunction: 'ease-in-out',
+        opacity: 0, // Empiezan invisibles
+        animation: `fadeInOut ${duration}s ${delay}s infinite ease-in-out`
       }}
-    />
-  </div>
-))}
+    >
+      <div className="w-0.5 h-0.5 bg-white rounded-full shadow-lg" 
+           style={{
+             boxShadow: '0 0 6px 2px rgba(255, 255, 255, 0.8), -20px 0 20px -10px rgba(255, 255, 255, 0.4)'
+           }}>
+      </div>
+    </div>
+  );
+})}
 
- 
- 
-            {/* Constellation effect */}
-            {[...Array(8)].map((_, i) => (
-              <div
-                key={`constellation-${i}`}
-    className="absolute animate-pulse"
-    style={{
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 100}%`,
-      animationDelay: `${Math.random() * 30}s`,      // Hasta 30 segundos de delay
-      animationDuration: `${20 + Math.random() * 25}s` // 20-45 segundos de duración
-    }}
-              >
-                <div className="w-2 h-2 bg-blue-200 rounded-full opacity-40 blur-sm"></div>
-              </div>
-            ))}
-          </>
-        ) : (
-          // Floating particles for light mode
-          <>
-            {[...Array(30)].map((_, i) => (
-              <div
-                key={`particle-${i}`}
-    className="absolute animate-float-gentle"
-    style={{
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 100}%`,
-      animationDelay: `${Math.random() * 45}s`,      // Hasta 45 segundos de delay
-      animationDuration: `${25 + Math.random() * 30}s` // 25-55 segundos de duración
-    }}
-              >
-                <div 
-                  className="rounded-full opacity-30"
-                  style={{
-                    width: `${2 + Math.random() * 4}px`,
-                    height: `${2 + Math.random() * 4}px`,
-                    background: `linear-gradient(45deg, rgba(252, 165, 165, 0.6), rgba(251, 113, 133, 0.4))`,
-                    filter: 'blur(0.5px)'
-                  }}
-                ></div>
-              </div>
-            ))}
-            
-            {/* Sparkle effects */}
-            {[...Array(15)].map((_, i) => (
-              <div
-                key={`sparkle-${i}`}
-    className="absolute animate-sparkle"
-    style={{
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 100}%`,
-      animationDelay: `${Math.random() * 35}s`,      // Hasta 35 segundos de delay
-      animationDuration: `${18 + Math.random() * 22}s` // 18-40 segundos de duración
-    }}
-              >
-                <div className="relative">
-                  <div className="w-1 h-1 bg-rose-300 rounded-full opacity-60"></div>
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-0.5 bg-rose-200 opacity-40 rounded-full"></div>
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-0.5 h-3 bg-rose-200 opacity-40 rounded-full"></div>
-                </div>
-              </div>
-            ))}
+{/* Fireflies - ENTRADA Y SALIDA GRADUAL */}
+{[...Array(15)].map((_, i) => {
+  const delay = Math.random() * 180; // 0-3 minutos de delay
+  const duration = 40 + Math.random() * 60; // 40-100 segundos
+  
+  return (
+    <div
+      key={`firefly-${i}`}
+      className="absolute"
+      style={{
+        left: `${Math.random() * 100}%`,
+        top: `${Math.random() * 100}%`,
+        animationDelay: `${delay}s`,
+        animationDuration: `${duration}s`,
+        animationIterationCount: 'infinite',
+        opacity: 0,
+        animation: `fireflyGlow ${duration}s ${delay}s infinite ease-in-out`
+      }}
+    >
+      <div
+        className="w-0.5 h-0.5 rounded-full"
+        style={{
+          backgroundColor: '#FFD700',
+          boxShadow: '0 0 6px 2px rgba(255, 215, 0, 0.8)',
+        }}
+      />
+    </div>
+  );
+})}
 
-            {/* Gentle bubbles */}
-            {[...Array(12)].map((_, i) => (
-              <div
-                 key={`bubble-${i}`}
-    className="absolute animate-bubble-float"
-    style={{
-      left: `${Math.random() * 100}%`,
-      top: `${80 + Math.random() * 20}%`,
-      animationDelay: `${Math.random() * 50}s`,      // Hasta 50 segundos de delay
-      animationDuration: `${28 + Math.random() * 32}s` // 28-60 segundos de duración
-    }}
-              >
-                <div 
-                  className="rounded-full opacity-20 blur-sm"
-                  style={{
-                    width: `${3 + Math.random() * 6}px`,
-                    height: `${3 + Math.random() * 6}px`,
-                    background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(252, 165, 165, 0.4))',
-                    border: '1px solid rgba(252, 165, 165, 0.2)'
-                  }}
-                ></div>
-              </div>
-            ))}
+{/* Constellation effect - PULSOS SUAVES */}
+{[...Array(8)].map((_, i) => {
+  const delay = Math.random() * 150; // 0-2.5 minutos
+  const duration = 25 + Math.random() * 35; // 25-60 segundos
+  
+  return (
+    <div
+      key={`constellation-${i}`}
+      className="absolute"
+      style={{
+        left: `${Math.random() * 100}%`,
+        top: `${Math.random() * 100}%`,
+        animationDelay: `${delay}s`,
+        animationDuration: `${duration}s`,
+        animationIterationCount: 'infinite',
+        opacity: 0,
+        animation: `gentlePulse ${duration}s ${delay}s infinite ease-in-out`
+      }}
+    >
+      <div className="w-2 h-2 bg-blue-200 rounded-full opacity-40 blur-sm"></div>
+    </div>
+  );
+})}
+
+{/* Floating particles - MOVIMIENTO CONTINUO */}
+{[...Array(30)].map((_, i) => {
+  const delay = Math.random() * 200; // 0-3.3 minutos  
+  const duration = 50 + Math.random() * 80; // 50-130 segundos
+  
+  return (
+    <div
+      key={`particle-${i}`}
+      className="absolute"
+      style={{
+        left: `${Math.random() * 100}%`,
+        top: `${Math.random() * 100}%`,
+        animationDelay: `${delay}s`,
+        animationDuration: `${duration}s`,
+        animationIterationCount: 'infinite',
+        opacity: 0,
+        animation: `floatGentle ${duration}s ${delay}s infinite linear`
+      }}
+    >
+      <div 
+        className="rounded-full opacity-30"
+        style={{
+          width: `${2 + Math.random() * 4}px`,
+          height: `${2 + Math.random() * 4}px`,
+          background: `linear-gradient(45deg, rgba(252, 165, 165, 0.6), rgba(251, 113, 133, 0.4))`,
+          filter: 'blur(0.5px)'
+        }}
+      ></div>
+    </div>
+  );
+})}
+
+{/* Sparkle effects - DESTELLOS GRADUALES */}
+{[...Array(15)].map((_, i) => {
+  const delay = Math.random() * 100; // 0-1.7 minutos
+  const duration = 30 + Math.random() * 40; // 30-70 segundos
+  
+  return (
+    <div
+      key={`sparkle-${i}`}
+      className="absolute"
+      style={{
+        left: `${Math.random() * 100}%`,
+        top: `${Math.random() * 100}%`,
+        animationDelay: `${delay}s`,
+        animationDuration: `${duration}s`,
+        animationIterationCount: 'infinite',
+        opacity: 0,
+        animation: `sparkleShine ${duration}s ${delay}s infinite ease-in-out`
+      }}
+    >
+      <div className="relative">
+        <div className="w-1 h-1 bg-rose-300 rounded-full opacity-60"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-0.5 bg-rose-200 opacity-40 rounded-full"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-0.5 h-3 bg-rose-200 opacity-40 rounded-full"></div>
+      </div>
+    </div>
+  );
+})}
+
+{/* Gentle bubbles - FLOTACIÓN CONTINUA */}
+{[...Array(12)].map((_, i) => {
+  const delay = Math.random() * 240; // 0-4 minutos
+  const duration = 60 + Math.random() * 120; // 1-3 minutos
+  
+  return (
+    <div
+      key={`bubble-${i}`}
+      className="absolute"
+      style={{
+        left: `${Math.random() * 100}%`,
+        top: `${80 + Math.random() * 20}%`,
+        animationDelay: `${delay}s`,
+        animationDuration: `${duration}s`,
+        animationIterationCount: 'infinite',
+        opacity: 0,
+        animation: `bubbleFloat ${duration}s ${delay}s infinite linear`
+      }}
+    >
+      <div 
+        className="rounded-full opacity-20 blur-sm"
+        style={{
+          width: `${3 + Math.random() * 6}px`,
+          height: `${3 + Math.random() * 6}px`,
+          background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(252, 165, 165, 0.4))',
+          border: '1px solid rgba(252, 165, 165, 0.2)'
+        }}
+      ></div>
+    </div>
+  );
+})}
           </>
         )}
       </div>
