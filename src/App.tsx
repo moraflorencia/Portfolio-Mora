@@ -3,7 +3,7 @@ import { ChevronDown, Github, Linkedin, Mail, Phone, MapPin, ExternalLink, BarCh
 import { Languages } from 'lucide-react';
 import { FaWhatsapp } from "react-icons/fa";
 import StarField from "./StarField";
-import TypewriterEffect from "./TypewriterEffect";
+import TypewriterEffect from "./ParticleSystem";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
