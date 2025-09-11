@@ -445,15 +445,15 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
               </div>
             ))}
             
-          {/* Shooting stars - TRANSICIONES SUAVES */}
+          {/* Shooting stars - ULTRA LENTAS */}
 {[...Array(3)].map((_, i) => {
-  const delay = Math.random() * 120; // 0-2 minutos de delay inicial
-  const duration = 20 + Math.random() * 30; // 20-50 segundos
+  const delay = Math.random() * 300; // 0-5 minutos de delay inicial
+  const duration = 60 + Math.random() * 120; // 1-3 minutos de duración
   
   return (
     <div
       key={`shooting-star-${i}`}
-      className="absolute animate-shooting-star"
+      className="absolute"
       style={{
         left: `${20 + Math.random() * 60}%`,
         top: `${10 + Math.random() * 30}%`, 
@@ -461,8 +461,8 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
         animationDuration: `${duration}s`,
         animationIterationCount: 'infinite',
         animationTimingFunction: 'ease-in-out',
-        opacity: 0, // Empiezan invisibles
-        animation: `fadeInOut ${duration}s ${delay}s infinite ease-in-out`
+        opacity: 0,
+        animation: `ultraSlowFadeInOut ${duration}s ${delay}s infinite ease-in-out`
       }}
     >
       <div className="w-0.5 h-0.5 bg-white rounded-full shadow-lg" 
@@ -474,10 +474,10 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
   );
 })}
 
-{/* Fireflies - ENTRADA Y SALIDA GRADUAL */}
+{/* Fireflies - ULTRA LENTAS */}
 {[...Array(15)].map((_, i) => {
-  const delay = Math.random() * 180; // 0-3 minutos de delay
-  const duration = 40 + Math.random() * 60; // 40-100 segundos
+  const delay = Math.random() * 600; // 0-10 minutos de delay
+  const duration = 120 + Math.random() * 240; // 2-6 minutos
   
   return (
     <div
@@ -490,7 +490,7 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
         animationDuration: `${duration}s`,
         animationIterationCount: 'infinite',
         opacity: 0,
-        animation: `fireflyGlow ${duration}s ${delay}s infinite ease-in-out`
+        animation: `ultraSlowFireflyGlow ${duration}s ${delay}s infinite ease-in-out`
       }}
     >
       <div
@@ -504,10 +504,10 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
   );
 })}
 
-{/* Constellation effect - PULSOS SUAVES */}
+{/* Constellation effect - ULTRA LENTOS */}
 {[...Array(8)].map((_, i) => {
-  const delay = Math.random() * 150; // 0-2.5 minutos
-  const duration = 25 + Math.random() * 35; // 25-60 segundos
+  const delay = Math.random() * 450; // 0-7.5 minutos
+  const duration = 90 + Math.random() * 180; // 1.5-4.5 minutos
   
   return (
     <div
@@ -520,7 +520,7 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
         animationDuration: `${duration}s`,
         animationIterationCount: 'infinite',
         opacity: 0,
-        animation: `gentlePulse ${duration}s ${delay}s infinite ease-in-out`
+        animation: `ultraSlowPulse ${duration}s ${delay}s infinite ease-in-out`
       }}
     >
       <div className="w-2 h-2 bg-blue-200 rounded-full opacity-40 blur-sm"></div>
@@ -528,10 +528,10 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
   );
 })}
 
-{/* Floating particles - MOVIMIENTO CONTINUO */}
+{/* Floating particles - ULTRA LENTOS */}
 {[...Array(30)].map((_, i) => {
-  const delay = Math.random() * 200; // 0-3.3 minutos  
-  const duration = 50 + Math.random() * 80; // 50-130 segundos
+  const delay = Math.random() * 480; // 0-8 minutos  
+  const duration = 150 + Math.random() * 300; // 2.5-7.5 minutos
   
   return (
     <div
@@ -544,7 +544,7 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
         animationDuration: `${duration}s`,
         animationIterationCount: 'infinite',
         opacity: 0,
-        animation: `floatGentle ${duration}s ${delay}s infinite linear`
+        animation: `ultraSlowFloat ${duration}s ${delay}s infinite linear`
       }}
     >
       <div 
@@ -560,10 +560,10 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
   );
 })}
 
-{/* Sparkle effects - DESTELLOS GRADUALES */}
+{/* Sparkle effects - ULTRA LENTOS */}
 {[...Array(15)].map((_, i) => {
-  const delay = Math.random() * 100; // 0-1.7 minutos
-  const duration = 30 + Math.random() * 40; // 30-70 segundos
+  const delay = Math.random() * 360; // 0-6 minutos
+  const duration = 80 + Math.random() * 160; // 1.3-4 minutos
   
   return (
     <div
@@ -576,7 +576,7 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
         animationDuration: `${duration}s`,
         animationIterationCount: 'infinite',
         opacity: 0,
-        animation: `sparkleShine ${duration}s ${delay}s infinite ease-in-out`
+        animation: `ultraSlowSparkle ${duration}s ${delay}s infinite ease-in-out`
       }}
     >
       <div className="relative">
@@ -588,10 +588,10 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
   );
 })}
 
-{/* Gentle bubbles - FLOTACIÓN CONTINUA */}
+{/* Gentle bubbles - ULTRA LENTOS */}
 {[...Array(12)].map((_, i) => {
-  const delay = Math.random() * 240; // 0-4 minutos
-  const duration = 60 + Math.random() * 120; // 1-3 minutos
+  const delay = Math.random() * 540; // 0-9 minutos
+  const duration = 180 + Math.random() * 360; // 3-9 minutos
   
   return (
     <div
@@ -604,7 +604,7 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
         animationDuration: `${duration}s`,
         animationIterationCount: 'infinite',
         opacity: 0,
-        animation: `bubbleFloat ${duration}s ${delay}s infinite linear`
+        animation: `ultraSlowBubble ${duration}s ${delay}s infinite linear`
       }}
     >
       <div 
@@ -619,6 +619,7 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
     </div>
   );
 })}
+
           </>
         )}
       </div>
