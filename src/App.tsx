@@ -511,15 +511,13 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
             {[...Array(30)].map((_, i) => (
               <div
                 key={`particle-${i}`}
-                className="absolute animate-float-gentle"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 20}s`,  // antes 3s → ahora hasta 20s
-animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–25s
-
-
-                }}
+    className="absolute animate-float-gentle"
+    style={{
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      animationDelay: `${Math.random() * 45}s`,      // Hasta 45 segundos de delay
+      animationDuration: `${25 + Math.random() * 30}s` // 25-55 segundos de duración
+    }}
               >
                 <div 
                   className="rounded-full opacity-30"
@@ -537,15 +535,13 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
             {[...Array(15)].map((_, i) => (
               <div
                 key={`sparkle-${i}`}
-                className="absolute animate-sparkle"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                 animationDelay: `${Math.random() * 20}s`,  // antes 3s → ahora hasta 20s
-animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–25s
-
-
-                }}
+    className="absolute animate-sparkle"
+    style={{
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      animationDelay: `${Math.random() * 35}s`,      // Hasta 35 segundos de delay
+      animationDuration: `${18 + Math.random() * 22}s` // 18-40 segundos de duración
+    }}
               >
                 <div className="relative">
                   <div className="w-1 h-1 bg-rose-300 rounded-full opacity-60"></div>
@@ -558,16 +554,14 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
             {/* Gentle bubbles */}
             {[...Array(12)].map((_, i) => (
               <div
-                key={`bubble-${i}`}
-                className="absolute animate-bubble-float"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${80 + Math.random() * 20}%`,
-                  animationDelay: `${Math.random() * 20}s`,  // antes 3s → ahora hasta 20s
-animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–25s
-
-
-                }}
+                 key={`bubble-${i}`}
+    className="absolute animate-bubble-float"
+    style={{
+      left: `${Math.random() * 100}%`,
+      top: `${80 + Math.random() * 20}%`,
+      animationDelay: `${Math.random() * 50}s`,      // Hasta 50 segundos de delay
+      animationDuration: `${28 + Math.random() * 32}s` // 28-60 segundos de duración
+    }}
               >
                 <div 
                   className="rounded-full opacity-20 blur-sm"
