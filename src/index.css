@@ -73,8 +73,7 @@
   animation: marquee 25s linear infinite;
 }
 
-<style jsx>{`
-  @keyframes fadeInOut {
+@keyframes fadeInOut {
     0% { opacity: 0; transform: translateX(-100px); }
     10% { opacity: 0.3; }
     20% { opacity: 0.8; }
@@ -115,4 +114,4 @@
     75% { opacity: 0.2; transform: translateY(-50px) scale(0.9); }
     100% { opacity: 0; transform: translateY(-80px) scale(0.7); }
   }
-`}</style>
+*/
