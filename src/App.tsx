@@ -493,14 +493,13 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
             {[...Array(8)].map((_, i) => (
               <div
                 key={`constellation-${i}`}
-                className="absolute animate-pulse"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                 animationDelay: `${Math.random() * 20}s`,  // antes 3s → ahora hasta 20s
-animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–25s
-
-                }}
+    className="absolute animate-pulse"
+    style={{
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      animationDelay: `${Math.random() * 30}s`,      // Hasta 30 segundos de delay
+      animationDuration: `${20 + Math.random() * 25}s` // 20-45 segundos de duración
+    }}
               >
                 <div className="w-2 h-2 bg-blue-200 rounded-full opacity-40 blur-sm"></div>
               </div>
