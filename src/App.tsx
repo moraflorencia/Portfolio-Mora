@@ -404,18 +404,6 @@ const projects = [
     backgroundAttachment: "fixed"
   }}
 >
-      {/* Animated Background Effects */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        {/* Existing Decorative Background Elements */}
-        <div className={`absolute top-20 -right-20 w-72 h-72 rounded-full opacity-20 blur-3xl transition-all duration-1000 ${
-          isDarkMode ? 'bg-purple-600' : 'bg-rose-400'
-        }`}></div>
-        <div className={`absolute bottom-20 -left-20 w-96 h-96 rounded-full opacity-10 blur-3xl transition-all duration-1000 ${
-          isDarkMode ? 'bg-pink-600' : 'bg-amber-400'
-        }`}></div>
-        <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full opacity-5 blur-3xl transition-all duration-1000 ${
-          isDarkMode ? 'bg-indigo-600' : 'bg-purple-300'
-        }`}></div>
 
         {/* Animated Stars/Particles */}
         {isDarkMode ? (
