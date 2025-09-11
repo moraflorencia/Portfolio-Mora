@@ -1,25 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Github, 
-  Linkedin, 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Download, 
-  ExternalLink,
-  Database,
-  BarChart3,
-  Code,
-  Brain,
-  TrendingUp,
-  FileSpreadsheet,
-  Sun,
-  Moon
-} from 'lucide-react';
-import TypewriterEffect from './components/TypewriterEffect';
-import ParticleSystem from './components/ParticleSystem';
-import StarField from './components/StarField';
-import { ContactForm } from './components/ContactForm';
+import { ChevronDown, Github, Linkedin, Mail, Phone, MapPin, ExternalLink, BarChart3, Database, Brain, Code, TrendingUp, BookOpen, Award, Briefcase, Send, Calendar, GraduationCap, X, ZoomIn, Moon, Sun, Menu, Globe, Star, Sparkles } from 'lucide-react';
+import { Languages } from 'lucide-react';
+import { FaWhatsapp } from "react-icons/fa";
 
 // Hook para efecto máquina de escribir
 const useTypewriter = (words: string[], speed = 150, delay = 2000) => {
