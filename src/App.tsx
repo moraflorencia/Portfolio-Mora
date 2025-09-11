@@ -394,7 +394,7 @@ const projects = [
     isDarkMode 
       ? 'bg-slate-900'   // respaldo si no carga la imagen
       : 'bg-rose-50'     // respaldo actualizado para modo claro
-  }`}
+  }`} 
   style={{ 
     backgroundImage: isDarkMode
       ? "url('https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/FondoNoche.png')" // fondo oscuro
@@ -456,7 +456,7 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
                   animationDelay: `${Math.random() * 20}s`,  // antes 3s → ahora hasta 20s
 animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–25s
 
-
+ 
                 }}
               >
                 <div className="w-0.5 h-0.5 bg-white rounded-full shadow-lg" 
@@ -475,14 +475,11 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
     style={{
       left: `${Math.random() * 100}%`,
       top: `${Math.random() * 100}%`,
-<<<<<<< HEAD
       animationDelay: `${Math.random() * 20}s`,  // antes 3s → ahora hasta 20s
-animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–25s
-=======
+animationDuration: `${10 + Math.random() * 15}s`, // antes 2–4s → ahora 10–25s
       animationDelay: `${Math.random() * 60}s`,      // hasta 1 minuto
 animationDuration: `${30 + Math.random() * 30}s` // 30 a 60 segundos
 
->>>>>>> 01bcc11ea84875a8c47b0d5352fcd987068bdf67
 
     }}
   >
