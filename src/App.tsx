@@ -37,12 +37,56 @@ const useTypewriter = (words: string[], speed = 150, delay = 2000) => {
 };
     
 function App() {
-  // tu lógica de dark/light mode
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  // Estados
+  const [isDarkMode, setIsDarkMode] = useState(true); // default oscuro
+  const [activeSection, setActiveSection] = useState("home");
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isEnglish, setIsEnglish] = useState(false);
 
+  // Efecto scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+
+      // detectar sección activa
+      const sections = ["home", "about", "skills", "projects", "experience", "education", "contact"];
+      const current = sections.find((section) => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
+      });
+
+      if (current) {
+        setActiveSection(current);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Funciones
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+    setIsMobileMenuOpen(false);
+  };
+
+  const toggleDarkMode = () => setIsDarkMode(!isDarkMode);
+  const toggleLanguage = () => setIsEnglish(!isEnglish);
+
+  // 👇 Return siempre al final
   return (
     <div className={`relative min-h-screen ${isDarkMode ? "bg-slate-900" : "bg-white"}`}>
-      {/* 🎇 Fondo animado */} 
+      {/* 🎇 Fondo animado */}
       <BackgroundEffects isDarkMode={isDarkMode} />
 
       {/* 📌 Contenido principal */}
@@ -52,18 +96,6 @@ function App() {
       </main>
     </div>
   );
-
-  const [activeSection, setActiveSection] = useState('home'); 
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [selectedProject, setSelectedProject] = useState<any>(null);
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-  const [isDarkMode, setIsDarkMode] = useState(true); // Changed to true for dark mode default
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isEnglish, setIsEnglish] = useState(false);
- 
-  useEffect(() => {
-    const handleScroll = () => { 
-      setIsScrolled(window.scrollY > 50);
       
       // Update active section based on scroll position
       const sections = ['home', 'about', 'skills', 'projects', 'experience', 'education', 'contact'];
