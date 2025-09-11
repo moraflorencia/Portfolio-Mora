@@ -5,7 +5,6 @@ import { FaWhatsapp } from "react-icons/fa";
 import StarField from "./StarField";
 import ParticleSystem from "./ParticleSystem";
 
-function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
 
   return (
