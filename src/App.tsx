@@ -46,10 +46,6 @@ const [isDarkMode, setIsDarkMode] = useState(false);
       {/* 📌 Contenido principal */}
       <main className="relative z-10">
         <h1 className="text-3xl font-bold">Mi Portfolio</h1>
-        {/* ... resto de tu app */}
-      </main>
-    </div>
-  );
 
     
 function App() {
