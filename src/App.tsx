@@ -97,7 +97,7 @@ function App() {
         greeting: "¡Hola!",
         name: "Florencia Milagros Mora",
         title: "Analista de Datos",
-        subtitle: "Estudiante de Ingeniería en Sistemas", 
+        subtitle: "Estudiante de Ingeniería en Sistemas de Información", 
         description: "Me entusiasma aprender, crecer en equipo y usar los datos para crear soluciones con impacto real.",
         downloadCV: "Descargar CV",
         contact: "Contactar"
