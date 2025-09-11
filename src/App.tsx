@@ -472,9 +472,9 @@ animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–
     className="absolute animate-firefly"
     style={{
       left: `${Math.random() * 100}%`,
-      top: `${10 + Math.random() * 30}%`, 
-                  animationDelay: `${Math.random() * 20}s`,  // antes 3s → ahora hasta 20s
-animationDuration: `${10 + Math.random() * 15}s` // antes 2–4s → ahora 10–25s
+      top: `${Math.random() * 100}%`,
+      animationDelay: `${Math.random() * 60}s`,      // Hasta 1 minuto de delay
+      animationDuration: `${30 + Math.random() * 40}s` // 30-70 segundos de duración
     }}
   >
     <div
