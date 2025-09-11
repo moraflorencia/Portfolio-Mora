@@ -37,7 +37,6 @@ const useTypewriter = (words: string[], speed = 150, delay = 2000) => {
 };
     
 function App() {
-  function App() {
   // tu lógica de dark/light mode
   const [isDarkMode, setIsDarkMode] = useState(false);
 
