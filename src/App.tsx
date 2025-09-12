@@ -53,9 +53,7 @@ function App() {
       const handleScroll = () => { 
       setIsScrolled(window.scrollY > 50);
   }, []); 
- 
-
-      
+  
       // Update active section based on scroll position
       const sections = ['home', 'about', 'skills', 'projects', 'experience', 'education', 'contact'];
       const current = sections.find(section => {
