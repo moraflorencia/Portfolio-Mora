@@ -44,7 +44,7 @@ function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isEnglish, setIsEnglish] = useState(false);
 
-  useEffect(() => {
+  useEffects(() => {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
       setIsDarkMode(true);
