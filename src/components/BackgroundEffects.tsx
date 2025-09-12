@@ -68,7 +68,7 @@ export default function BackgroundEffects({ isDarkMode }: { isDarkMode: boolean 
   }, []);
 
   return (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+    <div className="fixed inset-0 overflow-hidden pointer-events-none z-50">
       {isDarkMode ? (
         // 🔥 MODO OSCURO: Luciérnagas y estrellas
         <>
@@ -84,7 +84,7 @@ export default function BackgroundEffects({ isDarkMode }: { isDarkMode: boolean 
                 left: `${f.x}%`,
                 animation: `ultraSlowFireflyGlow ${f.duration}s ease-in-out infinite`,
                 animationDelay: `${f.delay}s`,
-                boxShadow: '0 0 10px rgba(253, 224, 71, 0.6), 0 0 20px rgba(253, 224, 71, 0.3)',
+                boxShadow: '0 0 15px rgba(253, 224, 71, 0.8), 0 0 30px rgba(253, 224, 71, 0.5)',
                 filter: 'blur(0.5px)', // Efecto de brillo suave
               }}
             />
@@ -102,7 +102,7 @@ export default function BackgroundEffects({ isDarkMode }: { isDarkMode: boolean 
                 left: `${s.x}%`,
                 animation: `ultraSlowPulse ${s.duration}s ease-in-out infinite`,
                 animationDelay: `${s.delay}s`,
-                boxShadow: '0 0 8px rgba(255, 255, 255, 0.8), 0 0 16px rgba(255, 255, 255, 0.4)',
+                boxShadow: '0 0 12px rgba(255, 255, 255, 0.9), 0 0 24px rgba(255, 255, 255, 0.6)',
                 filter: 'blur(0.3px)', // Efecto de brillo suave
               }}
             />
@@ -122,7 +122,7 @@ export default function BackgroundEffects({ isDarkMode }: { isDarkMode: boolean 
                 left: `${s.x}%`,
                 animation: `ultraSlowSparkle ${s.duration}s ease-in-out infinite`,
                 animationDelay: `${s.delay}s`,
-                boxShadow: '0 0 6px rgba(147, 197, 253, 0.5), 0 0 12px rgba(168, 85, 247, 0.3)',
+                boxShadow: '0 0 10px rgba(147, 197, 253, 0.7), 0 0 20px rgba(168, 85, 247, 0.5)',
                 filter: 'blur(0.4px)', // Efecto de brillo suave
               }}
             />
