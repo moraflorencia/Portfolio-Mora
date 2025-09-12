@@ -52,7 +52,6 @@ function App() {
     }
   }, []);
 
- 
   useEffect(() => {
     const handleScroll = () => { 
       setIsScrolled(window.scrollY > 50);
