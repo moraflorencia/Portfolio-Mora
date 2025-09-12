@@ -7,7 +7,7 @@ import {
   MapPin, 
   Download, 
   ExternalLink,
-  Database,
+  Database, 
   BarChart3,
   Code,
   Brain,
@@ -39,7 +39,7 @@ function App() {
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
     if (!isDarkMode) {
-      document.documentElement.classList.add('dark'); 
+      document.documentElement.classList.add('dark');
       localStorage.setItem('theme', 'dark');
     } else {
       document.documentElement.classList.remove('dark');
@@ -458,44 +458,3 @@ function App() {
                       href="https://github.com/florenciamilagrosmora"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-purple-600 dark:text-purple-400 hover:underline"
-                    >
-                      github.com/florenciamilagrosmora
-                    </a>
-                  </div>
-                </div>
-                
-                <div className="mt-8">
-                  <a
-                    href="/cv-florencia-mora.pdf"
-                    download
-                    className="inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
-                  >
-                    <Download className="h-5 w-5" />
-                    <span>Descargar CV</span>
-                  </a>
-                </div>
-              </div>
-              
-              <ContactForm />
-            </div>
-          </div>
-        </section>
-
-        {/* Footer */}
-        <footer className="bg-white/90 dark:bg-gray-800/90 py-8 px-4 backdrop-blur-sm">
-          <div className="max-w-4xl mx-auto text-center">
-            <p className="text-gray-600 dark:text-gray-300">
-              © 2024 Florencia Milagros Mora. Todos los derechos reservados.
-            </p>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
-              Desarrollado con React, TypeScript y Tailwind CSS
-            </p>
-          </div>
-        </footer>
-      </div>
-    </div>
-  );
-}
-
-export default App;
