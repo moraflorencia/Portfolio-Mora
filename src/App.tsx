@@ -44,15 +44,27 @@ function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isEnglish, setIsEnglish] = useState(false);
 
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-      setIsDarkMode(true);
-      document.documentElement.classList.add('dark');
-    }
-      const handleScroll = () => { 
-      setIsScrolled(window.scrollY > 50);
-  }, []); 
+useEffect(() => {
+  // 1. Leer el tema guardado
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark') {
+    setIsDarkMode(true);
+    document.documentElement.classList.add('dark');
+  }
+
+  // 2. Definir y registrar el scroll
+  const handleScroll = () => {
+    setIsScrolled(window.scrollY > 50);
+  };
+
+  window.addEventListener('scroll', handleScroll);
+
+  // 3. Limpiar el evento al desmontar
+  return () => {
+    window.removeEventListener('scroll', handleScroll);
+  };
+}, []);
+
   
       // Update active section based on scroll position
       const sections = ['home', 'about', 'skills', 'projects', 'experience', 'education', 'contact'];
