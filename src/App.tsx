@@ -44,28 +44,29 @@ function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isEnglish, setIsEnglish] = useState(false);
 
-useEffect(() => {
-  // 1. Leer el tema guardado
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme === 'dark') {
-    setIsDarkMode(true);
-    document.documentElement.classList.add('dark');
-  }
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      setIsDarkMode(true);
+      document.documentElement.classList.add('dark');
+    }
+  }, []);
 
-  // 2. Definir y registrar el scroll
-  const handleScroll = () => {
-    setIsScrolled(window.scrollY > 50);
-  };
-
-  window.addEventListener('scroll', handleScroll);
-
-  // 3. Limpiar el evento al desmontar
-  return () => {
-    window.removeEventListener('scroll', handleScroll);
-  };
-}, []);
-
-  
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+    if (!isDarkMode) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  }; 
+ 
+  useEffect(() => {
+    const handleScroll = () => { 
+      setIsScrolled(window.scrollY > 50);
+      
       // Update active section based on scroll position
       const sections = ['home', 'about', 'skills', 'projects', 'experience', 'education', 'contact'];
       const current = sections.find(section => {
