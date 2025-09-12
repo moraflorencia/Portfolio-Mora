@@ -50,7 +50,7 @@ function App() {
       setIsDarkMode(true);
       document.documentElement.classList.add('dark');
     }
-  }, []);
+  }, []); 
  
   useEffect(() => {
     const handleScroll = () => { 
