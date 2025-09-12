@@ -52,17 +52,6 @@ function App() {
     }
   }, []);
  
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-    if (!isDarkMode) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
-  }; 
- 
   useEffect(() => {
     const handleScroll = () => { 
       setIsScrolled(window.scrollY > 50);
