@@ -45,44 +45,16 @@ function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isEnglish, setIsEnglish] = useState(false);
  
- useEffect(() => {
-  // Tema oscuro desde localStorage
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme === 'dark') {
-    setIsDarkMode(true);
-    document.documentElement.classList.add('dark');
-  }
-
-  // Scroll + sección activa
-  const handleScroll = () => {
-    setIsScrolled(window.scrollY > 50);
-    const sections = ['home','about','skills','projects','experience','education','contact'];
-    const current = sections.find(section => {
-      const element = document.getElementById(section);
-      if (element) {
-        const rect = element.getBoundingClientRect();
-        return rect.top <= 100 && rect.bottom >= 100;
-      }
-      return false;
-    });
-    if (current) setActiveSection(current);
-  };
-
-  window.addEventListener('scroll', handleScroll);
-
-  // Cleanup
-  return () => {
-    window.removeEventListener('scroll', handleScroll);
-  };
-}, []);
-
+  useEffect(() => {
+    const handleScroll = () => { 
+      setIsScrolled(window.scrollY > 50);
       
       // Update active section based on scroll position
       const sections = ['home', 'about', 'skills', 'projects', 'experience', 'education', 'contact'];
       const current = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
-          const rect = element.getBoundingClientRect();
+          const rect = element.getBoundingClientRect(); 
           return rect.top <= 100 && rect.bottom >= 100;
         }
         return false;
