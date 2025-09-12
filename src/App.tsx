@@ -46,21 +46,17 @@ function App() {
   const [isEnglish, setIsEnglish] = useState(false);
  
  useEffect(() => {
-  // === Tema oscuro desde localStorage ===
+  // Tema oscuro desde localStorage
   const savedTheme = localStorage.getItem('theme');
   if (savedTheme === 'dark') {
     setIsDarkMode(true);
     document.documentElement.classList.add('dark');
-  } else {
-    setIsDarkMode(false);
-    document.documentElement.classList.remove('dark');
   }
 
-  // === Scroll + sección activa ===
+  // Scroll + sección activa
   const handleScroll = () => {
     setIsScrolled(window.scrollY > 50);
-
-    const sections = ['home', 'about', 'skills', 'projects', 'experience', 'education', 'contact'];
+    const sections = ['home','about','skills','projects','experience','education','contact'];
     const current = sections.find(section => {
       const element = document.getElementById(section);
       if (element) {
@@ -69,14 +65,15 @@ function App() {
       }
       return false;
     });
-
     if (current) setActiveSection(current);
   };
 
   window.addEventListener('scroll', handleScroll);
 
-  // === Cleanup al desmontar ===
-  return () => window.removeEventListener('scroll', handleScroll);
+  // Cleanup
+  return () => {
+    window.removeEventListener('scroll', handleScroll);
+  };
 }, []);
 
       
