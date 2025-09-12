@@ -128,3 +128,4 @@ export default function BackgroundEffects({ isDarkMode }: { isDarkMode: boolean 
       )}
     </div>
   );
+}
