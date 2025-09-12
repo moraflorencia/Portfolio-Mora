@@ -38,7 +38,7 @@ export default function BackgroundEffects({ isDarkMode }: { isDarkMode: boolean 
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
-      size: Math.random() * 4 + 3,
+      size: Math.random() * 8 + 6, // 6-14px (más grandes)
       delay: Math.random() * 8,
       duration: Math.random() * 6 + 8, // 8-14 segundos
     }));
@@ -49,7 +49,7 @@ export default function BackgroundEffects({ isDarkMode }: { isDarkMode: boolean 
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
-      size: Math.random() * 2 + 1,
+      size: Math.random() * 4 + 2, // 2-6px (más grandes)
       delay: Math.random() * 10,
       duration: Math.random() * 8 + 6, // 6-14 segundos
     }));
@@ -60,7 +60,7 @@ export default function BackgroundEffects({ isDarkMode }: { isDarkMode: boolean 
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
-      size: Math.random() * 3 + 2,
+      size: Math.random() * 6 + 4, // 4-10px (más grandes)
       delay: Math.random() * 12,
       duration: Math.random() * 10 + 8, // 8-18 segundos
     }));
@@ -85,6 +85,7 @@ export default function BackgroundEffects({ isDarkMode }: { isDarkMode: boolean 
                 animation: `ultraSlowFireflyGlow ${f.duration}s ease-in-out infinite`,
                 animationDelay: `${f.delay}s`,
                 boxShadow: '0 0 10px rgba(253, 224, 71, 0.6), 0 0 20px rgba(253, 224, 71, 0.3)',
+                filter: 'blur(0.5px)', // Efecto de brillo suave
               }}
             />
           ))}
@@ -102,6 +103,7 @@ export default function BackgroundEffects({ isDarkMode }: { isDarkMode: boolean 
                 animation: `ultraSlowPulse ${s.duration}s ease-in-out infinite`,
                 animationDelay: `${s.delay}s`,
                 boxShadow: '0 0 8px rgba(255, 255, 255, 0.8), 0 0 16px rgba(255, 255, 255, 0.4)',
+                filter: 'blur(0.3px)', // Efecto de brillo suave
               }}
             />
           ))}
@@ -121,6 +123,7 @@ export default function BackgroundEffects({ isDarkMode }: { isDarkMode: boolean 
                 animation: `ultraSlowSparkle ${s.duration}s ease-in-out infinite`,
                 animationDelay: `${s.delay}s`,
                 boxShadow: '0 0 6px rgba(147, 197, 253, 0.5), 0 0 12px rgba(168, 85, 247, 0.3)',
+                filter: 'blur(0.4px)', // Efecto de brillo suave
               }}
             />
           ))}
