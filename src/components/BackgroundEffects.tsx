@@ -38,7 +38,7 @@ export default function BackgroundEffects({ isDarkMode }: { isDarkMode: boolean 
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
-      size: Math.random() * 8 + 6, // 6-14px (más grandes)
+      size: Math.random() * 8 + 6, // 6-14px
       delay: Math.random() * 8,
       duration: Math.random() * 6 + 8, // 8-14 segundos
     }));
@@ -49,7 +49,7 @@ export default function BackgroundEffects({ isDarkMode }: { isDarkMode: boolean 
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
-      size: Math.random() * 4 + 2, // 2-6px (más grandes)
+      size: Math.random() * 4 + 2, // 2-6px
       delay: Math.random() * 10,
       duration: Math.random() * 8 + 6, // 6-14 segundos
     }));
@@ -60,7 +60,7 @@ export default function BackgroundEffects({ isDarkMode }: { isDarkMode: boolean 
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
-      size: Math.random() * 6 + 4, // 4-10px (más grandes)
+      size: Math.random() * 6 + 4, // 4-10px
       delay: Math.random() * 12,
       duration: Math.random() * 10 + 8, // 8-18 segundos
     }));
@@ -68,7 +68,7 @@ export default function BackgroundEffects({ isDarkMode }: { isDarkMode: boolean 
   }, []);
 
   return (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none z-50">
+    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
       {isDarkMode ? (
         // 🔥 MODO OSCURO: Luciérnagas y estrellas
         <>
@@ -84,8 +84,8 @@ export default function BackgroundEffects({ isDarkMode }: { isDarkMode: boolean 
                 left: `${f.x}%`,
                 animation: `ultraSlowFireflyGlow ${f.duration}s ease-in-out infinite`,
                 animationDelay: `${f.delay}s`,
-                boxShadow: '0 0 15px rgba(253, 224, 71, 0.8), 0 0 30px rgba(253, 224, 71, 0.5)',
-                filter: 'blur(0.5px)', // Efecto de brillo suave
+                boxShadow: '0 0 20px rgba(253, 224, 71, 0.9), 0 0 40px rgba(253, 224, 71, 0.6)',
+                filter: 'blur(0.5px)',
               }}
             />
           ))}
@@ -102,8 +102,8 @@ export default function BackgroundEffects({ isDarkMode }: { isDarkMode: boolean 
                 left: `${s.x}%`,
                 animation: `ultraSlowPulse ${s.duration}s ease-in-out infinite`,
                 animationDelay: `${s.delay}s`,
-                boxShadow: '0 0 12px rgba(255, 255, 255, 0.9), 0 0 24px rgba(255, 255, 255, 0.6)',
-                filter: 'blur(0.3px)', // Efecto de brillo suave
+                boxShadow: '0 0 15px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.6)',
+                filter: 'blur(0.3px)',
               }}
             />
           ))}
@@ -122,8 +122,8 @@ export default function BackgroundEffects({ isDarkMode }: { isDarkMode: boolean 
                 left: `${s.x}%`,
                 animation: `ultraSlowSparkle ${s.duration}s ease-in-out infinite`,
                 animationDelay: `${s.delay}s`,
-                boxShadow: '0 0 10px rgba(147, 197, 253, 0.7), 0 0 20px rgba(168, 85, 247, 0.5)',
-                filter: 'blur(0.4px)', // Efecto de brillo suave
+                boxShadow: '0 0 12px rgba(147, 197, 253, 0.8), 0 0 25px rgba(168, 85, 247, 0.6)',
+                filter: 'blur(0.4px)',
               }}
             />
           ))}
