@@ -34,18 +34,18 @@ export default function BackgroundEffects({ isDarkMode }: { isDarkMode: boolean 
 
   useEffect(() => {
     // Generar luciérnagas para modo oscuro
-    const generatedFireflies = Array.from({ length: 15 }).map((_, i) => ({
+    const generatedFireflies = Array.from({ length: 40 }).map((_, i) => ({
       id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
+      x: Math.random() * 120 - 10,
+      y: Math.random() * 120 - 10,
       size: Math.random() * 2 + 3, // 6-14px
-      delay: Math.random() * 8,
-      duration: Math.random() * 6 + 8, // 8-14 segundos
+      delay: Math.random() * 6,
+      duration: Math.random() * 7 + 8, // 8-14 segundos
     }));
     setFireflies(generatedFireflies);
 
     // Generar estrellas para modo oscuro
-    const generatedStars = Array.from({ length: 25 }).map((_, i) => ({
+    const generatedStars = Array.from({ length: 40 }).map((_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
@@ -58,11 +58,11 @@ export default function BackgroundEffects({ isDarkMode }: { isDarkMode: boolean 
     // Generar destellos para modo claro
     const generatedSparkles = Array.from({ length: 20 }).map((_, i) => ({
       id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      size: Math.random() * 6 + 4, // 4-10px
-      delay: Math.random() * 12,
-      duration: Math.random() * 10 + 8, // 8-18 segundos
+      x: Math.random() * 120 - 10,
+      y: Math.random() * 120 - 10,
+      size: Math.random() * 2 + 4, // 4-10px
+      delay: Math.random() * 8,
+      duration: Math.random() * 6 + 8, // 8-18 segundos
     }));
     setSparkles(generatedSparkles);
   }, []);
@@ -126,26 +126,26 @@ export default function BackgroundEffects({ isDarkMode }: { isDarkMode: boolean 
               <div className="relative">
                 {/* Línea horizontal */}
                 <div 
-                  className="absolute bg-gradient-to-r from-transparent via-blue-400 to-transparent"
+                  className="absolute bg-gradient-to-r from-transparent via-white-400 to-transparent"
                   style={{
                     width: `${s.size * 2}px`,
                     height: '2px',
                     left: `${-s.size}px`,
                     top: '0px',
                     filter: 'blur(0.5px)',
-                    boxShadow: '0 0 6px rgba(255, 255, 255, 0.9), 0 0 12px rgba(196, 172, 150, 0.6)',
+                    boxShadow: '0 0 6px rgba(255, 255, 255, 1), 0 0 12px rgba(255, 255, 255, 1)',
                   }}
                 />
                 {/* Línea vertical */}
                 <div 
-                  className="absolute bg-gradient-to-b from-transparent via-purple-400 to-transparent"
+                  className="absolute bg-gradient-to-b from-transparent via-white-400 to-transparent"
                   style={{
                     width: '2px',
                     height: `${s.size * 2}px`,
                     left: '0px',
                     top: `${-s.size}px`,
                     filter: 'blur(0.5px)',
-                    boxShadow: '0 0 6px rgba(255, 255, 255, 0.9), 0 0 12px rgba(196, 172, 150, 0.6)',
+                    boxShadow: '0 0 6px rgba(255, 255, 255, 1), 0 0 12px rgba(255, 255, 255, 1)',
                   }}
                 />
                 {/* Centro brillante */}
@@ -156,7 +156,7 @@ export default function BackgroundEffects({ isDarkMode }: { isDarkMode: boolean 
                     height: '3px',
                     left: '-1.5px',
                     top: '-1.5px',
-                    boxShadow: '0 0 6px rgba(255, 255, 255, 0.9), 0 0 12px rgba(196, 172, 150, 0.6)',
+                    boxShadow: '0 0 6px rgba(255, 255, 255, 1), 0 0 12px rgba(255, 255, 255, 1)',
                   }}
                 />
               </div>
