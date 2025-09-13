@@ -114,18 +114,53 @@ export default function BackgroundEffects({ isDarkMode }: { isDarkMode: boolean 
           {sparkles.map((s) => (
             <div
               key={`sparkle-${s.id}`}
-              className="absolute rounded-full bg-gradient-to-r from-blue-400 to-purple-500"
+              className="absolute"
               style={{
-                width: `${s.size}px`,
-                height: `${s.size}px`,
                 top: `${s.y}%`,
                 left: `${s.x}%`,
                 animation: `ultraSlowSparkle ${s.duration}s ease-in-out infinite`,
                 animationDelay: `${s.delay}s`,
-                boxShadow: '0 0 12px rgba(147, 197, 253, 0.8), 0 0 25px rgba(168, 85, 247, 0.6)',
-                filter: 'blur(0.4px)',
               }}
-            />
+            >
+              {/* Destello en forma de estrella de 4 puntas */}
+              <div className="relative">
+                {/* Línea horizontal */}
+                <div 
+                  className="absolute bg-gradient-to-r from-transparent via-blue-400 to-transparent"
+                  style={{
+                    width: `${s.size * 2}px`,
+                    height: '2px',
+                    left: `${-s.size}px`,
+                    top: '0px',
+                    filter: 'blur(0.5px)',
+                    boxShadow: '0 0 8px rgba(59, 130, 246, 0.8)',
+                  }}
+                />
+                {/* Línea vertical */}
+                <div 
+                  className="absolute bg-gradient-to-b from-transparent via-purple-400 to-transparent"
+                  style={{
+                    width: '2px',
+                    height: `${s.size * 2}px`,
+                    left: '0px',
+                    top: `${-s.size}px`,
+                    filter: 'blur(0.5px)',
+                    boxShadow: '0 0 8px rgba(168, 85, 247, 0.8)',
+                  }}
+                />
+                {/* Centro brillante */}
+                <div 
+                  className="absolute bg-white rounded-full"
+                  style={{
+                    width: '3px',
+                    height: '3px',
+                    left: '-1.5px',
+                    top: '-1.5px',
+                    boxShadow: '0 0 6px rgba(255, 255, 255, 0.9), 0 0 12px rgba(147, 197, 253, 0.6)',
+                  }}
+                />
+              </div>
+            </div>
           ))}
         </>
       )}
