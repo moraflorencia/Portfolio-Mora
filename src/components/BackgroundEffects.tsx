@@ -49,7 +49,7 @@ export default function BackgroundEffects({ isDarkMode }: { isDarkMode: boolean 
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
-      size: Math.random() * 1 + 1.5, // 2-6px
+      size: Math.random() * 1 + 1, // 2-6px
       delay: Math.random() * 10,
       duration: Math.random() * 3 + 8, // 6-14 segundos
     }));
