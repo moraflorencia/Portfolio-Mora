@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { ChevronDown, Github, Linkedin, Mail, Phone, MapPin, ExternalLink, BarChart3, Database, Brain, Code, TrendingUp, BookOpen, Award, Briefcase, Send, Calendar, GraduationCap, X, ZoomIn, Moon, Sun, Menu, Globe, Star, Sparkles } from 'lucide-react';
 import { Languages } from 'lucide-react';
 import { FaWhatsapp } from "react-icons/fa";
+import TypewriterEffect from './components/TypewriterEffect';
+import BackgroundEffects from './components/BackgroundEffects';
 
 // Hook para efecto máquina de escribir
 const useTypewriter = (words: string[], speed = 150, delay = 2000) => {
@@ -403,7 +405,9 @@ const projects = [
     backgroundPosition: "center",
     backgroundAttachment: "fixed"
   }}
->
+>{/* Background Effects */}
+      <BackgroundEffects isDarkMode={isDarkMode} />
+      
       {/* Navigation */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
   isScrolled ? 'backdrop-blur-xl shadow-2xl' : 'bg-transparent'
@@ -694,7 +698,8 @@ const projects = [
           </div>
         </div>
       </section>
-
+      {/* Typewriter Effect */}
+            <TypewriterEffect className="mb-8" />
       {/* About Section */}
       <section id="about" className="py-20 px-6 relative">
         <div className="container mx-auto max-w-6xl">
@@ -1560,4 +1565,4 @@ const projects = [
   );
 }
 
-export default App;
+export default App; 

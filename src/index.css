@@ -217,3 +217,27 @@
     transform: translateY(-60px) scale(0.3); 
   }
 }
+
+@keyframes firefly {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(1);
+    filter: drop-shadow(0 0 5px rgba(255, 255, 0, 0.6));
+  }
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1);
+    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.6));
+  }
+}
