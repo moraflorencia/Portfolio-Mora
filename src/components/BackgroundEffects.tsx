@@ -38,9 +38,9 @@ export default function BackgroundEffects({ isDarkMode }: { isDarkMode: boolean 
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
-      size: Math.random() * 8 + 6, // 6-14px
+      size: Math.random() * 2 + 4, // 6-14px
       delay: Math.random() * 8,
-      duration: Math.random() * 6 + 8, // 8-14 segundos
+      duration: Math.random() * 8 + 10, // 8-14 segundos
     }));
     setFireflies(generatedFireflies);
 
@@ -49,9 +49,9 @@ export default function BackgroundEffects({ isDarkMode }: { isDarkMode: boolean 
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
-      size: Math.random() * 4 + 2, // 2-6px
+      size: Math.random() * 2 + 4, // 2-6px
       delay: Math.random() * 10,
-      duration: Math.random() * 8 + 6, // 6-14 segundos
+      duration: Math.random() * 8 + 10, // 6-14 segundos
     }));
     setStars(generatedStars);
 
@@ -79,13 +79,13 @@ export default function BackgroundEffects({ isDarkMode }: { isDarkMode: boolean 
               className="absolute rounded-full bg-yellow-300 shadow-lg"
               style={{
                 width: `${f.size}px`,
-                height: `${f.size}px`,
-                top: `${f.y}%`,
-                left: `${f.x}%`,
-                animation: `ultraSlowFireflyGlow ${f.duration}s ease-in-out infinite`,
-                animationDelay: `${f.delay}s`,
-                boxShadow: '0 0 20px rgba(253, 224, 71, 0.9), 0 0 40px rgba(253, 224, 71, 0.6)',
-                filter: 'blur(0.5px)',
+               height: `${f.size}px`,
+               top: `${f.y}%`,
+               left: `${f.x}%`,
+               animation: `ultraSlowFireflyGlow ${f.duration}s ease-in-out infinite`,
+               animationDelay: `${f.delay}s`,
+               boxShadow: "0 0 20px rgba(253, 224, 71, 0.9), 0 0 40px rgba(253, 224, 71, 0.6)",
+               filter: "blur(0.5px)",
               }}
             />
           ))}
@@ -109,7 +109,7 @@ export default function BackgroundEffects({ isDarkMode }: { isDarkMode: boolean 
           ))}
         </>
       ) : (
-        // ✨ MODO CLARO: Destellos suaves
+         // ✨ MODO CLARO: Destellos suaves
         <>
           {sparkles.map((s) => (
             <div
@@ -156,7 +156,7 @@ export default function BackgroundEffects({ isDarkMode }: { isDarkMode: boolean 
                     height: '3px',
                     left: '-1.5px',
                     top: '-1.5px',
-                    boxShadow: '0 0 6px rgba(255, 255, 255, 0.9), 0 0 12px rgba(147, 197, 253, 0.6)',
+                    boxShadow: '0 0 6px rgba(255, 255, 255, 0.9), 0 0 12px rgba(196, 172, 150, 0.6)',
                   }}
                 />
               </div>
