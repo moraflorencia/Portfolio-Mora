@@ -133,7 +133,7 @@ export default function BackgroundEffects({ isDarkMode }: { isDarkMode: boolean 
                     left: `${-s.size}px`,
                     top: '0px',
                     filter: 'blur(0.5px)',
-                    boxShadow: '0 0 8px rgba(59, 130, 246, 0.8)',
+                    boxShadow: '0 0 6px rgba(255, 255, 255, 0.9), 0 0 12px rgba(196, 172, 150, 0.6)',
                   }}
                 />
                 {/* Línea vertical */}
@@ -145,7 +145,7 @@ export default function BackgroundEffects({ isDarkMode }: { isDarkMode: boolean 
                     left: '0px',
                     top: `${-s.size}px`,
                     filter: 'blur(0.5px)',
-                    boxShadow: '0 0 8px rgba(168, 85, 247, 0.8)',
+                    boxShadow: '0 0 6px rgba(255, 255, 255, 0.9), 0 0 12px rgba(196, 172, 150, 0.6)',
                   }}
                 />
                 {/* Centro brillante */}
