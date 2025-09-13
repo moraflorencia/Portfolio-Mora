@@ -40,7 +40,7 @@ export default function BackgroundEffects({ isDarkMode }: { isDarkMode: boolean 
       y: Math.random() * 100,
       size: Math.random() * 2 + 3, // 6-14px
       delay: Math.random() * 8,
-      duration: Math.random() * 8 + 10, // 8-14 segundos
+      duration: Math.random() * 6 + 8, // 8-14 segundos
     }));
     setFireflies(generatedFireflies);
 
