@@ -656,7 +656,7 @@ const projects = [
                        transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl"
             >
               <Download className="h-5 w-5" />
-              <span>Descargar CV</span>
+              <span>Ver CV</span>
             </a>
             <button
               onClick={() => scrollToSection('projects')}
