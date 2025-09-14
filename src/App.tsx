@@ -645,6 +645,24 @@ const projects = [
           
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <a
+              href="https://www.canva.com/design/DAGj5mh2buU/u8_dEvLlKH1TDOZctgyPSQ/view?utm_content=DAGj5mh2buU&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h52b8ed3ede"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`group relative px-8 py-4 text-white rounded-2xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl overflow-hidden ${
+                isDarkMode 
+                  ? 'bg-gradient-to-r from-emerald-600 to-teal-600 hover:shadow-emerald-500/25' 
+                  : 'bg-gradient-to-r from-emerald-500 to-teal-500 hover:shadow-emerald-500/25'
+              }`}
+            >
+              <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-300 ${
+                isDarkMode ? 'bg-gradient-to-r from-teal-600 to-emerald-600' : 'bg-gradient-to-r from-teal-500 to-emerald-500'
+              }`}></div>
+              <span className="relative z-10 flex items-center justify-center space-x-2">
+                <span>{t.hero.downloadCV}</span>
+              </span>
+            </a>
+            
             <button
               onClick={() => scrollToSection('projects')}
               className={`group relative px-8 py-4 text-white rounded-2xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl overflow-hidden ${
