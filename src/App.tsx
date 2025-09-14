@@ -4,6 +4,7 @@ import { Languages } from 'lucide-react';
 import { FaWhatsapp } from "react-icons/fa";
 import TypewriterEffect from './components/TypewriterEffect';
 import BackgroundEffects from './components/BackgroundEffects';
+import { FormEmail } from './components/FormEmail';
 
 // Hook para efecto máquina de escribir
 const useTypewriter = (words: string[], speed = 150, delay = 2000) => {
@@ -696,10 +697,10 @@ const projects = [
           {/* Social Links */}
           <div className="flex justify-center space-x-6"> 
             {[
-              { icon: Linkedin, href: "https://linkedin.com/in/florm01", color: isDarkMode ? "hover:text-blue-500" : "hover:text-blue-600" },
+              { icon: Linkedin, href: "https://linkedin.com/in/florm01", color: isDarkMode ? "hover:text-blue-400" : "hover:text-blue-600" },
               { icon: Github, href: "https://github.com/moraflorencia", color: isDarkMode ? "hover:text-gray-700" : "hover:text-slate-700" },
-              { icon: Mail, href: "mailto:mora.florencia.m@gmail.com", color: isDarkMode ? "hover:text-green-500" : "hover:text-emerald-600" },
-              { icon: Phone, href: "tel:+5491160184046", color: isDarkMode ? "hover:text-yellow-500" : "hover:text-amber-600" }
+              { icon: Mail, href: "mailto:mora.florencia.m@gmail.com", color: isDarkMode ? "hover:text-green-400" : "hover:text-emerald-600" },
+              { icon: Phone, href: "tel:+5491160184046", color: isDarkMode ? "hover:text-yellow-400" : "hover:text-amber-600" }
             ].map(({ icon: Icon, href, color }, index) => (
               <a
                 key={index}
@@ -1409,119 +1410,10 @@ const projects = [
             </div>
 
             {/* Contact Form */}
-            <div className={`p-8 md:p-12 rounded-3xl backdrop-blur-sm border transition-all duration-500 hover:shadow-2xl ${
-              isDarkMode ? 'bg-white/5 border-white/10' : 'bg-white/70 border-rose-200/40'
-            }`}>
-              <h3 className={`text-2xl md:text-3xl font-bold mb-8 transition-all duration-300 ${
-                isDarkMode ? 'text-white' : 'text-slate-800'
-              }`}>
-                {t.contact.form.title}
-              </h3>
-              
-              <form 
-                action="https://formspree.io/f/movnaoly" 
-                method="POST"
-                className="space-y-6"
-              >
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label className={`block font-semibold mb-3 text-lg transition-all duration-300 ${
-                      isDarkMode ? 'text-gray-200' : 'text-slate-700'
-                    }`}>
-                      {t.contact.form.name}
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      required
-                      className={`w-full px-6 py-4 border rounded-2xl focus:ring-2 outline-none transition-all duration-300 backdrop-blur-sm ${
-                        isDarkMode 
-                          ? 'bg-white/10 border-white/20 text-white placeholder-gray-400 focus:bg-white/20 focus:ring-purple-500 focus:border-transparent' 
-                          : 'bg-white/80 border-rose-200/30 text-slate-800 placeholder-slate-500 focus:bg-white focus:ring-rose-500 focus:border-transparent'
-                      }`}
-                      placeholder={t.contact.form.namePlaceholder}
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className={`block font-semibold mb-3 text-lg transition-all duration-300 ${
-                      isDarkMode ? 'text-gray-200' : 'text-slate-700'
-                    }`}>
-                      {t.contact.form.email}
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      required
-                      className={`w-full px-6 py-4 border rounded-2xl focus:ring-2 outline-none transition-all duration-300 backdrop-blur-sm ${
-                        isDarkMode 
-                          ? 'bg-white/10 border-white/20 text-white placeholder-gray-400 focus:bg-white/20 focus:ring-purple-500 focus:border-transparent' 
-                          : 'bg-white/80 border-rose-200/30 text-slate-800 placeholder-slate-500 focus:bg-white focus:ring-rose-500 focus:border-transparent'
-                      }`}
-                      placeholder={t.contact.form.emailPlaceholder}
-                    />
-                  </div>
-                </div>
-                
-                <div>
-                  <label className={`block font-semibold mb-3 text-lg transition-all duration-300 ${
-                    isDarkMode ? 'text-gray-200' : 'text-slate-700'
-                  }`}>
-                    {t.contact.form.subject}
-                  </label>
-                  <input
-                    type="text"
-                    name="subject"
-                    required
-                    className={`w-full px-6 py-4 border rounded-2xl focus:ring-2 outline-none transition-all duration-300 backdrop-blur-sm ${
-                      isDarkMode 
-                        ? 'bg-white/10 border-white/20 text-white placeholder-gray-400 focus:bg-white/20 focus:ring-purple-500 focus:border-transparent' 
-                        : 'bg-white/80 border-rose-200/30 text-slate-800 placeholder-slate-500 focus:bg-white focus:ring-rose-500 focus:border-transparent'
-                    }`}
-                    placeholder={t.contact.form.subjectPlaceholder}
-                  />
-                </div>
-                
-                <div>
-                  <label className={`block font-semibold mb-3 text-lg transition-all duration-300 ${
-                    isDarkMode ? 'text-gray-200' : 'text-slate-700'
-                  }`}>
-                    {t.contact.form.message}
-                  </label>
-                  <textarea
-                    rows={6}
-                    name="message"
-                    required
-                    className={`w-full px-6 py-4 border rounded-2xl focus:ring-2 outline-none transition-all duration-300 resize-none backdrop-blur-sm ${
-                      isDarkMode 
-                        ? 'bg-white/10 border-white/20 text-white placeholder-gray-400 focus:bg-white/20 focus:ring-purple-500 focus:border-transparent' 
-                        : 'bg-white/80 border-rose-200/30 text-slate-800 placeholder-slate-500 focus:bg-white focus:ring-rose-500 focus:border-transparent'
-                    }`}
-                    placeholder={t.contact.form.messagePlaceholder}
-                  ></textarea>
-                </div>
-                
-                <input type="hidden" name="_next" value="https://florenciamilagrosmora.netlify.app/#contact" />
-                <input type="hidden" name="_subject" value="Nuevo mensaje desde el portfolio" />
-                
-                <button
-                  type="submit"
-                  className={`group w-full text-white py-4 px-8 rounded-2xl font-bold text-lg transition-all duration-300 flex items-center justify-center space-x-3 hover:scale-105 hover:shadow-2xl relative overflow-hidden ${
-                    isDarkMode 
-                      ? 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-pink-600 hover:to-purple-600 hover:shadow-purple-500/25' 
-                      : 'bg-gradient-to-r from-rose-500 to-pink-500 hover:from-pink-500 hover:to-rose-500 hover:shadow-rose-500/25'
-                  }`}
-                >
-                  <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-300 ${
-                    isDarkMode ? 'bg-gradient-to-r from-pink-600 to-purple-600' : 'bg-gradient-to-r from-pink-500 to-rose-500'
-                  }`}></div>
-                  <span className="relative z-10 flex items-center space-x-2">
-                    <Send size={20} />
-                    <span>{t.contact.form.send}</span>
-                  </span>
-                </button>
-              </form>
-            </div>
+            <FormEmail 
+              isDarkMode={isDarkMode}
+              translations={t.contact.form}
+            />
           </div>
         </div>
       </section>
@@ -1582,4 +1474,4 @@ const projects = [
   );
 }
 
-export default App; 
+export default App;
