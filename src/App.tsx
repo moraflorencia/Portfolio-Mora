@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronDown, Github, Linkedin, Mail, Phone, MapPin, ExternalLink, BarChart3, Database, Brain, Code, TrendingUp, BookOpen, Award, Briefcase, Send, Calendar, GraduationCap, X, ZoomIn, Moon, Sun, Menu, Globe, Star, Sparkles } from 'lucide-react';
+import { ChevronDown, Github, Linkedin, Mail, Phone, MapPin, ExternalLink, BarChart3, Database, Brain, Code, TrendingUp, BookOpen, Award, Briefcase, Send, Calendar, GraduationCap, X, ZoomIn, Moon, Sun, Menu, Globe, Star, Sparkles, Download } from 'lucide-react';
 import { Languages } from 'lucide-react';
 import { FaWhatsapp } from "react-icons/fa";
 import TypewriterEffect from './components/TypewriterEffect';
@@ -643,7 +643,11 @@ const projects = [
             </div>
           </div>
           
+          {/* Typewriter Effect */}
+            <TypewriterEffect className="mb-8" />
+          
           {/* CTA Buttons */}
+<<<<<<< HEAD
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <a
               href="https://www.canva.com/design/DAGj5mh2buU/u8_dEvLlKH1TDOZctgyPSQ/view?utm_content=DAGj5mh2buU&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h52b8ed3ede"
@@ -663,6 +667,19 @@ const projects = [
               </span>
             </a>
             
+=======
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+            <a
+              href="/assets/CV_Florencia_Mora.pdf"
+              download="CV_Florencia_Mora.pdf"
+              className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 
+                       text-white font-medium rounded-lg hover:from-purple-700 hover:to-pink-700 
+                       transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl"
+            >
+              <Download className="h-5 w-5" />
+              <span>Ver CV</span>
+            </a>
+>>>>>>> ccee0e8e998131a48ac6bf9aa92eae30e12da76e
             <button
               onClick={() => scrollToSection('projects')}
               className={`group relative px-8 py-4 text-white rounded-2xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl overflow-hidden ${
@@ -716,8 +733,7 @@ const projects = [
           </div>
         </div>
       </section>
-      {/* Typewriter Effect */}
-            <TypewriterEffect className="mb-8" />
+      
       {/* About Section */}
       <section id="about" className="py-20 px-6 relative">
         <div className="container mx-auto max-w-6xl">
@@ -1583,4 +1599,4 @@ const projects = [
   );
 }
 
-export default App; 
+export default App;
