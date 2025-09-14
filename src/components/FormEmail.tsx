@@ -1,6 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-// La librería de emailjs no se puede usar directamente, así que usaremos fetch.
-// import emailjs from '@emailjs/browser'; 
 import { Send, CheckCircle, AlertTriangle as TriangleAlert } from 'lucide-react';
 
 interface FormEmailProps {
@@ -32,25 +30,23 @@ export const FormEmail: React.FC<FormEmailProps> = ({ isDarkMode, translations: 
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [timeLeft, setTimeLeft] = useState<number | null>(null);
+  const [lastSentTime, setLastSentTime] = useState<number | null>(null);
 
-  // Guarda valor en localStorage para evitar multiple spam
+  // Verifica si ya se envió un mensaje recientemente (en memoria)
   useEffect(() => {
-    const lastSent = localStorage.getItem("lastEmailSent");
-    console.log("Valor guardado en localStorage:", lastSent);
-
-    if (lastSent) {
-      const diff = Date.now() - parseInt(lastSent, 10);
-      const msLeft = 24 * 60 * 60 * 1000 - diff;
+    if (lastSentTime) {
+      const diff = Date.now() - lastSentTime;
+      const msLeft = 2 * 60 * 60 * 1000 - diff;
       console.log("Tiempo transcurrido en ms:", diff);
 
-      if (diff < 24 * 60 * 60 * 1000) {
+      if (diff < 2 * 60 * 60 * 1000) {
         setIsSubmitted(true);
         if (msLeft > 0) {
           setTimeLeft(msLeft);
         }
       }
     }
-  }, []);
+  }, [lastSentTime]);
 
   useEffect(() => {
     let interval: ReturnType<typeof setInterval>;
@@ -63,6 +59,7 @@ export const FormEmail: React.FC<FormEmailProps> = ({ isDarkMode, translations: 
           } else {
             clearInterval(interval);
             setIsSubmitted(false);
+            setLastSentTime(null);
             return null;
           }
         });
@@ -97,12 +94,11 @@ export const FormEmail: React.FC<FormEmailProps> = ({ isDarkMode, translations: 
     setIsSubmitting(true);
     setError(null); 
 
-    const lastSent = localStorage.getItem("lastEmailSent");
-    
-    if (lastSent) {
-      const diff = Date.now() - parseInt(lastSent, 10);
-      if (diff < 24 * 60 * 60 * 1000) {
-        const msLeft = 24 * 60 * 60 * 1000 - diff;
+    // Verifica si ya se envió un mensaje recientemente
+    if (lastSentTime) {
+      const diff = Date.now() - lastSentTime;
+      if (diff < 2 * 60 * 60 * 1000) {
+        const msLeft = 2 * 60 * 60 * 1000 - diff;
         setTimeLeft(msLeft);
         setIsSubmitting(false);
         return;
@@ -111,45 +107,60 @@ export const FormEmail: React.FC<FormEmailProps> = ({ isDarkMode, translations: 
 
     // Configuración de EmailJS - REEMPLAZA CON TUS CREDENCIALES
     const SERVICE_ID = "service_nshbb8s";
-    const TEMPLATE_ID = "template_hy6beyk";
+    const TEMPLATE_ID = "template_eyndijh";
     const PUBLIC_KEY = "ln4IheS1yP-YhnysU";
 
-    if (form.current) {
-      try {
-        // Usamos fetch para enviar los datos directamente a la API de EmailJS
-        const response = await fetch('https://api.emailjs.com/api/v1.0/email/send-form', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            service_id: SERVICE_ID,
-            template_id: TEMPLATE_ID,
-            user_id: PUBLIC_KEY,
-            template_params: Object.fromEntries(new FormData(form.current).entries())
-          })
-        });
+    try {
+      // Preparar los datos del formulario
+      const templateParams = {
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        to_name: 'Tu Nombre' // Cambia esto por tu nombre
+      };
 
-        if (!response.ok) {
-          const errorText = await response.text();
-          throw new Error(errorText || 'Error de red desconocido');
-        }
+      // Enviar usando la API de EmailJS
+      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          service_id: SERVICE_ID,
+          template_id: TEMPLATE_ID,
+          user_id: PUBLIC_KEY,
+          template_params: templateParams
+        })
+      });
 
-        setIsSubmitting(false);
-        setIsSubmitted(true);
-        localStorage.setItem("lastEmailSent", Date.now().toString());
-        
-        setFormData({
-          name: '',
-          email: '',
-          subject: '',
-          message: ''
-        });
-      } catch (err) {
-        console.error("Error al enviar email:", err);
-        setError(`Error al intentar enviar el mensaje: ${err instanceof Error ? err.message : String(err)}`);
-        setIsSubmitting(false);
+      console.log('Response status:', response.status);
+      
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Error response:', errorText);
+        throw new Error(`Error ${response.status}: ${errorText || 'Error de red desconocido'}`);
       }
+
+      const responseData = await response.text();
+      console.log('Email sent successfully:', responseData);
+
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+      setLastSentTime(Date.now()); // Guardar en estado en lugar de localStorage
+      
+      // Limpiar el formulario
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
+      
+    } catch (err) {
+      console.error("Error al enviar email:", err);
+      setError(`Error al intentar enviar el mensaje: ${err instanceof Error ? err.message : String(err)}`);
+      setIsSubmitting(false);
     }
   };
 
