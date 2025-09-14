@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import emailjs from '@emailjs/browser';
+// La librería de emailjs no se puede usar directamente, así que usaremos fetch.
+// import emailjs from '@emailjs/browser'; 
 import { Send, CheckCircle, AlertTriangle as TriangleAlert } from 'lucide-react';
 
 interface FormEmailProps {
@@ -29,6 +30,7 @@ export const FormEmail: React.FC<FormEmailProps> = ({ isDarkMode, translations: 
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [timeLeft, setTimeLeft] = useState<number | null>(null);
 
   // Guarda valor en localStorage para evitar multiple spam
@@ -38,13 +40,11 @@ export const FormEmail: React.FC<FormEmailProps> = ({ isDarkMode, translations: 
 
     if (lastSent) {
       const diff = Date.now() - parseInt(lastSent, 10);
-      // Formato mm/ss/hh
       const msLeft = 24 * 60 * 60 * 1000 - diff;
       console.log("Tiempo transcurrido en ms:", diff);
 
       if (diff < 24 * 60 * 60 * 1000) {
-        setIsSubmitted(true); // ya lo había mandado en las últimas 24h
-        // Asignamos cuanto tiempo falta
+        setIsSubmitted(true);
         if (msLeft > 0) {
           setTimeLeft(msLeft);
         }
@@ -62,7 +62,7 @@ export const FormEmail: React.FC<FormEmailProps> = ({ isDarkMode, translations: 
             return prev - 1000;
           } else {
             clearInterval(interval);
-            setIsSubmitted(false); // Permitir enviar de nuevo
+            setIsSubmitted(false);
             return null;
           }
         });
@@ -89,15 +89,15 @@ export const FormEmail: React.FC<FormEmailProps> = ({ isDarkMode, translations: 
       ...prev,
       [name]: value
     }));
+    setError(null); 
   };
 
   const sendEmail = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null); 
 
-    // Verificar si ya pasó 1 día
     const lastSent = localStorage.getItem("lastEmailSent");
-    console.log("lastSent: ", lastSent);
     
     if (lastSent) {
       const diff = Date.now() - parseInt(lastSent, 10);
@@ -116,22 +116,38 @@ export const FormEmail: React.FC<FormEmailProps> = ({ isDarkMode, translations: 
 
     if (form.current) {
       try {
-        await emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY);
+        // Usamos fetch para enviar los datos directamente a la API de EmailJS
+        const response = await fetch('https://api.emailjs.com/api/v1.0/email/send-form', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            service_id: SERVICE_ID,
+            template_id: TEMPLATE_ID,
+            user_id: PUBLIC_KEY,
+            template_params: Object.fromEntries(new FormData(form.current).entries())
+          })
+        });
+
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(errorText || 'Error de red desconocido');
+        }
+
         setIsSubmitting(false);
         setIsSubmitted(true);
         localStorage.setItem("lastEmailSent", Date.now().toString());
-        console.log("Guardado lastEmailSent:", Date.now());
         
-        // Limpiar formulario
         setFormData({
           name: '',
           email: '',
           subject: '',
           message: ''
         });
-      } catch (error) {
-        console.error("Error al enviar email:", error);
-        alert(`Error al intentar enviar mail, intente nuevamente. ${error}`);
+      } catch (err) {
+        console.error("Error al enviar email:", err);
+        setError(`Error al intentar enviar el mensaje: ${err instanceof Error ? err.message : String(err)}`);
         setIsSubmitting(false);
       }
     }
@@ -147,7 +163,6 @@ export const FormEmail: React.FC<FormEmailProps> = ({ isDarkMode, translations: 
         {t.title}
       </h3>
       
-      {/* Primero revisa si ya envió un mail, y después muestra el form o el mensaje de enviado */}
       {timeLeft !== null && timeLeft > 0 ? (
         <div className="text-center py-12">
           <TriangleAlert className={`h-16 w-16 mx-auto mb-4 ${
@@ -269,6 +284,12 @@ export const FormEmail: React.FC<FormEmailProps> = ({ isDarkMode, translations: 
             />
           </div>
           
+          {error && (
+            <div className="text-center p-4 rounded-xl bg-red-500/10 text-red-400 font-medium border border-red-500/30 transition-all duration-300">
+              {error}
+            </div>
+          )}
+
           <button
             type="submit"
             disabled={isSubmitting}
