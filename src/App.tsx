@@ -1313,7 +1313,7 @@ const projects = [
 {/* Certifications Section */}
 <section id="certifications" className="py-20 px-6 relative">
   <div className="container mx-auto max-w-6xl">
-    {/* Header con botón al Drive */}
+    {/* Header con botón */}
     <div className="flex flex-col md:flex-row items-center justify-between mb-12">
       <div className="text-center md:text-left">
         <h2
@@ -1332,7 +1332,7 @@ const projects = [
         ></div>
       </div>
       <a
-        href="https://drive.google.com" // 👉 poné el link general acá
+        href="https://drive.google.com" // 👉 link general
         target="_blank"
         rel="noopener noreferrer"
         className="mt-6 md:mt-0 inline-flex items-center space-x-2 px-6 py-3 rounded-full font-semibold text-white bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 transition-colors"
@@ -1342,48 +1342,51 @@ const projects = [
       </a>
     </div>
 
-    {/* Grid de certificaciones */}
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {complementaryEducation.map((cert, idx) => (
-        <div
-          key={idx}
-          className={`p-6 rounded-2xl backdrop-blur-sm border transition-all duration-500 hover:scale-105 hover:shadow-2xl ${
-            isDarkMode
-              ? "bg-white/5 border-white/10 hover:bg-white/10"
-              : "bg-white/80 border-rose-200/40 hover:bg-white"
-          }`}
-        >
-          <img
-            src={cert.image}
-            alt={`Certificación de ${cert.course}`}
-            className="w-full h-40 object-cover rounded-xl mb-4 shadow-md"
-            loading="lazy"
-          />
-          <div className="text-center">
-            <h3
-              className={`text-xl font-bold mb-2 ${
-                isDarkMode ? "text-white" : "text-slate-800"
-              }`}
-            >
-              {cert.course}
-            </h3>
-            <p
-              className={`text-md font-medium ${
-                isDarkMode ? "text-gray-300" : "text-slate-700"
-              }`}
-            >
-              {cert.institution}
-            </p>
-            <p
-              className={`text-sm font-light ${
-                isDarkMode ? "text-gray-400" : "text-slate-600"
-              }`}
-            >
-              {cert.year} • {cert.hours} hrs
-            </p>
+    {/* Carrusel */}
+    <div className="overflow-hidden">
+      <div
+        className="flex transition-transform duration-700 ease-in-out"
+        style={{
+          transform: `translateX(-${currentCertIndex * (100 / visibleCount)}%)`,
+          width: `${(complementaryEducation.length * 100) / visibleCount}%`,
+        }}
+      >
+        {complementaryEducation.map((cert, idx) => (
+          <div
+            key={idx}
+            className={`p-6 rounded-2xl backdrop-blur-sm border mx-2 flex-shrink-0 transition-all duration-500 hover:scale-105 hover:shadow-2xl ${
+              isDarkMode
+                ? "bg-white/5 border-white/10 hover:bg-white/10"
+                : "bg-white/80 border-rose-200/40 hover:bg-white"
+            }`}
+            style={{ width: `${100 / complementaryEducation.length}%` }}
+          >
+            <div className="text-center">
+              <h3
+                className={`text-xl font-bold mb-2 ${
+                  isDarkMode ? "text-white" : "text-slate-800"
+                }`}
+              >
+                {cert.course}
+              </h3>
+              <p
+                className={`text-md font-medium ${
+                  isDarkMode ? "text-gray-300" : "text-slate-700"
+                }`}
+              >
+                {cert.institution}
+              </p>
+              <p
+                className={`text-sm font-light ${
+                  isDarkMode ? "text-gray-400" : "text-slate-600"
+                }`}
+              >
+                {cert.year} • {cert.hours} hrs
+              </p>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   </div>
 </section>
