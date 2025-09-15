@@ -1324,7 +1324,6 @@ const projects = [
             <div className={`w-24 h-1 mx-auto rounded-full ${
               isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
             }`}></div>
-          </div>
   <a
     href="https://drive.google.com"
     target="_blank"
