@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  ChevronDown, ChevronLeft, ChevronRight, 
-  Github, Linkedin, Mail, Phone, MapPin, ExternalLink, 
-  BarChart3, Database, Brain, Code, TrendingUp, BookOpen, 
-  Award, Briefcase, Send, Calendar, GraduationCap, X, 
-  ZoomIn, Moon, Sun, Menu, Globe, Star, Sparkles 
-} from 'lucide-react';
+import { ChevronDown, Github, Linkedin, Mail, Phone, MapPin, ExternalLink, BarChart3, Database, Brain, Code, TrendingUp, BookOpen, Award, Briefcase, Send, Calendar, GraduationCap, X, ZoomIn, Moon, Sun, Menu, Globe, Star, Sparkles } from 'lucide-react';
 import { Languages } from 'lucide-react';
 import { FaWhatsapp } from "react-icons/fa";
 import TypewriterEffect from './components/TypewriterEffect';
@@ -52,14 +46,13 @@ function App() {
   const [isDarkMode, setIsDarkMode] = useState(true); // Changed to true for dark mode default
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isEnglish, setIsEnglish] = useState(false);
-  const [currentCertIndex, setCurrentCertIndex] = useState(0);
  
   useEffect(() => {
     const handleScroll = () => { 
       setIsScrolled(window.scrollY > 50);
       
       // Update active section based on scroll position
-      const sections = ['home', 'about', 'skills', 'projects', 'experience', 'education', 'certifications', 'contact'];
+      const sections = ['home', 'about', 'skills', 'projects', 'experience', 'education', 'contact'];
       const current = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -101,7 +94,6 @@ function App() {
         projects: "Proyectos",
         experience: "Experiencia",
         education: "Educación",
-        certifications: 'Certificaciónes',
         contact: "Contacto"
       },
       hero: {
@@ -137,10 +129,6 @@ function App() {
         title: "Educación",
         formal: " ",
         complementary: "Educación Complementaria"
-      },
-      certifications: {
-        title: "Certificaciones",
-        viewDrive: "Ver en Drive"
       },
       contact: {
         title: "Contacto",
@@ -392,17 +380,6 @@ const projects = [
       );
     }
   };
-  const nextCertification = () => {
-    setCurrentCertIndex((prev) => 
-      prev === complementaryEducation.length - 1 ? 0 : prev + 1
-    );
-  };
-
-  const prevCertification = () => {
-    setCurrentCertIndex((prev) => 
-      prev === 0 ? complementaryEducation.length - 1 : prev - 1
-    );
-  };
 
   const navigationItems = [
     { key: 'home', label: 'Inicio' },
@@ -411,7 +388,6 @@ const projects = [
     { key: 'projects', label: t.nav.projects },
     { key: 'experience', label: t.nav.experience },
     { key: 'education', label: t.nav.education },
-    { key: 'certifications', label: t.nav.certifications },
     { key: 'contact', label: t.nav.contact }
   ];
  
@@ -493,7 +469,25 @@ const projects = [
               ))}
               
               {/* Controls */}
-              <div className="flex items-center space-x-2 ml-4">     
+              <div className="flex items-center space-x-2 ml-4">
+                <button
+                  onClick={toggleLanguage}
+                  className={`p-2 rounded-xl transition-all duration-300 ${
+                    isDarkMode 
+                      ? 'bg-white/10 hover:bg-white/20 text-white' 
+                      : 'bg-slate-800/80 hover:bg-slate-800 text-white'
+                  }`}
+                >
+                  <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  className="w-5 h-5"
+  fill="currentColor"
+>
+  <path d="m11.9 22l4.55-12h2.1l4.55 12H21l-1.075-3.05h-4.85L14 22zM4 19l-1.4-1.4l5.05-5.05q-.875-.875-1.588-2T4.75 8h2.1q.5.975 1 1.7t1.2 1.45q.825-.825 1.713-2.313T12.1 6H1V4h7V2h2v2h7v2h-2.9q-.525 1.8-1.575 3.7t-2.075 2.9l2.4 2.45l-.75 2.05l-3.05-3.125zm11.7-1.8h3.6l-1.8-5.1z"/>
+</svg>
+                </button>
+                 
                 <button
                   onClick={toggleDarkMode}
                   className={`p-2 rounded-xl transition-all duration-300 ${
@@ -509,7 +503,24 @@ const projects = [
 
             {/* Mobile Menu Button */}
             <div className="md:hidden flex items-center space-x-2">
-      
+              <button
+                onClick={toggleLanguage}
+                className={`p-2 rounded-xl transition-all duration-300 ${
+                  isDarkMode 
+                    ? 'bg-white/10 hover:bg-white/20 text-white' 
+                    : 'bg-slate-800/80 hover:bg-slate-700 text-white'
+                }`}
+              >
+               <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  className="w-5 h-5"
+  fill="currentColor"
+>
+  <path d="m11.9 22l4.55-12h2.1l4.55 12H21l-1.075-3.05h-4.85L14 22zM4 19l-1.4-1.4l5.05-5.05q-.875-.875-1.588-2T4.75 8h2.1q.5.975 1 1.7t1.2 1.45q.825-.825 1.713-2.313T12.1 6H1V4h7V2h2v2h7v2h-2.9q-.525 1.8-1.575 3.7t-2.075 2.9l2.4 2.45l-.75 2.05l-3.05-3.125zm11.7-1.8h3.6l-1.8-5.1z"/>
+</svg>
+              </button>
+              
               <button 
                 onClick={toggleDarkMode}
                 className={`p-2 rounded-xl transition-all duration-300 ${
@@ -1272,108 +1283,60 @@ const projects = [
                 ))}
               </div>
             </div>
+
+            {/* Complementary Education */}
+            <div>
+              <h3 className={`text-2xl md:text-3xl font-bold mb-8 text-center transition-all duration-300 ${
+                isDarkMode ? 'text-white' : 'text-slate-800'
+              }`}>
+                {t.education.complementary}
+              </h3>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {complementaryEducation.map((course, index) => (
+                  <div key={index} className={`group p-6 rounded-2xl backdrop-blur-sm border transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer ${
+                    isDarkMode ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-white/60 border-rose-200/40 hover:bg-white/80'
+                  }`}>
+                    <div className="flex items-start space-x-3">
+                      <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 ${
+                        isDarkMode ? 'bg-gradient-to-r from-orange-500 to-red-600' : 'bg-gradient-to-r from-amber-500 to-orange-500'
+                      }`}>
+                        <Award className="w-4 h-4 text-white" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h4 className={`font-bold text-sm mb-2 line-clamp-2 transition-all duration-300 ${
+                          isDarkMode ? 'text-white' : 'text-slate-800'
+                        }`}>
+                          {course.course}
+                        </h4>
+                        <p className={`text-xs mb-2 transition-all duration-300 ${
+                          isDarkMode ? 'text-gray-300' : 'text-slate-600'
+                        }`}>
+                          {course.institution}
+                        </p>
+                        <div className="flex items-center justify-between">
+                          <span className={`text-xs font-medium transition-all duration-300 ${
+                            isDarkMode ? 'text-gray-400' : 'text-slate-500'
+                          }`}>
+                            {course.year}
+                          </span>
+                          {course.hours && (
+                            <span className={`text-white text-xs px-2 py-1 rounded-lg font-medium ${
+                              isDarkMode ? 'bg-gradient-to-r from-orange-500 to-red-600' : 'bg-gradient-to-r from-amber-500 to-orange-500'
+                            }`}>
+                              {course.hours}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
-      
-{/* Certifications Section */}
-<section id="certifications" className="py-20 px-6 relative">
-  <div className="container mx-auto max-w-6xl">
-    {/* Header */}
-    <div className="flex flex-col items-center justify-center gap-4 mb-16">
-      <div className="flex items-center justify-center gap-4">
-        <h2 className={`text-4xl md:text-5xl font-bold relative ${
-          isDarkMode ? 'text-white' : 'text-slate-800'
-        }`}>
-          {t.certifications.title}
-        </h2>
-        <a
-          href="https://drive.google.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="p-2 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white transition-colors"
-        >
-          <ExternalLink size={22} />
-        </a>
-      </div>
-      {/* Aquí está la barra, justo debajo del título */}
-      <div className={`w-24 h-1 mx-auto rounded-full ${
-        isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
-      }`}></div>
-    </div>
 
-    {/* Carrusel con flechas */}
-    <div className="flex items-center space-x-4">
-      <button
-        onClick={prevCertification}
-        className={`p-2 rounded-full transition-colors duration-300 ${
-          isDarkMode
-            ? "bg-white/10 text-white hover:bg-white/20"
-            : "bg-slate-700/80 text-white hover:bg-slate-700"
-        }`}
-      >
-        <ChevronLeft size={24} />
-      </button>
-
-      {/* Grid con 3 tarjetas */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 flex-1">
-         {complementaryEducation
-          .slice(currentCertIndex, currentCertIndex + 3)
-          .map((cert, idx) => (
-            <div
-              key={idx}
-              className={`p-6 rounded-2xl backdrop-blur-sm border transition-all duration-500 hover:scale-105 hover:shadow-2xl ${
-                isDarkMode
-                  ? "bg-white/5 border-white/10 hover:bg-white/10"
-                  : "bg-white/70 border-rose-200/40 hover:bg-white/80"
-              }`}
-            >
-              <div className="text-center">
-                <h3
-                  className={`text-lg font-bold mb-1 ${
-                    isDarkMode ? "text-white" : "text-slate-800"
-                  }`}
-                >
-                  {cert.course}
-                </h3>
-                <p
-                  className={`text-sm font-medium mb-1 ${
-                    isDarkMode ? "text-gray-300" : "text-slate-700"
-                  }`}
-                >
-                  {cert.institution}
-                </p>
-                <p
-                  className={`text-xs font-light ${
-                    isDarkMode ? "text-gray-400" : "text-slate-600"
-                  }`}
-                >
-                  {cert.year}
-                </p>
-                <div className="mt-3">
-                  <span className="bg-red-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
-                    {cert.hours} hrs
-                  </span>
-                </div>
-              </div>
-            </div>
-          ))}
-      </div>
-
-      <button
-        onClick={nextCertification}
-        className={`p-2 rounded-full transition-colors duration-300 ${
-          isDarkMode
-            ? "bg-white/10 text-white hover:bg-white/20"
-            : "bg-slate-700/80 text-white hover:bg-slate-700"
-        }`}
-      >
-        <ChevronRight size={24} />
-      </button>
-    </div>
-  </div>
-</section>
-      
       {/* Contact Section */}
       <section id="contact" className="py-20 px-6 relative">
         <div className="container mx-auto max-w-6xl">
