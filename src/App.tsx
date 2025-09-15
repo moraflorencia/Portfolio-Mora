@@ -1320,7 +1320,7 @@ const projects = [
   >
     {t.certifications.title}
   </h2>
-  <a
+  
         className={`text-4xl md:text-5xl font-bold text-center transition-all duration-300 ${
           isDarkMode ? "text-white" : "text-slate-800"
         }`}
