@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronDown, Github, Linkedin, Mail, Phone, MapPin, ExternalLink, BarChart3, Database, Brain, Code, TrendingUp, BookOpen, Award, Briefcase, Send, Calendar, GraduationCap, X, ZoomIn, Moon, Sun, Menu, Globe, Star, Sparkles } from 'lucide-react';
+import { 
+  ChevronDown, ChevronLeft, ChevronRight, 
+  Github, Linkedin, Mail, Phone, MapPin, ExternalLink, 
+  BarChart3, Database, Brain, Code, TrendingUp, BookOpen, 
+  Award, Briefcase, Send, Calendar, GraduationCap, X, 
+  ZoomIn, Moon, Sun, Menu, Globe, Star, Sparkles 
+} from 'lucide-react';
 import { Languages } from 'lucide-react';
 import { FaWhatsapp } from "react-icons/fa";
 import TypewriterEffect from './components/TypewriterEffect';
