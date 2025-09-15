@@ -4,6 +4,8 @@ import { Languages } from 'lucide-react';
 import { FaWhatsapp } from "react-icons/fa";
 import BackgroundEffects from './components/BackgroundEffects';
 import { FormEmail } from './components/FormEmail';
+import { ChevronLeft } from "lucide-react";
+
 
 // Hook para efecto máquina de escribir
 const useTypewriter = (words: string[], speed = 150, delay = 2000) => {
