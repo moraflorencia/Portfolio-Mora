@@ -1315,25 +1315,26 @@ const projects = [
 <section id="certifications" className="py-20 px-6 relative">
   <div className="container mx-auto max-w-6xl">
     {/* Header */}
-    <div className="flex items-center justify-center gap-4 mb-16">
-      <h2 className={`text-4xl md:text-5xl font-bold relative ${
-        isDarkMode ? 'text-white' : 'text-slate-800'
-      }`}>
-        {t.certifications.title}
-      </h2>
-      <a
-        href="https://drive.google.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="p-2 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white transition-colors"
-      >
-        <ExternalLink size={22} />
-      </a>
-    </div>
-    {/* Aquí insertas el div para la barra */}
-    <div className={`w-24 h-1 mx-auto rounded-full ${
+    <div className="flex flex-col items-center justify-center gap-4 mb-16">
+      <div className="flex items-center justify-center gap-4">
+        <h2 className={`text-4xl md:text-5xl font-bold relative ${
+          isDarkMode ? 'text-white' : 'text-slate-800'
+        }`}>
+          {t.certifications.title}
+        </h2>
+        <a
+          href="https://drive.google.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-2 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white transition-colors"
+        >
+          <ExternalLink size={22} />
+        </a>
+      </div>
+      {/* Aquí está la barra, justo debajo del título */}
+      <div className={`w-24 h-1 mx-auto rounded-full ${
         isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
-    }`}></div>
+      }`}></div>
 
     {/* Carrusel con flechas */}
     <div className="flex items-center space-x-4">
