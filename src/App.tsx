@@ -484,7 +484,7 @@ const projects = [
   className="w-5 h-5"
   fill="currentColor"
 >
-                </button>
+
                  
                 <button
                   onClick={toggleDarkMode}
