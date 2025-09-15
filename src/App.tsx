@@ -1327,11 +1327,7 @@ const projects = [
           </div>
     <div className="flex items-center justify-center space-x-3">
   <h2
-    className={`text-4xl md:text-5xl font-bold text-center transition-all duration-300 ${
-      isDarkMode ? "text-white" : "text-slate-800"
-    }`}
-  >
-    {t.certifications.title}
+   
   </h2>
   <a
     href="https://drive.google.com"
