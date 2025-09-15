@@ -252,7 +252,7 @@ export const FormEmail: React.FC<FormEmailProps> = ({ isDarkMode, translations: 
           
           <div>
             <label className={`block font-semibold mb-3 text-lg transition-all duration-300 ${
-              isDarkMode ? 'text-gray-200' : 'text-slate-700'
+              isDarkMode ? 'text-gray-200' : 'text-slate-600'
             }`}>
               {t.subject}
             </label>
