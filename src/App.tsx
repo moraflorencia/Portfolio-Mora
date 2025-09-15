@@ -52,6 +52,7 @@ function App() {
   const [isDarkMode, setIsDarkMode] = useState(true); // Changed to true for dark mode default
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isEnglish, setIsEnglish] = useState(false);
+  const [currentCertIndex, setCurrentCertIndex] = useState(0);
  
   useEffect(() => {
     const handleScroll = () => { 
