@@ -1315,11 +1315,12 @@ const projects = [
 <section id="certifications" className="py-20 px-6 relative">
   <div className="container mx-auto max-w-6xl">
     {/* Header */}
+    
     <div className="text-center mb-16">
             <h2 className={`text-4xl md:text-5xl font-bold mb-4 transition-all duration-300 ${
               isDarkMode ? 'text-white' : 'text-slate-800'
             }`}>
-              {t.certifications.title}
+              {t.contact.title}
             </h2>
             <div className={`w-24 h-1 mx-auto rounded-full ${
               isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
