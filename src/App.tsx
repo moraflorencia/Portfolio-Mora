@@ -52,7 +52,7 @@ function App() {
       setIsScrolled(window.scrollY > 50);
       
       // Update active section based on scroll position
-      const sections = ['home', 'about', 'skills', 'projects', 'experience', 'education', 'contact'];
+      const sections = ['home', 'about', 'skills', 'projects', 'experience', 'education','certifications', 'contact'];
       const current = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -130,6 +130,10 @@ function App() {
         formal: " ",
         complementary: "Educación Complementaria"
       },
+      certifications: {
+        title: "Certificaciones",
+        viewDrive: "Ver en Drive"
+      },
       contact: {
         title: "Contacto",
         info: "Información de contacto",
@@ -164,6 +168,7 @@ function App() {
         projects: "Projects",
         experience: "Experience",
         education: "Education",
+        certifications: "certifications",
         contact: "Contact"
       },
       hero: {
@@ -388,6 +393,7 @@ const projects = [
     { key: 'projects', label: t.nav.projects },
     { key: 'experience', label: t.nav.experience },
     { key: 'education', label: t.nav.education },
+    { key: 'certifications', label: t.nav.certifications },
     { key: 'contact', label: t.nav.contact }
   ];
  
