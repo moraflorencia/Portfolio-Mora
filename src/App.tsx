@@ -85,6 +85,180 @@ function App() {
 
   const toggleLanguage = () => setIsEnglish(!isEnglish);
 
+  const skills = [
+    { 
+      name: 'Análisis de Datos', 
+      icon: BarChart3, 
+      items: ['SQL', 'Python', 'Numpy', 'Pandas', 'Matplotlib'],
+      color: 'from-red-500 to-pink-600'
+    },
+    { 
+      name: 'Visualización', 
+      icon: TrendingUp, 
+      items: ['Power BI', 'Excel', 'Dashboards', 'Datos'],
+      color: 'from-yellow-500 to-orange-600'
+    },
+    { 
+      name: 'Programación', 
+      icon: Code, 
+      items: ['Python', 'SQL', 'Bash', 'C'],
+      color: 'from-green-500 to-emerald-600'
+    },
+    { 
+      name: 'IA & Tecnología', 
+      icon: Brain, 
+      items: ['Automatización', 'Ciberseguridad'],
+      color: 'from-blue-500 to-indigo-600'
+    }
+  ];
+
+const projects = [
+  {
+    title: 'Asistencia al viajero - CoderHouse',
+    description: 'Proyecto integral de análisis de datos en el que desarrollé un tablero interactivo en Power BI a partir de un dataset propio titulado "Asistencia al Viajero". El trabajo incluyó la transformación de una base de datos compleja en Excel, la aplicación de técnicas avanzadas de limpieza y modelado de datos, y la creación de visualizaciones interactivas para facilitar el análisis estratégico',
+    tech: ['Power BI', 'Excel', 'Datos', 'Visualización'],
+    images: [
+      'https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/Portada.jpg',
+      '/https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/Ventas.jpg',
+      'https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/Viaje.jpg',
+      '/https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/Vendedores.jpg'
+    ],
+    year: '2024',
+    githubUrl: 'https://github.com/moraflorencia/Asistencia-al-Viajero-Power-BI-',
+    achievements: [ 
+      'Transformación completa de base de datos',
+      'Dashboards interactivos para análisis de tendencias',
+      'Mejora significativa en interpretación de datos'
+    ]
+  },
+  {
+    title: 'Análisis de desocupación mundial - UNQui',
+    description: 'Proyecto de análisis de datos en Excel donde completé y transformé una base de datos. Utilicé funciones para integrar información de continentes, población y tasas de desempleo. Calculé totales y promedios de desocupación, además de clasificar los países según su tamaño poblacional. Finalmente, elaboré tablas dinámicas y gráficos que permitieron un análisis detallado y visual de los datos',
+    tech: ['Excel', 'Datos', 'Visualización'],
+    images: [
+      'https://i.postimg.cc/XqTN4rvY/Captura-de-pantalla-2025-08-05-214437.png'
+    ], 
+    year: '2024',
+    githubUrl: 'https://docs.google.com/spreadsheets/d/1zCTH3ozQg5gaMDWS8VQoLn5tUGhUDERg/edit?usp=drive_link&ouid=114417583288005504879&rtpof=true&sd=true',
+    achievements: [
+      'Integración eficiente de datos complejos',
+      'Automatización y precisión en cálculos',
+      'Visualización y análisis estratégico'
+    ]
+  },
+  {
+    title: 'Explotación y Visualización de Datos - GIDAS',
+    description: 'Proyecto integral de análisis de datos donde gestioné y transformé una base de datos compleja en Excel, creé dashboards interactivos en Power BI y apliqué técnicas avanzadas de limpieza de datos.',
+    tech: ['Power BI', 'Excel', 'Datos', 'Visualización'],
+    images: [
+      'https://i.postimg.cc/j5bzdjLv/Captura-de-pantalla-2025-08-05-213720.png',
+      'https://i.postimg.cc/gjBXRckC/Captura-de-pantalla-2025-08-05-214017.png',
+      'https://i.postimg.cc/cL3ggSqz/Captura-de-pantalla-2025-08-05-214105.png'
+    ],
+    year: '2023',
+    githubUrl: 'https://github.com/moraflorencia/Proyectos-Graduados',
+    achievements: [ 
+      'Transformación completa de base de datos',
+      'Dashboards interactivos para análisis de tendencias',
+      'Mejora significativa en interpretación de datos'
+    ]
+  }
+];
+  
+  const experience = [
+    {
+      title: 'Pasante de Desarrollo SAP',
+      company: 'ARTECH | Fundación PESCAR',
+      period: 'Actual',
+      description: 'Formación profesional especializada en Análisis de Datos y SAP. Desarrollo intensivo en Python y SQL, complementado con el fortalecimiento de habilidades blandas para el ambiente profesional.',
+      skills: ['Python', 'SQL', 'SAP', 'Análisis de Datos', 'Habilidades Blandas'],
+      type: 'Pasantía de Aprendizaje'
+    }
+  ];
+
+  const education = [
+    {
+      title: 'Ingeniería en Sistemas de Información',
+      institution: 'Universidad Tecnológica Regional La Plata',
+      period: '2021 - Cursando',
+      type: 'Grado Universitario',
+      status: 'En curso'
+    },
+    {
+      title: 'Tecnicatura en Química',
+      institution: 'E.E.S.T N°2 Paula A de Sarmiento, Bernal',
+      period: '2013 - 2019',
+      type: 'Educación Secundaria',
+      status: 'Completado'
+    }
+  ];
+
+  const complementaryEducation = [
+    { course: 'Analista de Datos y Gestión de Información', institution: 'Quales Group', year: 'Actual', hours: '' },
+    { course: 'Business Intelligence', institution: 'Talento Tech', year: 'Actual', hours: '' },
+    { course: 'SQL Básico', institution: 'UTN FRA', year: '2025', hours: '' },
+    { course: 'Ciberseguridad', institution: 'Fundación YPF', year: '2025', hours: '60hrs' },
+    { course: 'Python para análisis de datos', institution: 'EducacionIT', year: '2024', hours: '18hrs' },
+    { course: 'Data Analytics', institution: 'CoderHouse', year: '2024', hours: '46hrs' },
+    { course: 'Excel 1', institution: 'UNQ', year: '2024', hours: '30hrs' },
+    { course: 'Introducción a la IA', institution: 'UTN', year: '2024', hours: '70hrs' },
+    { course: 'Automatización Industrial', institution: 'CIVET', year: '2022', hours: '40hrs' },
+    { course: 'Diseño asistido por computadora (AutoCAD)', institution: 'CFP 406', year: '2021', hours: '120hrs' }
+  ];
+
+  const openProjectModal = (project: any) => {
+    setSelectedProject(project);
+    setSelectedImageIndex(0);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeProjectModal = () => {
+    setSelectedProject(null);
+    setSelectedImageIndex(0);
+    document.body.style.overflow = 'unset';
+  };
+
+  const nextImage = () => {
+    if (selectedProject) {
+      setSelectedImageIndex((prev) => 
+        prev === selectedProject.images.length - 1 ? 0 : prev + 1
+      );
+    }
+  };
+
+  const prevImage = () => {
+    if (selectedProject) {
+      setSelectedImageIndex((prev) => 
+        prev === 0 ? selectedProject.images.length - 1 : prev - 1
+      );
+    }
+  };
+
+  const navigationItems = [
+    { key: 'home', label: 'Inicio' },
+    { key: 'about', label: t.nav.about },
+    { key: 'skills', label: t.nav.skills },
+    { key: 'projects', label: t.nav.projects },
+    { key: 'experience', label: t.nav.experience },
+    { key: 'education', label: t.nav.education },
+    { key: 'contact', label: t.nav.contact }
+  ];
+ 
+  return ( 
+    <div 
+  className={`min-h-screen relative transition-all duration-500 ${
+    isDarkMode 
+      ? 'bg-slate-900'   // respaldo si no carga la imagen
+      : 'bg-rose-50'     // respaldo actualizado para modo claro
+  }`} 
+  style={{ 
+    backgroundImage: isDarkMode
+      ? "url('https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/FondoNoche.png')" // fondo oscuro
+      : "url('https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/FondoDia.png')", // fondo claro
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundAttachment: "fixed"
+  }}
 >{/* Background Effects */}
       <BackgroundEffects isDarkMode={isDarkMode} />
       
