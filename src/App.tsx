@@ -85,6 +85,153 @@ function App() {
 
   const toggleLanguage = () => setIsEnglish(!isEnglish);
 
+  // Translations
+  const translations = {
+    es: {
+      nav: {
+        about: "Sobre mí",
+        skills: "Habilidades",
+        projects: "Proyectos",
+        experience: "Experiencia",
+        education: "Educación",
+        contact: "Contacto"
+      },
+      hero: {
+        greeting: "¡Hola!",
+        name: "Florencia Milagros Mora",
+        title: "Analista de Datos",
+        subtitle: "Estudiante de Ingeniería en Sistemas", 
+        description: "Me entusiasma aprender, crecer en equipo y usar los datos para crear soluciones con impacto real.",
+        downloadCV: "Ver CV",
+        contact: "Contactar"
+      },
+      about: {
+        title: "Sobre mí", 
+        description1: "Soy una persona curiosa y en constante aprendizaje. Me gusta entender cómo funcionan las cosas, resolver problemas y transformar ideas en proyectos que aporten valor. También disfruto del diseño, porque me permite combinar lo técnico con lo creativo.",
+        description2: "Me encanta trabajar con otras personas, compartir conocimientos y seguir creciendo en cada desafío. Más allá de la tecnología, me motiva la posibilidad de aprender algo nuevo todos los días y aplicar lo que sé de forma creativa.",
+        dataAnalysis: "Análisis de Datos",
+        ai: "Inteligencia Artificial",
+        visualization: "Visualización",
+        programming: "Programación"
+      },
+      skills: {
+        title: "Habilidades Técnicas"
+      },
+      projects: {
+        title: "Proyectos",
+        achievements: "Logros principales:"
+      },
+      experience: { 
+        title: "Experiencia Profesional",
+        skills: "Tecnologías y habilidades:"
+      },
+      education: {
+        title: "Educación",
+        formal: " ",
+        complementary: "Educación Complementaria"
+      },
+      contact: {
+        title: "Contacto",
+        info: "Información de contacto",
+        email: "Email",
+        phone: "Whatsapp",
+        linkedin: "LinkedIn",
+        github: "GitHub",
+        location: "Ubicación",
+        locationValue: "Buenos Aires, Argentina",
+        form: {
+          title: "Envíame un mensaje",
+          name: "Nombre",
+          namePlaceholder: "Tu nombre",
+          email: "Email",
+          emailPlaceholder: "tu@email.com",
+          subject: "Asunto",
+          subjectPlaceholder: "Asunto del mensaje",
+          message: "Mensaje",
+          messagePlaceholder: "Tu mensaje...",
+          send: "Enviar mensaje"
+        } 
+      },
+      footer: {
+        description: "Analista de Datos | Estudiante de Ingeniería en Sistemas",
+        copyright: "❤ 2025 Florencia Mora. Diseñado con amor."
+      }
+    },
+    en: {
+      nav: {
+        about: "About",
+        skills: "Skills",
+        projects: "Projects",
+        experience: "Experience",
+        education: "Education",
+        contact: "Contact"
+      },
+      hero: {
+        greeting: "Hello!",
+        name: "Florencia Milagros Mora",
+        title: "Data Analyst",
+        subtitle: "Systems Engineering Student",
+        description: "I'm excited to learn, grow as a team, and use data to create solutions with real impact.",
+        downloadCV: "Download CV",
+        contact: "Contact"
+      },
+      about: {
+        title: "About Me",
+        description1: "I'm a curious person who's constantly learning. I like to understand how things work, solve problems, and transform ideas into projects that add value. I also enjoy design because it allows me to combine technical and creative aspects.",
+        description2: "I love working with other people, sharing knowledge, and continuing to grow with each challenge. Beyond technology, I'm motivated by the possibility of learning something new every day and applying what I know creatively.",
+        dataAnalysis: "Data Analysis",
+        ai: "Artificial Intelligence",
+        visualization: "Visualization",
+        programming: "Programming"
+      },
+      skills: {
+        title: "Technical Skills"
+      },
+      projects: {
+        title: "Projects",
+        achievements: "Key achievements:",
+        viewRepo: "View repository"
+      },
+      experience: {
+        title: "Professional Experience",
+        skills: "Technologies and skills:"
+      }, 
+      education: {
+        title: "Education",
+        formal: " ",
+        complementary: "Complementary Education"
+      },
+      contact: {
+        title: "Contact",
+        info: "Contact information",
+        email: "Email",
+        phone: "Whatsapp",
+        linkedin: "LinkedIn",
+        github: "GitHub",
+        location: "Location",
+        locationValue: "Buenos Aires, Argentina",
+        form: {
+          title: "Send me a message",
+          name: "Name",
+          namePlaceholder: "Your name",
+          email: "Email",
+          emailPlaceholder: "your@email.com",
+          subject: "Subject",
+          subjectPlaceholder: "Message subject",
+          message: "Message",
+          messagePlaceholder: "Your message...",
+          send: "Send message"
+        }
+      }, 
+      footer: {
+        description: "Data Analyst | Systems Engineering Student",
+        copyright: "❤ 2025 Florencia Mora. Designed with love."
+      }
+    }
+  }; 
+
+  const t = translations[isEnglish ? 'en' : 'es'];
+
   const skills = [
     { 
       name: 'Análisis de Datos', 
