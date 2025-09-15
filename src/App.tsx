@@ -1325,7 +1325,6 @@ const projects = [
               isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
             }`}></div>
           </div>
-    <div className="flex items-center justify-center space-x-3">
   </h2>
   <a
     href="https://drive.google.com"
