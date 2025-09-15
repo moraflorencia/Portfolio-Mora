@@ -1324,7 +1324,15 @@ const projects = [
             <div className={`w-24 h-1 mx-auto rounded-full ${
               isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
             }`}></div>
-        
+          </div>
+    <div className="flex items-center justify-center space-x-3">
+  <h2
+    className={`text-4xl md:text-5xl font-bold text-center transition-all duration-300 ${
+      isDarkMode ? "text-white" : "text-slate-800"
+    }`}
+  >
+    {t.certifications.title}
+  </h2>
   <a
     href="https://drive.google.com"
     target="_blank"
@@ -1333,7 +1341,7 @@ const projects = [
   >
     <ExternalLink size={22} />
   </a>
-</div>
+</div> 
 
 
     {/* Carrusel con flechas */}
