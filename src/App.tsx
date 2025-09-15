@@ -1314,11 +1314,6 @@ const projects = [
     }`}></div>
     <ExternalLink size={22} className="relative z-10" />
 </a>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {complementaryEducation.map((course, index) => (
-                  <div key={index} className={`group p-6 rounded-2xl backdrop-blur-sm border transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer ${
-                    isDarkMode ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-white/60 border-rose-200/40 hover:bg-white/80'
-                  }`}>
                     <div className="flex items-start space-x-3">
                       <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 ${
                         isDarkMode ? 'bg-gradient-to-r from-orange-500 to-red-600' : 'bg-gradient-to-r from-amber-500 to-orange-500'
