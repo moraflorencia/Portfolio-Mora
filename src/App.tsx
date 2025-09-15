@@ -1319,7 +1319,7 @@ const projects = [
   <h2 className={`text-4xl md:text-5xl font-bold relative ${
     isDarkMode ? 'text-white' : 'text-slate-800'
   }`}>
-    {t.contact.title}
+    {t.certifications.title}
     <span className={`absolute left-0 -bottom-1 w-16 h-1 rounded-full ${
       isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
     }`}></span>
