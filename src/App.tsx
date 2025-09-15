@@ -102,7 +102,7 @@ function App() {
         title: "Analista de Datos",
         subtitle: "Estudiante de Ingeniería en Sistemas", 
         description: "Me entusiasma aprender, crecer en equipo y usar los datos para crear soluciones con impacto real.",
-        downloadCV: "Descargar CV",
+        downloadCV: "Ver CV",
         contact: "Contactar"
       },
       about: {
