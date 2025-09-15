@@ -391,6 +391,17 @@ const projects = [
       );
     }
   };
+  const nextCertification = () => {
+    setCurrentCertIndex((prev) => 
+      prev === complementaryEducation.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  const prevCertification = () => {
+    setCurrentCertIndex((prev) => 
+      prev === 0 ? complementaryEducation.length - 1 : prev - 1
+    );
+  };
 
   const navigationItems = [
     { key: 'home', label: 'Inicio' },
