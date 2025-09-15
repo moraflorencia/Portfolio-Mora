@@ -1311,24 +1311,21 @@ const projects = [
         </div>
       </section>
 {/* Certifications Section */}
-<section id="certifications" className="py-20 px-6 relative">
-  <div className="container mx-auto max-w-6xl">
-    {/* Header */}
-    <div className="flex items-center justify-center mb-12 relative">
-      <h2
-        className={`text-4xl md:text-5xl font-bold text-center transition-all duration-300 ${
-          isDarkMode ? "text-white" : "text-slate-800"
-        }`}
-      >
-        {t.certifications.title}
-      </h2>
-      <a
-        href="https://drive.google.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="absolute right-0 top-1/2 -translate-y-1/2 p-2 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white transition-colors"
-      >
-        <ExternalLink size={22} />
+<div className="flex items-center justify-center space-x-3">
+  <h2
+    className={`text-4xl md:text-5xl font-bold text-center transition-all duration-300 ${
+      isDarkMode ? "text-white" : "text-slate-800"
+    }`}
+  >
+    {t.certifications.title}
+  </h2>
+  <a
+    href="https://drive.google.com"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="p-2 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white transition-colors"
+  >
+    <ExternalLink size={22} />
       </a>
     </div>
 
