@@ -1311,7 +1311,8 @@ const projects = [
         </div>
       </section>
 {/* Certifications Section */}
-<div className="container mx-auto max-w-6xl">
+<section id="certifications" className="py-20 px-6 relative">
+  <div className="container mx-auto max-w-6xl">
     {/* Header con título centrado + botón al lado */}
     <div className="flex items-center justify-center mb-12 space-x-3">
       <h2
