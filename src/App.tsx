@@ -1332,7 +1332,7 @@ const projects = [
         ></div>
       </div>
       <a
-        href="https://drive.google.com" // 👉 link general
+        href="https://drive.google.com"
         target="_blank"
         rel="noopener noreferrer"
         className="mt-6 md:mt-0 inline-flex items-center space-x-2 px-6 py-3 rounded-full font-semibold text-white bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 transition-colors"
@@ -1342,58 +1342,67 @@ const projects = [
       </a>
     </div>
 
-    {/* Carrusel */}
-    <div className="overflow-hidden">
-      <div
-        className="flex transition-transform duration-700 ease-in-out"
-        style={{
-          transform: `translateX(-${currentCertIndex * (100 / 3)}%)`,
-          width: `${(complementaryEducation.length * 100) / 3}%`,
-        }}
+    {/* Carrusel con flechas */}
+    <div className="flex items-center justify-center space-x-4">
+      <button
+        onClick={prevCertification}
+        className={`p-2 rounded-full transition-colors duration-300 ${
+          isDarkMode
+            ? "bg-white/10 text-white hover:bg-white/20"
+            : "bg-slate-700/80 text-white hover:bg-slate-700"
+        }`}
       >
-        {complementaryEducation.map((cert, idx) => (
-          <div
-            key={idx}
-            className={`p-6 rounded-2xl backdrop-blur-sm border mx-2 flex-shrink-0 transition-all duration-500 hover:scale-105 hover:shadow-2xl ${
-              isDarkMode
-                ? "bg-white/5 border-white/10 hover:bg-white/10"
-                : "bg-white/80 border-rose-200/40 hover:bg-white"
+        <ChevronLeft size={24} />
+      </button>
+
+      {/* Tarjeta (más chica, sin foto) */}
+      <div
+        className={`relative p-6 rounded-2xl backdrop-blur-sm border transition-all duration-500 hover:scale-105 hover:shadow-2xl overflow-hidden ${
+          isDarkMode
+            ? "bg-white/5 border-white/10 hover:bg-white/10"
+            : "bg-white/70 border-rose-200/40 hover:bg-white/80"
+        } w-[260px] sm:w-[300px] md:w-[320px]`}
+      >
+        <div className="text-center">
+          <h3
+            className={`text-lg font-bold mb-1 ${
+              isDarkMode ? "text-white" : "text-slate-800"
             }`}
-            style={{ width: `${100 / complementaryEducation.length}%` }}
           >
-            <div className="flex flex-col h-full justify-between">
-              <div className="text-left">
-                <h3
-                  className={`text-lg font-bold mb-1 ${
-                    isDarkMode ? "text-white" : "text-slate-800"
-                  }`}
-                >
-                  {cert.course}
-                </h3>
-                <p
-                  className={`text-sm font-medium ${
-                    isDarkMode ? "text-gray-300" : "text-slate-700"
-                  }`}
-                >
-                  {cert.institution}
-                </p>
-                <p
-                  className={`text-sm font-light ${
-                    isDarkMode ? "text-gray-400" : "text-slate-600"
-                  }`}
-                >
-                  {cert.year}
-                </p>
-              </div>
-              <div className="mt-3">
-                <span className="bg-red-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
-                  {cert.hours} hrs
-                </span>
-              </div>
-            </div>
+            {complementaryEducation[currentCertIndex].course}
+          </h3>
+          <p
+            className={`text-sm font-medium mb-1 ${
+              isDarkMode ? "text-gray-300" : "text-slate-700"
+            }`}
+          >
+            {complementaryEducation[currentCertIndex].institution}
+          </p>
+          <p
+            className={`text-xs font-light ${
+              isDarkMode ? "text-gray-400" : "text-slate-600"
+            }`}
+          >
+            {complementaryEducation[currentCertIndex].year}
+          </p>
+          <div className="mt-3">
+            <span className="bg-red-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
+              {complementaryEducation[currentCertIndex].hours} hrs
+            </span>
           </div>
-        ))}
+        </div>
       </div>
+
+      <button
+        onClick={nextCertification}
+        className={`p-2 rounded-full transition-colors duration-300 ${
+          isDarkMode
+            ? "bg-white/10 text-white hover:bg-white/20"
+            : "bg-slate-700/80 text-white hover:bg-slate-700"
+        }`}
+      >
+        <ChevronRight size={24} />
+      </button>
     </div>
   </div>
 </section>
