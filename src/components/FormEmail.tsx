@@ -252,7 +252,7 @@ export const FormEmail: React.FC<FormEmailProps> = ({ isDarkMode, translations: 
           
           <div>
             <label className={`block font-semibold mb-3 text-lg transition-all duration-300 ${
-              isDarkMode ? 'text-gray-200' : 'text-slate-600'
+              isDarkMode ? 'text-gray-200' : 'text-slate-700'
             }`}>
               {t.subject}
             </label>
@@ -267,9 +267,7 @@ export const FormEmail: React.FC<FormEmailProps> = ({ isDarkMode, translations: 
                   : 'bg-white/80 border-rose-200/30 text-slate-800 placeholder-slate-500 focus:bg-white focus:ring-rose-500 focus:border-transparent'
               }`}
             >
-              <option value="" className="bg-white text-slate-700">
-    Selecciona un asunto
-  </option>
+          
   <option value="Oportunidad laboral" className="bg-white text-slate-700">
     Oportunidad laboral
   </option>
