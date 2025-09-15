@@ -1316,23 +1316,21 @@ const projects = [
   <div className="container mx-auto max-w-6xl">
     {/* Header */}
     <div className="flex items-center justify-center gap-4 mb-16">
-  <h2 className={`text-4xl md:text-5xl font-bold relative ${
-    isDarkMode ? 'text-white' : 'text-slate-800'
-  }`}>
-    {t.certifications.title}
-    <span className={`absolute left-0 -bottom-1 w-16 h-1 rounded-full ${
-      isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
-    }`}></span>
-  </h2>
-  <a
-    href="https://drive.google.com"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="p-2 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white transition-colors"
-  >
-    <ExternalLink size={22} />
-  </a>
-</div>
+      <h2 className={`text-4xl md:text-5xl font-bold relative ${
+        isDarkMode ? 'text-white' : 'text-slate-800'
+      }`}>
+        {t.certifications.title}
+      </h2>
+      <a
+        href="https://drive.google.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="p-2 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white transition-colors"
+      >
+        <ExternalLink size={22} />
+      </a>
+    </div>
+  </div>
 
     {/* Carrusel con flechas */}
     <div className="flex items-center space-x-4">
