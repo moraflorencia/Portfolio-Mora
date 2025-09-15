@@ -259,7 +259,7 @@ export const FormEmail: React.FC<FormEmailProps> = ({ isDarkMode, translations: 
             <select
               name="subject"
               value={formData.subject}
-              onChange={handleInputChange}
+              onChange={handleInputChange} 
               required
               className={`w-full px-6 py-4 border rounded-2xl focus:ring-2 outline-none transition-all duration-300 backdrop-blur-sm ${
                 isDarkMode 
@@ -268,7 +268,7 @@ export const FormEmail: React.FC<FormEmailProps> = ({ isDarkMode, translations: 
               }`}
             >
               <option value="" className="bg-white text-slate-00">
-    Asunto
+    Selecciona un asunto
   </option>
   <option value="Oportunidad laboral" className="bg-white text-slate-700">
     Oportunidad laboral
