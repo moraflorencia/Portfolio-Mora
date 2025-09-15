@@ -410,6 +410,7 @@ const projects = [
     { key: 'projects', label: t.nav.projects },
     { key: 'experience', label: t.nav.experience },
     { key: 'education', label: t.nav.education },
+    { key: 'certifications', label: t.nav.certifications },
     { key: 'contact', label: t.nav.contact }
   ];
  
