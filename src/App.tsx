@@ -1408,7 +1408,8 @@ export default function CertificationsCarousel({ isDarkMode, t }: any) {
         </div>
       </div>
     </section>
-
+  );
+}
       
       {/* Contact Section */}
       <section id="contact" className="py-20 px-6 relative">
