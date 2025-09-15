@@ -1237,59 +1237,59 @@ const projects = [
           
           <div className="space-y-12">
             {/* Formal Education */}
-            <div>
-              <h3 className={`text-2xl md:text-3xl font-bold mb-8 text-center transition-all duration-300 ${
-                isDarkMode ? 'text-white' : 'text-slate-800'
+<div>
+  <h3 className={`text-2xl md:text-3xl font-bold mb-8 text-center transition-all duration-300 ${
+    isDarkMode ? 'text-white' : 'text-slate-800'
+  }`}>
+    {t.education.formal}
+  </h3>
+  <div className="grid md:grid-cols-2 gap-8">
+    {education.map((edu, index) => (
+      <div key={index} className={`group p-8 rounded-3xl backdrop-blur-sm border transition-all duration-500 hover:scale-105 hover:shadow-2xl ${
+        isDarkMode ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-white/70 border-rose-200/40 hover:bg-white/80'
+      }`}>
+        <div className="flex items-start space-x-4 mb-4">
+          <div className={`w-12 h-12 rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 ${
+            isDarkMode ? 'bg-gradient-to-r from-indigo-600 to-purple-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
+          }`}>
+            <GraduationCap className="w-6 h-6 text-white" />
+          </div>
+          <div className="flex-1">
+            <h4 className={`text-xl font-bold mb-2 transition-all duration-300 ${
+              isDarkMode ? 'text-white' : 'text-slate-800'
+            }`}>
+              {edu.title}
+            </h4>
+            <p className={`text-lg font-medium mb-2 transition-all duration-300 ${
+              isDarkMode ? 'text-gray-300' : 'text-slate-700'
+            }`}>
+              {edu.institution}
+            </p>
+            <p className={`text-sm mb-3 transition-all duration-300 ${
+              isDarkMode ? 'text-gray-400' : 'text-slate-600'
+            }`}>
+              {edu.period}
+            </p>
+            <div className="flex items-center space-x-3">
+              <span className={`text-xs px-3 py-1 rounded-full backdrop-blur-sm border transition-all duration-300 ${
+                isDarkMode ? 'bg-white/10 border-white/20 text-gray-300' : 'bg-white/60 border-rose-200/40 text-slate-700'
               }`}>
-                {t.education.formal}
-              </h3>
-              <div className="grid md:grid-cols-2 gap-8">
-                {education.map((edu, index) => (
-                  <div key={index} className={`group p-8 rounded-3xl backdrop-blur-sm border transition-all duration-500 hover:scale-105 hover:shadow-2xl ${
-                    isDarkMode ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-white/70 border-rose-200/40 hover:bg-white/80'
-                  }`}>
-                    <div className="flex items-start space-x-4 mb-4">
-                      <div className={`w-12 h-12 rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 ${
-                        isDarkMode ? 'bg-gradient-to-r from-indigo-600 to-purple-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
-                      }`}>
-                        <GraduationCap className="w-6 h-6 text-white" />
-                      </div>
-                      <div className="flex-1">
-                        <h4 className={`text-xl font-bold mb-2 transition-all duration-300 ${
-                          isDarkMode ? 'text-white' : 'text-slate-800'
-                        }`}>
-                          {edu.title}
-                        </h4>
-                        <p className={`text-lg font-medium mb-2 transition-all duration-300 ${
-                          isDarkMode ? 'text-gray-300' : 'text-slate-700'
-                        }`}>
-                          {edu.institution}
-                        </p>
-                        <p className={`text-sm mb-3 transition-all duration-300 ${
-                          isDarkMode ? 'text-gray-400' : 'text-slate-600'
-                        }`}>
-                          {edu.period}
-                        </p>
-                        <div className="flex items-center space-x-3">
-                          <span className={`text-xs px-3 py-1 rounded-full backdrop-blur-sm border transition-all duration-300 ${
-                            isDarkMode ? 'bg-white/10 border-white/20 text-gray-300' : 'bg-white/60 border-rose-200/40 text-slate-700'
-                          }`}>
-                            {edu.type}
-                          </span>
-                          <span className={`text-xs px-3 py-1 rounded-full font-medium ${
-                            edu.status === 'En curso' 
-                              ? (isDarkMode ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white' : 'bg-gradient-to-r from-rose-500 to-pink-500 text-white')
-                              : 'bg-gradient-to-r from-green-500 to-emerald-600 text-white'
-                          }`}>
-                            {edu.status}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+                {edu.type}
+              </span>
+              <span className={`text-xs px-3 py-1 rounded-full font-medium ${
+                edu.status === 'En curso' 
+                  ? (isDarkMode ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white' : 'bg-gradient-to-r from-rose-500 to-pink-500 text-white')
+                  : 'bg-gradient-to-r from-green-500 to-emerald-600 text-white'
+              }`}>
+                {edu.status}
+              </span>
             </div>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
            </section>
 
             {/* Certifications Section */}
@@ -1304,74 +1304,74 @@ const projects = [
           {t.certifications.title}
         </h2>
         <a
-  href="https://drive.google.com"
-  target="_blank"
-  rel="noopener noreferrer"
-  className={`p-2 rounded-full bg-gradient-to-r ${
-    isDarkMode ? 'from-purple-600 to-pink-600' : 'from-rose-500 to-pink-500'
-  } hover:from-purple-700 hover:to-pink-700 text-white transition-colors relative`}>
-    <div className={`absolute inset-0 rounded-full blur-xl opacity-30 ${
-      isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-400 to-pink-400'
-    }`}></div>
-    <ExternalLink size={22} className="relative z-10" />
-</a>
+          href="https://drive.google.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`p-2 rounded-full bg-gradient-to-r ${
+            isDarkMode ? 'from-purple-600 to-pink-600' : 'from-rose-500 to-pink-500'
+          } hover:from-purple-700 hover:to-pink-700 text-white transition-colors relative`}>
+          <div className={`absolute inset-0 rounded-full blur-xl opacity-30 ${
+            isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-400 to-pink-400'
+          }`}></div>
+          <ExternalLink size={22} className="relative z-10" />
+        </a>
       </div>
       {/* Aquí está la barra, justo debajo del título */}
       <div className={`w-24 h-1 mx-auto rounded-full ${
         isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
       }`}></div>
     </div>
-            <div>
-              <h3 className={`text-2xl md:text-3xl font-bold mb-8 text-center transition-all duration-300 ${
-                isDarkMode ? 'text-white' : 'text-slate-800'
+    {/* Complementary Education Section */}
+    <div>
+      <h3 className={`text-2xl md:text-3xl font-bold mb-8 text-center transition-all duration-300 ${
+        isDarkMode ? 'text-white' : 'text-slate-800'
+      }`}>
+        {t.education.complementary}
+      </h3>
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {complementaryEducation.map((course, index) => (
+          <div key={index} className={`group p-6 rounded-2xl backdrop-blur-sm border transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer ${
+            isDarkMode ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-white/60 border-rose-200/40 hover:bg-white/80'
+          }`}>
+            <div className="flex items-start space-x-3">
+              <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 ${
+                isDarkMode ? 'bg-gradient-to-r from-orange-500 to-red-600' : 'bg-gradient-to-r from-amber-500 to-orange-500'
               }`}>
-                {t.education.complementary}
-              </h3>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {complementaryEducation.map((course, index) => (
-                  <div key={index} className={`group p-6 rounded-2xl backdrop-blur-sm border transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer ${
-                    isDarkMode ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-white/60 border-rose-200/40 hover:bg-white/80'
+                <Award className="w-4 h-4 text-white" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <h4 className={`font-bold text-sm mb-2 line-clamp-2 transition-all duration-300 ${
+                  isDarkMode ? 'text-white' : 'text-slate-800'
+                }`}>
+                  {course.course}
+                </h4>
+                <p className={`text-xs mb-2 transition-all duration-300 ${
+                  isDarkMode ? 'text-gray-300' : 'text-slate-600'
+                }`}>
+                  {course.institution}
+                </p>
+                <div className="flex items-center justify-between">
+                  <span className={`text-xs font-medium transition-all duration-300 ${
+                    isDarkMode ? 'text-gray-400' : 'text-slate-500'
                   }`}>
-                    <div className="flex items-start space-x-3">
-                      <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 ${
-                        isDarkMode ? 'bg-gradient-to-r from-orange-500 to-red-600' : 'bg-gradient-to-r from-amber-500 to-orange-500'
-                      }`}>
-                        <Award className="w-4 h-4 text-white" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h4 className={`font-bold text-sm mb-2 line-clamp-2 transition-all duration-300 ${
-                          isDarkMode ? 'text-white' : 'text-slate-800'
-                        }`}>
-                          {course.course}
-                        </h4>
-                        <p className={`text-xs mb-2 transition-all duration-300 ${
-                          isDarkMode ? 'text-gray-300' : 'text-slate-600'
-                        }`}>
-                          {course.institution}
-                        </p>
-                        <div className="flex items-center justify-between">
-                          <span className={`text-xs font-medium transition-all duration-300 ${
-                            isDarkMode ? 'text-gray-400' : 'text-slate-500'
-                          }`}>
-                            {course.year}
-                          </span>
-                          {course.hours && (
-                            <span className={`text-white text-xs px-2 py-1 rounded-lg font-medium ${
-                              isDarkMode ? 'bg-gradient-to-r from-orange-500 to-red-600' : 'bg-gradient-to-r from-amber-500 to-orange-500'
-                            }`}>
-                              {course.hours}
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+                    {course.year}
+                  </span>
+                  {course.hours && (
+                    <span className={`text-white text-xs px-2 py-1 rounded-lg font-medium ${
+                      isDarkMode ? 'bg-gradient-to-r from-orange-500 to-red-600' : 'bg-gradient-to-r from-amber-500 to-orange-500'
+                    }`}>
+                      {course.hours}
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Contact Section */}
       <section id="contact" className="py-20 px-6 relative">
