@@ -90,7 +90,7 @@ export const FormEmail: React.FC = () => {
 
         const service_id = "service_nshbb8s";
         const templateID = "template_eyndijh";
-        const publicKey = "ln4IheS1yP-YhnysU"
+        const publicKey = "ln4IheS1yP-YhnysU";
 
         if(form.current){
             emailjs.sendForm(service_id, templateID, form.current, publicKey).then(
