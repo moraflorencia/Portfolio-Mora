@@ -267,7 +267,7 @@ export const FormEmail: React.FC<FormEmailProps> = ({ isDarkMode, translations: 
                   : 'bg-white/80 border-rose-200/30 text-slate-800 placeholder-slate-500 focus:bg-white focus:ring-rose-500 focus:border-transparent'
               }`}
             >
-              <option value="" className="bg-white text-slate-00"> 
+              <option value="" className="bg-white text-slate-700"> 
     Selecciona un asunto
   </option>
   <option value="Oportunidad laboral" className="bg-white text-slate-700">
