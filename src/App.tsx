@@ -1311,66 +1311,93 @@ const projects = [
         </div>
       </section>
 {/* Certifications Section */}
-      <section id="certifications" className="py-20 px-6 relative">
-        <div className="container mx-auto max-w-6xl">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <h2 className={`text-4xl md:text-5xl font-bold mb-4 transition-all duration-300 ${ 
-              isDarkMode ? 'text-white' : 'text-slate-800'
-            }`}>
-              {t.certifications.title}
-            </h2>
-            <div className={`w-24 h-1 mx-auto rounded-full ${
-              isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
-            }`}></div>
-          </div>
-          <div className="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4">
-            <button
-              onClick={prevCertification}
-              className={`p-2 rounded-full transition-colors duration-300 ${isDarkMode ? 'bg-white/10 text-white hover:bg-white/20' : 'bg-slate-700/80 text-white hover:bg-slate-700'}`}
-            >
-              <ChevronLeft size={24} />
-            </button>
-            <div className={`relative p-8 rounded-3xl backdrop-blur-sm border transition-all duration-500 hover:scale-105 hover:shadow-2xl overflow-hidden ${
-              isDarkMode ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-white/70 border-rose-200/40 hover:bg-white/80'
-            } w-full max-w-2xl`}>
-              <div className="relative">
-                <img
-                  src="https://via.placeholder.com/600x400"
-                  alt={`Certificación de ${complementaryEducation[currentCertIndex].course}`}
-                  className="w-full rounded-2xl mb-6 shadow-lg"
-                />
-              </div>
-              <div className="text-center">
-                <h3 className={`text-2xl font-bold mb-2 transition-all duration-300 ${
-                  isDarkMode ? 'text-white' : 'text-slate-800'
-                }`}>{complementaryEducation[currentCertIndex].course}</h3>
-                <p className={`text-lg font-medium mb-1 transition-all duration-300 ${
-                  isDarkMode ? 'text-gray-300' : 'text-slate-700'
-                }`}>{complementaryEducation[currentCertIndex].institution}</p>
-                <p className={`text-sm font-light transition-all duration-300 ${
-                  isDarkMode ? 'text-gray-400' : 'text-slate-600'
-                }`}>{complementaryEducation[currentCertIndex].year}</p>
-                <a
-                  href="#"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`mt-4 inline-flex items-center space-x-2 px-6 py-3 rounded-full font-semibold text-white bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 transition-colors`}
+<section id="certifications" className="py-20 px-6 relative">
+  <div className="container mx-auto max-w-6xl">
+    {/* Header con botón */}
+    <div className="flex flex-col md:flex-row items-center justify-between mb-12">
+      <div className="text-center md:text-left">
+        <h2
+          className={`text-4xl md:text-5xl font-bold mb-4 transition-all duration-300 ${
+            isDarkMode ? "text-white" : "text-slate-800"
+          }`}
+        >
+          {t.certifications.title}
+        </h2>
+        <div
+          className={`w-24 h-1 mx-auto md:mx-0 rounded-full ${
+            isDarkMode
+              ? "bg-gradient-to-r from-purple-600 to-pink-600"
+              : "bg-gradient-to-r from-rose-500 to-pink-500"
+          }`}
+        ></div>
+      </div>
+      <a
+        href="https://drive.google.com" // 👉 link general
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-6 md:mt-0 inline-flex items-center space-x-2 px-6 py-3 rounded-full font-semibold text-white bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 transition-colors"
+      >
+        <ExternalLink size={20} />
+        <span>{t.certifications.viewDrive}</span>
+      </a>
+    </div>
+
+    {/* Carrusel */}
+    <div className="overflow-hidden">
+      <div
+        className="flex transition-transform duration-700 ease-in-out"
+        style={{
+          transform: `translateX(-${currentCertIndex * (100 / 3)}%)`,
+          width: `${(complementaryEducation.length * 100) / 3}%`,
+        }}
+      >
+        {complementaryEducation.map((cert, idx) => (
+          <div
+            key={idx}
+            className={`p-6 rounded-2xl backdrop-blur-sm border mx-2 flex-shrink-0 transition-all duration-500 hover:scale-105 hover:shadow-2xl ${
+              isDarkMode
+                ? "bg-white/5 border-white/10 hover:bg-white/10"
+                : "bg-white/80 border-rose-200/40 hover:bg-white"
+            }`}
+            style={{ width: `${100 / complementaryEducation.length}%` }}
+          >
+            <div className="flex flex-col h-full justify-between">
+              <div className="text-left">
+                <h3
+                  className={`text-lg font-bold mb-1 ${
+                    isDarkMode ? "text-white" : "text-slate-800"
+                  }`}
                 >
-                  <ExternalLink size={20} />
-                  <span>{t.certifications.viewDrive}</span>
-                </a>
+                  {cert.course}
+                </h3>
+                <p
+                  className={`text-sm font-medium ${
+                    isDarkMode ? "text-gray-300" : "text-slate-700"
+                  }`}
+                >
+                  {cert.institution}
+                </p>
+                <p
+                  className={`text-sm font-light ${
+                    isDarkMode ? "text-gray-400" : "text-slate-600"
+                  }`}
+                >
+                  {cert.year}
+                </p>
+              </div>
+              <div className="mt-3">
+                <span className="bg-red-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
+                  {cert.hours} hrs
+                </span>
               </div>
             </div>
-            <button
-              onClick={nextCertification}
-              className={`p-2 rounded-full transition-colors duration-300 ${isDarkMode ? 'bg-white/10 text-white hover:bg-white/20' : 'bg-slate-700/80 text-white hover:bg-slate-700'}`}
-            >
-              <ChevronRight size={24} />
-            </button>
           </div>
-        </div>
-      </section> 
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
       
       {/* Contact Section */}
       <section id="contact" className="py-20 px-6 relative">
