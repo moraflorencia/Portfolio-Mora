@@ -1290,6 +1290,7 @@ const projects = [
                 ))}
               </div>
             </div>
+           </section>
 
             {/* Certifications Section */}
 <section id="certifications" className="py-20 px-6 relative">
