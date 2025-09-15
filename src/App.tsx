@@ -1,16 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  ChevronDown, ChevronLeft, ChevronRight, 
-  Github, Linkedin, Mail, Phone, MapPin, ExternalLink, 
-  BarChart3, Database, Brain, Code, TrendingUp, BookOpen, 
-  Award, Briefcase, Send, Calendar, GraduationCap, X, 
-  ZoomIn, Moon, Sun, Menu, Globe, Star, Sparkles 
-} from 'lucide-react';
+import { ChevronDown, Github, Linkedin, Mail, Phone, MapPin, ExternalLink, BarChart3, Database, Brain, Code, TrendingUp, BookOpen, Award, Briefcase, Send, Calendar, GraduationCap, X, ZoomIn, Moon, Sun, Menu, Globe, Star, Sparkles } from 'lucide-react';
 import { Languages } from 'lucide-react';
 import { FaWhatsapp } from "react-icons/fa";
+import TypewriterEffect from './components/TypewriterEffect';
 import BackgroundEffects from './components/BackgroundEffects';
 import { FormEmail } from './components/FormEmail';
-
 
 // Hook para efecto máquina de escribir
 const useTypewriter = (words: string[], speed = 150, delay = 2000) => {
@@ -19,7 +13,7 @@ const useTypewriter = (words: string[], speed = 150, delay = 2000) => {
   const [loopNum, setLoopNum] = useState(0);
 
   useEffect(() => {
-    const current = loopNum % words.length;
+    const current = loopNum % words.length; 
     const fullText = words[current];
 
     const timer = setTimeout(() => {
@@ -42,6 +36,7 @@ const useTypewriter = (words: string[], speed = 150, delay = 2000) => {
 
   return text;
 };
+
     
 function App() {
   const [activeSection, setActiveSection] = useState('home'); 
@@ -51,14 +46,13 @@ function App() {
   const [isDarkMode, setIsDarkMode] = useState(true); // Changed to true for dark mode default
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isEnglish, setIsEnglish] = useState(false);
-  const [currentCertIndex, setCurrentCertIndex] = useState(0);
  
   useEffect(() => {
     const handleScroll = () => { 
       setIsScrolled(window.scrollY > 50);
       
       // Update active section based on scroll position
-      const sections = ['home', 'about', 'skills', 'projects', 'experience', 'education', 'certifications', 'contact'];
+      const sections = ['home', 'about', 'skills', 'projects', 'experience', 'education', 'contact'];
       const current = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -100,7 +94,6 @@ function App() {
         projects: "Proyectos",
         experience: "Experiencia",
         education: "Educación",
-        certifications: "Certificaciones",
         contact: "Contacto"
       },
       hero: {
@@ -109,7 +102,7 @@ function App() {
         title: "Analista de Datos",
         subtitle: "Estudiante de Ingeniería en Sistemas", 
         description: "Me entusiasma aprender, crecer en equipo y usar los datos para crear soluciones con impacto real.",
-        downloadCV: "Descargar CV",
+        downloadCV: "Ver CV",
         contact: "Contactar"
       },
       about: {
@@ -136,10 +129,6 @@ function App() {
         title: "Educación",
         formal: " ",
         complementary: "Educación Complementaria"
-      },
-      certifications: {
-        title: "Certificaciones",
-        viewDrive: "Ver en Drive"
       },
       contact: {
         title: "Contacto",
@@ -175,7 +164,6 @@ function App() {
         projects: "Projects",
         experience: "Experience",
         education: "Education",
-        certifications: "Certifications",
         contact: "Contact"
       },
       hero: {
@@ -212,10 +200,6 @@ function App() {
         title: "Education",
         formal: " ",
         complementary: "Complementary Education"
-      },
-      certifications: {
-        title: "Certifications",
-        viewDrive: "View on Drive"
       },
       contact: {
         title: "Contact",
@@ -282,9 +266,9 @@ const projects = [
     tech: ['Power BI', 'Excel', 'Datos', 'Visualización'],
     images: [
       'https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/Portada.jpg',
-      'https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/Ventas.jpg',
+      '/https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/Ventas.jpg',
       'https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/Viaje.jpg',
-      'https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/Vendedores.jpg'
+      '/https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/Vendedores.jpg'
     ],
     year: '2024',
     githubUrl: 'https://github.com/moraflorencia/Asistencia-al-Viajero-Power-BI-',
@@ -396,17 +380,6 @@ const projects = [
       );
     }
   };
-  const nextCertification = () => {
-    setCurrentCertIndex((prev) => 
-      prev === complementaryEducation.length - 1 ? 0 : prev + 1
-    );
-  };
-
-  const prevCertification = () => {
-    setCurrentCertIndex((prev) => 
-      prev === 0 ? complementaryEducation.length - 1 : prev - 1
-    );
-  };
 
   const navigationItems = [
     { key: 'home', label: 'Inicio' },
@@ -415,7 +388,6 @@ const projects = [
     { key: 'projects', label: t.nav.projects },
     { key: 'experience', label: t.nav.experience },
     { key: 'education', label: t.nav.education },
-    { key: 'certifications', label: t.nav.certifications },
     { key: 'contact', label: t.nav.contact }
   ];
  
@@ -770,10 +742,15 @@ const projects = [
               <div className={`relative backdrop-blur-sm border rounded-3xl overflow-hidden shadow-2xl ${
                 isDarkMode ? 'bg-white/5 border-white/10' : 'bg-white/70 border-rose-200/30'
               }`}>
-                <img src="https://images.pexels.com/photos/590020/pexels-photo-590020.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Data Analysis" className="w-full h-80 object-cover" />
+                <img 
+                  src="https://images.pexels.com/photos/590020/pexels-photo-590020.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  alt="Data Analysis" 
+                  className="w-full h-80 object-cover"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
               </div>
             </div>
+            
             {/* Content */}
             <div className="space-y-8">
               <div className="space-y-6">
@@ -782,12 +759,14 @@ const projects = [
                 }`}>
                   {t.about.description1}
                 </p>
+                
                 <p className={`text-lg leading-relaxed transition-all duration-300 ${
                   isDarkMode ? 'text-gray-300' : 'text-slate-800'
                 }`}>
                   {t.about.description2}
                 </p>
               </div>
+              
               {/* Specialties Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {[
@@ -814,6 +793,7 @@ const projects = [
           </div>
         </div>
       </section>
+      
       {/* Skills Section */}
       <section id="skills" className="py-20 px-6 relative">
         <div className="container mx-auto max-w-6xl">
@@ -828,17 +808,20 @@ const projects = [
               isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
             }`}></div>
           </div>
+          
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {skills.map((skill, index) => (
-              <div key={index} className={`group relative p-8 rounded-3xl backdrop-blur-sm border transition-all duration-500 hover:scale-105 hover:shadow-2xl cursor-pointer ${
+              <div key={index} className={`group relative p-8 rounded-3xl backdrop-blur-sm border transition-all duration-500 hover:scale-105 hover:shadow-2xl cursor-pointer ${ 
                 isDarkMode ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-white/60 border-rose-200/40 hover:bg-white/80'
               }`}>
-                {/* Background Gradient */}
+                {/* Background Gradient */} 
                 <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${skill.color} opacity-0 group-hover:opacity-10 transition-all duration-500`}></div>
+                
                 {/* Icon */}
                 <div className={`relative w-16 h-16 rounded-2xl bg-gradient-to-r ${skill.color} flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg`}>
                   <skill.icon className="w-8 h-8 text-white" />
                 </div>
+                
                 {/* Content */}
                 <div className="relative text-center">
                   <h3 className={`text-xl font-bold mb-4 transition-all duration-300 ${
@@ -846,6 +829,7 @@ const projects = [
                   }`}>
                     {skill.name}
                   </h3>
+                  
                   <ul className="space-y-2">
                     {skill.items.map((item, itemIndex) => (
                       <li key={itemIndex} className={`text-sm font-medium transition-all duration-300 ${
@@ -861,6 +845,7 @@ const projects = [
           </div>
         </div>
       </section>
+
       {/* Projects Section */}
       <section id="projects" className="py-20 px-6 relative">
         <div className="container mx-auto max-w-6xl">
@@ -875,6 +860,7 @@ const projects = [
               isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
             }`}></div>
           </div>
+          
           <div className="space-y-8">
             {projects.map((project, index) => (
               <div key={index} className={`group relative rounded-3xl backdrop-blur-sm border transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl overflow-hidden ${
@@ -884,13 +870,18 @@ const projects = [
                   {/* Image */}
                   <div className="md:w-2/5 relative">
                     <div className="relative overflow-hidden rounded-l-3xl md:rounded-l-3xl md:rounded-r-none cursor-pointer" onClick={() => openProjectModal(project)}>
-                      <img src={project.images[0]} alt={project.title} className="w-full h-64 md:h-full object-cover transition-all duration-500 group-hover:scale-110" />
+                      <img
+                        src={project.images[0]}
+                        alt={project.title}
+                        className="w-full h-64 md:h-full object-cover transition-all duration-500 group-hover:scale-110"
+                      />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
                         <div className="bg-white/20 backdrop-blur-sm rounded-full p-4">
-                          <ExternalLink className="text-white" size={32} />
+                          <ZoomIn className="text-white" size={32} />
                         </div>
                       </div>
                     </div>
+                    
                     {/* Year Badge */}
                     <div className="absolute top-4 right-4">
                       <div className={`text-white px-4 py-2 rounded-xl text-sm font-bold shadow-lg ${
@@ -899,7 +890,9 @@ const projects = [
                         {project.year}
                       </div>
                     </div>
+
                   </div>
+                  
                   {/* Content */}
                   <div className="md:w-3/5 p-8 md:p-12">
                     <div className="flex items-start justify-between mb-4">
@@ -908,120 +901,73 @@ const projects = [
                       }`}>
                         {project.title}
                       </h3>
+                      
                       {/* Desktop GitHub Button */}
-                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className={`hidden md:flex items-center space-x-2 px-4 py-2 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg border ${
-                        isDarkMode ? 'bg-white/10 hover:bg-white/20 border-white/20 text-gray-300 hover:text-white' : 'bg-slate-800/80 hover:bg-slate-700 border-slate-600 text-white hover:text-white'
-                      }`}
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`hidden md:flex items-center space-x-2 px-4 py-2 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg border ${
+                          isDarkMode 
+                            ? 'bg-white/10 hover:bg-white/20 border-white/20 text-gray-300 hover:text-white' 
+                            : 'bg-slate-800/80 hover:bg-slate-700 border-slate-600 text-white hover:text-white'
+                        }`}
                       >
                         <Github size={18} />
                         <span className="text-sm font-medium">{t.projects.viewRepo}</span>
                       </a>
                     </div>
+                    
                     <p className={`text-lg leading-relaxed mb-6 transition-all duration-300 ${
                       isDarkMode ? 'text-gray-300' : 'text-slate-700'
                     }`}>
                       {project.description}
                     </p>
-                    {/* Tech Stack */}
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {project.tech.map((tech, techIndex) => (
-                        <span key={techIndex} className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                          isDarkMode ? 'bg-purple-600/30 text-purple-200' : 'bg-rose-500/20 text-rose-600'
-                        }`}>
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
+                    
                     {/* Achievements */}
-                    <div className="space-y-2">
-                      <h4 className={`font-semibold text-sm transition-all duration-300 ${
+                    <div className="mb-6">
+                      <h4 className={`font-semibold mb-4 text-lg transition-all duration-300 ${
                         isDarkMode ? 'text-white' : 'text-slate-800'
-                      }`}>{t.projects.achievements}</h4>
-                      <ul className={`list-inside list-disc text-sm space-y-1 transition-all duration-300 ${
-                        isDarkMode ? 'text-gray-400' : 'text-slate-600'
                       }`}>
-                        {project.achievements.map((achievement, achievementIndex) => (
-                          <li key={achievementIndex}>{achievement}</li>
+                        {t.projects.achievements}
+                      </h4>
+                      <ul className="space-y-3">
+                        {project.achievements.map((achievement, achIndex) => (
+                          <li key={achIndex} className={`flex items-start space-x-3 transition-all duration-300 ${
+                            isDarkMode ? 'text-gray-300' : 'text-slate-700'
+                          }`}>
+                            <div className="w-6 h-6 rounded-full bg-gradient-to-r from-green-400 to-emerald-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+                              <div className="w-2 h-2 bg-white rounded-full"></div>
+                            </div>
+                            <span>{achievement}</span>
+                          </li>
                         ))}
                       </ul>
                     </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-          {/* Project Modal */}
-          {selectedProject && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-md bg-black/70">
-              <div className="relative w-full max-w-4xl max-h-[90vh] rounded-3xl overflow-hidden bg-slate-800/90 border border-white/10 shadow-2xl">
-                {/* Close Button */}
-                <button
-                  onClick={closeProjectModal}
-                  className="absolute top-4 right-4 z-20 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
-                >
-                  <X size={24} />
-                </button>
-                <div className="relative h-full overflow-y-auto">
-                  {/* Image Carousel */}
-                  <div className="relative">
-                    <img
-                      src={selectedProject.images[selectedImageIndex]}
-                      alt={selectedProject.title}
-                      className="w-full h-80 md:h-[500px] object-contain"
-                    />
-                    {/* Carousel Controls */}
-                    {selectedProject.images.length > 1 && (
-                      <>
-                        <button
-                          onClick={prevImage}
-                          className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/20 text-white hover:bg-white/30 transition-colors"
-                        >
-                          <ChevronLeft size={24} />
-                        </button>
-                        <button
-                          onClick={nextImage}
-                          className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/20 text-white hover:bg-white/30 transition-colors"
-                        >
-                          <ChevronRight size={24} />
-                        </button>
-                      </>
-                    )}
-                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
-                      {selectedProject.images.map((_: any, index: React.Key | null | undefined) => (
+                    
+                    {/* Tech Stack */}
+                    <div className="flex flex-wrap gap-3">
+                      {project.tech.map((tech, techIndex) => (
                         <span
-                          key={index}
-                          className={`w-2 h-2 rounded-full transition-colors ${
-                            index === selectedImageIndex ? 'bg-white' : 'bg-gray-400'
+                          key={techIndex}
+                          className={`px-4 py-2 rounded-xl text-sm font-medium backdrop-blur-sm border transition-all duration-300 hover:scale-105 ${
+                            isDarkMode ? 'bg-white/10 border-white/20 text-gray-200' : 'bg-white/60 border-rose-200/40 text-slate-700'
                           }`}
-                        ></span>
-                      ))}
-                    </div>
-                  </div>
-                  {/* Project Info */}
-                  <div className="p-8">
-                    <h3 className="text-3xl md:text-4xl font-bold mb-2 text-white">{selectedProject.title}</h3>
-                    <p className="text-lg text-gray-300 mb-4">{selectedProject.description}</p>
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {selectedProject.tech.map((tech: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined, techIndex: React.Key | null | undefined) => (
-                        <span key={techIndex} className="px-3 py-1 rounded-full text-xs font-semibold bg-purple-600/30 text-purple-200">
+                        >
                           {tech}
                         </span>
                       ))}
                     </div>
-                    <div className="space-y-2">
-                      <h4 className="font-semibold text-sm text-white">{t.projects.achievements}</h4>
-                      <ul className="list-disc list-inside text-sm text-gray-400 space-y-1">
-                        {selectedProject.achievements.map((achievement: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined, achievementIndex: React.Key | null | undefined) => (
-                          <li key={achievementIndex}>{achievement}</li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="mt-6">
-                      <a
-                        href={selectedProject.githubUrl}
+
+                    {/* Mobile GitHub Button */}
+                    <div className="md:hidden mt-6">
+                      <a 
+                        href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center space-x-2 px-6 py-3 rounded-full font-semibold text-white bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 transition-colors"
+                        className={`w-full py-3 px-6 rounded-xl font-medium transition-all duration-300 flex items-center justify-center space-x-3 hover:scale-105 hover:shadow-lg ${
+                          isDarkMode ? 'bg-gradient-to-r from-gray-800 to-gray-900 hover:from-gray-700 hover:to-rose-800 text-white' : 'bg-rose-400 hover:bg-rose-700 text-white'
+                        }`}
                       >
                         <Github size={20} />
                         <span>{t.projects.viewRepo}</span>
@@ -1030,10 +976,150 @@ const projects = [
                   </div>
                 </div>
               </div>
-            </div>
-          )}
+            ))}
+          </div>
         </div>
       </section>
+
+      {/* Project Modal */}
+      {selectedProject && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className={`relative w-full max-w-6xl max-h-[90vh] rounded-3xl backdrop-blur-xl border overflow-hidden transition-all duration-500 ${
+            isDarkMode ? 'bg-slate-900/90 border-white/20' : 'bg-white/90 border-rose-200/30'
+          }`}>
+            {/* Header */}
+            <div className={`flex items-center justify-between p-6 border-b ${
+              isDarkMode ? 'border-white/10' : 'border-rose-200/30'
+            }`}>
+              <div className="flex items-center space-x-4">
+                <h3 className={`text-2xl font-bold transition-all duration-300 ${
+                  isDarkMode ? 'text-white' : 'text-slate-800'
+                }`}>
+                  {selectedProject.title}
+                </h3>
+                
+                {/* GitHub Button in Modal Header */}
+                <a
+                  href={selectedProject.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`flex items-center space-x-2 px-4 py-2 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg border ${
+                    isDarkMode 
+                      ? 'bg-white/10 hover:bg-white/20 border-white/20 text-gray-300 hover:text-white' 
+                      : 'bg-slate-800/80 hover:bg-slate-700 border-slate-600 text-white hover:text-white'
+                  }`}
+                > 
+                  <Github size={18} />
+                  <span className="text-sm font-medium">{t.projects.viewRepo}</span> 
+                </a>
+              </div>
+              
+              <button
+                onClick={closeProjectModal}
+                className={`p-3 rounded-xl transition-all duration-300 hover:scale-110 ${
+                  isDarkMode ? 'hover:bg-white/10 text-gray-400' : 'hover:bg-rose-100 text-slate-600'
+                }`}
+              >
+                <X size={24} />
+              </button>
+            </div>
+            
+            {/* Content */}
+            <div className="p-6 overflow-y-auto max-h-[calc(90vh-100px)]">
+              {/* Image Gallery */}
+              <div className="relative mb-8 group">
+                <div className="relative rounded-2xl overflow-hidden">
+                  <img
+                    src={selectedProject.images[selectedImageIndex]}
+                    alt={`${selectedProject.title} - Imagen ${selectedImageIndex + 1}`}
+                    className={`w-full h-96 object-contain transition-all duration-500 ${
+                      isDarkMode ? 'bg-slate-800' : 'bg-rose-50'
+                    }`}
+                  />
+                  
+                  {/* Navigation Arrows */}
+                  {selectedProject.images.length > 1 && (
+                    <>
+                      <button
+                        onClick={prevImage}
+                        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/20 backdrop-blur-sm hover:bg-black/40 text-white rounded-full p-3 transition-all duration-300 hover:scale-110"
+                      >
+                        <ChevronDown className="rotate-90" size={20} />
+                      </button>
+                      <button
+                        onClick={nextImage}
+                        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/20 backdrop-blur-sm hover:bg-black/40 text-white rounded-full p-3 transition-all duration-300 hover:scale-110"
+                      >
+                        <ChevronDown className="-rotate-90" size={20} />
+                      </button>
+                    </>
+                  )}
+                </div>
+                
+                {/* Image Indicators */}
+                {selectedProject.images.length > 1 && (
+                  <div className="flex justify-center space-x-2 mt-4">
+                    {selectedProject.images.map((_: any, index: number) => (
+                      <button
+                        key={index}
+                        onClick={() => setSelectedImageIndex(index)}
+                        className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                          index === selectedImageIndex 
+                            ? (isDarkMode ? 'bg-purple-600' : 'bg-rose-500')
+                            : (isDarkMode ? 'bg-gray-600 hover:bg-gray-500' : 'bg-slate-400 hover:bg-slate-500')
+                        }`}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+              
+              {/* Project Details */}
+              <div className="space-y-6">
+                <p className={`text-lg leading-relaxed transition-all duration-300 ${
+                  isDarkMode ? 'text-gray-300' : 'text-slate-700' 
+                }`}>
+                  {selectedProject.description}
+                </p>
+                
+                <div>
+                  <h4 className={`text-xl font-semibold mb-4 transition-all duration-300 ${
+                    isDarkMode ? 'text-white' : 'text-slate-800'
+                  }`}>
+                    {t.projects.achievements}
+                  </h4>
+                  <ul className="space-y-3">
+                    {selectedProject.achievements.map((achievement: string, achIndex: number) => (
+                      <li key={achIndex} className={`flex items-start space-x-3 transition-all duration-300 ${
+                        isDarkMode ? 'text-gray-300' : 'text-slate-700'
+                      }`}>
+                        <div className="w-6 h-6 rounded-full bg-gradient-to-r from-green-400 to-emerald-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <div className="w-2 h-2 bg-white rounded-full"></div>
+                        </div>
+                        <span>{achievement}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                
+                <div className="flex flex-wrap gap-3">
+                  {selectedProject.tech.map((tech: string, techIndex: number) => (
+                    <span
+                      key={techIndex}
+                      className={`px-4 py-2 rounded-xl text-sm font-medium backdrop-blur-sm border transition-all duration-300 hover:scale-105 ${
+                        isDarkMode ? 'bg-white/10 border-white/20 text-gray-200' : 'bg-white/60 border-rose-200/40 text-slate-700'
+                      }`}
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+ 
       {/* Experience Section */}
       <section id="experience" className="py-20 px-6 relative">
         <div className="container mx-auto max-w-6xl">
@@ -1048,43 +1134,85 @@ const projects = [
               isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
             }`}></div>
           </div>
-          <div className="grid lg:grid-cols-2 gap-12">
+          
+          <div className="space-y-8">
             {experience.map((exp, index) => (
-              <div key={index} className={`group relative p-8 rounded-3xl backdrop-blur-sm border transition-all duration-500 hover:scale-105 hover:shadow-2xl overflow-hidden ${
+              <div key={index} className={`group relative p-8 md:p-12 rounded-3xl backdrop-blur-sm border transition-all duration-500 hover:scale-105 hover:shadow-2xl ${
                 isDarkMode ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-white/70 border-rose-200/40 hover:bg-white/80'
               }`}>
-                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r from-blue-500 to-indigo-600 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg`}>
-                  <Briefcase className="w-8 h-8 text-white" />
-                </div>
-                <h3 className={`text-2xl font-bold mb-2 transition-all duration-300 ${
-                  isDarkMode ? 'text-white' : 'text-slate-800'
-                }`}>{exp.title}</h3>
-                <h4 className={`text-lg font-medium mb-1 transition-all duration-300 ${
-                  isDarkMode ? 'text-gray-300' : 'text-slate-700'
-                }`}>{exp.company}</h4>
-                <p className={`text-sm font-light mb-4 transition-all duration-300 ${
-                  isDarkMode ? 'text-gray-400' : 'text-slate-600'
-                }`}>{exp.period} - {exp.type}</p>
-                <p className={`leading-relaxed mb-4 transition-all duration-300 ${
-                  isDarkMode ? 'text-gray-300' : 'text-slate-800'
-                }`}>{exp.description}</p>
-                <h5 className={`font-semibold text-sm mb-2 transition-all duration-300 ${
-                  isDarkMode ? 'text-white' : 'text-slate-800'
-                }`}>{t.experience.skills}</h5>
-                <div className="flex flex-wrap gap-2">
-                  {exp.skills.map((skill, skillIndex) => (
-                    <span key={skillIndex} className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                      isDarkMode ? 'bg-blue-600/30 text-blue-200' : 'bg-indigo-500/20 text-indigo-600'
+                {/* Background Gradient */}
+                <div className={`absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 ${
+                  isDarkMode ? 'bg-gradient-to-br from-purple-600/10 to-pink-600/10' : 'bg-gradient-to-br from-rose-500/10 to-pink-500/10'
+                }`}></div>
+                
+                <div className="relative">
+                  <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6">
+                    <div className="flex-1">
+                      <h3 className={`text-2xl md:text-3xl font-bold mb-3 transition-all duration-300 ${
+                        isDarkMode ? 'text-white' : 'text-slate-800'
+                      }`}>
+                        {exp.title}
+                      </h3>
+                      <div className="flex items-center space-x-3 mb-4">
+                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center group-hover:scale-110 transition-all duration-300 ${
+                          isDarkMode ? 'bg-gradient-to-r from-blue-600 to-indigo-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
+                        }`}>
+                          <Briefcase className="w-6 h-6 text-white" />
+                        </div>
+                        <div>
+                          <h4 className={`text-lg font-semibold transition-all duration-300 ${
+                            isDarkMode ? 'text-gray-200' : 'text-slate-700'
+                          }`}>
+                            {exp.company}
+                          </h4>
+                          <p className={`text-sm transition-all duration-300 ${
+                            isDarkMode ? 'text-gray-400' : 'text-slate-600'
+                          }`}>
+                            {exp.type}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="lg:text-right">
+                      <span className="inline-block bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-2xl font-bold text-lg shadow-lg">
+                        {exp.period}
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <p className={`text-lg leading-relaxed mb-8 transition-all duration-300 ${
+                    isDarkMode ? 'text-gray-300' : 'text-slate-700'
+                  }`}>
+                    {exp.description}
+                  </p>
+                  
+                  <div>
+                    <h4 className={`text-xl font-semibold mb-4 transition-all duration-300 ${
+                      isDarkMode ? 'text-white' : 'text-slate-800'
                     }`}>
-                      {skill}
-                    </span>
-                  ))}
+                      {t.experience.skills}
+                    </h4>
+                    <div className="flex flex-wrap gap-3">
+                      {exp.skills.map((skill, skillIndex) => (
+                        <span
+                          key={skillIndex}
+                          className={`px-4 py-2 rounded-xl text-sm font-medium backdrop-blur-sm border transition-all duration-300 hover:scale-105 ${
+                            isDarkMode ? 'bg-blue-500/20 border-blue-500/30 text-blue-300' : 'bg-rose-100/80 border-rose-300/50 text-rose-800'
+                          }`}
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
         </div>
       </section>
+
       {/* Education Section */}
       <section id="education" className="py-20 px-6 relative">
         <div className="container mx-auto max-w-6xl">
@@ -1099,115 +1227,116 @@ const projects = [
               isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
             }`}></div>
           </div>
-          <div className="grid md:grid-cols-2 gap-12">
+          
+          <div className="space-y-12">
             {/* Formal Education */}
-            <div className={`group p-8 rounded-3xl backdrop-blur-sm border transition-all duration-500 hover:scale-105 hover:shadow-2xl overflow-hidden ${
-              isDarkMode ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-white/70 border-rose-200/40 hover:bg-white/80'
-            }`}>
-              <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r from-teal-500 to-emerald-600 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg`}>
-                <GraduationCap className="w-8 h-8 text-white" />
-              </div>
-              <h3 className={`text-2xl font-bold mb-4 transition-all duration-300 ${
+            <div>
+              <h3 className={`text-2xl md:text-3xl font-bold mb-8 text-center transition-all duration-300 ${
                 isDarkMode ? 'text-white' : 'text-slate-800'
-              }`}>{education[0].title}</h3>
-              <p className={`text-lg font-medium mb-1 transition-all duration-300 ${
-                isDarkMode ? 'text-gray-300' : 'text-slate-700'
-              }`}>{education[0].institution}</p>
-              <p className={`text-sm font-light mb-1 transition-all duration-300 ${
-                isDarkMode ? 'text-gray-400' : 'text-slate-600'
-              }`}>{education[0].period}</p>
-              <p className={`text-sm font-light transition-all duration-300 ${
-                isDarkMode ? 'text-gray-400' : 'text-slate-600'
-              }`}>{education[0].type} - {education[0].status}</p>
-            </div>
-            {/* Complementary Education */}
-            <div className={`group p-8 rounded-3xl backdrop-blur-sm border transition-all duration-500 hover:scale-105 hover:shadow-2xl overflow-hidden ${
-              isDarkMode ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-white/70 border-rose-200/40 hover:bg-white/80'
-            }`}>
-              <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r from-amber-500 to-yellow-600 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg`}>
-                <BookOpen className="w-8 h-8 text-white" />
-              </div>
-              <h3 className={`text-2xl font-bold mb-4 transition-all duration-300 ${
-                isDarkMode ? 'text-white' : 'text-slate-800'
-              }`}>{t.education.complementary}</h3>
-              <ul className="space-y-4">
-                {complementaryEducation.map((cert, index) => (
-                  <li key={index} className={`relative flex items-center space-x-4 p-4 rounded-xl transition-all duration-300 ${
-                    isDarkMode ? 'bg-white/5 text-gray-300 hover:bg-white/10' : 'bg-rose-100/50 text-slate-800 hover:bg-rose-100'
+              }`}>
+                {t.education.formal}
+              </h3>
+              <div className="grid md:grid-cols-2 gap-8">
+                {education.map((edu, index) => (
+                  <div key={index} className={`group p-8 rounded-3xl backdrop-blur-sm border transition-all duration-500 hover:scale-105 hover:shadow-2xl ${
+                    isDarkMode ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-white/70 border-rose-200/40 hover:bg-white/80'
                   }`}>
-                    <Award size={24} className={isDarkMode ? 'text-yellow-400' : 'text-amber-600'} />
-                    <div>
-                      <h4 className="font-medium">{cert.course}</h4>
-                      <p className="text-sm">{cert.institution} ({cert.year})</p>
+                    <div className="flex items-start space-x-4 mb-4">
+                      <div className={`w-12 h-12 rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 ${
+                        isDarkMode ? 'bg-gradient-to-r from-indigo-600 to-purple-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
+                      }`}>
+                        <GraduationCap className="w-6 h-6 text-white" />
+                      </div>
+                      <div className="flex-1">
+                        <h4 className={`text-xl font-bold mb-2 transition-all duration-300 ${
+                          isDarkMode ? 'text-white' : 'text-slate-800'
+                        }`}>
+                          {edu.title}
+                        </h4>
+                        <p className={`text-lg font-medium mb-2 transition-all duration-300 ${
+                          isDarkMode ? 'text-gray-300' : 'text-slate-700'
+                        }`}>
+                          {edu.institution}
+                        </p>
+                        <p className={`text-sm mb-3 transition-all duration-300 ${
+                          isDarkMode ? 'text-gray-400' : 'text-slate-600'
+                        }`}>
+                          {edu.period}
+                        </p>
+                        <div className="flex items-center space-x-3">
+                          <span className={`text-xs px-3 py-1 rounded-full backdrop-blur-sm border transition-all duration-300 ${
+                            isDarkMode ? 'bg-white/10 border-white/20 text-gray-300' : 'bg-white/60 border-rose-200/40 text-slate-700'
+                          }`}>
+                            {edu.type}
+                          </span>
+                          <span className={`text-xs px-3 py-1 rounded-full font-medium ${
+                            edu.status === 'En curso' 
+                              ? (isDarkMode ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white' : 'bg-gradient-to-r from-rose-500 to-pink-500 text-white')
+                              : 'bg-gradient-to-r from-green-500 to-emerald-600 text-white'
+                          }`}>
+                            {edu.status}
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                  </li>
+                  </div>
                 ))}
-              </ul>
+              </div>
+            </div>
+
+            {/* Complementary Education */}
+            <div>
+              <h3 className={`text-2xl md:text-3xl font-bold mb-8 text-center transition-all duration-300 ${
+                isDarkMode ? 'text-white' : 'text-slate-800'
+              }`}>
+                {t.education.complementary}
+              </h3>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {complementaryEducation.map((course, index) => (
+                  <div key={index} className={`group p-6 rounded-2xl backdrop-blur-sm border transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer ${
+                    isDarkMode ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-white/60 border-rose-200/40 hover:bg-white/80'
+                  }`}>
+                    <div className="flex items-start space-x-3">
+                      <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 ${
+                        isDarkMode ? 'bg-gradient-to-r from-orange-500 to-red-600' : 'bg-gradient-to-r from-amber-500 to-orange-500'
+                      }`}>
+                        <Award className="w-4 h-4 text-white" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h4 className={`font-bold text-sm mb-2 line-clamp-2 transition-all duration-300 ${
+                          isDarkMode ? 'text-white' : 'text-slate-800'
+                        }`}>
+                          {course.course}
+                        </h4>
+                        <p className={`text-xs mb-2 transition-all duration-300 ${
+                          isDarkMode ? 'text-gray-300' : 'text-slate-600'
+                        }`}>
+                          {course.institution}
+                        </p>
+                        <div className="flex items-center justify-between">
+                          <span className={`text-xs font-medium transition-all duration-300 ${
+                            isDarkMode ? 'text-gray-400' : 'text-slate-500'
+                          }`}>
+                            {course.year}
+                          </span>
+                          {course.hours && (
+                            <span className={`text-white text-xs px-2 py-1 rounded-lg font-medium ${
+                              isDarkMode ? 'bg-gradient-to-r from-orange-500 to-red-600' : 'bg-gradient-to-r from-amber-500 to-orange-500'
+                            }`}>
+                              {course.hours}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
-      {/* Certifications Section */}
-      <section id="certifications" className="py-20 px-6 relative">
-        <div className="container mx-auto max-w-6xl">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <h2 className={`text-4xl md:text-5xl font-bold mb-4 transition-all duration-300 ${
-              isDarkMode ? 'text-white' : 'text-slate-800'
-            }`}>
-              {t.certifications.title}
-            </h2>
-            <div className={`w-24 h-1 mx-auto rounded-full ${
-              isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
-            }`}></div>
-          </div>
-          <div className="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4">
-            <button
-              onClick={prevCertification}
-              className={`p-2 rounded-full transition-colors duration-300 ${isDarkMode ? 'bg-white/10 text-white hover:bg-white/20' : 'bg-slate-700/80 text-white hover:bg-slate-700'}`}
-            >
-              <ChevronLeft size={24} />
-            </button>
-            <div className={`relative p-8 rounded-3xl backdrop-blur-sm border transition-all duration-500 hover:scale-105 hover:shadow-2xl overflow-hidden ${
-              isDarkMode ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-white/70 border-rose-200/40 hover:bg-white/80'
-            } w-full max-w-2xl`}>
-              <div className="relative">
-                <img
-                  src="https://via.placeholder.com/600x400"
-                  alt={`Certificación de ${complementaryEducation[currentCertIndex].course}`}
-                  className="w-full rounded-2xl mb-6 shadow-lg"
-                />
-              </div>
-              <div className="text-center">
-                <h3 className={`text-2xl font-bold mb-2 transition-all duration-300 ${
-                  isDarkMode ? 'text-white' : 'text-slate-800'
-                }`}>{complementaryEducation[currentCertIndex].course}</h3>
-                <p className={`text-lg font-medium mb-1 transition-all duration-300 ${
-                  isDarkMode ? 'text-gray-300' : 'text-slate-700'
-                }`}>{complementaryEducation[currentCertIndex].institution}</p>
-                <p className={`text-sm font-light transition-all duration-300 ${
-                  isDarkMode ? 'text-gray-400' : 'text-slate-600'
-                }`}>{complementaryEducation[currentCertIndex].year}</p>
-                <a
-                  href="#"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`mt-4 inline-flex items-center space-x-2 px-6 py-3 rounded-full font-semibold text-white bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 transition-colors`}
-                >
-                  <ExternalLink size={20} />
-                  <span>{t.certifications.viewDrive}</span>
-                </a>
-              </div>
-            </div>
-            <button
-              onClick={nextCertification}
-              className={`p-2 rounded-full transition-colors duration-300 ${isDarkMode ? 'bg-white/10 text-white hover:bg-white/20' : 'bg-slate-700/80 text-white hover:bg-slate-700'}`}
-            >
-              <ChevronRight size={24} />
-            </button>
-          </div>
-        </div>
-      </section>
+
       {/* Contact Section */}
       <section id="contact" className="py-20 px-6 relative">
         <div className="container mx-auto max-w-6xl">
@@ -1222,138 +1351,127 @@ const projects = [
               isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
             }`}></div>
           </div>
-          <div className="grid lg:grid-cols-2 gap-12">
+          
+          <div className="grid lg:grid-cols-2 gap-16">
             {/* Contact Info */}
             <div className="space-y-8">
-              <h3 className={`text-2xl font-bold mb-4 transition-all duration-300 ${
-                isDarkMode ? 'text-white' : 'text-slate-800'
-              }`}>{t.contact.info}</h3>
-              <div className="space-y-6">
-                <div className={`flex items-center space-x-4 p-6 rounded-2xl backdrop-blur-sm border transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer ${
-                  isDarkMode ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-white/70 border-rose-200/40 hover:bg-white/80'
+              <div>
+                <h3 className={`text-2xl md:text-3xl font-bold mb-8 transition-all duration-300 ${
+                  isDarkMode ? 'text-white' : 'text-slate-800'
                 }`}>
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-r from-green-500 to-emerald-600 flex items-center justify-center`}>
-                    <Mail size={24} className="text-white" />
-                  </div>
-                  <div>
-                    <h4 className={`font-semibold transition-all duration-300 ${
-                      isDarkMode ? 'text-white' : 'text-slate-800'
-                    }`}>{t.contact.email}</h4>
-                    <p className={`text-sm transition-all duration-300 ${
-                      isDarkMode ? 'text-gray-300' : 'text-slate-600'
-                    }`}>mora.florencia.m@gmail.com</p>
-                  </div>
-                </div>
-                <div className={`flex items-center space-x-4 p-6 rounded-2xl backdrop-blur-sm border transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer ${
-                  isDarkMode ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-white/70 border-rose-200/40 hover:bg-white/80'
-                }`}>
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-r from-teal-500 to-green-600 flex items-center justify-center`}>
-                    <FaWhatsapp size={24} className="text-white" />
-                  </div>
-                  <div>
-                    <h4 className={`font-semibold transition-all duration-300 ${
-                      isDarkMode ? 'text-white' : 'text-slate-800'
-                    }`}>{t.contact.phone}</h4>
-                    <p className={`text-sm transition-all duration-300 ${
-                      isDarkMode ? 'text-gray-300' : 'text-slate-600'
-                    }`}>+54 9 11 6018-4046</p>
-                  </div>
-                </div>
-                <div className={`flex items-center space-x-4 p-6 rounded-2xl backdrop-blur-sm border transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer ${
-                  isDarkMode ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-white/70 border-rose-200/40 hover:bg-white/80'
-                }`}>
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-r from-blue-500 to-indigo-600 flex items-center justify-center`}>
-                    <Linkedin size={24} className="text-white" />
-                  </div>
-                  <div>
-                    <h4 className={`font-semibold transition-all duration-300 ${
-                      isDarkMode ? 'text-white' : 'text-slate-800'
-                    }`}>{t.contact.linkedin}</h4>
-                    <p className={`text-sm transition-all duration-300 ${
-                      isDarkMode ? 'text-gray-300' : 'text-slate-600'
-                    }`}>florm01</p>
-                  </div>
-                </div>
-                <div className={`flex items-center space-x-4 p-6 rounded-2xl backdrop-blur-sm border transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer ${
-                  isDarkMode ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-white/70 border-rose-200/40 hover:bg-white/80'
-                }`}>
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-r from-gray-700 to-slate-800 flex items-center justify-center`}>
-                    <Github size={24} className="text-white" />
-                  </div>
-                  <div>
-                    <h4 className={`font-semibold transition-all duration-300 ${
-                      isDarkMode ? 'text-white' : 'text-slate-800'
-                    }`}>{t.contact.github}</h4>
-                    <p className={`text-sm transition-all duration-300 ${
-                      isDarkMode ? 'text-gray-300' : 'text-slate-600'
-                    }`}>moraflorencia</p>
-                  </div>
+                  {t.contact.info}
+                </h3>
+                
+                <div className="space-y-6">
+                  {[
+                    { icon: Mail, label: t.contact.email, value: "mora.florencia.m@gmail.com", href: "mailto:mora.florencia.m@gmail.com", color: "from-yellow-500 to-orange-600" },
+                    { icon: FaWhatsapp, label: t.contact.phone, value: "+54 9 11 6018-4046", href: "tel:+5491160184046", color: "from-green-500 to-emerald-600" },
+                    { icon: Linkedin, label: t.contact.linkedin, value: "linkedin.com/in/florm01", href: "https://linkedin.com/in/florm01", color: "from-blue-500 to-indigo-600" },
+                    { icon: Github, label: t.contact.github, value: "github.com/moraflorencia", href: "https://github.com/moraflorencia", color: "from-purple-500 to-pink-600" },
+                    { icon: MapPin, label: t.contact.location, value: t.contact.locationValue, href: "", color: "from-red-500 to-pink-600" }
+                  ].map((item, index) => (
+                    <div key={index} className={`group flex items-center space-x-4 p-6 rounded-2xl backdrop-blur-sm border transition-all duration-300 hover:scale-105 hover:shadow-lg ${
+                      item.href ? 'cursor-pointer' : ''
+                    } ${
+                      isDarkMode ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-white/60 border-rose-200/40 hover:bg-white/80'
+                    }`}>
+                      <div className={`w-14 h-14 rounded-xl bg-gradient-to-r ${item.color} flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
+                        <item.icon className="w-7 h-7 text-white" />
+                      </div>
+                      <div className="flex-1">
+                        <p className={`font-semibold text-lg mb-1 transition-all duration-300 ${
+                          isDarkMode ? 'text-white' : 'text-slate-800'
+                        }`}>
+                          {item.label}
+                        </p>
+                        {item.href ? (
+                          <a
+                            href={item.href}
+                            target={item.href.startsWith('http') ? '_blank' : undefined}
+                            rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                            className={`transition-all duration-300 hover:scale-105 ${
+                              isDarkMode ? 'text-gray-300 hover:text-white' : 'text-slate-600 hover:text-slate-800'
+                            }`}
+                          >
+                            {item.value}
+                          </a>
+                        ) : (
+                          <p className={`transition-all duration-300 ${
+                            isDarkMode ? 'text-gray-300' : 'text-slate-700'
+                          }`}>
+                            {item.value}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
+
             {/* Contact Form */}
-            <div className={`group p-8 rounded-3xl backdrop-blur-sm border transition-all duration-500 hover:scale-105 hover:shadow-2xl overflow-hidden ${
-              isDarkMode ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-white/70 border-rose-200/40 hover:bg-white/80'
-            }`}>
-              <h3 className={`text-2xl font-bold mb-6 transition-all duration-300 ${
-                isDarkMode ? 'text-white' : 'text-slate-800'
-              }`}>{t.contact.form.title}</h3>
-              <FormEmail isDarkMode={isDarkMode} translations={t.contact.form} />
-            </div>
+            <FormEmail 
+              isDarkMode={isDarkMode}
+              translations={t.contact.form}
+            />
           </div>
         </div>
       </section>
+
       {/* Footer */}
-      <footer className={`py-12 px-6 transition-all duration-300 ${
-        isDarkMode ? 'bg-slate-900/50 text-gray-400 border-t border-white/10' : 'bg-white/50 text-slate-800 border-t border-rose-200/50'
+      <footer className={`relative py-20 px-6 ${
+        isDarkMode ? 'bg-slate-900/50' : 'bg-slate-900/90'
       }`}>
-        <div className="container mx-auto max-w-6xl text-center">
-          <p className="font-semibold mb-2">{t.footer.description}</p>
-          <div className={`flex justify-center space-x-6 mb-4 ${
-            isDarkMode ? 'text-white' : 'text-slate-800'
-          }`}>
-            {[
-              { icon: Linkedin, href: "https://linkedin.com/in/florm01", color: "hover:text-blue-400" },
-              { icon: Github, href: "https://github.com/moraflorencia", color: "hover:text-purple-400" },
-              { icon: Mail, href: "mailto:mora.florencia.m@gmail.com", color: "hover:text-green-400" },
-              { icon: FaWhatsapp, href: "https://wa.me/+5491160184046", color: "hover:text-green-400" }
-            ].map(({ icon: Icon, href, color }, index) => (
-              <a
-                key={index}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`p-4 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 text-gray-300 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:bg-white/20 ${color}`}
-              >
-                <Icon size={24} />
-              </a>
-            ))}
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center">
+            {/* Logo/Brand */}
+            <div className="mb-8">
+          <div className="flex items-center justify-center space-x-3 mb-4">
+            <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${
+              isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
+            }`}>
+              <Sparkles className="w-6 h-6 text-white" />
+            </div>
+            <h3 className="text-2xl md:text-3xl font-bold text-white">
+              Florencia Milagros Mora
+            </h3>
           </div>
-          <div className="flex justify-center space-x-6 mb-12">
-            {[
-              { icon: Linkedin, href: "https://linkedin.com/in/florm01", color: isDarkMode ? "hover:text-blue-400" : "hover:text-blue-600" },
-              { icon: Github, href: "https://github.com/moraflorencia", color: isDarkMode ? "hover:text-gray-700" : "hover:text-slate-700" },
-              { icon: Mail, href: "mailto:mora.florencia.m@gmail.com", color: isDarkMode ? "hover:text-green-400" : "hover:text-emerald-600" },
-              { icon: Phone, href: "tel:+5491160184046", color: isDarkMode ? "hover:text-yellow-400" : "hover:text-amber-600" }
-            ].map(({ icon: Icon, href, color }, index) => (
-              <a
-                key={index}
-                href={href}
-                target={href.startsWith('http') ? '_blank' : undefined}
-                rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                className={`p-4 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 text-gray-300 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:bg-white/20 ${color}`}
-              >
-                <Icon size={24} />
-              </a>
-            ))}
+          <p className="text-lg max-w-2xl mx-auto leading-relaxed text-gray-200">
+            {t.footer.description}
+          </p>
+        </div>
+            
+            {/* Social Links */}
+            <div className="flex justify-center space-x-6 mb-12">
+              {[
+                { icon: Linkedin, href: "https://linkedin.com/in/florm01", color: "hover:text-blue-400" },
+                { icon: Github, href: "https://github.com/moraflorencia", color: "hover:text-purple-400" },
+                { icon: Mail, href: "mailto:mora.florencia.m@gmail.com", color: "hover:text-green-400" },
+                { icon: Phone, href: "tel:+5491160184046", color: "hover:text-yellow-400" }
+              ].map(({ icon: Icon, href, color }, index) => (
+                <a
+                  key={index}
+                  href={href}
+                  target={href.startsWith('http') ? '_blank' : undefined}
+                  rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  className={`p-4 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 text-gray-300 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:bg-white/20 ${color}`}
+                >
+                  <Icon size={24} />
+                </a>
+              ))}
+            </div>
+            
+            {/* Copyright */}
+            <div className="pt-8 border-t border-white/20">
+              <p className="text-gray-300 text-lg">
+                {t.footer.copyright}
+              </p>
+            </div>
           </div>
-          <p className={`text-sm font-light transition-all duration-300 ${
-            isDarkMode ? 'text-gray-400' : 'text-slate-600'
-          }`}>{t.footer.copyright}</p>
         </div>
       </footer>
     </div>
   );
 }
 
-export default App; 
+export default App;
