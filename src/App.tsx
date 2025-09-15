@@ -137,6 +137,10 @@ function App() {
         formal: " ",
         complementary: "Educación Complementaria"
       },
+      certifications: {
+        title: "Certificaciones",
+        viewDrive: "Ver en Drive"
+      },
       contact: {
         title: "Contacto",
         info: "Información de contacto",
