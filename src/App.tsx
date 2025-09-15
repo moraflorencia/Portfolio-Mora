@@ -1420,6 +1420,7 @@ const projects = [
           </div>
         </div>
       </section>
+      
       {/* Contact Section */}
       <section id="contact" className="py-20 px-6 relative">
         <div className="container mx-auto max-w-6xl">
