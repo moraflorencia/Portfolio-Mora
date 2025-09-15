@@ -1319,7 +1319,7 @@ const projects = [
             <h2 className={`text-4xl md:text-5xl font-bold mb-4 transition-all duration-300 ${
               isDarkMode ? 'text-white' : 'text-slate-800'
             }`}>
-              {t.contact.title}
+              {t.certifications.title}
             </h2>
             <div className={`w-24 h-1 mx-auto rounded-full ${
               isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
