@@ -469,64 +469,45 @@ const projects = [
               ))}
               
               {/* Controls */}
-              
-                 
-                <button
-                  onClick={toggleDarkMode}
-                  className={`p-2 rounded-xl transition-all duration-300 ${
-                    isDarkMode 
-                      ? 'bg-yellow-500 hover:bg-yellow-400 text-yellow-900' 
-                      : 'bg-slate-700 hover:bg-slate-600 text-white'
-                  }`}
-                >
-                  {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
-                </button>
-              </div>
-            </div>
+              <div className="flex items-center space-x-2 ml-4">
+  <button
+    onClick={toggleDarkMode}
+    className={`p-2 rounded-xl transition-all duration-300 ${
+      isDarkMode 
+        ? 'bg-yellow-500 hover:bg-yellow-400 text-yellow-900' 
+        : 'bg-slate-700 hover:bg-slate-600 text-white'
+    }`}
+  >
+    {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+  </button>
+</div>
+</div>
 
-            {/* Mobile Menu Button */}
-            <div className="md:hidden flex items-center space-x-2">
-              <button
-                onClick={toggleLanguage}
-                className={`p-2 rounded-xl transition-all duration-300 ${
-                  isDarkMode 
-                    ? 'bg-white/10 hover:bg-white/20 text-white' 
-                    : 'bg-slate-800/80 hover:bg-slate-700 text-white'
-                }`}
-              >
-               <svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 24 24"
-  className="w-5 h-5"
-  fill="currentColor"
->
-  <path d="m11.9 22l4.55-12h2.1l4.55 12H21l-1.075-3.05h-4.85L14 22zM4 19l-1.4-1.4l5.05-5.05q-.875-.875-1.588-2T4.75 8h2.1q.5.975 1 1.7t1.2 1.45q.825-.825 1.713-2.313T12.1 6H1V4h7V2h2v2h7v2h-2.9q-.525 1.8-1.575 3.7t-2.075 2.9l2.4 2.45l-.75 2.05l-3.05-3.125zm11.7-1.8h3.6l-1.8-5.1z"/>
-</svg>
-              </button>
-              
-              <button 
-                onClick={toggleDarkMode}
-                className={`p-2 rounded-xl transition-all duration-300 ${
-                  isDarkMode 
-                    ? 'bg-yellow-500 hover:bg-yellow-400 text-yellow-900' 
-                    : 'bg-slate-700 hover:bg-slate-600 text-white'
-                }`}
-              >
-                {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
-              </button>
-              
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className={`p-2 rounded-xl transition-all duration-300 ${
-                  isDarkMode 
-                    ? 'bg-white/10 hover:bg-white/20 text-white' 
-                    : 'bg-slate-800/80 hover:bg-slate-700 text-white'
-                }`}
-              >
-                <Menu size={20} />
-              </button>
-            </div>
-          </div>
+{/* Mobile Menu Button */}
+<div className="md:hidden flex items-center space-x-2">
+  <button 
+    onClick={toggleDarkMode}
+    className={`p-2 rounded-xl transition-all duration-300 ${
+      isDarkMode 
+        ? 'bg-yellow-500 hover:bg-yellow-400 text-yellow-900' 
+        : 'bg-slate-700 hover:bg-slate-600 text-white'
+    }`}
+  >
+    {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+  </button>
+  
+  <button
+    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+    className={`p-2 rounded-xl transition-all duration-300 ${
+      isDarkMode 
+        ? 'bg-white/10 hover:bg-white/20 text-white' 
+        : 'bg-slate-800/80 hover:bg-slate-700 text-white'
+    }`}
+  >
+    <Menu size={20} />
+  </button>
+</div>
+
 
           {/* Mobile Menu */}
           {isMobileMenuOpen && (
