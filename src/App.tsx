@@ -1326,8 +1326,6 @@ const projects = [
             }`}></div>
           </div>
     <div className="flex items-center justify-center space-x-3">
-  <h2
-   
   </h2>
   <a
     href="https://drive.google.com"
