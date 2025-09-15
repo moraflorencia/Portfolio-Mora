@@ -1311,10 +1311,9 @@ const projects = [
         </div>
       </section>
 {/* Certifications Section */}
-<section id="certifications" className="py-20 px-6 relative">
-  <div className="container mx-auto max-w-6xl">
-    {/* Header */}
-    <div className="flex items-center justify-center mb-12 relative">
+<div className="container mx-auto max-w-6xl">
+    {/* Header con título centrado + botón al lado */}
+    <div className="flex items-center justify-center mb-12 space-x-3">
       <h2
         className={`text-4xl md:text-5xl font-bold text-center transition-all duration-300 ${
           isDarkMode ? "text-white" : "text-slate-800"
