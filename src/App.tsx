@@ -94,6 +94,7 @@ function App() {
         projects: "Proyectos",
         experience: "Experiencia",
         education: "Educación",
+        certifications: 'Certificaciónes',
         contact: "Contacto"
       },
       hero: {
