@@ -1314,39 +1314,29 @@ const projects = [
 {/* Certifications Section */}
 <section id="certifications" className="py-20 px-6 relative">
   <div className="container mx-auto max-w-6xl">
-    {/* Header con botón */}
-    <div className="flex flex-col md:flex-row items-center justify-between mb-12">
-      <div className="text-center md:text-left">
-        <h2
-          className={`text-4xl md:text-5xl font-bold mb-4 transition-all duration-300 ${
-            isDarkMode ? "text-white" : "text-slate-800"
-          }`}
-        >
-          {t.certifications.title}
-        </h2>
-        <div
-          className={`w-24 h-1 mx-auto md:mx-0 rounded-full ${
-            isDarkMode
-              ? "bg-gradient-to-r from-purple-600 to-pink-600"
-              : "bg-gradient-to-r from-rose-500 to-pink-500"
-          }`}
-        ></div>
-      </div>
+    {/* Header */}
+    <div className="flex items-center justify-center mb-12 relative">
+      <h2
+        className={`text-4xl md:text-5xl font-bold text-center transition-all duration-300 ${
+          isDarkMode ? "text-white" : "text-slate-800"
+        }`}
+      >
+        {t.certifications.title}
+      </h2>
       <a
         href="https://drive.google.com"
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-6 md:mt-0 inline-flex items-center space-x-2 px-6 py-3 rounded-full font-semibold text-white bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 transition-colors"
+        className="absolute right-0 top-1/2 -translate-y-1/2 p-2 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white transition-colors"
       >
-        <ExternalLink size={20} />
-        <span>{t.certifications.viewDrive}</span>
+        <ExternalLink size={22} />
       </a>
     </div>
 
     {/* Carrusel con flechas */}
-    <div className="flex items-center justify-center space-x-4">
+    <div className="flex items-center space-x-4">
       <button
-        onClick={prevCertification} 
+        onClick={prevCertification}
         className={`p-2 rounded-full transition-colors duration-300 ${
           isDarkMode
             ? "bg-white/10 text-white hover:bg-white/20"
@@ -1356,42 +1346,49 @@ const projects = [
         <ChevronLeft size={24} />
       </button>
 
-      {/* Tarjeta (más chica, sin foto) */}
-      <div
-        className={`relative p-6 rounded-2xl backdrop-blur-sm border transition-all duration-500 hover:scale-105 hover:shadow-2xl overflow-hidden ${
-          isDarkMode
-            ? "bg-white/5 border-white/10 hover:bg-white/10"
-            : "bg-white/70 border-rose-200/40 hover:bg-white/80"
-        } w-[260px] sm:w-[300px] md:w-[320px]`}
-      >
-        <div className="text-center">
-          <h3
-            className={`text-lg font-bold mb-1 ${
-              isDarkMode ? "text-white" : "text-slate-800"
-            }`}
-          >
-            {complementaryEducation[currentCertIndex].course}
-          </h3>
-          <p
-            className={`text-sm font-medium mb-1 ${
-              isDarkMode ? "text-gray-300" : "text-slate-700"
-            }`}
-          >
-            {complementaryEducation[currentCertIndex].institution}
-          </p>
-          <p
-            className={`text-xs font-light ${
-              isDarkMode ? "text-gray-400" : "text-slate-600"
-            }`}
-          >
-            {complementaryEducation[currentCertIndex].year}
-          </p>
-          <div className="mt-3">
-            <span className="bg-red-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
-              {complementaryEducation[currentCertIndex].hours} hrs
-            </span>
-          </div>
-        </div>
+      {/* Grid con 3 tarjetas */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 flex-1">
+        {complementaryEducation
+          .slice(currentCertIndex, currentCertIndex + 3)
+          .map((cert, idx) => (
+            <div
+              key={idx}
+              className={`p-6 rounded-2xl backdrop-blur-sm border transition-all duration-500 hover:scale-105 hover:shadow-2xl ${
+                isDarkMode
+                  ? "bg-white/5 border-white/10 hover:bg-white/10"
+                  : "bg-white/70 border-rose-200/40 hover:bg-white/80"
+              }`}
+            >
+              <div className="text-center">
+                <h3
+                  className={`text-lg font-bold mb-1 ${
+                    isDarkMode ? "text-white" : "text-slate-800"
+                  }`}
+                >
+                  {cert.course}
+                </h3>
+                <p
+                  className={`text-sm font-medium mb-1 ${
+                    isDarkMode ? "text-gray-300" : "text-slate-700"
+                  }`}
+                >
+                  {cert.institution}
+                </p>
+                <p
+                  className={`text-xs font-light ${
+                    isDarkMode ? "text-gray-400" : "text-slate-600"
+                  }`}
+                >
+                  {cert.year}
+                </p>
+                <div className="mt-3">
+                  <span className="bg-red-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
+                    {cert.hours} hrs
+                  </span>
+                </div>
+              </div>
+            </div>
+          ))}
       </div>
 
       <button
@@ -1407,6 +1404,7 @@ const projects = [
     </div>
   </div>
 </section>
+
 
       
       {/* Contact Section */}
