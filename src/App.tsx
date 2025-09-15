@@ -1315,24 +1315,27 @@ const projects = [
 <section id="certifications" className="py-20 px-6 relative">
   <div className="container mx-auto max-w-6xl">
     {/* Header */}
-    <div className="text-center mb-16">
-            <h2 className={`text-4xl md:text-5xl font-bold mb-4 transition-all duration-300 ${
-              isDarkMode ? 'text-white' : 'text-slate-800'
-            }`}>
-              {t.contact.title}
-            </h2>
-            <div className={`w-24 h-1 mx-auto rounded-full ${
-              isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
-            }`}></div>
-  <a
-    href="https://drive.google.com"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="p-2 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white transition-colors"
-  >
-    <ExternalLink size={22} />
-  </a>
-</div> 
+    <div className="flex items-center justify-center mb-16 gap-4">
+      <h2 className={`text-4xl md:text-5xl font-bold transition-all duration-300 ${
+        isDarkMode ? 'text-white' : 'text-slate-800'
+      }`}>
+        {t.contact.title}
+      </h2>
+      <a
+        href="https://drive.google.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="p-2 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white transition-colors"
+      >
+        <ExternalLink size={22} />
+      </a>
+    </div>
+
+    {/* Línea debajo del título */}
+    <div className={`w-24 h-1 mx-auto rounded-full mb-8 ${
+      isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
+    }`}></div>
+  </div>
 
 
     {/* Carrusel con flechas */}
