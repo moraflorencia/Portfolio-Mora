@@ -13,7 +13,7 @@ const useTypewriter = (words: string[], speed = 150, delay = 2000) => {
   const [loopNum, setLoopNum] = useState(0);
 
   useEffect(() => {
-    const current = loopNum % words.length;
+    const current = loopNum % words.length; 
     const fullText = words[current];
 
     const timer = setTimeout(() => {
