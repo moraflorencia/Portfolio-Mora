@@ -272,9 +272,8 @@ const projects = [
     tech: ['Power BI', 'Excel', 'Datos', 'Visualización'],
     images: [
       'https://i.postimg.cc/XqgcBFPb/General.gif',
-      '/https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/Ventas.jpg',
-      'https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/Viaje.jpg',
-      '/https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/Vendedores.jpg'
+      'https://i.postimg.cc/pL5hgzBL/Viajes.gif',
+      'https://i.postimg.cc/rFn568XQ/Vendedores.png'
     ],
     year: '2024',
     githubUrl: 'https://github.com/moraflorencia/Asistencia-al-Viajero-Power-BI-',
