@@ -272,6 +272,7 @@ const projects = [
     tech: ['Power BI', 'Excel', 'Datos', 'Visualización'],
     images: [
       'https://i.postimg.cc/XqgcBFPb/General.gif',
+      'https://i.postimg.cc/7Zj76mLz/Ventas.gif',
       'https://i.postimg.cc/pL5hgzBL/Viajes.gif',
       'https://i.postimg.cc/rFn568XQ/Vendedores.png'
     ],
