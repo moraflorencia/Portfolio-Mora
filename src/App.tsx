@@ -6,6 +6,7 @@ import TypewriterEffect from './components/TypewriterEffect';
 import BackgroundEffects from './components/BackgroundEffects';
 import { FormEmail } from './components/FormEmail'; 
 import { HiBuilding } from 'react-icons/hi';
+import { DatabaseIcon } from '@heroicons/react/outline'; 
 
 // Hook para efecto máquina de escribir
 const useTypewriter = (words: string[], speed = 150, delay = 2000) => {
@@ -267,7 +268,7 @@ function App() {
     },
     {
      name: 'SAP',
-     icon: Brain,
+     icon: DatabaseIcon,
      items: ['ABAP'],
      color: isDarkMode ? 'from-white/5 to-white/20' : 'from-white/50 to-rose-200/30',
 }
