@@ -246,7 +246,7 @@ function App() {
      name: 'SAP',
      icon: Database,
      items: ['ABAP'],
-     color: 'from-blue-500 to-emerald-600',
+     color: 'from-blue-500 to-blue-600',
 },
     { 
       name: 'Análisis de Datos', 
