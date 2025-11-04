@@ -334,7 +334,7 @@ const projects = [
       company: 'ARTECH | Fundación PESCAR',
       period: 'Actual',
       description: 'Formación profesional especializada en Análisis de Datos y SAP. Desarrollo intensivo en Python y SQL, complementado con el fortalecimiento de habilidades blandas para el ambiente profesional.',
-      skills: ['Python', 'SQL', 'SAP', 'Análisis de Datos', 'Habilidades Blandas'],
+      skills: ['ABAP', 'SAP Fiori', 'SAP BTP', 'JavaScript','Python', 'SQL', 'Análisis de Datos', 'Habilidades Blandas'],
       type: 'Pasantía de Aprendizaje'
     }
   ];
