@@ -267,7 +267,7 @@ function App() {
     },
     {
      name: 'SAP',
-     icon: Building2,
+     icon: ,
      items: ['ABAP', 'SAP FIORI', 'SAP BTP'],
      color: isDarkMode ? 'from-white/5 to-white/20' : 'from-white/50 to-rose-200/30',
 }
