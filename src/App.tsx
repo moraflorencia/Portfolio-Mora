@@ -115,7 +115,7 @@ function App() {
         description2: "Me encanta trabajar con otras personas, compartir conocimientos y seguir creciendo en cada desafío. Más allá de la tecnología, me motiva la posibilidad de aprender algo nuevo todos los días y aplicar lo que sé de forma creativa.",
         dataAnalysis: "Análisis de Datos",
         ai: "Inteligencia Artificial",
-        data: "SAP",
+        visualization: "SAP",
         programming: "Programación"
       },
       skills: {
@@ -753,7 +753,7 @@ const projects = [
                 {[
                   { icon: BarChart3, title: t.about.dataAnalysis, color: 'from-red-500 to-pink-600' },
                   { icon: Brain, title: t.about.ai, color: 'from-blue-500 to-indigo-600' },
-                  { icon: TrendingUp, title: t.about.visualization, color: 'from-yellow-500 to-orange-600' },
+                  { icon: Database, title: t.about.visualization, color: 'from-yellow-500 to-orange-600' },
                   { icon: Code, title: t.about.programming, color: 'from-green-500 to-emerald-600' }
                 ].map((item, index) => (
                   <div key={index} className={`group p-6 rounded-2xl backdrop-blur-sm border transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer ${
