@@ -246,7 +246,7 @@ function App() {
      name: 'SAP',
      icon: Database,
      items: ['ABAP'],
-     color: isDarkMode ? 'from-white/5 to-white/20' : 'from-white/50 to-rose-200/30',
+     color: 'from-blue-500 to-emerald-600',
 },
     { 
       name: 'Análisis de Datos', 
@@ -264,7 +264,7 @@ function App() {
       name: 'IA & Tecnología', 
       icon: Brain, 
       items: ['N8n','Automatización', 'Ciberseguridad'],
-      color: 'from-blue-500 to-indigo-600'
+      color: 'from-purple-500 to-indigo-600'
     },
     { 
       name: 'Visualización', 
