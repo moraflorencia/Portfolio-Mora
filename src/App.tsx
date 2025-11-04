@@ -1,73 +1,69 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Moon, 
-  Sun, 
-  Download, 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Github, 
-  Linkedin, 
-  ExternalLink,
-  Database,
-  BarChart3,
-  Code,
-  FileSpreadsheet,
-  TrendingUp,
-  Users,
-  Calendar,
-  Award,
-  BookOpen,
-  Target,
-  Briefcase,
-  GraduationCap,
-  Star,
-  ChevronDown,
-  Menu,
-  X
-} from 'lucide-react';
+import { ChevronDown, Github, Linkedin, Mail, Phone, MapPin, ExternalLink, BarChart3, Database, Brain, Code, TrendingUp, BookOpen, Award, Briefcase, Send, Calendar, GraduationCap, X, ZoomIn, Moon, Sun, Menu, Globe, Star, Sparkles } from 'lucide-react';
+import { Languages } from 'lucide-react';
+import { FaWhatsapp } from "react-icons/fa";
 import TypewriterEffect from './components/TypewriterEffect';
 import BackgroundEffects from './components/BackgroundEffects';
 import { FormEmail } from './components/FormEmail';
 
+// Hook para efecto máquina de escribir
+const useTypewriter = (words: string[], speed = 150, delay = 2000) => {
+  const [text, setText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [loopNum, setLoopNum] = useState(0);
+
+  useEffect(() => { 
+    const current = loopNum % words.length; 
+    const fullText = words[current];
+
+    const timer = setTimeout(() => {
+      setText(prev =>
+        isDeleting
+          ? fullText.substring(0, prev.length - 1)
+          : fullText.substring(0, prev.length + 1)
+      );
+
+      if (!isDeleting && text === fullText) {
+        setTimeout(() => setIsDeleting(true), delay);
+      } else if (isDeleting && text === "") {
+        setIsDeleting(false);
+        setLoopNum(loopNum + 1);
+      }
+    }, isDeleting ? speed / 1.5 : speed); // un poco más lento
+
+    return () => clearTimeout(timer);
+  }, [text, isDeleting, loopNum, words, delay, speed]);
+
+  return text;
+};
+
+    
 function App() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('inicio');
-
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-  };
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setActiveSection(sectionId);
-      setIsMenuOpen(false);
-    }
-  };
-
+  const [activeSection, setActiveSection] = useState('home'); 
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [isDarkMode, setIsDarkMode] = useState(true); // Changed to true for dark mode default
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isEnglish, setIsEnglish] = useState(false);
+ 
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['inicio', 'sobre-mi', 'habilidades', 'proyectos', 'educacion', 'contacto'];
-      const scrollPosition = window.scrollY + 100;
-
-      for (const section of sections) {
+    const handleScroll = () => { 
+      setIsScrolled(window.scrollY > 50);
+      
+      // Update active section based on scroll position
+      const sections = ['home', 'about', 'skills', 'projects', 'experience', 'education','certifications', 'contact'];
+      const current = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
-          const offsetTop = element.offsetTop;
-          const offsetHeight = element.offsetHeight;
-          
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section);
-            break;
-          }
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
         }
+        return false;
+      });
+      
+      if (current) {
+        setActiveSection(current);
       }
     };
 
@@ -75,724 +71,1376 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    setIsMobileMenuOpen(false);
+  };
+
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
+  const toggleLanguage = () => setIsEnglish(!isEnglish);
+
+  // Translations
   const translations = {
-    nav: {
-      inicio: 'Inicio',
-      sobreMi: 'Sobre Mí',
-      habilidades: 'Habilidades',
-      proyectos: 'Proyectos',
-      educacion: 'Educación',
-      contacto: 'Contacto'
-    },
-    hero: {
-      downloadCV: 'Descargar CV',
-      scrollDown: 'Desplázate hacia abajo'
-    },
-    about: {
-      title: 'Sobre Mí',
-      description: 'Soy una analista de datos apasionada por transformar información en insights accionables. Con sólida experiencia en Python, SQL, Power BI y Excel, me especializo en crear soluciones que impulsan la toma de decisiones estratégicas.',
-      currentlyStudying: 'Actualmente cursando Ingeniería en Sistemas de Información en la UTN, combinando mi pasión por los datos con fundamentos sólidos en desarrollo de software.',
-      location: 'Buenos Aires, Argentina',
-      experience: '2+ años de experiencia',
-      projects: '10+ proyectos completados'
-    },
-    skills: {
-      title: 'Habilidades Técnicas',
-      categories: {
-        programming: 'Programación',
-        dataAnalysis: 'Análisis de Datos',
-        databases: 'Bases de Datos',
-        tools: 'Herramientas'
+    es: {
+      nav: {
+        about: "Sobre mí",
+        skills: "Habilidades",
+        projects: "Proyectos",
+        experience: "Experiencia",
+        education: "Educación",
+        certification: "Certificaciones",
+        contact: "Contacto"
+      },
+      hero: {
+        greeting: "¡Hola!",
+        name: "Florencia Milagros Mora",
+        title: "Analista de Datos",
+        subtitle2: "SAP",
+        subtitle: "Estudiante de Ingeniería en Sistemas",
+        description: "Me entusiasma aprender, crecer en equipo y usar los datos para crear soluciones con impacto real.",
+        downloadCV: "Ver CV",
+        contact: "Contactar"
+      },
+      about: {
+        title: "Sobre mí", 
+        description1: "Soy una persona curiosa y en constante aprendizaje. Me gusta entender cómo funcionan las cosas, resolver problemas y transformar ideas en proyectos que aporten valor. También disfruto del diseño, porque me permite combinar lo técnico con lo creativo.",
+        description2: "Me encanta trabajar con otras personas, compartir conocimientos y seguir creciendo en cada desafío. Más allá de la tecnología, me motiva la posibilidad de aprender algo nuevo todos los días y aplicar lo que sé de forma creativa.",
+        dataAnalysis: "Análisis de Datos",
+        ai: "Inteligencia Artificial",
+        visualization: "Visualización",
+        programming: "Programación"
+      },
+      skills: {
+        title: "Habilidades Técnicas"
+      },
+      projects: {
+        title: "Proyectos",
+        achievements: "Logros principales:"
+      },
+      experience: { 
+        title: "Experiencia Profesional",
+        skills: "Tecnologías y habilidades:"
+      },
+      education: {
+        title: "Educación",
+        formal: " ",
+        complementary: "Educación Complementaria"
+      },
+      certifications: {
+        title: "Certificaciones",
+        viewDrive: "Ver en Drive"
+      },
+      contact: {
+        title: "Contacto",
+        info: "Información de contacto",
+        email: "Email",
+        phone: "Whatsapp",
+        linkedin: "LinkedIn",
+        github: "GitHub",
+        location: "Ubicación",
+        locationValue: "Buenos Aires, Argentina",
+        form: {
+          title: "Envíame un mensaje",
+          name: "Nombre",
+          namePlaceholder: "Tu nombre",
+          email: "Email",
+          emailPlaceholder: "tu@email.com",
+          subject: "Asunto",
+          subjectPlaceholder: "Asunto del mensaje",
+          message: "Mensaje",
+          messagePlaceholder: "Tu mensaje...",
+          send: "Enviar mensaje"
+        } 
+      },
+      footer: {
+        description: "Analista de Datos | Estudiante de Ingeniería en Sistemas",
+        copyright: "❤ 2025 Florencia Mora. Diseñado con amor."
       }
     },
-    projects: {
-      title: 'Proyectos Destacados',
-      viewProject: 'Ver Proyecto',
-      technologies: 'Tecnologías:',
-      projects: [
-        {
-          title: 'Dashboard de Análisis de Ventas',
-          description: 'Dashboard interactivo desarrollado en Power BI para análisis de ventas, con visualizaciones dinámicas y KPIs clave que permiten identificar tendencias y oportunidades de negocio.',
-          image: '/assets/Portada.jpg',
-          technologies: ['Power BI', 'DAX', 'SQL', 'Excel'],
-          link: '#'
-        },
-        {
-          title: 'Sistema de Análisis de Viajes',
-          description: 'Análisis completo de datos de viajes utilizando Python y SQL, con visualizaciones que revelan patrones de comportamiento y optimización de rutas.',
-          image: '/assets/Viaje.jpg',
-          technologies: ['Python', 'Pandas', 'SQL', 'Matplotlib'],
-          link: '#'
-        },
-        {
-          title: 'Automatización de Reportes',
-          description: 'Sistema automatizado para generación de reportes mensuales utilizando Excel y VBA, reduciendo el tiempo de procesamiento en un 70%.',
-          image: '/assets/Glosario.jpg',
-          technologies: ['Excel', 'VBA', 'Power Query', 'SQL'],
-          link: '#'
+    en: {
+      nav: {
+        about: "About",
+        skills: "Skills",
+        projects: "Projects",
+        experience: "Experience",
+        education: "Education",
+        certifications: "certifications",
+        contact: "Contact"
+      },
+      hero: {
+        greeting: "Hello!",
+        name: "Florencia Milagros Mora",
+        title: "Data Analyst",
+        subtitle: "Systems Engineering Student",
+        description: "I'm excited to learn, grow as a team, and use data to create solutions with real impact.",
+        downloadCV: "Download CV",
+        contact: "Contact"
+      },
+      about: {
+        title: "About Me",
+        description1: "I'm a curious person who's constantly learning. I like to understand how things work, solve problems, and transform ideas into projects that add value. I also enjoy design because it allows me to combine technical and creative aspects.",
+        description2: "I love working with other people, sharing knowledge, and continuing to grow with each challenge. Beyond technology, I'm motivated by the possibility of learning something new every day and applying what I know creatively.",
+        dataAnalysis: "Data Analysis",
+        ai: "Artificial Intelligence",
+        visualization: "Visualization",
+        programming: "Programming"
+      },
+      skills: {
+        title: "Technical Skills"
+      },
+      projects: {
+        title: "Projects",
+        achievements: "Key achievements:",
+        viewRepo: "View repository"
+      },
+      experience: {
+        title: "Professional Experience",
+        skills: "Technologies and skills:"
+      }, 
+      education: {
+        title: "Education",
+        formal: " ",
+        complementary: "Complementary Education"
+      },
+      contact: {
+        title: "Contact",
+        info: "Contact information",
+        email: "Email",
+        phone: "Whatsapp",
+        linkedin: "LinkedIn",
+        github: "GitHub",
+        location: "Location",
+        locationValue: "Buenos Aires, Argentina",
+        form: {
+          title: "Send me a message",
+          name: "Name",
+          namePlaceholder: "Your name",
+          email: "Email",
+          emailPlaceholder: "your@email.com",
+          subject: "Subject",
+          subjectPlaceholder: "Message subject",
+          message: "Message",
+          messagePlaceholder: "Your message...",
+          send: "Send message"
         }
-      ]
-    },
-    education: {
-      title: 'Educación y Certificaciones',
-      items: [
-        {
-          title: 'Ingeniería en Sistemas de Información',
-          institution: 'Universidad Tecnológica Nacional (UTN)',
-          period: '2022 - En curso',
-          description: 'Cursando actualmente con enfoque en desarrollo de software y análisis de sistemas.'
-        },
-        {
-          title: 'Certificación en Power BI',
-          institution: 'Microsoft',
-          period: '2023',
-          description: 'Certificación oficial en Microsoft Power BI para análisis de datos y business intelligence.'
-        },
-        {
-          title: 'Python para Análisis de Datos',
-          institution: 'Coursera',
-          period: '2023',
-          description: 'Especialización en Python aplicado al análisis de datos con Pandas, NumPy y Matplotlib.'
-        }
-      ]
-    },
-    contact: {
-      title: 'Contacto',
-      name: 'Nombre',
-      namePlaceholder: 'Tu nombre completo',
-      email: 'Email',
-      emailPlaceholder: 'tu.email@ejemplo.com',
-      subject: 'Asunto',
-      subjectPlaceholder: 'Selecciona un asunto',
-      message: 'Mensaje',
-      messagePlaceholder: 'Cuéntame sobre tu proyecto o consulta...',
-      send: 'Enviar Mensaje',
-      info: {
-        email: 'florenciamilagrosmora@gmail.com',
-        phone: '+54 11 1234-5678',
-        location: 'Buenos Aires, Argentina'
+      },
+      footer: {
+        description: "Data Analyst | Systems Engineering Student",
+        copyright: "❤ 2025 Florencia Mora. Designed with love."
       }
+    }
+  }; 
+
+  const t = translations[isEnglish ? 'en' : 'es'];
+
+  const skills = [
+    { 
+      name: 'Análisis de Datos', 
+      icon: BarChart3, 
+      items: ['SQL', 'Numpy', 'Pandas', 'Matplotlib'],
+      color: 'from-red-500 to-pink-600'
+    },
+    { 
+      name: 'Visualización', 
+      icon: TrendingUp, 
+      items: ['Power BI', 'Excel', 'Dashboards'],
+      color: 'from-yellow-500 to-orange-600'
+    },
+    { 
+      name: 'Programación', 
+      icon: Code, 
+      items: ['Python', 'JavaScript' ,'Bash', 'C'],
+      color: 'from-green-500 to-emerald-600'
+    },
+    { 
+      name: 'IA & Tecnología', 
+      icon: Brain, 
+      items: ['N8n','Automatización', 'Ciberseguridad'],
+      color: 'from-blue-500 to-indigo-600'
+    }
+  ];
+
+const projects = [
+  {
+    title: 'Asistencia al viajero - CoderHouse',
+    description: 'Proyecto integral de análisis de datos en el que desarrollé un tablero interactivo en Power BI a partir de un dataset propio titulado "Asistencia al Viajero". El trabajo incluyó la transformación de una base de datos compleja en Excel, la aplicación de técnicas avanzadas de limpieza y modelado de datos, y la creación de visualizaciones interactivas para facilitar el análisis estratégico',
+    tech: ['Power BI', 'Excel', 'Datos', 'Visualización'],
+    images: [
+      'https://i.postimg.cc/XqgcBFPb/General.gif',
+      'https://i.postimg.cc/7Zj76mLz/Ventas.gif',
+      'https://i.postimg.cc/pL5hgzBL/Viajes.gif',
+      'https://i.postimg.cc/rFn568XQ/Vendedores.png'
+    ],
+    year: '2024',
+    githubUrl: 'https://github.com/moraflorencia/Asistencia-al-Viajero-Power-BI-',
+    achievements: [ 
+      'Transformación completa de base de datos',
+      'Dashboards interactivos para análisis de tendencias',
+      'Mejora significativa en interpretación de datos'
+    ]
+  },
+  {
+    title: 'Análisis de desocupación mundial - UNQui',
+    description: 'Proyecto de análisis de datos en Excel donde completé y transformé una base de datos. Utilicé funciones para integrar información de continentes, población y tasas de desempleo. Calculé totales y promedios de desocupación, además de clasificar los países según su tamaño poblacional. Finalmente, elaboré tablas dinámicas y gráficos que permitieron un análisis detallado y visual de los datos',
+    tech: ['Excel', 'Datos', 'Visualización'],
+    images: [
+      'https://i.postimg.cc/XqTN4rvY/Captura-de-pantalla-2025-08-05-214437.png'
+    ], 
+    year: '2024',
+    githubUrl: 'https://docs.google.com/spreadsheets/d/1zCTH3ozQg5gaMDWS8VQoLn5tUGhUDERg/edit?usp=drive_link&ouid=114417583288005504879&rtpof=true&sd=true',
+    achievements: [
+      'Integración eficiente de datos complejos',
+      'Automatización y precisión en cálculos',
+      'Visualización y análisis estratégico'
+    ]
+  },
+  {
+    title: 'Explotación y Visualización de Datos - GIDAS',
+    description: 'Proyecto integral de análisis de datos donde gestioné y transformé una base de datos compleja en Excel, creé dashboards interactivos en Power BI y apliqué técnicas avanzadas de limpieza de datos.',
+    tech: ['Power BI', 'Excel', 'Datos', 'Visualización'],
+    images: [
+      'https://i.postimg.cc/j5bzdjLv/Captura-de-pantalla-2025-08-05-213720.png',
+      'https://i.postimg.cc/gjBXRckC/Captura-de-pantalla-2025-08-05-214017.png',
+      'https://i.postimg.cc/cL3ggSqz/Captura-de-pantalla-2025-08-05-214105.png'
+    ],
+    year: '2023',
+    githubUrl: 'https://github.com/moraflorencia/Proyectos-Graduados',
+    achievements: [ 
+      'Transformación completa de base de datos',
+      'Dashboards interactivos para análisis de tendencias',
+      'Mejora significativa en interpretación de datos'
+    ]
+  }
+];
+  
+  const experience = [
+    {
+      title: 'Pasante de Desarrollo SAP',
+      company: 'ARTECH | Fundación PESCAR',
+      period: 'Actual',
+      description: 'Formación profesional especializada en Análisis de Datos y SAP. Desarrollo intensivo en Python y SQL, complementado con el fortalecimiento de habilidades blandas para el ambiente profesional.',
+      skills: ['Python', 'SQL', 'SAP', 'Análisis de Datos', 'Habilidades Blandas'],
+      type: 'Pasantía de Aprendizaje'
+    }
+  ];
+
+  const education = [
+    {
+      title: 'Ingeniería en Sistemas de Información',
+      institution: 'Universidad Tecnológica Regional La Plata',
+      period: '2021 - Cursando',
+      type: 'Grado Universitario',
+      status: 'En curso'
+    },
+    {
+      title: 'Tecnicatura en Química',
+      institution: 'E.E.S.T N°2 Paula A de Sarmiento, Bernal',
+      period: '2013 - 2019',
+      type: 'Educación Secundaria',
+      status: 'Completado'
+    }
+  ];
+
+  const complementaryEducation = [
+    { course: 'Analista de Datos y Gestión de Información', institution: 'Quales Group', year: 'Actual', hours: '' },
+    { course: 'Business Intelligence', institution: 'Talento Tech', year: 'Actual', hours: '' },
+    { course: 'SQL Básico', institution: 'UTN FRA', year: '2025', hours: '' },
+    { course: 'Ciberseguridad', institution: 'Fundación YPF', year: '2025', hours: '60hrs' },
+    { course: 'Python para análisis de datos', institution: 'EducacionIT', year: '2024', hours: '18hrs' },
+    { course: 'Data Analytics', institution: 'CoderHouse', year: '2024', hours: '46hrs' },
+    { course: 'Excel 1', institution: 'UNQ', year: '2024', hours: '30hrs' },
+    { course: 'Introducción a la IA', institution: 'UTN', year: '2024', hours: '70hrs' },
+    { course: 'Automatización Industrial', institution: 'CIVET', year: '2022', hours: '40hrs' },
+    { course: 'Diseño asistido por computadora (AutoCAD)', institution: 'CFP 406', year: '2021', hours: '120hrs' }
+  ];
+
+  const openProjectModal = (project: any) => {
+    setSelectedProject(project);
+    setSelectedImageIndex(0);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeProjectModal = () => {
+    setSelectedProject(null);
+    setSelectedImageIndex(0);
+    document.body.style.overflow = 'unset';
+  };
+
+  const nextImage = () => {
+    if (selectedProject) {
+      setSelectedImageIndex((prev) => 
+        prev === selectedProject.images.length - 1 ? 0 : prev + 1
+      );
     }
   };
 
-  const skills = [
-    { name: 'Python', level: 90, category: 'programming', icon: Code },
-    { name: 'SQL', level: 85, category: 'databases', icon: Database },
-    { name: 'Power BI', level: 95, category: 'dataAnalysis', icon: BarChart3 },
-    { name: 'Excel', level: 90, category: 'tools', icon: FileSpreadsheet },
-    { name: 'Pandas', level: 85, category: 'programming', icon: Code },
-    { name: 'MySQL', level: 80, category: 'databases', icon: Database },
-    { name: 'Tableau', level: 75, category: 'dataAnalysis', icon: TrendingUp },
-    { name: 'Git', level: 70, category: 'tools', icon: Code }
-  ];
-
-  const skillCategories = {
-    programming: { name: translations.skills.categories.programming, color: 'from-blue-500 to-purple-600' },
-    dataAnalysis: { name: translations.skills.categories.dataAnalysis, color: 'from-green-500 to-teal-600' },
-    databases: { name: translations.skills.categories.databases, color: 'from-orange-500 to-red-600' },
-    tools: { name: translations.skills.categories.tools, color: 'from-pink-500 to-rose-600' }
+  const prevImage = () => {
+    if (selectedProject) {
+      setSelectedImageIndex((prev) => 
+        prev === 0 ? selectedProject.images.length - 1 : prev - 1
+      );
+    }
   };
 
-  return (
-    <div className={`min-h-screen transition-all duration-500 ${
-      isDarkMode 
-        ? 'bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900' 
-        : 'bg-gradient-to-br from-rose-50 via-pink-50 to-blue-50'
-    }`}>
+  const navigationItems = [
+    { key: 'home', label: 'Inicio' },
+    { key: 'about', label: t.nav.about },
+    { key: 'skills', label: t.nav.skills },
+    { key: 'projects', label: t.nav.projects },
+    { key: 'experience', label: t.nav.experience },
+    { key: 'education', label: t.nav.education },
+    { key: 'contact', label: t.nav.contact }
+  ];
+ 
+  return ( 
+    <div 
+  className={`min-h-screen relative transition-all duration-500 ${
+    isDarkMode 
+      ? 'bg-slate-900'   // respaldo si no carga la imagen
+      : 'bg-rose-50'     // respaldo actualizado para modo claro
+  }`} 
+  style={{ 
+    backgroundImage: isDarkMode
+      ? "url('https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/FondoNoche.png')" // fondo oscuro 
+      : "url('https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/ChatGPT%20Image%2031%20ago%202025%2C%2021_46_28.png')", // fondo claro
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundAttachment: "fixed"
+  }}
+>{/* Background Effects */}
       <BackgroundEffects isDarkMode={isDarkMode} />
       
       {/* Navigation */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isDarkMode ? 'bg-slate-900/80' : 'bg-white/80'
-      } backdrop-blur-md border-b ${
-        isDarkMode ? 'border-white/10' : 'border-rose-200/30'
-      }`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <div className={`text-xl font-bold transition-all duration-300 ${
-              isDarkMode ? 'text-white' : 'text-slate-800'
-            }`}>
-              FM
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+  isScrolled ? 'backdrop-blur-xl shadow-2xl' : 'bg-transparent'
+}`}>
+  <div className={`absolute inset-0 transition-all duration-500 ${
+    isScrolled 
+      ? (isDarkMode ? 'bg-slate-900/70 border-b border-white/10' : 'bg-white/80 border-b border-rose-200/50')
+      : 'bg-transparent'
+  }`}></div>
+         
+        <div className="container mx-auto px-6 py-4 relative z-10">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <div className={`relative p-3 rounded-xl transition-all duration-500 overflow-hidden ${ 
+                isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
+              }`}>
+                <img 
+                  src="https://i.postimg.cc/xTvVcxxR/Skye-Ultimate.png" 
+                  alt="Logo" 
+                  className={`w-6 h-6 object-contain transition-all duration-500 ${ 
+                    isDarkMode ? 'filter brightness-110 contrast-110' : 'filter brightness-90'
+                  }`}
+                />
+              </div>
+              <div className="hidden md:block">
+                <h1 className={`text-xl font-bold transition-all duration-300 ${
+                  isDarkMode ? 'text-white' : 'text-slate-800'
+                }`}>
+                  Florencia Mora
+                </h1>
+                <p className={`text-sm transition-all duration-300 ${
+                  isDarkMode ? 'text-gray-300' : 'text-slate-800'
+                }`}>
+                  
+                </p>
+              </div>
             </div>
             
             {/* Desktop Navigation */}
-            <div className="hidden md:flex space-x-8">
-              {Object.entries(translations.nav).map(([key, label]) => {
-                const sectionId = key === 'sobreMi' ? 'sobre-mi' : key.toLowerCase();
-                return (
-                  <button
-                    key={key}
-                    onClick={() => scrollToSection(sectionId)}
-                    className={`transition-all duration-300 hover:scale-105 ${
-                      activeSection === sectionId
-                        ? isDarkMode ? 'text-purple-400' : 'text-rose-600'
-                        : isDarkMode ? 'text-gray-300 hover:text-white' : 'text-slate-600 hover:text-slate-800'
-                    }`}
-                  >
-                    {label}
-                  </button>
-                );
-              })}
+            <div className="hidden md:flex items-center space-x-2">
+              {navigationItems.map((item) => (
+                <button
+                  key={item.key}
+                  onClick={() => scrollToSection(item.key)}
+                  className={`relative px-4 py-2 rounded-xl font-medium transition-all duration-300 overflow-hidden group ${
+                    activeSection === item.key 
+                      ? (isDarkMode ? 'text-white' : 'text-white')
+                      : (isDarkMode ? 'text-gray-300 hover:text-white' : 'text-slate-800 hover:text-white')
+                  }`}
+                >
+                  <div className={`absolute inset-0 transition-all duration-300 rounded-xl ${
+                    activeSection === item.key
+                      ? (isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600 opacity-100' : 'bg-gradient-to-r from-rose-500 to-pink-500 opacity-100')
+                      : (isDarkMode ? 'bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100' : 'bg-gradient-to-r from-rose-600 to-pink-600 opacity-0 group-hover:opacity-100')
+                  }`}></div>
+                  <span className="relative z-10">{item.label}</span>
+                </button>
+              ))}
+              
+              {/* Controls */}
+              <div className="flex items-center space-x-2 ml-4">
+                 
+                <button
+                  onClick={toggleDarkMode}
+                  className={`p-2 rounded-xl transition-all duration-300 ${
+                    isDarkMode 
+                      ? 'bg-yellow-500 hover:bg-yellow-400 text-yellow-900' 
+                      : 'bg-slate-700 hover:bg-slate-600 text-white'
+                  }`}
+                >
+                  {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+                </button>
+              </div>
             </div>
 
-            <div className="flex items-center space-x-4">
-              <button
+            {/* Mobile Menu Button */}
+            <div className="md:hidden flex items-center space-x-2">
+              
+              <button 
                 onClick={toggleDarkMode}
-                className={`p-2 rounded-full transition-all duration-300 hover:scale-110 ${
+                className={`p-2 rounded-xl transition-all duration-300 ${
                   isDarkMode 
-                    ? 'bg-white/10 text-yellow-400 hover:bg-white/20' 
-                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                    ? 'bg-yellow-500 hover:bg-yellow-400 text-yellow-900' 
+                    : 'bg-slate-700 hover:bg-slate-600 text-white'
                 }`}
               >
-                {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+                {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
               </button>
               
-              {/* Mobile menu button */}
               <button
-                onClick={toggleMenu}
-                className={`md:hidden p-2 rounded-full transition-all duration-300 ${
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className={`p-2 rounded-xl transition-all duration-300 ${
                   isDarkMode 
-                    ? 'bg-white/10 text-white hover:bg-white/20' 
-                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                    ? 'bg-white/10 hover:bg-white/20 text-white' 
+                    : 'bg-slate-800/80 hover:bg-slate-700 text-white'
                 }`}
               >
-                {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+                <Menu size={20} />
               </button>
             </div>
           </div>
-          
-          {/* Mobile Navigation */}
-          {isMenuOpen && (
-            <div className={`md:hidden py-4 border-t ${
-              isDarkMode ? 'border-white/10' : 'border-rose-200/30'
+
+          {/* Mobile Menu */}
+          {isMobileMenuOpen && (
+            <div className={`md:hidden mt-4 p-4 rounded-2xl backdrop-blur-xl transition-all duration-300 ${
+              isDarkMode ? 'bg-slate-900/90' : 'bg-white/90 border border-rose-200/50'
             }`}>
-              {Object.entries(translations.nav).map(([key, label]) => {
-                const sectionId = key === 'sobreMi' ? 'sobre-mi' : key.toLowerCase();
-                return (
+              <div className="space-y-2">
+                {navigationItems.map((item) => (
                   <button
-                    key={key}
-                    onClick={() => scrollToSection(sectionId)}
-                    className={`block w-full text-left py-2 transition-all duration-300 ${
-                      activeSection === sectionId
-                        ? isDarkMode ? 'text-purple-400' : 'text-rose-600'
-                        : isDarkMode ? 'text-gray-300 hover:text-white' : 'text-slate-600 hover:text-slate-800'
+                    key={item.key}
+                    onClick={() => scrollToSection(item.key)}
+                    className={`w-full text-left px-4 py-3 rounded-xl font-medium transition-all duration-300 ${
+                      activeSection === item.key
+                        ? (isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white' : 'bg-gradient-to-r from-rose-500 to-pink-500 text-white')
+                        : (isDarkMode ? 'text-gray-300 hover:bg-white/10' : 'text-slate-700 hover:bg-rose-100/50')
                     }`}
                   >
-                    {label}
+                    {item.label}
                   </button>
-                );
-              })}
+                ))}
+              </div>
             </div>
           )}
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section id="inicio" className="min-h-screen flex items-center justify-center px-4 pt-20">
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <div className="mb-8">
-            <div className="profile-border mx-auto w-32 h-32 mb-8">
-              <img 
-                src="https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=400" 
-                alt="Florencia Mora" 
-                className="w-full h-full object-cover rounded-full"
-              />
+      <section id="home" className="min-h-screen flex items-center justify-center px-6 py-20 relative">
+        <div className="container mx-auto text-center relative z-10"> 
+          {/* Profile Image */}
+          <div className="relative mb-8 inline-block">
+            <div className={`absolute inset-0 rounded-full blur-2xl opacity-60 animate-pulse ${
+              isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-400 to-pink-500'
+            }`}></div>
+            <div className="profile-border">
+  <img
+    src="https://i.postimg.cc/0NJMCbn0/Picsart-24-12-09-11-42-26-230.jpg"
+              alt="Florencia Milagros Mora"    className="w-40 h-40 rounded-full object-cover"
+  />
+</div>
+          </div>
+          
+          {/* Main Content */}
+          <div className="mb-8 space-y-4">
+            <p className={`text-lg font-medium transition-all duration-300 ${
+              isDarkMode ? 'text-gray-300' : 'text-slate-800' 
+            }`}>
+              {t.hero.greeting}
+            </p>
+            
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
+              <span className={`transition-all duration-300 ${
+                isDarkMode ? 'text-white' : 'text-slate-800'
+              }`}> 
+                {t.hero.name}
+              </span>
+            </h1>
+            
+            <div className="relative inline-block">
+              <h2
+  className={`text-2xl md:text-3xl font-bold bg-clip-text text-transparent ${
+    isDarkMode
+      ? "bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600"
+      : "bg-gradient-to-r from-rose-600 via-pink-600 to-purple-600"
+  }`}
+>
+   {useTypewriter([t.hero.title, t.hero.subtitle])}
+  <span className="border-r-2 border-pink-500 animate-pulse ml-1"></span>
+</h2>
+
+              <div className={`absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 rounded-full ${
+                isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
+              }`}></div>
             </div>
           </div>
           
-          <TypewriterEffect className="mb-12" />
+          <p className={`text-xl md:text-2xl mb-8 max-w-4xl mx-auto leading-relaxed font-medium ${
+            isDarkMode ? 'text-gray-200' : 'text-slate-800'
+          }`}>
+            {t.hero.description}
+          </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+          {/* Stats */}
+          <div className={`flex flex-wrap justify-center gap-8 mb-12 ${
+            isDarkMode ? 'text-gray-300' : 'text-slate-800'
+          }`}>
+            <div className="flex items-center space-x-2 text-sm md:text-base">
+              <MapPin size={20} className={isDarkMode ? "text-purple-500" : "text-rose-500"} />
+              <span>{t.contact.locationValue}</span>
+            </div>
+            <div className="flex items-center space-x-2 text-sm md:text-base">
+              <Mail size={20} className={isDarkMode ? "text-blue-500" : "text-pink-500"} />
+              <span>mora.florencia.m@gmail.com</span>
+            </div>
+            <div className="flex items-center space-x-2 text-sm md:text-base">
+              <Star size={20} className={isDarkMode ? "text-yellow-500" : "text-amber-500"} />
+              <span>Disponible para proyectos</span>
+            </div>
+          </div>
+          
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <a
-              href="/assets/CV_Florencia_Mora.pdf"
-              download
-              className={`group flex items-center space-x-2 px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-2xl ${
+              href="https://www.canva.com/design/DAGj5mh2buU/u8_dEvLlKH1TDOZctgyPSQ/view?utm_content=DAGj5mh2buU&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h52b8ed3ede"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`group relative px-8 py-4 text-white rounded-2xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl overflow-hidden ${
                 isDarkMode 
-                  ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-pink-600 hover:to-purple-600 hover:shadow-purple-500/25' 
-                  : 'bg-gradient-to-r from-rose-500 to-pink-500 text-white hover:from-pink-500 hover:to-rose-500 hover:shadow-rose-500/25'
+                  ? 'bg-gradient-to-r from-emerald-600 to-teal-600 hover:shadow-emerald-500/25' 
+                  : 'bg-gradient-to-r from-emerald-500 to-teal-500 hover:shadow-emerald-500/25'
               }`}
             >
-              <Download size={20} />
-              <span>{translations.hero.downloadCV}</span>
+              <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-300 ${
+                isDarkMode ? 'bg-gradient-to-r from-teal-600 to-emerald-600' : 'bg-gradient-to-r from-teal-500 to-emerald-500'
+              }`}></div>
+              <span className="relative z-10 flex items-center justify-center space-x-2">
+                <span>{t.hero.downloadCV}</span>
+              </span>
             </a>
             
-            <div className="flex space-x-4">
-              <a
-                href="mailto:florenciamilagrosmora@gmail.com"
-                className={`p-4 rounded-full transition-all duration-300 hover:scale-110 hover:shadow-lg ${
-                  isDarkMode 
-                    ? 'bg-white/10 text-white hover:bg-white/20 hover:shadow-white/10' 
-                    : 'bg-white/70 text-slate-600 hover:bg-white hover:shadow-slate-200/50'
-                }`}
-              >
-                <Mail size={20} />
-              </a>
-              <a
-                href="https://linkedin.com/in/florencia-mora"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`p-4 rounded-full transition-all duration-300 hover:scale-110 hover:shadow-lg ${
-                  isDarkMode 
-                    ? 'bg-white/10 text-white hover:bg-white/20 hover:shadow-white/10' 
-                    : 'bg-white/70 text-slate-600 hover:bg-white hover:shadow-slate-200/50'
-                }`}
-              >
-                <Linkedin size={20} />
-              </a>
-              <a
-                href="https://github.com/florencia-mora"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`p-4 rounded-full transition-all duration-300 hover:scale-110 hover:shadow-lg ${
-                  isDarkMode 
-                    ? 'bg-white/10 text-white hover:bg-white/20 hover:shadow-white/10' 
-                    : 'bg-white/70 text-slate-600 hover:bg-white hover:shadow-slate-200/50'
-                }`}
-              >
-                <Github size={20} />
-              </a>
-            </div>
+            <button
+              onClick={() => scrollToSection('projects')}
+              className={`group relative px-8 py-4 text-white rounded-2xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl overflow-hidden ${
+                isDarkMode 
+                  ? 'bg-gradient-to-r from-purple-600 to-pink-600 hover:shadow-purple-500/25' 
+                  : 'bg-gradient-to-r from-rose-500 to-pink-500 hover:shadow-rose-500/25'
+              }`}
+            >
+              <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-300 ${
+                isDarkMode ? 'bg-gradient-to-r from-pink-600 to-purple-600' : 'bg-gradient-to-r from-pink-500 to-rose-500'
+              }`}></div>
+              <span className="relative z-10 flex items-center justify-center space-x-2">
+                <span>Ver mis proyectos</span>
+              </span>
+            </button>
+            
+            <button
+              onClick={() => scrollToSection('contact')}
+              className={`group px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl border-2 ${
+                isDarkMode 
+                  ? 'border-white/20 text-white hover:bg-white/10' 
+                  : 'border-slate-600 text-slate-700 hover:bg-slate-600 hover:text-white'
+              }`}
+            >
+              <span className="flex items-center justify-center space-x-2">
+                <span>{t.hero.contact}</span>
+              </span>
+            </button>
           </div>
           
-          <div className="animate-bounce">
-            <ChevronDown className={`mx-auto transition-all duration-300 ${
-              isDarkMode ? 'text-white/60' : 'text-slate-400'
-            }`} size={32} />
+          {/* Social Links */}
+          <div className="flex justify-center space-x-6"> 
+            {[
+              { icon: Linkedin, href: "https://linkedin.com/in/florm01", color: isDarkMode ? "hover:text-blue-400" : "hover:text-blue-600" },
+              { icon: Github, href: "https://github.com/moraflorencia", color: isDarkMode ? "hover:text-gray-700" : "hover:text-slate-700" },
+              { icon: Mail, href: "mailto:mora.florencia.m@gmail.com", color: isDarkMode ? "hover:text-green-400" : "hover:text-emerald-600" },
+              { icon: Phone, href: "tel:+5491160184046", color: isDarkMode ? "hover:text-yellow-400" : "hover:text-amber-600" }
+            ].map(({ icon: Icon, href, color }, index) => (
+              <a
+                key={index}
+                href={href}
+                target={href.startsWith('http') ? '_blank' : undefined}
+                rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                className={`p-3 rounded-xl transition-all duration-300 hover:scale-110 hover:shadow-lg ${
+                  isDarkMode ? 'bg-white/10 text-gray-400 hover:bg-white/20' : 'bg-slate-800/80 text-white hover:bg-slate-700'
+                } ${color}`}
+              >
+                <Icon size={24} />
+              </a>
+            ))}
           </div>
         </div>
       </section>
-
+    
       {/* About Section */}
-      <section id="sobre-mi" className="py-20 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className={`p-8 md:p-12 rounded-3xl backdrop-blur-sm border transition-all duration-500 hover:shadow-2xl ${
-            isDarkMode ? 'bg-white/5 border-white/10' : 'bg-white/70 border-rose-200/40'
-          }`}>
-            <h2 className={`text-3xl md:text-4xl font-bold mb-8 text-center transition-all duration-300 ${
+      <section id="about" className="py-20 px-6 relative">
+        <div className="container mx-auto max-w-6xl">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <h2 className={`text-4xl md:text-5xl font-bold mb-4 transition-all duration-300 ${
               isDarkMode ? 'text-white' : 'text-slate-800'
             }`}>
-              {translations.about.title}
+              {t.about.title}
             </h2>
+            <div className={`w-24 h-1 mx-auto rounded-full ${
+              isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
+            }`}></div>
+          </div> 
+          
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Image */}
+            <div className="relative">
+              <div className={`absolute inset-0 rounded-3xl blur-3xl opacity-30 ${
+                isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-400 to-pink-400'
+              }`}></div>
+              <div className={`relative backdrop-blur-sm border rounded-3xl overflow-hidden shadow-2xl ${
+                isDarkMode ? 'bg-white/5 border-white/10' : 'bg-white/70 border-rose-200/30'
+              }`}>
+                <img 
+                  src="https://images.pexels.com/photos/590020/pexels-photo-590020.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  alt="Data Analysis" 
+                  className="w-full h-80 object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+              </div>
+            </div>
             
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div>
-                <p className={`text-lg mb-6 leading-relaxed transition-all duration-300 ${
-                  isDarkMode ? 'text-gray-300' : 'text-slate-700'
+            {/* Content */}
+            <div className="space-y-8">
+              <div className="space-y-6">
+                <p className={`text-lg leading-relaxed transition-all duration-300 ${
+                  isDarkMode ? 'text-gray-300' : 'text-slate-800'
                 }`}>
-                  {translations.about.description}
-                </p>
-                <p className={`text-lg mb-8 leading-relaxed transition-all duration-300 ${
-                  isDarkMode ? 'text-gray-300' : 'text-slate-700'
-                }`}>
-                  {translations.about.currentlyStudying}
+                  {t.about.description1}
                 </p>
                 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                  <div className={`text-center p-4 rounded-2xl transition-all duration-300 ${
-                    isDarkMode ? 'bg-white/5' : 'bg-white/50'
-                  }`}>
-                    <MapPin className={`mx-auto mb-2 transition-all duration-300 ${
-                      isDarkMode ? 'text-purple-400' : 'text-rose-500'
-                    }`} size={24} />
-                    <p className={`font-semibold transition-all duration-300 ${
-                      isDarkMode ? 'text-white' : 'text-slate-800'
-                    }`}>
-                      Ubicación
-                    </p>
-                    <p className={`text-sm transition-all duration-300 ${
-                      isDarkMode ? 'text-gray-400' : 'text-slate-600'
-                    }`}>
-                      {translations.about.location}
-                    </p>
-                  </div>
-                  
-                  <div className={`text-center p-4 rounded-2xl transition-all duration-300 ${
-                    isDarkMode ? 'bg-white/5' : 'bg-white/50'
-                  }`}>
-                    <Briefcase className={`mx-auto mb-2 transition-all duration-300 ${
-                      isDarkMode ? 'text-purple-400' : 'text-rose-500'
-                    }`} size={24} />
-                    <p className={`font-semibold transition-all duration-300 ${
-                      isDarkMode ? 'text-white' : 'text-slate-800'
-                    }`}>
-                      Experiencia
-                    </p>
-                    <p className={`text-sm transition-all duration-300 ${
-                      isDarkMode ? 'text-gray-400' : 'text-slate-600'
-                    }`}>
-                      {translations.about.experience}
-                    </p>
-                  </div>
-                  
-                  <div className={`text-center p-4 rounded-2xl transition-all duration-300 ${
-                    isDarkMode ? 'bg-white/5' : 'bg-white/50'
-                  }`}>
-                    <Target className={`mx-auto mb-2 transition-all duration-300 ${
-                      isDarkMode ? 'text-purple-400' : 'text-rose-500'
-                    }`} size={24} />
-                    <p className={`font-semibold transition-all duration-300 ${
-                      isDarkMode ? 'text-white' : 'text-slate-800'
-                    }`}>
-                      Proyectos
-                    </p>
-                    <p className={`text-sm transition-all duration-300 ${
-                      isDarkMode ? 'text-gray-400' : 'text-slate-600'
-                    }`}>
-                      {translations.about.projects}
-                    </p>
-                  </div>
-                </div>
+                <p className={`text-lg leading-relaxed transition-all duration-300 ${
+                  isDarkMode ? 'text-gray-300' : 'text-slate-800'
+                }`}>
+                  {t.about.description2}
+                </p>
               </div>
               
-              <div className="relative">
-                <div className={`aspect-square rounded-3xl overflow-hidden shadow-2xl transition-all duration-500 hover:scale-105 ${
-                  isDarkMode ? 'shadow-purple-500/20' : 'shadow-rose-500/20'
-                }`}>
-                  <img 
-                    src="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=600" 
-                    alt="Workspace" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+              {/* Specialties Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {[
+                  { icon: BarChart3, title: t.about.dataAnalysis, color: 'from-red-500 to-pink-600' },
+                  { icon: Brain, title: t.about.ai, color: 'from-blue-500 to-indigo-600' },
+                  { icon: TrendingUp, title: t.about.visualization, color: 'from-yellow-500 to-orange-600' },
+                  { icon: Code, title: t.about.programming, color: 'from-green-500 to-emerald-600' }
+                ].map((item, index) => (
+                  <div key={index} className={`group p-6 rounded-2xl backdrop-blur-sm border transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer ${
+                    isDarkMode ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-white/50 border-rose-200/30 hover:bg-white/70'
+                  }`}>
+                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-r ${item.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-all duration-300`}>
+                      <item.icon className="w-6 h-6 text-white" />
+                    </div>
+                    <h3 className={`font-semibold transition-all duration-300 ${
+                      isDarkMode ? 'text-white' : 'text-slate-800'
+                    }`}>
+                      {item.title}
+                    </h3>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </div>
       </section>
-
+      
       {/* Skills Section */}
-      <section id="habilidades" className="py-20 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className={`p-8 md:p-12 rounded-3xl backdrop-blur-sm border transition-all duration-500 hover:shadow-2xl ${
-            isDarkMode ? 'bg-white/5 border-white/10' : 'bg-white/70 border-rose-200/40'
-          }`}>
-            <h2 className={`text-3xl md:text-4xl font-bold mb-12 text-center transition-all duration-300 ${
+      <section id="skills" className="py-20 px-6 relative">
+        <div className="container mx-auto max-w-6xl">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <h2 className={`text-4xl md:text-5xl font-bold mb-4 transition-all duration-300 ${
               isDarkMode ? 'text-white' : 'text-slate-800'
             }`}>
-              {translations.skills.title}
+              {t.skills.title}
             </h2>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {Object.entries(skillCategories).map(([categoryKey, category]) => (
-                <div key={categoryKey} className={`p-6 rounded-2xl transition-all duration-300 hover:scale-105 ${
-                  isDarkMode ? 'bg-white/5' : 'bg-white/50'
-                }`}>
-                  <h3 className={`text-lg font-semibold mb-4 transition-all duration-300 ${
+            <div className={`w-24 h-1 mx-auto rounded-full ${
+              isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
+            }`}></div>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {skills.map((skill, index) => (
+              <div key={index} className={`group relative p-8 rounded-3xl backdrop-blur-sm border transition-all duration-500 hover:scale-105 hover:shadow-2xl cursor-pointer ${ 
+                isDarkMode ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-white/60 border-rose-200/40 hover:bg-white/80'
+              }`}>
+                {/* Background Gradient */} 
+                <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${skill.color} opacity-0 group-hover:opacity-10 transition-all duration-500`}></div>
+                
+                {/* Icon */}
+                <div className={`relative w-16 h-16 rounded-2xl bg-gradient-to-r ${skill.color} flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg`}>
+                  <skill.icon className="w-8 h-8 text-white" />
+                </div>
+                
+                {/* Content */}
+                <div className="relative text-center">
+                  <h3 className={`text-xl font-bold mb-4 transition-all duration-300 ${
                     isDarkMode ? 'text-white' : 'text-slate-800'
                   }`}>
-                    {category.name}
+                    {skill.name}
                   </h3>
-                  <div className="space-y-4">
-                    {skills
-                      .filter(skill => skill.category === categoryKey)
-                      .map((skill) => {
-                        const IconComponent = skill.icon;
-                        return (
-                          <div key={skill.name} className="space-y-2">
-                            <div className="flex items-center justify-between">
-                              <div className="flex items-center space-x-2">
-                                <IconComponent size={16} className={`transition-all duration-300 ${
-                                  isDarkMode ? 'text-purple-400' : 'text-rose-500'
-                                }`} />
-                                <span className={`font-medium transition-all duration-300 ${
-                                  isDarkMode ? 'text-gray-300' : 'text-slate-700'
-                                }`}>
-                                  {skill.name}
-                                </span>
-                              </div>
-                              <span className={`text-sm font-semibold transition-all duration-300 ${
-                                isDarkMode ? 'text-gray-400' : 'text-slate-600'
-                              }`}>
-                                {skill.level}%
-                              </span>
-                            </div>
-                            <div className={`h-2 rounded-full overflow-hidden ${
-                              isDarkMode ? 'bg-white/10' : 'bg-slate-200'
-                            }`}>
-                              <div 
-                                className={`h-full bg-gradient-to-r ${category.color} transition-all duration-1000 ease-out`}
-                                style={{ width: `${skill.level}%` }}
-                              />
-                            </div>
-                          </div>
-                        );
-                      })}
-                  </div>
+                  
+                  <ul className="space-y-2">
+                    {skill.items.map((item, itemIndex) => (
+                      <li key={itemIndex} className={`text-sm font-medium transition-all duration-300 ${
+                        isDarkMode ? 'text-gray-300' : 'text-slate-600'
+                      }`}>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Projects Section */}
-      <section id="proyectos" className="py-20 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className={`p-8 md:p-12 rounded-3xl backdrop-blur-sm border transition-all duration-500 hover:shadow-2xl ${
-            isDarkMode ? 'bg-white/5 border-white/10' : 'bg-white/70 border-rose-200/40'
-          }`}>
-            <h2 className={`text-3xl md:text-4xl font-bold mb-12 text-center transition-all duration-300 ${
+      <section id="projects" className="py-20 px-6 relative">
+        <div className="container mx-auto max-w-6xl">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <h2 className={`text-4xl md:text-5xl font-bold mb-4 transition-all duration-300 ${
               isDarkMode ? 'text-white' : 'text-slate-800'
             }`}>
-              {translations.projects.title}
+              {t.projects.title}
             </h2>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {translations.projects.projects.map((project, index) => (
-                <div key={index} className={`group rounded-2xl overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-2xl ${
-                  isDarkMode ? 'bg-white/5 hover:shadow-purple-500/20' : 'bg-white/50 hover:shadow-rose-500/20'
-                }`}>
-                  <div className="aspect-video overflow-hidden">
-                    <img 
-                      src={project.image} 
-                      alt={project.title}
-                      className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
-                    />
+            <div className={`w-24 h-1 mx-auto rounded-full ${
+              isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
+            }`}></div>
+          </div>
+          
+          <div className="space-y-8">
+            {projects.map((project, index) => (
+              <div key={index} className={`group relative rounded-3xl backdrop-blur-sm border transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl overflow-hidden ${
+                isDarkMode ? 'bg-white/5 border-white/10' : 'bg-white/70 border-rose-200/40'
+              }`}>
+                <div className="md:flex">
+                  {/* Image */}
+                  <div className="md:w-2/5 relative">
+                    <div className="relative overflow-hidden rounded-l-3xl md:rounded-l-3xl md:rounded-r-none cursor-pointer" onClick={() => openProjectModal(project)}>
+                      <img
+                        src={project.images[0]}
+                        alt={project.title}
+                        className="w-full h-64 md:h-full object-cover transition-all duration-500 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
+                        <div className="bg-white/20 backdrop-blur-sm rounded-full p-4">
+                          <ZoomIn className="text-white" size={32} />
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Year Badge */}
+                    <div className="absolute top-4 right-4">
+                      <div className={`text-white px-4 py-2 rounded-xl text-sm font-bold shadow-lg ${
+                        isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
+                      }`}>
+                        {project.year}
+                      </div>
+                    </div>
+
                   </div>
-                  <div className="p-6">
-                    <h3 className={`text-xl font-bold mb-3 transition-all duration-300 ${
-                      isDarkMode ? 'text-white' : 'text-slate-800'
-                    }`}>
-                      {project.title}
-                    </h3>
-                    <p className={`mb-4 leading-relaxed transition-all duration-300 ${
+                  
+                  {/* Content */}
+                  <div className="md:w-3/5 p-8 md:p-12">
+                    <div className="flex items-start justify-between mb-4">
+                      <h3 className={`text-2xl md:text-3xl font-bold transition-all duration-300 ${
+                        isDarkMode ? 'text-white' : 'text-slate-800'
+                      }`}>
+                        {project.title}
+                      </h3>
+                      
+                      {/* Desktop GitHub Button */}
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`hidden md:flex items-center space-x-2 px-4 py-2 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg border ${
+                          isDarkMode 
+                            ? 'bg-white/10 hover:bg-white/20 border-white/20 text-gray-300 hover:text-white' 
+                            : 'bg-slate-800/80 hover:bg-slate-700 border-slate-600 text-white hover:text-white'
+                        }`}
+                      >
+                        <Github size={18} />
+                        <span className="text-sm font-medium">{t.projects.viewRepo}</span>
+                      </a>
+                    </div>
+                    
+                    <p className={`text-lg leading-relaxed mb-6 transition-all duration-300 ${
                       isDarkMode ? 'text-gray-300' : 'text-slate-700'
                     }`}>
                       {project.description}
                     </p>
-                    <div className="mb-4">
-                      <p className={`text-sm font-semibold mb-2 transition-all duration-300 ${
-                        isDarkMode ? 'text-gray-400' : 'text-slate-600'
+                    
+                    {/* Achievements */}
+                    <div className="mb-6">
+                      <h4 className={`font-semibold mb-4 text-lg transition-all duration-300 ${
+                        isDarkMode ? 'text-white' : 'text-slate-800'
                       }`}>
-                        {translations.projects.technologies}
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        {project.technologies.map((tech, techIndex) => (
-                          <span 
-                            key={techIndex}
-                            className={`px-3 py-1 text-xs font-medium rounded-full transition-all duration-300 ${
-                              isDarkMode 
-                                ? 'bg-purple-500/20 text-purple-300' 
-                                : 'bg-rose-100 text-rose-700'
-                            }`}
-                          >
-                            {tech}
-                          </span>
+                        {t.projects.achievements}
+                      </h4>
+                      <ul className="space-y-3">
+                        {project.achievements.map((achievement, achIndex) => (
+                          <li key={achIndex} className={`flex items-start space-x-3 transition-all duration-300 ${
+                            isDarkMode ? 'text-gray-300' : 'text-slate-700'
+                          }`}>
+                            <div className="w-6 h-6 rounded-full bg-gradient-to-r from-green-400 to-emerald-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+                              <div className="w-2 h-2 bg-white rounded-full"></div>
+                            </div>
+                            <span>{achievement}</span>
+                          </li>
                         ))}
-                      </div>
+                      </ul>
                     </div>
-                    <button className={`flex items-center space-x-2 font-semibold transition-all duration-300 hover:scale-105 ${
-                      isDarkMode ? 'text-purple-400 hover:text-purple-300' : 'text-rose-600 hover:text-rose-500'
-                    }`}>
-                      <span>{translations.projects.viewProject}</span>
-                      <ExternalLink size={16} />
-                    </button>
+                    
+                    {/* Tech Stack */}
+                    <div className="flex flex-wrap gap-3">
+                      {project.tech.map((tech, techIndex) => (
+                        <span
+                          key={techIndex}
+                          className={`px-4 py-2 rounded-xl text-sm font-medium backdrop-blur-sm border transition-all duration-300 hover:scale-105 ${
+                            isDarkMode ? 'bg-white/10 border-white/20 text-gray-200' : 'bg-white/60 border-rose-200/40 text-slate-700'
+                          }`}
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Mobile GitHub Button */}
+                    <div className="md:hidden mt-6">
+                      <a 
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`w-full py-3 px-6 rounded-xl font-medium transition-all duration-300 flex items-center justify-center space-x-3 hover:scale-105 hover:shadow-lg ${
+                          isDarkMode ? 'bg-gradient-to-r from-gray-800 to-gray-900 hover:from-gray-700 hover:to-rose-800 text-white' : 'bg-rose-400 hover:bg-rose-700 text-white'
+                        }`}
+                      >
+                        <Github size={20} />
+                        <span>{t.projects.viewRepo}</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
-              ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Project Modal */}
+      {selectedProject && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className={`relative w-full max-w-6xl max-h-[90vh] rounded-3xl backdrop-blur-xl border overflow-hidden transition-all duration-500 ${
+            isDarkMode ? 'bg-slate-900/90 border-white/20' : 'bg-white/90 border-rose-200/30'
+          }`}>
+            {/* Header */}
+            <div className={`flex items-center justify-between p-6 border-b ${
+              isDarkMode ? 'border-white/10' : 'border-rose-200/30'
+            }`}>
+              <div className="flex items-center space-x-4">
+                <h3 className={`text-2xl font-bold transition-all duration-300 ${
+                  isDarkMode ? 'text-white' : 'text-slate-800'
+                }`}>
+                  {selectedProject.title}
+                </h3>
+                
+                {/* GitHub Button in Modal Header */}
+                <a
+                  href={selectedProject.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`flex items-center space-x-2 px-4 py-2 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg border ${
+                    isDarkMode 
+                      ? 'bg-white/10 hover:bg-white/20 border-white/20 text-gray-300 hover:text-white' 
+                      : 'bg-slate-800/80 hover:bg-slate-700 border-slate-600 text-white hover:text-white'
+                  }`}
+                > 
+                  <Github size={18} />
+                  <span className="text-sm font-medium">{t.projects.viewRepo}</span> 
+                </a>
+              </div>
+              
+              <button
+                onClick={closeProjectModal}
+                className={`p-3 rounded-xl transition-all duration-300 hover:scale-110 ${
+                  isDarkMode ? 'hover:bg-white/10 text-gray-400' : 'hover:bg-rose-100 text-slate-600'
+                }`}
+              >
+                <X size={24} />
+              </button>
             </div>
+            
+            {/* Content */}
+            <div className="p-6 overflow-y-auto max-h-[calc(90vh-100px)]">
+              {/* Image Gallery */}
+              <div className="relative mb-8 group">
+                <div className="relative rounded-2xl overflow-hidden">
+                  <img
+                    src={selectedProject.images[selectedImageIndex]}
+                    alt={`${selectedProject.title} - Imagen ${selectedImageIndex + 1}`}
+                    className={`w-full h-96 object-contain transition-all duration-500 ${
+                      isDarkMode ? 'bg-slate-800' : 'bg-rose-50'
+                    }`}
+                  />
+                  
+                  {/* Navigation Arrows */}
+                  {selectedProject.images.length > 1 && (
+                    <>
+                      <button
+                        onClick={prevImage}
+                        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/20 backdrop-blur-sm hover:bg-black/40 text-white rounded-full p-3 transition-all duration-300 hover:scale-110"
+                      >
+                        <ChevronDown className="rotate-90" size={20} />
+                      </button>
+                      <button
+                        onClick={nextImage}
+                        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/20 backdrop-blur-sm hover:bg-black/40 text-white rounded-full p-3 transition-all duration-300 hover:scale-110"
+                      >
+                        <ChevronDown className="-rotate-90" size={20} />
+                      </button>
+                    </>
+                  )}
+                </div>
+                
+                {/* Image Indicators */}
+                {selectedProject.images.length > 1 && (
+                  <div className="flex justify-center space-x-2 mt-4">
+                    {selectedProject.images.map((_: any, index: number) => (
+                      <button
+                        key={index}
+                        onClick={() => setSelectedImageIndex(index)}
+                        className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                          index === selectedImageIndex 
+                            ? (isDarkMode ? 'bg-purple-600' : 'bg-rose-500')
+                            : (isDarkMode ? 'bg-gray-600 hover:bg-gray-500' : 'bg-slate-400 hover:bg-slate-500')
+                        }`}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+              
+              {/* Project Details */}
+              <div className="space-y-6">
+                <p className={`text-lg leading-relaxed transition-all duration-300 ${
+                  isDarkMode ? 'text-gray-300' : 'text-slate-700' 
+                }`}>
+                  {selectedProject.description}
+                </p>
+                
+                <div>
+                  <h4 className={`text-xl font-semibold mb-4 transition-all duration-300 ${
+                    isDarkMode ? 'text-white' : 'text-slate-800'
+                  }`}>
+                    {t.projects.achievements}
+                  </h4>
+                  <ul className="space-y-3">
+                    {selectedProject.achievements.map((achievement: string, achIndex: number) => (
+                      <li key={achIndex} className={`flex items-start space-x-3 transition-all duration-300 ${
+                        isDarkMode ? 'text-gray-300' : 'text-slate-700'
+                      }`}>
+                        <div className="w-6 h-6 rounded-full bg-gradient-to-r from-green-400 to-emerald-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <div className="w-2 h-2 bg-white rounded-full"></div>
+                        </div>
+                        <span>{achievement}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                
+                <div className="flex flex-wrap gap-3">
+                  {selectedProject.tech.map((tech: string, techIndex: number) => (
+                    <span
+                      key={techIndex}
+                      className={`px-4 py-2 rounded-xl text-sm font-medium backdrop-blur-sm border transition-all duration-300 hover:scale-105 ${
+                        isDarkMode ? 'bg-white/10 border-white/20 text-gray-200' : 'bg-white/60 border-rose-200/40 text-slate-700'
+                      }`}
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+ 
+      {/* Experience Section */}
+      <section id="experience" className="py-20 px-6 relative">
+        <div className="container mx-auto max-w-6xl">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <h2 className={`text-4xl md:text-5xl font-bold mb-4 transition-all duration-300 ${
+              isDarkMode ? 'text-white' : 'text-slate-800'
+            }`}>
+              {t.experience.title}
+            </h2>
+            <div className={`w-24 h-1 mx-auto rounded-full ${
+              isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
+            }`}></div>
+          </div>
+          
+          <div className="space-y-8">
+            {experience.map((exp, index) => (
+              <div key={index} className={`group relative p-8 md:p-12 rounded-3xl backdrop-blur-sm border transition-all duration-500 hover:scale-105 hover:shadow-2xl ${
+                isDarkMode ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-white/70 border-rose-200/40 hover:bg-white/80'
+              }`}>
+                {/* Background Gradient */}
+                <div className={`absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 ${
+                  isDarkMode ? 'bg-gradient-to-br from-purple-600/10 to-pink-600/10' : 'bg-gradient-to-br from-rose-500/10 to-pink-500/10'
+                }`}></div>
+                
+                <div className="relative">
+                  <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6">
+                    <div className="flex-1">
+                      <h3 className={`text-2xl md:text-3xl font-bold mb-3 transition-all duration-300 ${
+                        isDarkMode ? 'text-white' : 'text-slate-800'
+                      }`}>
+                        {exp.title}
+                      </h3>
+                      <div className="flex items-center space-x-3 mb-4">
+                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center group-hover:scale-110 transition-all duration-300 ${
+                          isDarkMode ? 'bg-gradient-to-r from-blue-600 to-indigo-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
+                        }`}>
+                          <Briefcase className="w-6 h-6 text-white" />
+                        </div>
+                        <div>
+                          <h4 className={`text-lg font-semibold transition-all duration-300 ${
+                            isDarkMode ? 'text-gray-200' : 'text-slate-700'
+                          }`}>
+                            {exp.company}
+                          </h4>
+                          <p className={`text-sm transition-all duration-300 ${
+                            isDarkMode ? 'text-gray-400' : 'text-slate-600'
+                          }`}>
+                            {exp.type}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="lg:text-right">
+                      <span className="inline-block bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-2xl font-bold text-lg shadow-lg">
+                        {exp.period}
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <p className={`text-lg leading-relaxed mb-8 transition-all duration-300 ${
+                    isDarkMode ? 'text-gray-300' : 'text-slate-700'
+                  }`}>
+                    {exp.description}
+                  </p>
+                  
+                  <div>
+                    <h4 className={`text-xl font-semibold mb-4 transition-all duration-300 ${
+                      isDarkMode ? 'text-white' : 'text-slate-800'
+                    }`}>
+                      {t.experience.skills}
+                    </h4>
+                    <div className="flex flex-wrap gap-3">
+                      {exp.skills.map((skill, skillIndex) => (
+                        <span
+                          key={skillIndex}
+                          className={`px-4 py-2 rounded-xl text-sm font-medium backdrop-blur-sm border transition-all duration-300 hover:scale-105 ${
+                            isDarkMode ? 'bg-blue-500/20 border-blue-500/30 text-blue-300' : 'bg-rose-100/80 border-rose-300/50 text-rose-800'
+                          }`}
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Education Section */}
-      <section id="educacion" className="py-20 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className={`p-8 md:p-12 rounded-3xl backdrop-blur-sm border transition-all duration-500 hover:shadow-2xl ${
-            isDarkMode ? 'bg-white/5 border-white/10' : 'bg-white/70 border-rose-200/40'
-          }`}>
-            <h2 className={`text-3xl md:text-4xl font-bold mb-12 text-center transition-all duration-300 ${
+      <section id="education" className="py-20 px-6 relative">
+        <div className="container mx-auto max-w-6xl">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <h2 className={`text-4xl md:text-5xl font-bold mb-4 transition-all duration-300 ${
               isDarkMode ? 'text-white' : 'text-slate-800'
             }`}>
-              {translations.education.title}
+              {t.education.title}
             </h2>
-            
-            <div className="space-y-8">
-              {translations.education.items.map((item, index) => (
-                <div key={index} className={`flex items-start space-x-6 p-6 rounded-2xl transition-all duration-300 hover:scale-105 ${
-                  isDarkMode ? 'bg-white/5' : 'bg-white/50'
-                }`}>
-                  <div className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
-                    isDarkMode ? 'bg-purple-500/20' : 'bg-rose-100'
+            <div className={`w-24 h-1 mx-auto rounded-full ${
+              isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
+            }`}></div>
+          </div>
+          
+          <div className="space-y-12">
+            {/* Formal Education */}
+            <div>
+              <h3 className={`text-2xl md:text-3xl font-bold mb-8 text-center transition-all duration-300 ${
+                isDarkMode ? 'text-white' : 'text-slate-800'
+              }`}>
+                {t.education.formal}
+              </h3>
+              <div className="grid md:grid-cols-2 gap-8">
+                {education.map((edu, index) => (
+                  <div key={index} className={`group p-8 rounded-3xl backdrop-blur-sm border transition-all duration-500 hover:scale-105 hover:shadow-2xl ${
+                    isDarkMode ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-white/70 border-rose-200/40 hover:bg-white/80'
                   }`}>
-                    {index === 0 ? (
-                      <GraduationCap className={`transition-all duration-300 ${
-                        isDarkMode ? 'text-purple-400' : 'text-rose-600'
-                      }`} size={24} />
-                    ) : (
-                      <Award className={`transition-all duration-300 ${
-                        isDarkMode ? 'text-purple-400' : 'text-rose-600'
-                      }`} size={24} />
-                    )}
-                  </div>
-                  <div className="flex-1">
-                    <h3 className={`text-xl font-bold mb-2 transition-all duration-300 ${
-                      isDarkMode ? 'text-white' : 'text-slate-800'
-                    }`}>
-                      {item.title}
-                    </h3>
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 mb-3">
-                      <p className={`font-semibold transition-all duration-300 ${
-                        isDarkMode ? 'text-purple-400' : 'text-rose-600'
+                    <div className="flex items-start space-x-4 mb-4">
+                      <div className={`w-12 h-12 rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 ${
+                        isDarkMode ? 'bg-gradient-to-r from-indigo-600 to-purple-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
                       }`}>
-                        {item.institution}
-                      </p>
-                      <span className={`text-sm transition-all duration-300 ${
-                        isDarkMode ? 'text-gray-400' : 'text-slate-600'
-                      }`}>
-                        {item.period}
-                      </span>
+                        <GraduationCap className="w-6 h-6 text-white" />
+                      </div>
+                      <div className="flex-1">
+                        <h4 className={`text-xl font-bold mb-2 transition-all duration-300 ${
+                          isDarkMode ? 'text-white' : 'text-slate-800'
+                        }`}>
+                          {edu.title}
+                        </h4>
+                        <p className={`text-lg font-medium mb-2 transition-all duration-300 ${
+                          isDarkMode ? 'text-gray-300' : 'text-slate-700'
+                        }`}>
+                          {edu.institution}
+                        </p>
+                        <p className={`text-sm mb-3 transition-all duration-300 ${
+                          isDarkMode ? 'text-gray-400' : 'text-slate-600'
+                        }`}>
+                          {edu.period}
+                        </p>
+                        <div className="flex items-center space-x-3">
+                          <span className={`text-xs px-3 py-1 rounded-full backdrop-blur-sm border transition-all duration-300 ${
+                            isDarkMode ? 'bg-white/10 border-white/20 text-gray-300' : 'bg-white/60 border-rose-200/40 text-slate-700'
+                          }`}>
+                            {edu.type}
+                          </span>
+                          <span className={`text-xs px-3 py-1 rounded-full font-medium ${
+                            edu.status === 'En curso' 
+                              ? (isDarkMode ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white' : 'bg-gradient-to-r from-rose-500 to-pink-500 text-white')
+                              : 'bg-gradient-to-r from-green-500 to-emerald-600 text-white'
+                          }`}>
+                            {edu.status}
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                    <p className={`leading-relaxed transition-all duration-300 ${
-                      isDarkMode ? 'text-gray-300' : 'text-slate-700'
-                    }`}>
-                      {item.description}
-                    </p>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+            </div>
+
+            {/* Complementary Education */}
+            <div>
+              <h3 className={`text-2xl md:text-3xl font-bold mb-8 text-center transition-all duration-300 ${
+                isDarkMode ? 'text-white' : 'text-slate-800'
+              }`}>
+                {t.education.complementary}
+              </h3>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {complementaryEducation.map((course, index) => (
+                  <div key={index} className={`group p-6 rounded-2xl backdrop-blur-sm border transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer ${
+                    isDarkMode ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-white/60 border-rose-200/40 hover:bg-white/80'
+                  }`}>
+                    <div className="flex items-start space-x-3">
+                      <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 ${
+                        isDarkMode ? 'bg-gradient-to-r from-orange-500 to-red-600' : 'bg-gradient-to-r from-amber-500 to-orange-500'
+                      }`}>
+                        <Award className="w-4 h-4 text-white" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h4 className={`font-bold text-sm mb-2 line-clamp-2 transition-all duration-300 ${
+                          isDarkMode ? 'text-white' : 'text-slate-800'
+                        }`}>
+                          {course.course}
+                        </h4>
+                        <p className={`text-xs mb-2 transition-all duration-300 ${
+                          isDarkMode ? 'text-gray-300' : 'text-slate-600'
+                        }`}>
+                          {course.institution}
+                        </p>
+                        <div className="flex items-center justify-between">
+                          <span className={`text-xs font-medium transition-all duration-300 ${
+                            isDarkMode ? 'text-gray-400' : 'text-slate-500'
+                          }`}>
+                            {course.year}
+                          </span>
+                          {course.hours && (
+                            <span className={`text-white text-xs px-2 py-1 rounded-lg font-medium ${
+                              isDarkMode ? 'bg-gradient-to-r from-orange-500 to-red-600' : 'bg-gradient-to-r from-amber-500 to-orange-500'
+                            }`}>
+                              {course.hours}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section id="contacto" className="py-20 px-4">
-        <div className="max-w-6xl mx-auto">
-          <h2 className={`text-3xl md:text-4xl font-bold mb-12 text-center transition-all duration-300 ${
-            isDarkMode ? 'text-white' : 'text-slate-800'
-          }`}>
-            {translations.contact.title}
-          </h2>
-          
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Contact Info */}
-            <div className={`p-8 md:p-12 rounded-3xl backdrop-blur-sm border transition-all duration-500 hover:shadow-2xl ${
-              isDarkMode ? 'bg-white/5 border-white/10' : 'bg-white/70 border-rose-200/40'
+      <section id="contact" className="py-20 px-6 relative">
+        <div className="container mx-auto max-w-6xl">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <h2 className={`text-4xl md:text-5xl font-bold mb-4 transition-all duration-300 ${
+              isDarkMode ? 'text-white' : 'text-slate-800'
             }`}>
-              <h3 className={`text-2xl font-bold mb-8 transition-all duration-300 ${
-                isDarkMode ? 'text-white' : 'text-slate-800'
-              }`}>
-                Información de Contacto
-              </h3>
-              
-              <div className="space-y-6">
-                <div className="flex items-center space-x-4">
-                  <div className={`p-3 rounded-full transition-all duration-300 ${
-                    isDarkMode ? 'bg-purple-500/20' : 'bg-rose-100'
-                  }`}>
-                    <Mail className={`transition-all duration-300 ${
-                      isDarkMode ? 'text-purple-400' : 'text-rose-600'
-                    }`} size={20} />
-                  </div>
-                  <div>
-                    <p className={`font-semibold transition-all duration-300 ${
-                      isDarkMode ? 'text-white' : 'text-slate-800'
-                    }`}>
-                      Email
-                    </p>
-                    <a 
-                      href={`mailto:${translations.contact.info.email}`}
-                      className={`transition-all duration-300 hover:underline ${
-                        isDarkMode ? 'text-gray-300 hover:text-purple-400' : 'text-slate-700 hover:text-rose-600'
-                      }`}
-                    >
-                      {translations.contact.info.email}
-                    </a>
-                  </div>
-                </div>
+              {t.contact.title}
+            </h2>
+            <div className={`w-24 h-1 mx-auto rounded-full ${
+              isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
+            }`}></div>
+          </div>
+          
+          <div className="grid lg:grid-cols-2 gap-16">
+            {/* Contact Info */}
+            <div className="space-y-8">
+              <div>
+                <h3 className={`text-2xl md:text-3xl font-bold mb-8 transition-all duration-300 ${
+                  isDarkMode ? 'text-white' : 'text-slate-800'
+                }`}>
+                  {t.contact.info}
+                </h3>
                 
-                <div className="flex items-center space-x-4">
-                  <div className={`p-3 rounded-full transition-all duration-300 ${
-                    isDarkMode ? 'bg-purple-500/20' : 'bg-rose-100'
-                  }`}>
-                    <Phone className={`transition-all duration-300 ${
-                      isDarkMode ? 'text-purple-400' : 'text-rose-600'
-                    }`} size={20} />
-                  </div>
-                  <div>
-                    <p className={`font-semibold transition-all duration-300 ${
-                      isDarkMode ? 'text-white' : 'text-slate-800'
+                <div className="space-y-6">
+                  {[
+                    { icon: Mail, label: t.contact.email, value: "mora.florencia.m@gmail.com", href: "mailto:mora.florencia.m@gmail.com", color: "from-yellow-500 to-orange-600" },
+                    { icon: FaWhatsapp, label: t.contact.phone, value: "+54 9 11 6018-4046", href: "tel:+5491160184046", color: "from-green-500 to-emerald-600" },
+                    { icon: Linkedin, label: t.contact.linkedin, value: "linkedin.com/in/florm01", href: "https://linkedin.com/in/florm01", color: "from-blue-500 to-indigo-600" },
+                    { icon: Github, label: t.contact.github, value: "github.com/moraflorencia", href: "https://github.com/moraflorencia", color: "from-purple-500 to-pink-600" },
+                    { icon: MapPin, label: t.contact.location, value: t.contact.locationValue, href: "", color: "from-red-500 to-pink-600" }
+                  ].map((item, index) => (
+                    <div key={index} className={`group flex items-center space-x-4 p-6 rounded-2xl backdrop-blur-sm border transition-all duration-300 hover:scale-105 hover:shadow-lg ${
+                      item.href ? 'cursor-pointer' : ''
+                    } ${
+                      isDarkMode ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-white/60 border-rose-200/40 hover:bg-white/80'
                     }`}>
-                      Teléfono
-                    </p>
-                    <p className={`transition-all duration-300 ${
-                      isDarkMode ? 'text-gray-300' : 'text-slate-700'
-                    }`}>
-                      {translations.contact.info.phone}
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="flex items-center space-x-4">
-                  <div className={`p-3 rounded-full transition-all duration-300 ${
-                    isDarkMode ? 'bg-purple-500/20' : 'bg-rose-100'
-                  }`}>
-                    <MapPin className={`transition-all duration-300 ${
-                      isDarkMode ? 'text-purple-400' : 'text-rose-600'
-                    }`} size={20} />
-                  </div>
-                  <div>
-                    <p className={`font-semibold transition-all duration-300 ${
-                      isDarkMode ? 'text-white' : 'text-slate-800'
-                    }`}>
-                      Ubicación
-                    </p>
-                    <p className={`transition-all duration-300 ${
-                      isDarkMode ? 'text-gray-300' : 'text-slate-700'
-                    }`}>
-                      {translations.contact.info.location}
-                    </p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="mt-8 pt-8 border-t border-white/10">
-                <div className="flex space-x-4">
-                  <a
-                    href="https://linkedin.com/in/florencia-mora"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`p-3 rounded-full transition-all duration-300 hover:scale-110 ${
-                      isDarkMode 
-                        ? 'bg-white/10 text-white hover:bg-white/20' 
-                        : 'bg-white/70 text-slate-600 hover:bg-white'
-                    }`}
-                  >
-                    <Linkedin size={20} />
-                  </a>
-                  <a
-                    href="https://github.com/florencia-mora"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`p-3 rounded-full transition-all duration-300 hover:scale-110 ${
-                      isDarkMode 
-                        ? 'bg-white/10 text-white hover:bg-white/20' 
-                        : 'bg-white/70 text-slate-600 hover:bg-white'
-                    }`}
-                  >
-                    <Github size={20} />
-                  </a>
+                      <div className={`w-14 h-14 rounded-xl bg-gradient-to-r ${item.color} flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
+                        <item.icon className="w-7 h-7 text-white" />
+                      </div>
+                      <div className="flex-1">
+                        <p className={`font-semibold text-lg mb-1 transition-all duration-300 ${
+                          isDarkMode ? 'text-white' : 'text-slate-800'
+                        }`}>
+                          {item.label}
+                        </p>
+                        {item.href ? (
+                          <a
+                            href={item.href}
+                            target={item.href.startsWith('http') ? '_blank' : undefined}
+                            rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                            className={`transition-all duration-300 hover:scale-105 ${
+                              isDarkMode ? 'text-gray-300 hover:text-white' : 'text-slate-600 hover:text-slate-800'
+                            }`}
+                          >
+                            {item.value}
+                          </a>
+                        ) : (
+                          <p className={`transition-all duration-300 ${
+                            isDarkMode ? 'text-gray-300' : 'text-slate-700'
+                          }`}>
+                            {item.value}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
-            
+
             {/* Contact Form */}
-            <FormEmail isDarkMode={isDarkMode} translations={translations.contact} />
+            <FormEmail 
+              isDarkMode={isDarkMode}
+              translations={t.contact.form}
+            />
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className={`py-8 px-4 border-t transition-all duration-300 ${
-        isDarkMode ? 'border-white/10 bg-slate-900/50' : 'border-rose-200/30 bg-white/30'
+      <footer className={`relative py-20 px-6 ${
+        isDarkMode ? 'bg-slate-900/50' : 'bg-slate-900/90'
       }`}>
-        <div className="max-w-6xl mx-auto text-center">
-          <p className={`transition-all duration-300 ${
-            isDarkMode ? 'text-gray-400' : 'text-slate-600'
-          }`}>
-            © 2024 Florencia Milagros Mora. Todos los derechos reservados.
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center">
+            {/* Logo/Brand */}
+            <div className="mb-8">
+          <div className="flex items-center justify-center space-x-3 mb-4">
+            <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${
+              isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
+            }`}>
+              <Sparkles className="w-6 h-6 text-white" />
+            </div>
+            <h3 className="text-2xl md:text-3xl font-bold text-white">
+              Florencia Milagros Mora
+            </h3>
+          </div>
+          <p className="text-lg max-w-2xl mx-auto leading-relaxed text-gray-200">
+            {t.footer.description}
           </p>
+        </div>
+            
+            {/* Social Links */}
+            <div className="flex justify-center space-x-6 mb-12">
+              {[
+                { icon: Linkedin, href: "https://linkedin.com/in/florm01", color: "hover:text-blue-400" },
+                { icon: Github, href: "https://github.com/moraflorencia", color: "hover:text-purple-400" },
+                { icon: Mail, href: "mailto:mora.florencia.m@gmail.com", color: "hover:text-green-400" },
+                { icon: Phone, href: "tel:+5491160184046", color: "hover:text-yellow-400" }
+              ].map(({ icon: Icon, href, color }, index) => (
+                <a
+                  key={index}
+                  href={href}
+                  target={href.startsWith('http') ? '_blank' : undefined}
+                  rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  className={`p-4 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 text-gray-300 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:bg-white/20 ${color}`}
+                >
+                  <Icon size={24} />
+                </a>
+              ))}
+            </div>
+            
+            {/* Copyright */}
+            <div className="pt-8 border-t border-white/20">
+              <p className="text-gray-300 text-lg">
+                {t.footer.copyright}
+              </p>
+            </div>
+          </div>
         </div>
       </footer>
     </div>
