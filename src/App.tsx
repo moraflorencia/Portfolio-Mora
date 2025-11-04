@@ -4,7 +4,7 @@ import { Languages } from 'lucide-react';
 import { FaWhatsapp } from "react-icons/fa";
 import TypewriterEffect from './components/TypewriterEffect';
 import BackgroundEffects from './components/BackgroundEffects';
-import { FormEmail } from './components/FormEmail';
+import { FormEmail } from './components/FormEmail'; 
 import { HiBuilding } from 'react-icons/hi';
 
 // Hook para efecto máquina de escribir
@@ -267,7 +267,7 @@ function App() {
     },
     {
      name: 'SAP',
-     icon: HiBuilding,
+     icon: Building2,
      items: ['ABAP'],
      color: isDarkMode ? 'from-white/5 to-white/20' : 'from-white/50 to-rose-200/30',
 }
