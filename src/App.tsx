@@ -115,7 +115,7 @@ function App() {
         description2: "Me encanta trabajar con otras personas, compartir conocimientos y seguir creciendo en cada desafío. Más allá de la tecnología, me motiva la posibilidad de aprender algo nuevo todos los días y aplicar lo que sé de forma creativa.",
         dataAnalysis: "Análisis de Datos",
         ai: "Inteligencia Artificial",
-        visualization: "SAP",
+        data: "SAP",
         programming: "Programación"
       },
       skills: {
