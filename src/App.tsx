@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronDown, Github, Linkedin, Mail, Phone, MapPin, ExternalLink, BarChart3, Database, Brain, Code, TrendingUp, BookOpen, Award, Briefcase, Send, Calendar, GraduationCap, X, ZoomIn, Moon, Sun, Menu, Globe, Star, Sparkles } from 'lucide-react';
+import { Moon, Sun, Download, Mail, Linkedin, Github, ExternalLink, BarChart3, Code, Database, GraduationCap, Award, MapPin, Calendar, User, Briefcase, Star, ChevronDown, ChevronUp, Building2 } from 'lucide-react';
 import { Languages } from 'lucide-react';
 import { FaWhatsapp } from "react-icons/fa";
 import TypewriterEffect from './components/TypewriterEffect';
@@ -864,6 +864,26 @@ const projects = [
                       </div>
                     </div>
 
+                    {/* SAP */}
+                    <div className={`p-6 rounded-2xl backdrop-blur-sm border transition-all duration-300 hover:scale-105 ${
+                      isDarkMode ? 'bg-white/5 border-white/10' : 'bg-white/50 border-rose-200/30'
+                    }`}>
+                      <div className="flex items-center mb-4">
+                        <Building2 className={`h-6 w-6 mr-3 ${isDarkMode ? 'text-green-400' : 'text-green-500'}`} />
+                        <h4 className={`text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-slate-800'}`}>
+                          SAP
+                        </h4>
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        {['ABAP', 'SAP FIORI', 'SAP BTP'].map((skill) => (
+                          <span key={skill} className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-300 ${
+                            isDarkMode ? 'bg-green-500/20 text-green-300' : 'bg-green-100 text-green-700'
+                          }`}>
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                   
                   {/* Content */}
