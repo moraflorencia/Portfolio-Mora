@@ -101,7 +101,8 @@ function App() {
         greeting: "¡Hola!",
         name: "Florencia Milagros Mora",
         title: "Analista de Datos",
-        subtitle: "Estudiante de Ingeniería en Sistemas", 
+        subtitle2: "SAP",
+        subtitle: "Estudiante de Ingeniería en Sistemas",
         description: "Me entusiasma aprender, crecer en equipo y usar los datos para crear soluciones con impacto real.",
         downloadCV: "Ver CV",
         contact: "Contactar"
@@ -242,25 +243,25 @@ function App() {
     { 
       name: 'Análisis de Datos', 
       icon: BarChart3, 
-      items: ['SQL', 'Python', 'Numpy', 'Pandas', 'Matplotlib'],
+      items: ['SQL', 'Numpy', 'Pandas', 'Matplotlib'],
       color: 'from-red-500 to-pink-600'
     },
     { 
       name: 'Visualización', 
       icon: TrendingUp, 
-      items: ['Power BI', 'Excel', 'Dashboards', 'Datos'],
+      items: ['Power BI', 'Excel', 'Dashboards'],
       color: 'from-yellow-500 to-orange-600'
     },
     { 
       name: 'Programación', 
       icon: Code, 
-      items: ['Python', 'SQL', 'Bash', 'C'],
+      items: ['Python', 'JavaScript' ,'Bash', 'C'],
       color: 'from-green-500 to-emerald-600'
     },
     { 
       name: 'IA & Tecnología', 
       icon: Brain, 
-      items: ['Automatización', 'Ciberseguridad'],
+      items: ['N8n','Automatización', 'Ciberseguridad'],
       color: 'from-blue-500 to-indigo-600'
     }
   ];
@@ -448,7 +449,7 @@ const projects = [
                 <p className={`text-sm transition-all duration-300 ${
                   isDarkMode ? 'text-gray-300' : 'text-slate-800'
                 }`}>
-                  Data Analyst
+                  Data Analyst 
                 </p>
               </div>
             </div>
@@ -765,7 +766,7 @@ const projects = [
           </div>
         </div>
       </section>
-       
+      
       {/* Skills Section */}
       <section id="skills" className="py-20 px-6 relative">
         <div className="container mx-auto max-w-6xl">
