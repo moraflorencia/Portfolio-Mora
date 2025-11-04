@@ -5,6 +5,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import TypewriterEffect from './components/TypewriterEffect';
 import BackgroundEffects from './components/BackgroundEffects';
 import { FormEmail } from './components/FormEmail';
+import { HiBuilding } from 'react-icons/hi';
 
 // Hook para efecto máquina de escribir
 const useTypewriter = (words: string[], speed = 150, delay = 2000) => {
@@ -265,12 +266,12 @@ function App() {
       color: 'from-blue-500 to-indigo-600'
     },
     {
-  name: 'SAP',
-  icon: Building2,
-  items: ['ABAP', 'SAP FIORI', 'SAP BTP'],
-  color: isDarkMode ? 'from-white/5 to-white/20' : 'from-white/50 to-rose-200/30',
+     name: 'SAP',
+     icon: Building2,
+     items: ['ABAP', 'SAP FIORI', 'SAP BTP'],
+     color: isDarkMode ? 'from-white/5 to-white/20' : 'from-white/50 to-rose-200/30',
 }
-
+ 
   ];
 
 const projects = [
