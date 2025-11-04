@@ -690,27 +690,7 @@ const projects = [
           </div>
         </div>
       </section>
-    {/* SAP */}
-                    <div className={`p-6 rounded-2xl backdrop-blur-sm border transition-all duration-300 hover:scale-105 ${
-                      isDarkMode ? 'bg-white/5 border-white/10' : 'bg-white/50 border-rose-200/30'
-                    }`}>
-                      <div className="flex items-center mb-4">
-                        <Building2 className={`h-6 w-6 mr-3 ${isDarkMode ? 'text-green-400' : 'text-green-500'}`} />
-                        <h4 className={`text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-slate-800'}`}>
-                          SAP
-                        </h4>
-                      </div>
-                      <div className="flex flex-wrap gap-2">
-                        {['ABAP', 'SAP FIORI', 'SAP BTP'].map((skill) => (
-                          <span key={skill} className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-300 ${
-                            isDarkMode ? 'bg-green-500/20 text-green-300' : 'bg-green-100 text-green-700'
-                          }`}>
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
+     
       {/* About Section */}
       <section id="about" className="py-20 px-6 relative">
         <div className="container mx-auto max-w-6xl">
