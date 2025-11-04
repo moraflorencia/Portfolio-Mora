@@ -257,7 +257,7 @@ function App() {
     { 
       name: 'Programación', 
       icon: Code, 
-      items: ['Python', 'JavaScript' ,'Bash', 'C'],
+      items: ['Python', 'JavaScript' ,'Bash', 'C'], 
       color: 'from-green-500 to-emerald-600'
     },
     { 
