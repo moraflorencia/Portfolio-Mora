@@ -242,19 +242,19 @@ function App() {
   const t = translations[isEnglish ? 'en' : 'es'];
 
   const skills = [
+    {
+     name: 'SAP',
+     icon: Database,
+     items: ['ABAP'],
+     color: isDarkMode ? 'from-white/5 to-white/20' : 'from-white/50 to-rose-200/30',
+},
     { 
       name: 'Análisis de Datos', 
       icon: BarChart3, 
       items: ['SQL', 'Numpy', 'Pandas', 'Matplotlib'],
       color: 'from-red-500 to-pink-600'
     },
-    { 
-      name: 'Visualización', 
-      icon: TrendingUp, 
-      items: ['Power BI', 'Excel', 'Dashboards'],
-      color: 'from-yellow-500 to-orange-600'
-    },
-    { 
+     { 
       name: 'Programación', 
       icon: Code, 
       items: ['Python', 'JavaScript' ,'Bash', 'C'], 
@@ -266,13 +266,12 @@ function App() {
       items: ['N8n','Automatización', 'Ciberseguridad'],
       color: 'from-blue-500 to-indigo-600'
     },
-    {
-     name: 'SAP',
-     icon: Database,
-     items: ['ABAP'],
-     color: isDarkMode ? 'from-white/5 to-white/20' : 'from-white/50 to-rose-200/30',
-}
- 
+    { 
+      name: 'Visualización', 
+      icon: TrendingUp, 
+      items: ['Power BI', 'Excel', 'Dashboards'],
+      color: 'from-yellow-500 to-orange-600'
+    }
   ];
 
 const projects = [
