@@ -5,7 +5,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import TypewriterEffect from './components/TypewriterEffect';
 import BackgroundEffects from './components/BackgroundEffects';
 import { FormEmail } from './components/FormEmail';
-
+ 
 // Hook para efecto máquina de escribir
 const useTypewriter = (words: string[], speed = 150, delay = 2000) => {
   const [text, setText] = useState("");
