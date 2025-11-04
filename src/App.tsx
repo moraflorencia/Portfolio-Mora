@@ -752,8 +752,8 @@ const projects = [
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {[
                   { icon: BarChart3, title: t.about.dataAnalysis, color: 'from-red-500 to-pink-600' },
-                  { icon: Brain, title: t.about.ai, color: 'from-blue-500 to-indigo-600' },
-                  { icon: Database, title: t.about.visualization, color: 'from-yellow-500 to-orange-600' },
+                  { icon: Brain, title: t.about.ai, color: 'from-purple-500 to-indigo-600' },
+                  { icon: Database, title: t.about.visualization, color: 'from-blue-500 to-orange-600' },
                   { icon: Code, title: t.about.programming, color: 'from-green-500 to-emerald-600' }
                 ].map((item, index) => (
                   <div key={index} className={`group p-6 rounded-2xl backdrop-blur-sm border transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer ${
