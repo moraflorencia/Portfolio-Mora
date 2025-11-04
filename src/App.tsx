@@ -263,7 +263,14 @@ function App() {
       icon: Brain, 
       items: ['N8n','Automatización', 'Ciberseguridad'],
       color: 'from-blue-500 to-indigo-600'
-    }
+    },
+    {
+  name: 'SAP',
+  icon: Building2,
+  items: ['ABAP', 'SAP FIORI', 'SAP BTP'],
+  color: isDarkMode ? 'from-white/5 to-white/20' : 'from-white/50 to-rose-200/30',
+}
+
   ];
 
 const projects = [
