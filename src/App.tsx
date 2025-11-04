@@ -267,8 +267,8 @@ function App() {
     },
     {
      name: 'SAP',
-     icon: Brain,
-     items: ['ABAP', 'SAP FIORI', 'SAP BTP'],
+     icon: HiBuilding,
+     items: ['ABAP'],
      color: isDarkMode ? 'from-white/5 to-white/20' : 'from-white/50 to-rose-200/30',
 }
  
