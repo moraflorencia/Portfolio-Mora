@@ -457,7 +457,7 @@ const projects = [
                 <p className={`text-sm transition-all duration-300 ${
                   isDarkMode ? 'text-gray-300' : 'text-slate-800'
                 }`}>
-                  Data Analyst 
+                  
                 </p>
               </div>
             </div>
