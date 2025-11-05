@@ -4,7 +4,9 @@ import { Languages } from 'lucide-react';
 import { FaWhatsapp } from "react-icons/fa";
 import TypewriterEffect from './components/TypewriterEffect';
 import BackgroundEffects from './components/BackgroundEffects';
-import { FormEmail } from './components/FormEmail';
+import { FormEmail } from './components/FormEmail'; 
+import { HiBuilding } from 'react-icons/hi';
+ 
 
 // Hook para efecto máquina de escribir
 const useTypewriter = (words: string[], speed = 150, delay = 2000) => {
@@ -13,7 +15,7 @@ const useTypewriter = (words: string[], speed = 150, delay = 2000) => {
   const [loopNum, setLoopNum] = useState(0);
 
   useEffect(() => {
-    const current = loopNum % words.length;
+    const current = loopNum % words.length; 
     const fullText = words[current];
 
     const timer = setTimeout(() => {
@@ -52,7 +54,7 @@ function App() {
       setIsScrolled(window.scrollY > 50);
       
       // Update active section based on scroll position
-      const sections = ['home', 'about', 'skills', 'projects', 'experience', 'education', 'contact'];
+      const sections = ['home', 'about', 'skills', 'projects', 'experience', 'education','certifications', 'contact'];
       const current = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -94,15 +96,17 @@ function App() {
         projects: "Proyectos",
         experience: "Experiencia",
         education: "Educación",
+        certification: "Certificaciones",
         contact: "Contacto"
       },
       hero: {
         greeting: "¡Hola!",
         name: "Florencia Milagros Mora",
         title: "Analista de Datos",
-        subtitle: "Estudiante de Ingeniería en Sistemas", 
+        subtitle2: "SAP",
+        subtitle: "Estudiante de Ingeniería en Sistemas",
         description: "Me entusiasma aprender, crecer en equipo y usar los datos para crear soluciones con impacto real.",
-        downloadCV: "Descargar CV",
+        downloadCV: "Ver CV",
         contact: "Contactar"
       },
       about: {
@@ -111,7 +115,7 @@ function App() {
         description2: "Me encanta trabajar con otras personas, compartir conocimientos y seguir creciendo en cada desafío. Más allá de la tecnología, me motiva la posibilidad de aprender algo nuevo todos los días y aplicar lo que sé de forma creativa.",
         dataAnalysis: "Análisis de Datos",
         ai: "Inteligencia Artificial",
-        visualization: "Visualización",
+        visualization: "SAP",
         programming: "Programación"
       },
       skills: {
@@ -129,6 +133,10 @@ function App() {
         title: "Educación",
         formal: " ",
         complementary: "Educación Complementaria"
+      },
+      certifications: {
+        title: "Certificaciones",
+        viewDrive: "Ver en Drive"
       },
       contact: {
         title: "Contacto",
@@ -164,6 +172,7 @@ function App() {
         projects: "Projects",
         experience: "Experience",
         education: "Education",
+        certifications: "certifications",
         contact: "Contact"
       },
       hero: {
@@ -233,29 +242,35 @@ function App() {
   const t = translations[isEnglish ? 'en' : 'es'];
 
   const skills = [
+    {
+     name: 'SAP',
+     icon: Database,
+     items: ['ABAP','Fiori', 'BTP'],
+     color: 'from-blue-500 to-blue-600',
+},
     { 
       name: 'Análisis de Datos', 
       icon: BarChart3, 
-      items: ['SQL', 'Python', 'Numpy', 'Pandas', 'Matplotlib'],
+      items: ['SQL', 'Numpy', 'Pandas', 'Matplotlib'],
       color: 'from-red-500 to-pink-600'
     },
-    { 
-      name: 'Visualización', 
-      icon: TrendingUp, 
-      items: ['Power BI', 'Excel', 'Dashboards', 'Datos'],
-      color: 'from-yellow-500 to-orange-600'
-    },
-    { 
+     { 
       name: 'Programación', 
       icon: Code, 
-      items: ['Python', 'SQL', 'Bash', 'C'],
+      items: ['Python', 'JavaScript' ,'Bash', 'C'], 
       color: 'from-green-500 to-emerald-600'
     },
     { 
       name: 'IA & Tecnología', 
       icon: Brain, 
-      items: ['Automatización', 'Ciberseguridad'],
-      color: 'from-blue-500 to-indigo-600'
+      items: ['N8n','Automatización', 'Ciberseguridad'],
+      color: 'from-purple-500 to-indigo-600'
+    },
+    { 
+      name: 'Visualización', 
+      icon: TrendingUp, 
+      items: ['Power BI', 'Excel', 'Dashboards'],
+      color: 'from-yellow-500 to-orange-600'
     }
   ];
 
@@ -265,10 +280,10 @@ const projects = [
     description: 'Proyecto integral de análisis de datos en el que desarrollé un tablero interactivo en Power BI a partir de un dataset propio titulado "Asistencia al Viajero". El trabajo incluyó la transformación de una base de datos compleja en Excel, la aplicación de técnicas avanzadas de limpieza y modelado de datos, y la creación de visualizaciones interactivas para facilitar el análisis estratégico',
     tech: ['Power BI', 'Excel', 'Datos', 'Visualización'],
     images: [
-      'https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/Portada.jpg',
-      '/https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/Ventas.jpg',
-      'https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/Viaje.jpg',
-      '/https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/Vendedores.jpg'
+      'https://i.postimg.cc/XqgcBFPb/General.gif',
+      'https://i.postimg.cc/7Zj76mLz/Ventas.gif',
+      'https://i.postimg.cc/pL5hgzBL/Viajes.gif',
+      'https://i.postimg.cc/rFn568XQ/Vendedores.png'
     ],
     year: '2024',
     githubUrl: 'https://github.com/moraflorencia/Asistencia-al-Viajero-Power-BI-',
@@ -318,7 +333,7 @@ const projects = [
       company: 'ARTECH | Fundación PESCAR',
       period: 'Actual',
       description: 'Formación profesional especializada en Análisis de Datos y SAP. Desarrollo intensivo en Python y SQL, complementado con el fortalecimiento de habilidades blandas para el ambiente profesional.',
-      skills: ['Python', 'SQL', 'SAP', 'Análisis de Datos', 'Habilidades Blandas'],
+      skills: ['ABAP', 'SAP Fiori', 'SAP BTP', 'JavaScript', 'Python', 'SQL', 'Análisis de Datos', 'Habilidades Blandas'],
       type: 'Pasantía de Aprendizaje'
     }
   ];
@@ -392,7 +407,7 @@ const projects = [
   ];
  
   return ( 
-    <div 
+    <div  
   className={`min-h-screen relative transition-all duration-500 ${
     isDarkMode 
       ? 'bg-slate-900'   // respaldo si no carga la imagen
@@ -400,7 +415,7 @@ const projects = [
   }`} 
   style={{ 
     backgroundImage: isDarkMode
-      ? "url('https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/FondoNoche.png')" // fondo oscuro
+      ? "url('https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/FondoNoche.png')" // fondo oscuro 
       : "url('https://raw.githubusercontent.com/moraflorencia/Portfolio-Mora/refs/heads/main/public/assets/FondoDia.png')", // fondo claro
     backgroundSize: "cover",
     backgroundPosition: "center",
@@ -442,7 +457,7 @@ const projects = [
                 <p className={`text-sm transition-all duration-300 ${
                   isDarkMode ? 'text-gray-300' : 'text-slate-800'
                 }`}>
-                  Data Analyst
+                  
                 </p>
               </div>
             </div>
@@ -470,23 +485,6 @@ const projects = [
               
               {/* Controls */}
               <div className="flex items-center space-x-2 ml-4">
-                <button
-                  onClick={toggleLanguage}
-                  className={`p-2 rounded-xl transition-all duration-300 ${
-                    isDarkMode 
-                      ? 'bg-white/10 hover:bg-white/20 text-white' 
-                      : 'bg-slate-800/80 hover:bg-slate-800 text-white'
-                  }`}
-                >
-                  <svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 24 24"
-  className="w-5 h-5"
-  fill="currentColor"
->
-  <path d="m11.9 22l4.55-12h2.1l4.55 12H21l-1.075-3.05h-4.85L14 22zM4 19l-1.4-1.4l5.05-5.05q-.875-.875-1.588-2T4.75 8h2.1q.5.975 1 1.7t1.2 1.45q.825-.825 1.713-2.313T12.1 6H1V4h7V2h2v2h7v2h-2.9q-.525 1.8-1.575 3.7t-2.075 2.9l2.4 2.45l-.75 2.05l-3.05-3.125zm11.7-1.8h3.6l-1.8-5.1z"/>
-</svg>
-                </button>
                  
                 <button
                   onClick={toggleDarkMode}
@@ -503,23 +501,6 @@ const projects = [
 
             {/* Mobile Menu Button */}
             <div className="md:hidden flex items-center space-x-2">
-              <button
-                onClick={toggleLanguage}
-                className={`p-2 rounded-xl transition-all duration-300 ${
-                  isDarkMode 
-                    ? 'bg-white/10 hover:bg-white/20 text-white' 
-                    : 'bg-slate-800/80 hover:bg-slate-700 text-white'
-                }`}
-              >
-               <svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 24 24"
-  className="w-5 h-5"
-  fill="currentColor"
->
-  <path d="m11.9 22l4.55-12h2.1l4.55 12H21l-1.075-3.05h-4.85L14 22zM4 19l-1.4-1.4l5.05-5.05q-.875-.875-1.588-2T4.75 8h2.1q.5.975 1 1.7t1.2 1.45q.825-.825 1.713-2.313T12.1 6H1V4h7V2h2v2h7v2h-2.9q-.525 1.8-1.575 3.7t-2.075 2.9l2.4 2.45l-.75 2.05l-3.05-3.125zm11.7-1.8h3.6l-1.8-5.1z"/>
-</svg>
-              </button>
               
               <button 
                 onClick={toggleDarkMode}
@@ -575,13 +556,13 @@ const projects = [
         <div className="container mx-auto text-center relative z-10"> 
           {/* Profile Image */}
           <div className="relative mb-8 inline-block">
-            <div className={`absolute inset-0 rounded-full blur-2xl opacity-60 animate-pulse ${
+            <div className={`absolute inset-0 rounded-full blur-3xl opacity-70 animate-pulse ${
               isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-400 to-pink-500'
             }`}></div>
             <div className="profile-border">
   <img
     src="https://i.postimg.cc/0NJMCbn0/Picsart-24-12-09-11-42-26-230.jpg"
-              alt="Florencia Milagros Mora"    className="w-40 h-40 rounded-full object-cover"
+              alt="Florencia Milagros Mora"    className="w-56 h-56 rounded-full object-cover"
   />
 </div>
           </div>
@@ -771,8 +752,8 @@ const projects = [
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {[
                   { icon: BarChart3, title: t.about.dataAnalysis, color: 'from-red-500 to-pink-600' },
-                  { icon: Brain, title: t.about.ai, color: 'from-blue-500 to-indigo-600' },
-                  { icon: TrendingUp, title: t.about.visualization, color: 'from-yellow-500 to-orange-600' },
+                  { icon: Brain, title: t.about.ai, color: 'from-purple-500 to-indigo-600' },
+                  { icon: Database, title: t.about.visualization, color: 'from-blue-500 to-blue-600' },
                   { icon: Code, title: t.about.programming, color: 'from-green-500 to-emerald-600' }
                 ].map((item, index) => (
                   <div key={index} className={`group p-6 rounded-2xl backdrop-blur-sm border transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer ${
@@ -1474,4 +1455,4 @@ const projects = [
   );
 }
 
-export default App;
+export default App; 
