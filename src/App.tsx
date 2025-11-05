@@ -556,13 +556,13 @@ const projects = [
         <div className="container mx-auto text-center relative z-10"> 
           {/* Profile Image */}
           <div className="relative mb-8 inline-block">
-            <div className={`absolute inset-0 rounded-full blur-2xl opacity-60 animate-pulse ${
+            <div className={`absolute inset-0 rounded-full blur-3xl opacity-70 animate-pulse ${
               isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-400 to-pink-500'
             }`}></div>
             <div className="profile-border">
   <img
     src="https://i.postimg.cc/0NJMCbn0/Picsart-24-12-09-11-42-26-230.jpg"
-              alt="Florencia Milagros Mora"    className="w-40 h-40 rounded-full object-cover"
+              alt="Florencia Milagros Mora"    className="w-56 h-56 rounded-full object-cover"
   />
 </div>
           </div>
