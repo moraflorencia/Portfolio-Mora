@@ -276,6 +276,26 @@ function App() {
 
 const projects = [
   {
+    title: 'Consultas IA para Tickets de Soporte',
+    description: 'Proyecto desarrollado en equipo, enfocado en crear un sistema inteligente para realizar consultas en lenguaje natural sobre una base de datos de tickets de soporte técnico. La solución combina Python, n8n, Gemini (IA) y Supabase (PostgreSQL) para interpretar las solicitudes del usuario, generar consultas SQL dinámicas y automatizar la generación de reportes.',
+    tech: ['N8n', 'Gemini(IA)', 'Supabase', 'JavaScript', 'Python'],
+    images: [
+      'https://raw.githubusercontent.com/moraflorencia/N8n-Consultas-IA-para-Tickets-de-Soporte/refs/heads/main/Versi%C3%B3n%20N%C2%B09/ModoOscuro.png',
+      'https://raw.githubusercontent.com/moraflorencia/N8n-Consultas-IA-para-Tickets-de-Soporte/refs/heads/main/Versi%C3%B3n%20N%C2%B09/Versi%C3%B3n9.png',
+      'https://raw.githubusercontent.com/moraflorencia/N8n-Consultas-IA-para-Tickets-de-Soporte/refs/heads/main/Versi%C3%B3n%20N%C2%B09/ModoClaro.png'
+    ],
+    year: 'En Proyecto',
+    githubUrl: 'https://github.com/moraflorencia/N8n-Consultas-IA-para-Tickets-de-Soporte',
+    achievements: [ 
+      'Interpretación de lenguaje natural mediante IA (Gemini),',
+      'Ejecución automática de consultas SQL en Supabase.',
+      'Generación y envío de reportes en Excel/CSV o por email.',
+      'Automatización de flujos con n8n y conexión HTTP REST desde Python.',
+      'Trabajo colaborativo en todas las etapas del desarrollo (diseño, integración y pruebas).'
+    ]
+  },
+
+  {
     title: 'Asistencia al viajero - CoderHouse',
     description: 'Proyecto integral de análisis de datos en el que desarrollé un tablero interactivo en Power BI a partir de un dataset propio titulado "Asistencia al Viajero". El trabajo incluyó la transformación de una base de datos compleja en Excel, la aplicación de técnicas avanzadas de limpieza y modelado de datos, y la creación de visualizaciones interactivas para facilitar el análisis estratégico',
     tech: ['Power BI', 'Excel', 'Datos', 'Visualización'],
