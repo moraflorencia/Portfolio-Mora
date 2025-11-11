@@ -862,7 +862,7 @@ const projects = [
             }`}></div>
           </div>
           
-          <div className="space-y-8">
+          <div className="<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, index) => (
               <div key={index} className={`group relative rounded-3xl backdrop-blur-sm border transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl overflow-hidden ${
                 isDarkMode ? 'bg-white/5 border-white/10' : 'bg-white/70 border-rose-200/40'
