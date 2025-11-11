@@ -862,96 +862,54 @@ const projects = [
             }`}></div>
           </div>
           
-          <div className="<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, index) => (
-              <div key={index} className={`group relative rounded-3xl backdrop-blur-sm border transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl overflow-hidden ${
+              <div key={index} className={`group relative rounded-3xl backdrop-blur-sm border transition-all duration-500 hover:scale-105 hover:shadow-2xl overflow-hidden flex flex-col h-full ${
                 isDarkMode ? 'bg-white/5 border-white/10' : 'bg-white/70 border-rose-200/40'
               }`}>
-                <div className="md:flex">
-                  {/* Image */}
-                  <div className="md:w-2/5 relative">
-                    <div className="relative overflow-hidden rounded-l-3xl md:rounded-l-3xl md:rounded-r-none cursor-pointer" onClick={() => openProjectModal(project)}>
-                      <img
-                        src={project.images[0]}
-                        alt={project.title}
-                        className="w-full h-64 md:h-full object-cover transition-all duration-500 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
-                        <div className="bg-white/20 backdrop-blur-sm rounded-full p-4">
-                          <ZoomIn className="text-white" size={32} />
-                        </div>
-                      </div>
+                {/* Image */}
+                <div className="relative overflow-hidden rounded-t-3xl cursor-pointer h-64 flex-shrink-0" onClick={() => openProjectModal(project)}>
+                  <img
+                    src={project.images[0]}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
+                    <div className="bg-white/20 backdrop-blur-sm rounded-full p-4">
+                      <ZoomIn className="text-white" size={32} />
                     </div>
-                    
-                    {/* Year Badge */}
-                    <div className="absolute top-4 right-4">
-                      <div className={`text-white px-4 py-2 rounded-xl text-sm font-bold shadow-lg ${
-                        isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
-                      }`}>
-                        {project.year}
-                      </div>
-                    </div>
-
                   </div>
-                  
-                  {/* Content */}
-                  <div className="md:w-3/5 p-8 md:p-12">
-                    <div className="flex items-start justify-between mb-4">
-                      <h3 className={`text-2xl md:text-3xl font-bold transition-all duration-300 ${
-                        isDarkMode ? 'text-white' : 'text-slate-800'
-                      }`}>
-                        {project.title}
-                      </h3>
-                      
-                      {/* Desktop GitHub Button */}
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`hidden md:flex items-center space-x-2 px-4 py-2 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg border ${
-                          isDarkMode 
-                            ? 'bg-white/10 hover:bg-white/20 border-white/20 text-gray-300 hover:text-white' 
-                            : 'bg-slate-800/80 hover:bg-slate-700 border-slate-600 text-white hover:text-white'
-                        }`}
-                      >
-                        <Github size={18} />
-                        <span className="text-sm font-medium">{t.projects.viewRepo}</span>
-                      </a>
+
+                  {/* Year Badge */}
+                  <div className="absolute top-4 right-4">
+                    <div className={`text-white px-4 py-2 rounded-xl text-sm font-bold shadow-lg ${
+                      isDarkMode ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gradient-to-r from-rose-500 to-pink-500'
+                    }`}>
+                      {project.year}
                     </div>
-                    
-                    <p className={`text-lg leading-relaxed mb-6 transition-all duration-300 ${
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="p-6 flex flex-col flex-grow">
+                    <h3 className={`text-xl font-bold mb-3 transition-all duration-300 ${
+                      isDarkMode ? 'text-white' : 'text-slate-800'
+                    }`}>
+                      {project.title}
+                    </h3>
+
+                    <p className={`text-sm leading-relaxed mb-4 flex-grow transition-all duration-300 ${
                       isDarkMode ? 'text-gray-300' : 'text-slate-700'
                     }`}>
                       {project.description}
                     </p>
-                    
-                    {/* Achievements */}
-                    <div className="mb-6">
-                      <h4 className={`font-semibold mb-4 text-lg transition-all duration-300 ${
-                        isDarkMode ? 'text-white' : 'text-slate-800'
-                      }`}>
-                        {t.projects.achievements}
-                      </h4>
-                      <ul className="space-y-3">
-                        {project.achievements.map((achievement, achIndex) => (
-                          <li key={achIndex} className={`flex items-start space-x-3 transition-all duration-300 ${
-                            isDarkMode ? 'text-gray-300' : 'text-slate-700'
-                          }`}>
-                            <div className="w-6 h-6 rounded-full bg-gradient-to-r from-green-400 to-emerald-500 flex items-center justify-center flex-shrink-0 mt-0.5">
-                              <div className="w-2 h-2 bg-white rounded-full"></div>
-                            </div>
-                            <span>{achievement}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    
+
                     {/* Tech Stack */}
-                    <div className="flex flex-wrap gap-3">
+                    <div className="flex flex-wrap gap-2 mb-4">
                       {project.tech.map((tech, techIndex) => (
                         <span
                           key={techIndex}
-                          className={`px-4 py-2 rounded-xl text-sm font-medium backdrop-blur-sm border transition-all duration-300 hover:scale-105 ${
+                          className={`px-3 py-1 rounded-lg text-xs font-medium backdrop-blur-sm border transition-all duration-300 hover:scale-105 ${
                             isDarkMode ? 'bg-white/10 border-white/20 text-gray-200' : 'bg-white/60 border-rose-200/40 text-slate-700'
                           }`}
                         >
@@ -960,22 +918,19 @@ const projects = [
                       ))}
                     </div>
 
-                    {/* Mobile GitHub Button */}
-                    <div className="md:hidden mt-6">
-                      <a 
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`w-full py-3 px-6 rounded-xl font-medium transition-all duration-300 flex items-center justify-center space-x-3 hover:scale-105 hover:shadow-lg ${
-                          isDarkMode ? 'bg-gradient-to-r from-gray-800 to-gray-900 hover:from-gray-700 hover:to-rose-800 text-white' : 'bg-rose-400 hover:bg-rose-700 text-white'
-                        }`}
-                      >
-                        <Github size={20} />
-                        <span>{t.projects.viewRepo}</span>
-                      </a>
-                    </div>
+                    {/* GitHub Button */}
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`w-full py-2 px-4 rounded-xl font-medium text-sm transition-all duration-300 flex items-center justify-center space-x-2 hover:scale-105 hover:shadow-lg ${
+                        isDarkMode ? 'bg-gradient-to-r from-gray-800 to-gray-900 hover:from-gray-700 hover:to-rose-800 text-white' : 'bg-rose-400 hover:bg-rose-700 text-white'
+                      }`}
+                    >
+                      <Github size={16} />
+                      <span>{t.projects.viewRepo}</span>
+                    </a>
                   </div>
-                </div>
               </div>
             ))}
           </div>
